@@ -12,9 +12,9 @@ public class AfterBuildToDO : IPostGenerateGradleAndroidProject
         if(Application.unityVersion.StartsWith("2018")){
             return path;
         }
-        string[] s = path.Split('/');
-        s[s.Length - 1] = "launcher";
-        return string.Join("/", s);
+        
+        DirectoryInfo parent = new DirectoryInfo(path).Parent;
+        return Path.Combine(parent.FullName, "launcher");
     }
 
     public void OnPostGenerateGradleAndroidProject(string path)
