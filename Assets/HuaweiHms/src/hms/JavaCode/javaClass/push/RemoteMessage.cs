@@ -82,6 +82,12 @@ namespace HuaweiHms
             public Builder setCollapseKey(string arg0) {
                 return Call<Builder>("setCollapseKey", arg0);
             }
+            public Builder setSendMode(int arg0) {
+                return Call<Builder>("setSendMode", arg0);
+            }
+            public Builder setReceiptMode(int arg0) {
+                return Call<Builder>("setReceiptMode", arg0);
+            }
             public RemoteMessage build() {
                 return Call<RemoteMessage>("build");
             }

@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using HuaweiHms;
+using Exception = HuaweiHms.Exception;
 
 namespace HuaweiHmsDemo
 {
@@ -8,15 +10,45 @@ namespace HuaweiHmsDemo
         public PushTest(){
             SetListener();
         }
-        public override void RegistEvent(TestEvent registEvent){
-            registEvent("get token",GetToken);
-            registEvent("delete token",DeleteToken);
-            registEvent("set auto init enabled",SetAutoInitEnabled);
-            registEvent("SubscribeTest",SubscribeTest);
-            registEvent("UnSubscribeTest",UnSubscribeTest);
-            registEvent("TurnOn",TurnOn);
-            registEvent("TurnOff",TurnOff);
+        public override void RegisterEvent(TestEvent registerEvent){
+            registerEvent("get AAID",() => SetAAID(true));
+            registerEvent("delete AAID",() => SetAAID(false));
+            registerEvent("get token",GetToken);
+            registerEvent("delete token",DeleteToken);
+            registerEvent("get auto init enabled", GetAutoInitEnabled);
+            registerEvent("set auto init enabled",SetAutoInitEnabled);
+            registerEvent("SubscribeTest",SubscribeTest);
+            registerEvent("UnSubscribeTest",UnSubscribeTest);
+            registerEvent("TurnOn",TurnOn);
+            registerEvent("TurnOff",TurnOff);
+            registerEvent("SendMessage",SendMessage);
         }
+
+        public void SetAAID(bool isGet)
+        {
+            if (isGet)
+            {
+                Task id = HmsInstanceId.getInstance(new Context()).getAAID();
+                id.addOnSuccessListener(new HmsSuccessListener<AAIDResult>((aaidResult) =>
+                {
+                    String aaId = aaidResult.getId();
+                    TestTip.Inst.ShowText("getAAID success:" + aaId);
+                })).addOnFailureListener(new HmsFailureListener((e) =>
+                {
+                    TestTip.Inst.ShowText($"getAAID failed: {e.toString()}");
+                }));
+            }
+            else
+            {
+                try {
+                    HmsInstanceId.getInstance(new Context()).deleteAAID();
+                    TestTip.Inst.ShowText("delete aaid and its generation timestamp success.");
+                } catch (System.Exception e) {
+                    TestTip.Inst.ShowText("deleteAAID failed. " + e);
+                }
+            }
+        }
+        
         public bool status = true;
         public void GetToken(){
             string appId = AGConnectServicesConfig.fromContext(new Context()).getString("client/app_id");
@@ -31,6 +63,12 @@ namespace HuaweiHmsDemo
         public void SetListener(){
             PushListenerRegister.RegisterListener(new PServiceListener());
         }
+
+        public void GetAutoInitEnabled()
+        {
+            TestTip.Inst.ShowText($"isAutoInitEnabled: {HmsMessaging.getInstance(new Context()).isAutoInitEnabled()}");
+        } 
+            
         public void SetAutoInitEnabled(){
             status = !status;
             HmsMessaging.getInstance(new Context()).setAutoInitEnabled(status);
@@ -49,6 +87,22 @@ namespace HuaweiHmsDemo
         public void TurnOff(){
             HmsMessaging.getInstance(new Context()).turnOffPush().addOnCompleteListener(new clistener());
         }
+
+        public void SendMessage()
+        {
+            string messageId = DateTime.Now.Millisecond.ToString();
+            RemoteMessage remoteMessage = new RemoteMessage.Builder("push.hcm.upstream")
+                .setMessageId(messageId)
+                .addData("key1", "data1")
+                .addData("key2", "data2")
+                .build();
+            try {
+                HmsMessaging.getInstance(new Context()).send(remoteMessage);
+                TestTip.Inst.ShowText("sending...");
+            } catch (System.Exception e) {
+                TestTip.Inst.ShowText( "send exception:" + e);
+            }
+        }
     }
     public class clistener:OnCompleteListener {
         public override void onComplete(Task task){
@@ -63,6 +117,23 @@ namespace HuaweiHmsDemo
         public override void onNewToken(string var1) {
             TestTip.Inst.ShowText(var1);
         }
+
+        public override void onMessageSent(string arg0)
+        {
+            TestTip.Inst.ShowText( "onMessageSent called, Message id:" + arg0);
+        }
+
+        public override void onSendError(string arg0, BaseException arg1)
+        {
+            TestTip.Inst.ShowText("onSendError called, message id:" + arg0 + "+ ErrCode:"
+                       + arg1.getErrorCode() + ", description:" + arg1.getMessage());
+        }
+
+        public override void onTokenError(BaseException arg0)
+        {
+            TestTip.Inst.ShowText($"on Token Exception: {arg0.getMessage()}");
+        }
+
         public override void onMessageReceived(RemoteMessage message){
             string s = "getCollapseKey: " + message.getCollapseKey()
             + "\n getData: " + message.getData()

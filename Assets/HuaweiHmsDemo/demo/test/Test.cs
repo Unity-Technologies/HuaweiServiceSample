@@ -8,6 +8,6 @@ namespace HuaweiHmsDemo{
         public static T GetInstance(){
             return _inst == null?_inst = new T():_inst;
         }
-        public abstract void RegistEvent(TestEvent registEvent);
+        public abstract void RegisterEvent(TestEvent registerEvent);
     }
 }

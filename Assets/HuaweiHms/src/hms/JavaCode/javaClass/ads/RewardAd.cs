@@ -25,11 +25,11 @@ namespace HuaweiHms
         public RewardAdListener getRewardAdListener() {
             return Call<RewardAdListener>("getRewardAdListener");
         }
-        public void pause() {
-            Call("pause");
-        }
         public void pause(Context arg0) {
             Call("pause", arg0);
+        }
+        public void pause() {
+            Call("pause");
         }
         public void resume() {
             Call("resume");
@@ -61,11 +61,11 @@ namespace HuaweiHms
         public void show(Activity arg0, RewardAdStatusListener arg1, bool arg2) {
             Call("show", arg0, arg1, arg2);
         }
-        public void show() {
-            Call("show");
-        }
         public void show(Activity arg0, RewardAdStatusListener arg1) {
             Call("show", arg0, arg1);
+        }
+        public void show() {
+            Call("show");
         }
     }
 }

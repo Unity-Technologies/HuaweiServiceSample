@@ -1,18 +1,26 @@
+using System.Collections.Generic;
+using System.Text;
 using HuaweiHms;
+using UnityEngine;
+using UnityEngine.UI;
+
 namespace HuaweiHmsDemo{
     public class LocationGeoTest:Test<LocationGeoTest>{
         public const string ACTION_PROCESS_LOCATION = "com.huawei.hmssample.geofence.GeoFenceBroadcastReceiver.ACTION_PROCESS_LOCATION";
         private Geofence.Builder geoBuild = new Geofence.Builder();
         private GeofenceService mService;
+        private PendingIntent pendingIntent;
         private int requestId = 0;
-        public override void RegistEvent(TestEvent registEvent){
-            registEvent("CreateGeo",CreateGeo);
-            registEvent("removeGeo",RemoveGeo);
+        public override void RegisterEvent(TestEvent registerEvent){
+            registerEvent("CreateGeo",CreateGeo);
+            registerEvent("removeGeo",RemoveGeo);
+            registerEvent("removeGeoIntent",RemoveGeoIntent);
         }
+        
         public void CreateGeo(){
             Geofence fence = geoBuild
                 .setUniqueId("7")
-                .setRoundArea(LocationCb.latitude,LocationCb.longitude,200)
+                .setRoundArea(LocationCallBackWrap.latitude,LocationCallBackWrap.longitude,200)
                 .setConversions(7)
                 .setValidContinueTime(1000000)
                 .setDwellDelayTime(10000)
@@ -26,13 +34,20 @@ namespace HuaweiHmsDemo{
             GeofenceRequest request =  builder.build();
 
             mService = new GeofenceService(new Context());
-            mService.createGeofenceList(request,getPendingIntent()).addOnCompleteListener(new MCompleteListener());
+            pendingIntent = getPendingIntent();
+            mService.createGeofenceList(request, pendingIntent).addOnCompleteListener(new MCompleteListener());
         }
         public void RemoveGeo(){
             List list = new List();
             list.add("7");
             mService.deleteGeofenceList(list).addOnCompleteListener(new MCompleteListener());
         }
+
+        public void RemoveGeoIntent()
+        {
+            mService.deleteGeofenceList(pendingIntent).addOnCompleteListener(new MCompleteListener());
+        }
+        
         private PendingIntent getPendingIntent() {
             Context ctx = new Context();
             Intent intent = new Intent(ctx,BroadcastRegister.CreateGeoFenceReceiver(new GeoFenceBroadcast()));

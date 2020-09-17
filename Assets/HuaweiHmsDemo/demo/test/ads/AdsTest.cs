@@ -5,11 +5,11 @@ namespace HuaweiHmsDemo
 {
     public class AdsTest:Test<AdsTest>
     {
-        public override void RegistEvent(TestEvent registEvent){
-            registEvent("load image ads " + Screen.width,LoadImageAds);
-            registEvent("load video ads " + Screen.height,LoadVideoAds);
-            registEvent("load reward ads",LoadRewardAds);
-            registEvent("consent",checkConsentStatus);
+        public override void RegisterEvent(TestEvent registerEvent){
+            registerEvent("load image ads " + Screen.width,LoadImageAds);
+            registerEvent("load video ads " + Screen.height,LoadVideoAds);
+            registerEvent("load reward ads",LoadRewardAds);
+            registerEvent("consent",checkConsentStatus);
         }
         public void LoadImageAds()
         {

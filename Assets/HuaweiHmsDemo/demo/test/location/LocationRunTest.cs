@@ -5,10 +5,10 @@ namespace HuaweiHmsDemo{
     public class LocationRunTest:Test<LocationRunTest>{
         public ActivityIdentificationService activityIdentificationService;
 
-        public override void RegistEvent(TestEvent registEvent){
-            registEvent("SetActivityPermission",RequestActivityPermission);
-            registEvent("RequestActivity",RequestActivity);
-            registEvent("RemoveRunning",RemoveRunning);
+        public override void RegisterEvent(TestEvent registerEvent){
+            registerEvent("SetActivityPermission",RequestActivityPermission);
+            registerEvent("RequestActivity",RequestActivity);
+            registerEvent("RemoveRunning",RemoveRunning);
         }
         public void RequestActivityPermission(){
             LocationCommon.SetPermission(
@@ -23,7 +23,7 @@ namespace HuaweiHmsDemo{
             .addOnSuccessListener(new LocationSuccessListener((AndroidJavaObject o)=>{
                 TestTip.Inst.ShowText("activity success");
             }))
-            .addOnFailureListener(new LocationFailureListener((Exception e)=>{
+            .addOnFailureListener(new HmsFailureListener((Exception e)=>{
                 TestTip.Inst.ShowText("activity failure");
             }));
         }
