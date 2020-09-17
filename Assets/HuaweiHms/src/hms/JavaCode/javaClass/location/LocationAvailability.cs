@@ -18,5 +18,8 @@ namespace HuaweiHms
         public bool isLocationAvailable() {
             return Call<bool>("isLocationAvailable");
         }
+        public string toString() {
+            return Call<string>("toString");
+        }
     }
 }

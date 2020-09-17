@@ -23,5 +23,11 @@ namespace HuaweiHms
         public float getAccuracy() {
             return Call<float>("getAccuracy");
         }
+        public void setLatitude(double arg0) {
+            Call("setLatitude", arg0);
+        }
+        public void setLongitude(double arg0) {
+            Call("setLongitude", arg0);
+        }
     }
 }

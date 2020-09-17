@@ -24,16 +24,16 @@ namespace HuaweiHmsDemo
         public void Initial(){
             Screen.SetResolution (1080, 2340,true); // hack
             if(AdsEnabled){
-                AdsTest.GetInstance().RegistEvent(RegistEvent);
+                AdsTest.GetInstance().RegisterEvent(RegistEvent);
             }
             if(AnalyticEnabled){
-                AnalyticTest.GetInstance().RegistEvent(RegistEvent);
+                AnalyticTest.GetInstance().RegisterEvent(RegistEvent);
             }
             if(PushEnabled){
-                PushTest.GetInstance().RegistEvent(RegistEvent);
+                PushTest.GetInstance().RegisterEvent(RegistEvent);
             }
             if(LocationEnabled){
-                LocationTest.GetInstance().RegistEvent(RegistEvent);
+                LocationTest.GetInstance().RegisterEvent(RegistEvent);
             }
         }
 

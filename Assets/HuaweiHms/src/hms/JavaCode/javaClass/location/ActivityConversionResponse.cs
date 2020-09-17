@@ -8,8 +8,8 @@ namespace HuaweiHms
     }
     public class ActivityConversionResponse :HmsClass<ActivityConversionResponse_Data>
     {
-        public ActivityConversionResponse (List arg0): base(arg0) { }
         public ActivityConversionResponse (): base() { }
+        public ActivityConversionResponse (List arg0): base(arg0) { }
         public static ActivityConversionResponse getDataFromIntent(Intent arg0) {
             return CallStatic<ActivityConversionResponse>("getDataFromIntent", arg0);
         }

@@ -21,5 +21,8 @@ namespace HuaweiHms
         public static RequestOptions getRequestOptions() {
             return CallStatic<RequestOptions>("getRequestOptions");
         }
+        public static void setRequestOptions(RequestOptions arg0) {
+            CallStatic("setRequestOptions", arg0);
+        }
     }
 }

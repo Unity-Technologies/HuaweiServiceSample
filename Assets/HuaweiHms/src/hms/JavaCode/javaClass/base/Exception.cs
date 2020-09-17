@@ -12,5 +12,8 @@ namespace HuaweiHms
         public Exception (string arg0, Throwable arg1): base(arg0, arg1) { }
         public Exception (string arg0): base(arg0) { }
         public Exception (): base() { }
+        public string toString() {
+            return Call<string>("toString");
+        }
     }
 }

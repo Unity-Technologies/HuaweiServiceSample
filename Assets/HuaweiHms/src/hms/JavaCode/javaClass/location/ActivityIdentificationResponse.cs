@@ -8,8 +8,8 @@ namespace HuaweiHms
     }
     public class ActivityIdentificationResponse :HmsClass<ActivityIdentificationResponse_Data>
     {
-        public ActivityIdentificationResponse (ActivityIdentificationData arg0, long arg1, long arg2): base(arg0, arg1, arg2) { }
         public ActivityIdentificationResponse (List arg0, long arg1, long arg2): base(arg0, arg1, arg2) { }
+        public ActivityIdentificationResponse (ActivityIdentificationData arg0, long arg1, long arg2): base(arg0, arg1, arg2) { }
         public ActivityIdentificationResponse (): base() { }
         public static ActivityIdentificationResponse getDataFromIntent(Intent arg0) {
             return CallStatic<ActivityIdentificationResponse>("getDataFromIntent", arg0);

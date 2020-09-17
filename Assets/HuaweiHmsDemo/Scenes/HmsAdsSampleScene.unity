@@ -241,9 +241,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AdsEnabled: 1
-  AnalyticEnabled: 1
-  PushEnabled: 1
-  LocationEnabled: 1
+  AnalyticEnabled: 0
+  PushEnabled: 0
+  LocationEnabled: 0
   btnParent: {fileID: 1664072771}
   btnPrefab: {fileID: 5079351762955741576, guid: d221bb8c0c7b8476294abb3b987699b9,
     type: 3}

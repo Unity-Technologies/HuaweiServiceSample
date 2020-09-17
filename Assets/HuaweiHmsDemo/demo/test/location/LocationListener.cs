@@ -3,42 +3,60 @@ using HuaweiHms;
 
 namespace HuaweiHmsDemo{
 
-    public delegate void SuccessCb(AndroidJavaObject o);
-    public delegate void FailureCb(Exception e);
-    public class LocationSuccessListener:OnSuccessListener{
-        public SuccessCb cb;
-        public LocationSuccessListener(SuccessCb c){
-            cb = c;
+    public delegate void SuccessCallBack<T>(T o) where T: IHmsBase, new();
+    public class HmsSuccessListener<T>:OnSuccessListener where T: IHmsBase, new(){
+        public SuccessCallBack<T> CallBack;
+        public HmsSuccessListener(SuccessCallBack<T> c){
+            CallBack = c;
         }
         public override void onSuccess(AndroidJavaObject arg0){
             TestTip.Inst.ShowText("OnSuccessListener onSuccess");
-            if(cb !=null){
-                cb.Invoke(arg0);
+            if(CallBack !=null)
+            {
+                var input = new T();
+                input.obj = arg0;
+                CallBack.Invoke(input);
             }
         }
     }
-    public class LocationFailureListener:OnFailureListener{
-        public FailureCb cb;
-        public LocationFailureListener(FailureCb c){
-            cb = c;
+    
+    public delegate void SuccessCallBack(AndroidJavaObject o);
+    public delegate void FailureCallBack(Exception e);
+    
+    public class LocationSuccessListener:OnSuccessListener{
+        public SuccessCallBack CallBack;
+        public LocationSuccessListener(SuccessCallBack c){
+            CallBack = c;
+        }
+        public override void onSuccess(AndroidJavaObject arg0){
+            TestTip.Inst.ShowText("OnSuccessListener onSuccess");
+            if(CallBack !=null){
+                CallBack.Invoke(arg0);
+            }
+        }
+    }
+    public class HmsFailureListener:OnFailureListener{
+        public FailureCallBack CallBack;
+        public HmsFailureListener(FailureCallBack c){
+            CallBack = c;
         }
         public override void onFailure(Exception arg0){
             TestTip.Inst.ShowText("OnFailureListener onFailure");
-            if(cb !=null){
-                cb.Invoke(arg0);
+            if(CallBack !=null){
+                CallBack.Invoke(arg0);
             }
         }
     }
     public class MCompleteListener:OnCompleteListener{
         public override void onComplete(Task task) { 
             if(task.isSuccessful()){
-                TestTip.Inst.ShowText("OnCompleteListener success");
+                TestTip.Inst.ShowText($"OnCompleteListener success");
             }else{
                 TestTip.Inst.ShowText("OnCompleteListener fail "+ task.Call<AndroidJavaObject>("getException").Call<string>("getMessage"));
             }
         }
     }
-    public class LocationCb:LocationCallback{
+    public class LocationCallBackWrap:LocationCallback{
         public static double longitude;
         public static double latitude;
         public override void onLocationResult(LocationResult locationResult) {
@@ -61,12 +79,30 @@ namespace HuaweiHmsDemo{
     }
     public class LocationBroadcast:IBroadcastReceiver{
         public static bool activityEnabled;
+        public static bool isListenActivityConversion;
         public static void SetActivityEnabled(bool enabled){
             activityEnabled = enabled;
+        }
+        public static void SetListenActivityConversionEnabled(bool enabled){
+            isListenActivityConversion = enabled;
         }
         public override void onReceive(Context arg0, Intent arg1){
             TestTip.Inst.ShowText("LocationBroadcast onReceive");
             string s = "data";
+            
+            ActivityConversionResponse activityTransitionResult = ActivityConversionResponse.getDataFromIntent(arg1);
+            if (activityTransitionResult != null && isListenActivityConversion == true) {
+                List list = activityTransitionResult.getActivityConversionDatas();
+                AndroidJavaObject[] obj = list.toArray();
+                for (int i = 0; i < obj.Length; i++)
+                {
+                    ActivityConversionData d = HmsUtil.GetHmsBase<ActivityConversionData>(obj[i]);
+                    s += $"activityTransitionEvent[{i}]:" +
+                         $"active type: {d.getActivityType()} " +
+                         $"active ConversionType: {d.getConversionType()} ";
+                }
+            }
+
             if(LocationResult.hasResult(arg1)){
                 s += "\n";
                 LocationResult locationResult = LocationResult.extractResult(arg1);
@@ -79,7 +115,6 @@ namespace HuaweiHmsDemo{
                 }
             }
             ActivityIdentificationResponse activityRecognitionResult = ActivityIdentificationResponse.getDataFromIntent(arg1);
-            s += activityRecognitionResult.obj != null?"y":"f";
             if(activityEnabled && activityRecognitionResult.obj != null){
                 s += "\n";
                 List list = activityRecognitionResult.getActivityIdentificationDatas();

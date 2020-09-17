@@ -1,4 +1,4 @@
-# Huawei Hms Demo
+# Hms Demo
 ***Unity 2019 or higher***
 ***Before build, enter keystore password `123456`, and project key password `123456`***
 

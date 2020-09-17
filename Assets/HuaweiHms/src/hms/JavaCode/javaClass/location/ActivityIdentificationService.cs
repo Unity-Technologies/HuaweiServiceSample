@@ -8,8 +8,8 @@ namespace HuaweiHms
     }
     public class ActivityIdentificationService :HmsClass<ActivityIdentificationService_Data>
     {
-        public ActivityIdentificationService (Context arg0): base(arg0) { }
         public ActivityIdentificationService (Activity arg0): base(arg0) { }
+        public ActivityIdentificationService (Context arg0): base(arg0) { }
         public ActivityIdentificationService (): base() { }
         public Task deleteActivityConversionUpdates(PendingIntent arg0) {
             return Call<Task>("deleteActivityConversionUpdates", arg0);

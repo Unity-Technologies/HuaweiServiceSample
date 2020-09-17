@@ -8,12 +8,14 @@ namespace HuaweiHmsDemo
         private bool enabled;
         public AnalyticTest()
         {
+            HiAnalyticsTools.enableLog();
             instance = HiAnalytics.getInstance(new Context());
         }
-        public override void RegistEvent(TestEvent registEvent){
-            registEvent("SendProductId",SendProductId);
-            registEvent("SendAnalyticEnable",SendAnalyticEnable);
-            registEvent("CreateClearCache",CreateClearCache);
+        public override void RegisterEvent(TestEvent registerEvent){
+            registerEvent("SendProductId",SendProductId);
+            registerEvent("SendAnalyticEnable",SendAnalyticEnable);
+            registerEvent("CreateClearCache",CreateClearCache);
+            registerEvent("Set Favorite Sport",SetFavoriteSport);
         }
         public void SendProductId()
         {
@@ -30,6 +32,11 @@ namespace HuaweiHmsDemo
         public void CreateClearCache()
         {
             instance.clearCachedData();
+        }
+
+        public void SetFavoriteSport()
+        {
+            instance.setUserProfile("favor_sport", "running");
         }
     }
 }
