@@ -27,6 +27,13 @@ namespace HuaweiHms{
             onSendError(arg0,HmsUtil.GetHmsBase<BaseException>(arg1));
         }
         
+        public virtual void onMessageDelivered(string arg0, BaseException arg1) {
+            
+        }
+        public void onMessageDelivered(string arg0, AndroidJavaObject arg1) {
+            onSendError(arg0,HmsUtil.GetHmsBase<BaseException>(arg1));
+        }
+        
         public virtual void onTokenError(BaseException arg0) {
             
         }

@@ -46,10 +46,10 @@ namespace HuaweiHms
         public bool isLoaded() {
             return Call<bool>("isLoaded");
         }
-        public void loadAd(AdParam arg0, RewardAdLoadListener arg1) {
+        public void loadAd(string arg0, AdParam arg1) {
             Call("loadAd", arg0, arg1);
         }
-        public void loadAd(string arg0, AdParam arg1) {
+        public void loadAd(AdParam arg0, RewardAdLoadListener arg1) {
             Call("loadAd", arg0, arg1);
         }
         public void setRewardAdListener(RewardAdListener arg0) {
@@ -58,11 +58,11 @@ namespace HuaweiHms
         public void setRewardVerifyConfig(RewardVerifyConfig arg0) {
             Call("setRewardVerifyConfig", arg0);
         }
-        public void show(Activity arg0, RewardAdStatusListener arg1, bool arg2) {
-            Call("show", arg0, arg1, arg2);
-        }
         public void show(Activity arg0, RewardAdStatusListener arg1) {
             Call("show", arg0, arg1);
+        }
+        public void show(Activity arg0, RewardAdStatusListener arg1, bool arg2) {
+            Call("show", arg0, arg1, arg2);
         }
         public void show() {
             Call("show");

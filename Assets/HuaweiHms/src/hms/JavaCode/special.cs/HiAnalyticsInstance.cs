@@ -52,8 +52,8 @@ namespace HuaweiHms
             return Call<Task>("getAAID");
         }
 
-        public Map getUserProfiles(){
-            return Call<Map>("getUserProfiles");
+        public Map getUserProfiles(bool arg0){
+            return Call<Map>("getUserProfiles", arg0);
         }
     }
 }

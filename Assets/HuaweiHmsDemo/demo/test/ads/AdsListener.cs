@@ -1,5 +1,12 @@
 using HuaweiHms;
 namespace HuaweiHmsDemo{
+    public class Util
+    {
+        public static void showToast(string message)
+        {
+            Toast.makeText(new Context(),message, Toast.LENGTH_SHORT).show();
+        }
+    }
     public class MAdListener : AdListener
     {
         private InterstitialAd ad;
@@ -9,8 +16,34 @@ namespace HuaweiHmsDemo{
         }
         public override void onAdLoaded()
         {
+            Util.showToast("AdListener onAdLoaded");
             TestTip.Inst.ShowText("AdListener onAdLoaded");
             ad.show();
+        }
+
+        public override void onAdFailed(int arg0)
+        {
+            Util.showToast($"Ad failed to load with error code {arg0}.");
+        }
+
+        public override void onAdOpened()
+        {
+            Util.showToast("Ad Opened");
+        }
+
+        public override void onAdClicked()
+        {
+            Util.showToast("Ad Clicked");
+        }
+
+        public override void onAdLeave()
+        {
+            Util.showToast("Ad Leave");
+        }
+
+        public override void onAdClosed()
+        {
+            Util.showToast("Ad Closed");
         }
     }
     public class MRewardLoadListener : RewardAdLoadListener
@@ -22,11 +55,14 @@ namespace HuaweiHmsDemo{
         }
         public override void onRewardAdFailedToLoad(int errorCode)
         {
+            Util.showToast("RewardAdLoadListener onRewardAdFailedToLoad "+errorCode);
             TestTip.Inst.ShowText("RewardAdLoadListener onRewardAdFailedToLoad "+errorCode);
         }
 
         public override void onRewardedLoaded()
         {
+            Util.showToast("RewardAdLoadListener onRewardedLoaded");
+
             TestTip.Inst.ShowText("RewardAdLoadListener onRewardedLoaded");
             ad.show(new Context(), new MRewardAdStatusListener());
         }

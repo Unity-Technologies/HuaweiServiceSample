@@ -15,22 +15,23 @@ namespace HuaweiHmsDemo{
         ActivityConversionInfo.Builder activityTransition = new ActivityConversionInfo.Builder();
 
         public override void RegisterEvent(TestEvent registerEvent){
-            registerEvent("Check Still In and Out",GetLastLocation);
+            registerEvent("Check Still In and Out", CheckStill);
             registerEvent("Remove Check Still",removeActivityTransitionUpdates);
         }
 
-        public void GetLastLocation()
+        public void CheckStill()
         {
             if (activityIdentificationService == null)
             {
                 activityIdentificationService = ActivityIdentification.getService(new Context());
             }
+            
+            if(pendingIntent != null){
+                removeActivityTransitionUpdates();
+            }
 
             LocationBroadcast.SetListenActivityConversionEnabled(true);
             try {
-                if(pendingIntent != null){
-                    removeActivityTransitionUpdates();
-                }
                 List transitions = new List();
                 activityTransition.setActivityType(103);
                 activityTransition.setConversionType(0);
@@ -71,8 +72,9 @@ namespace HuaweiHmsDemo{
                         TestTip.Inst.ShowText("deleteActivityConversionUpdates onSuccess");
                     })).addOnFailureListener(new HmsFailureListener((c) =>
                     {
-                        TestTip.Inst.ShowText("removeActivityTransitionUpdates exception");
+                        TestTip.Inst.ShowText($"removeActivityTransitionUpdates exception: {c.toString()}");
                     }));
+                pendingIntent = null;
             } catch (System.Exception e) {
                 TestTip.Inst.ShowText("removeActivityTransitionUpdates exception:" + e.Message);
             }

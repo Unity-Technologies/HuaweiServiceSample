@@ -118,6 +118,12 @@ namespace HuaweiHmsDemo
             TestTip.Inst.ShowText(var1);
         }
 
+        public override void onMessageDelivered(string arg0, BaseException arg1)
+        {
+            TestTip.Inst.ShowText("onSendError called, message id:" + arg0 + "+ ErrCode:"
+                                  + arg1.getErrorCode() + ", description:" + arg1.getMessage());
+        }
+
         public override void onMessageSent(string arg0)
         {
             TestTip.Inst.ShowText( "onMessageSent called, Message id:" + arg0);

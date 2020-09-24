@@ -1,21 +1,33 @@
+using System;
 using UnityEngine;
 using HuaweiHms;
+using Exception = HuaweiHms.Exception;
 
 namespace HuaweiHmsDemo{
 
-    public delegate void SuccessCallBack<T>(T o) where T: IHmsBase, new();
-    public class HmsSuccessListener<T>:OnSuccessListener where T: IHmsBase, new(){
+    public delegate void SuccessCallBack<T>(T o);
+    public class HmsSuccessListener<T>:OnSuccessListener{
         public SuccessCallBack<T> CallBack;
         public HmsSuccessListener(SuccessCallBack<T> c){
             CallBack = c;
         }
+        public void onSuccess(T arg0)
+        {
+            TestTip.Inst.ShowText("OnSuccessListener onSsssuccess");
+            if(CallBack != null)
+            {
+                CallBack.Invoke(arg0);
+            }
+        }
+        
         public override void onSuccess(AndroidJavaObject arg0){
             TestTip.Inst.ShowText("OnSuccessListener onSuccess");
             if(CallBack !=null)
             {
-                var input = new T();
-                input.obj = arg0;
-                CallBack.Invoke(input);
+                Type type = typeof(T);
+                IHmsBase ret = (IHmsBase)Activator.CreateInstance(type);
+                ret.obj = arg0;
+                CallBack.Invoke((T)ret);
             }
         }
     }
