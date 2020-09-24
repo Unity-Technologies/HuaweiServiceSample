@@ -27,17 +27,17 @@ In this step, we will setup build environment for building Android apk with HMS 
     enable `Custom Main Manifest`
 `We should enable AndroidManifest when we use push or location sdk.`
 
-**If Unity Version is 2018, there is not AndroidManifest checkbox, but you can put `AndroidManifest.xml` under `Assets/Plugins/Android`.**
+**If Unity Version is 2019.2 or before, there is not AndroidManifest checkbox, but you can put `AndroidManifest.xml` under `Assets/Plugins/Android`.**
 ### 2.  Enable project gradle
     Edit -> Project Settings -> Player -> Android(icon) -> Publishing Settings -> Build
 
     enable `Custom Base Gradle Template`
-**If unity version is 2018, you should add implement and other configuration on `MainGradleTemplate`.**
+**If unity version is 2019.2 or before, you should add implement and other configuration on `MainGradleTemplate`.**
 ### 3.  Enable app gradle
     Edit -> Project Settings -> Player -> Android(icon) -> Publishing Settings -> Build
 
     enable `Custom Launcher Gradle Template`
-**If unity version is 2018, you should add implement and other configuration on `MainGradleTemplate`.**
+**If unity version is 2019.2 or before, you should add implement and other configuration on `MainGradleTemplate`.**
 ### 4.  Enable unity library gradle
     Edit -> Project Settings -> Player -> Android(icon) -> Publishing Settings -> Build
 

@@ -9,6 +9,8 @@ namespace HuaweiHmsDemo
             registerEvent("load image ads " + Screen.width,LoadImageAds);
             registerEvent("load video ads " + Screen.height,LoadVideoAds);
             registerEvent("load reward ads",LoadRewardAds);
+            registerEvent("set consent personal",() => SetConsentStatus(true));
+            registerEvent("set consent non personal", ()=> SetConsentStatus(false));
             registerEvent("consent",checkConsentStatus);
         }
         public void LoadImageAds()
@@ -35,6 +37,15 @@ namespace HuaweiHmsDemo
             MRewardLoadListener rewardAdLoadListener = new MRewardLoadListener(ad);
             ad.loadAd(adParam, rewardAdLoadListener);
         }
+        
+        public void SetConsentStatus(bool personal)
+        {
+            Consent consentInfo = Consent.getInstance(new Context());
+            var consentStatus = personal ? ConsentStatus.PERSONALIZED : ConsentStatus.NON_PERSONALIZED;
+            consentInfo.setConsentStatus(consentStatus);
+            Util.showToast($"set consent status as {consentStatus}");
+        }
+        
         public void checkConsentStatus()
         {
             Consent consentInfo = Consent.getInstance(new Context());

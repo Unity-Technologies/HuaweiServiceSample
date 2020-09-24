@@ -20,7 +20,6 @@ namespace HuaweiHmsDemo
         public override void RegisterEvent(TestEvent registerEvent)
         {
             registerEvent("SetPermission", SetPermission);
-            // registEvent("GetLocation",GetLocation);
             registerEvent("update with callback-102", () => RequestLocationUpdates(102, CALLBACK));
             registerEvent("update with callback-104", () => RequestLocationUpdates(104, CALLBACK));
             registerEvent("update with callback-100", () => RequestLocationUpdates(100, CALLBACK));
