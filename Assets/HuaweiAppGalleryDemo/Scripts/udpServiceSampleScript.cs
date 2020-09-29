@@ -9,6 +9,10 @@ using UnityEngine.HuaweiAppGallery.Model;
 public class udpServiceSampleScript : MonoBehaviour
 {
     private static ILoginListener _loginListener = new MyLoginListener();
+    private static ICancelAuthListener _cancelAuthListener = new MyCancelAuthListener();
+    private static IStartReadSmsListener _startReadSmsListener = new MyStartReadSmsListener();
+    private static ISMSReceive _SMSReceive = new MySMSReceive();
+    private static ICheckUpdateListener _checkUpdateListener = new MyCheckUpdateListener();
     private static IGetAchievementListListener _getAchievementListListener = new MyGetAchievementListListener();
     private static IGetAchievementsIntentListener _getAchievementsIntentListener = new MyGetAchievementIntentListener();
     private static IRevealListener _revealListener = new MyRevealListener();
@@ -27,10 +31,17 @@ public class udpServiceSampleScript : MonoBehaviour
     private static IGetLeaderboardScoreListener _getLeaderboardScoreListener = new MyGetLeaderboardScoreListener();
     private static IGetEventListListener _getEventListListener = new MyGetEventListListener();
     private static IGetGameListener _getGameListener = new MyGetGameListener();
+    private static IGetPlayerListener _getPlayerListener = new MyGetPlayerListener();
     private static IGetPlayerStatisticsListener _getPlayerStatisticsListener = new MyGetPlayerStatisticsListener();
+    private static IGetCachePlayerIdListener _getCachePlayerIdListener = new MyGetCachePlayerIdListener();
+    private static ISubmitPlayerEventListener _submitPlayerEventListener = new MySubmitPlayerEventListener();
+    private static ISubmitPlayerEventListener _submitGameBeginEventListener = new MySubmitGameBeginEventListener();
+    private static IGetPlayerExtraInfoListener _getPlayerExtraInfoListener = new MyGetPlayerExtraInfoListener();
+    private static ISavePlayerInfoListener _savePlayerInfoListener = new MySavePlayerInfoListener();
     private static ILimitSizeListener _limitSizeListener = new MyLimitSizeListener();
     private static IGetSnapshotDataListener _getSnapshotDataListener = new MyGetSnapshotDataListener();
     private static IGetAllSnapshotDataListener _getAllSnapshotDataListener = new MyGetAllSnapshotDataListener();
+    private static IGetShowSnapshotListIntentListener _getShowSnapshotListIntentListener = new MyGetShowSnapshotListIntentListener();
     private static IGetCoverImageListener _getCoverImageListener = new MyGetCoverImageListener();
     private static IGetSnapshotResultListener _getSnapshotResultListener = new MyGetSnapshotResultListener();
     private static IDeleteSnapshotListener _deleteSnapshotListener = new MyDeleteSnapshotListener();
@@ -42,7 +53,9 @@ public class udpServiceSampleScript : MonoBehaviour
     private static string rankingId = "";
     private static string snapshotId = "";
     private static SnapshotData tempSnapshotData;
-
+    private static AndroidJavaObject apkUpgradeInfo;
+    private static string playerId = "";
+    private static string transactionId = "";
 
     private static Text info_panel;
     private static Button init_button;
@@ -58,6 +71,51 @@ public class udpServiceSampleScript : MonoBehaviour
 
     public GameObject prefabButton;
 
+    private readonly List<string> accountFunctionNames = new List<string>()
+    {
+        "login", "silentSignIn", "signOut", "cancelAuthorization", "startReadSms", "registerSMSBroadcastReceiver", "unregisterSMSBroadcastReceiver"
+    };
+
+    private readonly List<Action> accountFunctions = new List<Action>()
+    {
+        () =>
+        {
+            Show("starting login");
+            HuaweiGameService.Login(_loginListener);
+        },
+        () =>
+        {
+            Show("starting silentSignIn");
+            HuaweiGameService.SilentSignIn(_loginListener);
+        },
+        () =>
+        {
+            Show("starting SignOut");
+            HuaweiGameService.SignOut(_loginListener);
+        },
+        () =>
+        {
+            Show("starting cancelAuthorization");
+            HuaweiGameService.CancelAuthorization(_cancelAuthListener);
+        },
+        () =>
+        {
+            Show("starting startReadSms");
+            HuaweiGameService.StartReadSms(_startReadSmsListener);
+        },
+        () =>
+        {
+            Show("starting registerSMSBroadcastReceiver");
+            HuaweiGameService.RegisterSMSBroadcastReceiver(_SMSReceive);
+        },
+        () =>
+        {
+            Show("starting unregisterSMSBroadcastReceiver");
+            HuaweiGameService.UnregisterSMSBroadcastReceiver();
+            Show("unregisterSMSBroadcastReceiver end");
+        },
+    };
+        
     private readonly List<string> achievementFunctionNames = new List<string>()
     {
         "achievementList", "achievementsIntent", "reveal", "asyncReveal", "increment", "asyncIncrement", "setSteps",
@@ -242,10 +300,10 @@ public class udpServiceSampleScript : MonoBehaviour
     private readonly List<string> rankingFunctionNames = new List<string>()
     {
         "GetRankingsData", "GetRankingSwitchStatus", "SetRankingSwitchStatusClose", "SetRankingSwitchStatusOpen",
-        "SubmitScore",
-        "AsyncSubmitScore", "SubmitScoreWithTag", "AsyncSubmitScoreWithTag",
-        "GetAllRankingIntent", "GetRankingIntent", "GetRankingData",
-        "GetRankingTopScores", "GetCurrentPlayerRankingScore", "GetPlayerCenteredRankingScores", "GetMoreRankingScores"
+        "SubmitScore", "AsyncSubmitScore", "SubmitScoreWithTag", "AsyncSubmitScoreWithTag",
+        "GetAllRankingIntent", "GetRankingIntent", "GetRankingIntent(timeSpan)", "GetRankingData",
+        "GetRankingTopScores", "GetRankingTopScores(offsetPlayerRank)", "GetCurrentPlayerRankingScore", "GetPlayerCenteredRankingScores",
+        "GetPlayerCenteredRankingScores(offsetPlayerRank)", "GetMoreRankingScores"
     };
 
     private readonly List<Action> rankingFunctions = new List<Action>()
@@ -337,8 +395,18 @@ public class udpServiceSampleScript : MonoBehaviour
             }
 
             HuaweiGameService.GetLeaderboardIntent(rankingId, _getLeaderboardIntentListener);
-        },
+        },        
+        () =>
+        {
+            Show("start GetRankingIntent, timeSpan==1");
+            if (rankingId == "")
+            {
+                Show("please get ranking id first.");
+                return;
+            }
 
+            HuaweiGameService.GetLeaderboardIntent(rankingId,1, _getLeaderboardIntentListener);
+        },
         () =>
         {
             Show("start GetRankingData");
@@ -358,9 +426,19 @@ public class udpServiceSampleScript : MonoBehaviour
                 Show("please get ranking id first.");
                 return;
             }
-
-            //todo timespan field
+            
             HuaweiGameService.GetLeaderboardTopScores(rankingId, 2, 10, true, _getLeaderboardScoresListener);
+        },
+        () =>
+        {
+            Show("start GetRankingTopScores-String rankingId, int timeDimension, int maxResults, long offsetPlayerRank");
+            if (rankingId == "")
+            {
+                Show("please get ranking id first.");
+                return;
+            }
+            
+            HuaweiGameService.GetLeaderboardTopScores(rankingId, 2, 10, 1, 0, _getLeaderboardScoresListener);
         },
         () =>
         {
@@ -371,7 +449,6 @@ public class udpServiceSampleScript : MonoBehaviour
                 return;
             }
 
-            //todo timespan field
             HuaweiGameService.GetCurrentPlayerLeaderboardScore(rankingId, 2, _getLeaderboardScoreListener);
         },
         () =>
@@ -383,8 +460,18 @@ public class udpServiceSampleScript : MonoBehaviour
                 return;
             }
 
-            //todo timespan field
             HuaweiGameService.GetPlayerCenteredLeaderboardScores(rankingId, 2, 10, true, _getLeaderboardScoresListener);
+        },
+        () =>
+        {
+            Show("start GetPlayerCenteredRankingScores-String rankingId, int timeDimension,int maxResults, long offsetPlayerRank, int pageDirection");
+            if (rankingId == "")
+            {
+                Show("please get ranking id first.");
+                return;
+            }
+
+            HuaweiGameService.GetPlayerCenteredLeaderboardScores(rankingId, 2, 10, 1, 0, _getLeaderboardScoresListener);
         },
         () =>
         {
@@ -402,7 +489,7 @@ public class udpServiceSampleScript : MonoBehaviour
 
     private readonly List<string> gameFunctionNames = new List<string>()
     {
-        "GetGame", "GetLocalGame"
+        "GetGame", "GetLocalGame", "CheckUpdate", "ReleaseCallBack"
     };
 
     private readonly List<Action> gameFunctions = new List<Action>()
@@ -417,26 +504,100 @@ public class udpServiceSampleScript : MonoBehaviour
             Show("start getting local game.");
             HuaweiGameService.GetLocalGame(_getGameListener);
         },
+        () =>
+        {
+            Show("start check update.");
+            HuaweiGameService.CheckUpdate(_checkUpdateListener);
+        },
+//        () =>
+//        {
+//            Show("start show update dialog.");
+//            HuaweiGameService.ShowUpdateDialog(appUpdateInfo,true);
+//        },
+        () =>
+        {
+            Show("start release callback.");
+            HuaweiGameService.ReleaseCallBack();
+            Show("release callback end.");
+        },
     };
 
     private readonly List<string> playerFunctionNames = new List<string>()
     {
-        "GetGamePlayerStatistics"
+        "getCurrentPlayer","getGamePlayerStatistics","getCachePlayerId",
+        "submitPlayerEvent(GAMEBEGIN)","submitPlayerEvent(GAMEEND)","getPlayerExtraInfo","savePlayerInfo"
     };
 
     private readonly List<Action> playerFunctions = new List<Action>()
     {
         () =>
         {
-            Show("start GetGamePlayerStatistics.");
-            HuaweiGameService.GetGamePlayerStatistics(false, _getPlayerStatisticsListener);
+            Show("start getCurrentPlayer.");
+            HuaweiGameService.GetCurrentPlayer(true, _getPlayerListener);
+        },
+        () =>
+        {
+            Show("start getGamePlayerStatistics.");
+            HuaweiGameService.GetGamePlayerStatistics(true, _getPlayerStatisticsListener);
+        },
+        () =>
+        {
+            Show("start getCachePlayerId");
+            HuaweiGameService.GetCachePlayerId(_getCachePlayerIdListener);
+        },
+        () =>
+        {
+            Show("start submitPlayerEvent(GAMEBEGIN)");
+            if (string.IsNullOrEmpty(playerId))
+            {
+                Show("playerId is empty, please get the playerId first");
+            }
+            else
+            {
+                HuaweiGameService.SubmitPlayerEvent(playerId,System.Guid.NewGuid().ToString(),"GAMEBEGIN",_submitGameBeginEventListener);
+            }
+        },
+        () =>
+        {
+            Show("start submitPlayerEvent(GAMEEND)");
+            if (string.IsNullOrEmpty(playerId))
+            {
+                Show("playerId is empty, please get the playerId first");
+            }
+            else
+            {
+                HuaweiGameService.SubmitPlayerEvent(playerId,System.Guid.NewGuid().ToString(),"GAMEEND",_submitPlayerEventListener);
+            }
+        },
+        () =>
+        {
+            Show("start getPlayerExtraInfo");
+            if (string.IsNullOrEmpty(transactionId))
+            {
+                Show("transactionId is empty, please get the transactionId first");
+            }
+            else
+            {
+                HuaweiGameService.GetPlayerExtraInfo(transactionId, _getPlayerExtraInfoListener);
+            }
+        },        
+        () =>
+        {
+            Show("start savePlayerInfo");
+            AndroidJavaObject jo = new AndroidJavaObject("com.huawei.hms.jos.games.AppPlayerInfo");
+            jo.Set<string>("rank", "test rank");
+            jo.Set<string>("role", "test role");
+            jo.Set<string>("area", "test are");
+            jo.Set<string>("sociaty", "test sociaty");
+            jo.Set<string>("playerId", "test playerId");
+            HuaweiGameService.SavePlayerInfo(jo, _savePlayerInfoListener);
         },
     };
 
     private readonly List<string> gameSaveFunctionNames = new List<string>()
     {
         "GrantDriveAccess", "GetLimitThumbnailSize", "GetLimitDetailsSize", "AddSnapshot", "GetSnapshotDataList",
-        "LoadCoverImage", "LoadSnapshotContents", "UpdateSnapshot", "DeleteSnapshot",
+        "GetShowArchiveListIntent", "LoadCoverImage", "LoadSnapshotContents", "UpdateSnapshot", "DeleteSnapshot",
     };
 
     private readonly List<Action> gameSaveFunctions = new List<Action>()
@@ -472,6 +633,11 @@ public class udpServiceSampleScript : MonoBehaviour
         {
             Show("start GetSnapshotDataList.");
             HuaweiGameService.GetSnapshotDataList(true, _getAllSnapshotDataListener);
+        },        
+        () =>
+        {
+            Show("start GetShowArchiveListIntent.");
+            HuaweiGameService.GetShowArchiveListIntent("archive title",true,true,-1, _getShowSnapshotListIntentListener);
         },
         () =>
         {
@@ -587,12 +753,7 @@ public class udpServiceSampleScript : MonoBehaviour
             Show("init finished");
 
         });
-        login_button.onClick.AddListener(() =>
-        {
-            Show("starting login");
-            HuaweiGameService.Login(_loginListener);
-
-        });
+        login_button.onClick.AddListener(onAccountBtnClick);
         achievement_button.onClick.AddListener(onAchievementBtnClick);
         event_button.onClick.AddListener(onEventBtnClick);
         ranking_button.onClick.AddListener(onRankingBtnClick);
@@ -600,6 +761,25 @@ public class udpServiceSampleScript : MonoBehaviour
         gameSave_button.onClick.AddListener(onGameSaveBtnClick);
         player_button.onClick.AddListener(onPlayerBtnClick);
         float_button.onClick.AddListener(onFloatBtnClick);
+    }
+
+    private void onAccountBtnClick()
+    {
+        clearSubActionPanel();
+        for (int i = 0; i < accountFunctionNames.Count; i++)
+        {
+            var name = accountFunctionNames[i];
+            var handler = accountFunctions[i];
+            GameObject goButton = (GameObject) Instantiate(prefabButton);
+            goButton.transform.SetParent(subaction_panel, false);
+
+            Button tempButton = goButton.GetComponent<Button>();
+            tempButton.GetComponentInChildren<Text>().text = name;
+            tempButton.GetComponentInChildren<Text>().fontSize = 36;
+            tempButton.name = name;
+            tempButton.onClick.AddListener(() => handler());
+            tempButton.gameObject.SetActive(true);
+        }
     }
 
     private void onAchievementBtnClick()
@@ -632,6 +812,7 @@ public class udpServiceSampleScript : MonoBehaviour
 
             Button tempButton = goButton.GetComponent<Button>();
             tempButton.GetComponentInChildren<Text>().text = name;
+            tempButton.GetComponentInChildren<Text>().fontSize = 36;
             tempButton.name = name;
             tempButton.onClick.AddListener(() => handler());
             tempButton.gameObject.SetActive(true);
@@ -650,6 +831,7 @@ public class udpServiceSampleScript : MonoBehaviour
 
             Button tempButton = goButton.GetComponent<Button>();
             tempButton.GetComponentInChildren<Text>().text = name;
+            tempButton.GetComponentInChildren<Text>().fontSize = 36;
             tempButton.name = name;
             tempButton.onClick.AddListener(() => handler());
             tempButton.gameObject.SetActive(true);
@@ -704,6 +886,7 @@ public class udpServiceSampleScript : MonoBehaviour
 
             Button tempButton = goButton.GetComponent<Button>();
             tempButton.GetComponentInChildren<Text>().text = name;
+            tempButton.GetComponentInChildren<Text>().fontSize = 36;
             tempButton.name = name;
             tempButton.onClick.AddListener(() => handler());
             tempButton.gameObject.SetActive(true);
@@ -749,14 +932,98 @@ public class udpServiceSampleScript : MonoBehaviour
 
         public void OnSignOut()
         {
-            throw new NotImplementedException();
+            string msg = "sign out success.";
+            Show(msg);
         }
 
         public void OnFailure(int code, string message)
         {
-            string msg = "login failed, code:" + code + " message:" + message;
+            string msg = "account method failed, code:" + code + " message:" + message;
             Show(msg);
         }
+    }
+
+    public class MyCancelAuthListener : ICancelAuthListener
+    {
+        public void OnSuccess()
+        {
+            string msg = "cancelAuthorization success.";
+            Show(msg);
+        }
+
+        public void OnFailure(int code, string message)
+        {
+            string msg = "cancelAuthorization failed, code:" + code + " message:" + message;
+            Show(msg);
+        } 
+    }
+
+    public class MyStartReadSmsListener : IStartReadSmsListener
+    {
+        public void OnSuccess()
+        {
+            string msg = "startReadSms success.";
+            Show(msg);
+        }
+
+        public void OnFailure(int code, string message)
+        {
+            string msg = "startReadSms failed, code:" + code + " message:" + message;
+            Show(msg);
+        } 
+    }
+
+    public class MySMSReceive : ISMSReceive
+    {
+        public void OnMessage(string message)
+        {
+            string msg = "get SMS message: " + message;
+            Show(msg);
+        }
+
+        public void OnTimeOut()
+        {
+            string msg = "get SMS message timeout";
+            Show(msg); 
+        }
+    }
+
+    public class MyCheckUpdateListener : ICheckUpdateListener
+    {
+       public  void OnUpdateInfo(AndroidJavaObject intent)
+        {
+            if (intent !=null)
+            {
+                int status = intent.Call<int>("getIntExtra", "status", 0);
+                Show("OnUpdateInfo status: " + status);
+                if (status==0)
+                {
+                    return;
+                }
+
+                if (status == 7)
+                {
+                    apkUpgradeInfo = intent.Call<AndroidJavaObject>("getSerializableExtra", "updatesdk_update_info");
+                    Show("start ShowUpdateDialog");
+                    HuaweiGameService.ShowUpdateDialog(apkUpgradeInfo, false);
+                }
+            }
+        }
+
+       public void OnMarketInstallInfo(AndroidJavaObject intent)
+       {
+           
+       }
+
+       public void OnMarketStoreError(int responseCode)
+       {
+           
+       }
+
+       public void OnUpdateStoreError(int responseCode)
+       {
+           
+       }
     }
 
     // listeners
@@ -770,14 +1037,17 @@ public class udpServiceSampleScript : MonoBehaviour
             foreach (var ach in achievementList)
             {
                 message += string.Format(
-                    "id:{0}, type:{1}, name:{2}, description:{3}, totalSteps:{4}, currentStep:{5}, state:{6} \n",
+                    "id:{0}, type:{1}, name:{2}, description:{3}, totalSteps:{4}, currentStep:{5}, state:{6}, LocaleReachedSteps:{7}, LocaleAllSteps:{8}, playerId:{9} \n",
                     ach.AchievementId,
                     ach.Type,
                     ach.Name,
                     ach.Description,
                     ach.TotalSteps,
                     ach.CurrentSteps,
-                    ach.State
+                    ach.State,
+                    ach.LocaleReachedSteps,
+                    ach.LocaleAllSteps,
+                    ach.GamePlayer.PlayerId
                 );
                 achievementIds.Add(ach.AchievementId);
             }
@@ -798,6 +1068,10 @@ public class udpServiceSampleScript : MonoBehaviour
         {
             string msg = "get achievement intent success.";
             Show(msg);
+            if (intent != null)
+            {
+                startIntent(intent, 3000);
+            }
         }
 
         public void OnFailure(int code, string message)
@@ -913,6 +1187,10 @@ public class udpServiceSampleScript : MonoBehaviour
         {
             var msg = "get leader board intent succeed";
             Show(msg);
+            if (intent!=null)
+            {
+                startIntent(intent, 100);
+            }
         }
 
         public void OnFailure(int code, string message)
@@ -969,6 +1247,11 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(LeaderboardScores leaderboardScores)
         {
+            if (leaderboardScores == null)
+            {
+              Show("get succeed, but leaderboardScores == null");
+              return;
+            }
             var msg = "get succeed. \n";
             msg += string.Format("leaderboard id: {0}, display name:{1} \n",
                 leaderboardScores.LeaderboardProxy.LeaderboardId,
@@ -1036,6 +1319,25 @@ public class udpServiceSampleScript : MonoBehaviour
     }
 
     // player
+    public class MyGetPlayerListener : IGetPlayerListener
+    {
+        public void OnSuccess(Player player)
+        {
+            var msg = "getCurrentPlayer succeed. \n";
+            msg += string.Format(
+                "displayName:{0}, playerId:{1}, signTimestamp:{2}, playerSign:{3}, level:{4}",
+                player.DisplayName, player.PlayerId, player.SignTimestamp, player.PlayerSign, player.Level
+            );
+            Show(msg);
+            playerId = player.PlayerId;
+        }
+
+        public void OnFailure(int code, string message)
+        {
+            var msg = "getCurrentPlayer failed, code:" + code + " message:" + message;
+            Show(msg); 
+        }
+    }
     public class MyGetPlayerStatisticsListener : IGetPlayerStatisticsListener
     {
         public void OnSuccess(PlayerStatistics playerStatistics)
@@ -1057,6 +1359,91 @@ public class udpServiceSampleScript : MonoBehaviour
         }
     }
 
+    public class MyGetCachePlayerIdListener : IGetCachePlayerIdListener
+    {
+        public void OnSuccess(string cachePlayerId)
+        {
+            var msg = "GetCachePlayerId succeed. \n cachePlayerId: "+cachePlayerId;
+            Show(msg);
+        }
+
+        public void OnFailure(int code, string message)
+        {
+            var msg = "GetCachePlayerId failed, code:" + code + " message:" + message;
+            Show(msg);
+        }
+    }
+    
+    public class MySubmitGameBeginEventListener : ISubmitPlayerEventListener
+    {
+        public void OnSuccess(string jsonRequest)
+        {
+            var msg = "SubmitPlayerEvent succeed. \n jsonRequest: "+jsonRequest;
+            Show(msg);
+            try
+            {
+                AndroidJavaObject jo = new AndroidJavaObject("org.json.JSONObject",jsonRequest);
+                transactionId = jo.Call<string>("getString", "transactionId");
+            }
+            catch (Exception e)
+            {
+                System.Console.WriteLine(e);
+            }
+ 
+        }
+
+        public void OnFailure(int code, string message)
+        {
+            var msg = "SubmitPlayerEvent failed, code:" + code + " message:" + message;
+            Show(msg);
+        }
+    }
+
+    public class MySubmitPlayerEventListener : ISubmitPlayerEventListener
+    {
+        public void OnSuccess(string jsonRequest)
+        {
+            var msg = "SubmitPlayerEvent succeed. \n jsonRequest: "+jsonRequest;
+            Show(msg);
+        }
+
+        public void OnFailure(int code, string message)
+        {
+            var msg = "SubmitPlayerEvent failed, code:" + code + " message:" + message;
+            Show(msg);
+        }
+    }
+
+    public class MySavePlayerInfoListener : ISavePlayerInfoListener
+    {
+        public void OnSuccess()
+        {
+            var msg = "SavePlayerInfo succeed.";
+            Show(msg);
+        }
+        
+        public void OnFailure(int code, string message)
+        {
+            var msg = "SavePlayerInfo failed, code:" + code + " message:" + message;
+            Show(msg);
+        }
+    }
+
+    public class MyGetPlayerExtraInfoListener : IGetPlayerExtraInfoListener
+    {
+        public void OnSuccess(AndroidJavaObject jo)
+        {
+            var msg = "GetPlayerExtraInfo succeed.";
+            Show(msg); 
+        }
+
+        public void OnFailure(int code, string message)
+        {
+            var msg = "GetPlayerExtraInfo failed, code:" + code + " message:" + message;
+            Show(msg);
+        }
+    }
+    
     public class MyGetGameListener : IGetGameListener
     {
         public void OnSuccess(Game game)
@@ -1081,13 +1468,13 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(int limitSize)
         {
-            var msg = "GetLimitDetailsSize succeed. with limit size: " + limitSize + "\n";
+            var msg = "GetLimitSize succeed. with limit size: " + limitSize + "\n";
             Show(msg);
         }
 
         public void OnFailure(int code, string message)
         {
-            var msg = "GetLimitDetailsSize failed, code:" + code + " message:" + message;
+            var msg = "GetLimitSize failed, code:" + code + " message:" + message;
             Show(msg);
         }
     }
@@ -1112,6 +1499,25 @@ public class udpServiceSampleScript : MonoBehaviour
             var msg = "AddSnapshot failed, code:" + code + " message:" + message;
             Show(msg);
         }
+    }
+
+    public class MyGetShowSnapshotListIntentListener : IGetShowSnapshotListIntentListener
+    {
+        public void OnSuccess(AndroidJavaObject intent)
+        {
+            var msg = "GetShowArchiveListIntent intent succeed";
+            Show(msg);
+            if (intent!=null)
+            {
+                startIntent(intent, 100);
+            }
+        }
+
+        public void OnFailure(int code, string message)
+        {
+            var msg = "GetShowArchiveListIntent failed, code:" + code + " message:" + message;
+            Show(msg);
+        } 
     }
 
     public class MyGetAllSnapshotDataListener : IGetAllSnapshotDataListener
@@ -1213,5 +1619,12 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         string prefix = "[UDPService]";
         Debug.Log(prefix + " " + message);
+    }
+
+    private static void startIntent(AndroidJavaObject intent, int requestCode)
+    {
+        AndroidJavaClass player = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        AndroidJavaObject activity = player.GetStatic<AndroidJavaObject>("currentActivity");
+        activity.Call("startActivityForResult", intent, requestCode);
     }
 }
