@@ -18,7 +18,7 @@ namespace HuaweiHmsDemo
             registerEvent("SendProductId",SendProductId);
             registerEvent("SendAnalyticEnable",SendAnalyticEnable);
             registerEvent("CreateClearCache",CreateClearCache);
-            registerEvent("Set Favorite Sport",SetFavoriteSport);
+            registerEvent("set user profile",SetFavoriteSport);
             registerEvent("get user profile",getUserProfiles);
             registerEvent("Set push token",SetPushToken);
             registerEvent("set Min Activity Sessions",setMinActivitySessions);

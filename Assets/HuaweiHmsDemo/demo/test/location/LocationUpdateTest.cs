@@ -20,6 +20,7 @@ namespace HuaweiHmsDemo
         public override void RegisterEvent(TestEvent registerEvent)
         {
             registerEvent("SetPermission", SetPermission);
+            registerEvent("check Location Settings", checkLocationSettings);
             registerEvent("update with callback-102", () => RequestLocationUpdates(102, CALLBACK));
             registerEvent("update with callback-104", () => RequestLocationUpdates(104, CALLBACK));
             registerEvent("update with callback-100", () => RequestLocationUpdates(100, CALLBACK));
@@ -38,6 +39,34 @@ namespace HuaweiHmsDemo
             );
         }
         
+        public void checkLocationSettings()
+        {
+            TestTip.Inst.ShowText("check location settings start");
+            mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(new Context());
+            mSettingsClient = LocationServices.getSettingsClient(new Context());
+            mLocationRequest = new LocationRequest();
+            mLocationRequest.setInterval(5000);
+            mLocationRequest.setPriority(102);
+            LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
+            builder.addLocationRequest(mLocationRequest);
+            LocationSettingsRequest locationSettingsRequest = builder.build();
+
+            Task task = mSettingsClient.checkLocationSettings(locationSettingsRequest);
+            task.addOnSuccessListener(new HmsSuccessListener<LocationSettingsResponse>((LocationSettingsResponse locationSettingsResponse) =>
+            {
+                var locationSettingsStates = locationSettingsResponse.getLocationSettingsStates();
+                TestTip.Inst.ShowText($"isBleUsable: {locationSettingsStates.isBleUsable()}");
+                TestTip.Inst.ShowText($"isBlePresent: {locationSettingsStates.isBlePresent()}");
+                TestTip.Inst.ShowText($"isGpsPresent: {locationSettingsStates.isGpsPresent()}");
+                TestTip.Inst.ShowText($"isGpsUsable: {locationSettingsStates.isGpsUsable()}");
+                TestTip.Inst.ShowText($"isLocationPresent: {locationSettingsStates.isLocationPresent()}");
+                TestTip.Inst.ShowText($"isLocationUsable: {locationSettingsStates.isLocationUsable()}");
+                TestTip.Inst.ShowText($"isNetworkLocationPresent: {locationSettingsStates.isNetworkLocationPresent()}");
+                TestTip.Inst.ShowText($"isNetworkLocationUsable: {locationSettingsStates.isNetworkLocationUsable()}");
+            }));
+            task.addOnFailureListener(new HmsFailureListener((Exception e) => SetSettingsFailuer(e)));
+        }
+
         public void RequestLocationUpdates(int priority, int requestType)
         {
             TestTip.Inst.ShowText("RequestLocationUpdatesWithCallback start");
