@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<remote-config>
+    <value key="test1">test1</value>
+    <value key="test2">true</value>
+    <value key="test3">123</value>
+    <value key="test4">123.456</value>
+    <value key="test5">test-test</value>
+</remote-config>

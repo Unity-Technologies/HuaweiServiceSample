@@ -4,16 +4,15 @@ apply plugin: 'com.android.application'
 
 dependencies {
     implementation project(':unityLibrary')
+    implementation "com.huawei.agconnect:agconnect-appmessaging:1.4.1.300"
+    implementation 'com.huawei.agconnect:agconnect-applinking:1.4.1.300'
+    implementation 'com.huawei.agconnect:agconnect-remoteconfig:1.4.1.300'
     implementation 'com.huawei.hms:ads-lite:13.4.29.303'
     implementation 'com.huawei.hms:ads-consent:3.4.30.301'
     implementation 'com.huawei.hms:push:4.0.3.301'
     implementation 'com.huawei.hms:location:5.0.0.302'
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.huawei.hms:hianalytics:5.0.0.301'
-    implementation 'com.huawei.agconnect:agconnect-core:1.2.0.300'
-    implementation 'com.huawei.hms:base:4.0.1.300'
-    implementation 'com.huawei.hms:hwid:4.0.1.300'
-    implementation 'com.huawei.hms:game:4.0.1.300'
     }
 apply plugin: 'com.huawei.agconnect'
 android {

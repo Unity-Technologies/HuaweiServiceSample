@@ -5,11 +5,8 @@ apply plugin: 'com.android.library'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.huawei.agconnect:agconnect-appmessaging:1.4.1.300"
     implementation 'com.huawei.hms:hianalytics:5.0.0.301'
-    implementation 'com.huawei.agconnect:agconnect-core:1.2.0.300'
-    implementation 'com.huawei.hms:base:4.0.1.300'
-    implementation 'com.huawei.hms:hwid:4.0.1.300'
-    implementation 'com.huawei.hms:game:4.0.1.300'
 **DEPS**}
 
 android {
