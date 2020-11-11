@@ -36,5 +36,17 @@ namespace HuaweiHms
         public void trigger(string arg0) {
             Call("trigger", arg0);
         }
+        public static AGConnectAppMessaging getInstance() {
+            return CallStatic<AGConnectAppMessaging>("getInstance");
+        }
+        public void addOnClickListener(AGConnectAppMessagingOnClickListener arg0) {
+            Call("addOnClickListener", arg0);
+        }
+        public void addOnDisplayListener(AGConnectAppMessagingOnDisplayListener arg0) {
+            Call("addOnDisplayListener", arg0);
+        }
+        public void addOnDismissListener(AGConnectAppMessagingOnDismissListener arg0) {
+            Call("addOnDismissListener", arg0);
+        }
     }
 }

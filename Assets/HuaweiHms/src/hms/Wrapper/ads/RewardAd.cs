@@ -31,11 +31,11 @@ namespace HuaweiHms
         public void pause(Context arg0) {
             Call("pause", arg0);
         }
-        public void resume() {
-            Call("resume");
-        }
         public void resume(Context arg0) {
             Call("resume", arg0);
+        }
+        public void resume() {
+            Call("resume");
         }
         public void setData(string arg0) {
             Call("setData", arg0);
@@ -58,14 +58,14 @@ namespace HuaweiHms
         public void setRewardVerifyConfig(RewardVerifyConfig arg0) {
             Call("setRewardVerifyConfig", arg0);
         }
-        public void show(Activity arg0, RewardAdStatusListener arg1) {
-            Call("show", arg0, arg1);
+        public void show(Activity arg0, RewardAdStatusListener arg1, bool arg2) {
+            Call("show", arg0, arg1, arg2);
         }
         public void show() {
             Call("show");
         }
-        public void show(Activity arg0, RewardAdStatusListener arg1, bool arg2) {
-            Call("show", arg0, arg1, arg2);
+        public void show(Activity arg0, RewardAdStatusListener arg1) {
+            Call("show", arg0, arg1);
         }
     }
 }

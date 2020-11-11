@@ -54,45 +54,6 @@ namespace HuaweiHms
             return Call<string>("getToken");
         }
     
-        public class Builder_Data : IHmsBaseClass{
-            public string name => "com.huawei.hms.push.RemoteMessage$Builder";
-        }
-        public class Builder :HmsClass<Builder_Data>
-        {
-            public Builder (string arg0): base(arg0) { }
-            public Builder (): base() { }
-            public Builder addData(string arg0, string arg1) {
-                return Call<Builder>("addData", arg0, arg1);
-            }
-            public Builder setData(Map arg0) {
-                return Call<Builder>("setData", arg0);
-            }
-            public Builder clearData() {
-                return Call<Builder>("clearData");
-            }
-            public Builder setMessageId(string arg0) {
-                return Call<Builder>("setMessageId", arg0);
-            }
-            public Builder setMessageType(string arg0) {
-                return Call<Builder>("setMessageType", arg0);
-            }
-            public Builder setTtl(int arg0) {
-                return Call<Builder>("setTtl", arg0);
-            }
-            public Builder setCollapseKey(string arg0) {
-                return Call<Builder>("setCollapseKey", arg0);
-            }
-            public Builder setSendMode(int arg0) {
-                return Call<Builder>("setSendMode", arg0);
-            }
-            public Builder setReceiptMode(int arg0) {
-                return Call<Builder>("setReceiptMode", arg0);
-            }
-            public RemoteMessage build() {
-                return Call<RemoteMessage>("build");
-            }
-        }
-    
         public class Notification_Data : IHmsBaseClass{
             public string name => "com.huawei.hms.push.RemoteMessage$Notification";
         }
@@ -179,6 +140,45 @@ namespace HuaweiHms
             }
             public string getIntentUri() {
                 return Call<string>("getIntentUri");
+            }
+        }
+    
+        public class Builder_Data : IHmsBaseClass{
+            public string name => "com.huawei.hms.push.RemoteMessage$Builder";
+        }
+        public class Builder :HmsClass<Builder_Data>
+        {
+            public Builder (string arg0): base(arg0) { }
+            public Builder (): base() { }
+            public Builder addData(string arg0, string arg1) {
+                return Call<Builder>("addData", arg0, arg1);
+            }
+            public Builder setData(Map arg0) {
+                return Call<Builder>("setData", arg0);
+            }
+            public Builder clearData() {
+                return Call<Builder>("clearData");
+            }
+            public Builder setMessageId(string arg0) {
+                return Call<Builder>("setMessageId", arg0);
+            }
+            public Builder setMessageType(string arg0) {
+                return Call<Builder>("setMessageType", arg0);
+            }
+            public Builder setTtl(int arg0) {
+                return Call<Builder>("setTtl", arg0);
+            }
+            public Builder setCollapseKey(string arg0) {
+                return Call<Builder>("setCollapseKey", arg0);
+            }
+            public Builder setSendMode(int arg0) {
+                return Call<Builder>("setSendMode", arg0);
+            }
+            public Builder setReceiptMode(int arg0) {
+                return Call<Builder>("setReceiptMode", arg0);
+            }
+            public RemoteMessage build() {
+                return Call<RemoteMessage>("build");
             }
         }
     }

@@ -8,8 +8,8 @@ namespace HuaweiHms
     }
     public class ActivityConversionData :HmsClass<ActivityConversionData_Data>
     {
-        public ActivityConversionData (): base() { }
         public ActivityConversionData (int arg0, int arg1, long arg2): base(arg0, arg1, arg2) { }
+        public ActivityConversionData (): base() { }
         public int getActivityType() {
             return Call<int>("getActivityType");
         }

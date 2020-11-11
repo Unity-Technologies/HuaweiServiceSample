@@ -15,10 +15,10 @@ namespace HuaweiHms
         public static FusedLocationProviderClient getFusedLocationProviderClient(Activity arg0) {
             return CallStatic<FusedLocationProviderClient>("getFusedLocationProviderClient", arg0);
         }
-        public static SettingsClient getSettingsClient(Context arg0) {
+        public static SettingsClient getSettingsClient(Activity arg0) {
             return CallStatic<SettingsClient>("getSettingsClient", arg0);
         }
-        public static SettingsClient getSettingsClient(Activity arg0) {
+        public static SettingsClient getSettingsClient(Context arg0) {
             return CallStatic<SettingsClient>("getSettingsClient", arg0);
         }
     }

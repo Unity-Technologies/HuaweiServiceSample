@@ -9,13 +9,13 @@ namespace HuaweiHms
     public class Task :HmsClass<Task_Data>
     {
         public Task (): base() { }
-        public Task addOnCompleteListener(Activity arg0, OnCompleteListener arg1) {
+        public Task addOnCompleteListener(Executor arg0, OnCompleteListener arg1) {
             return Call<Task>("addOnCompleteListener", arg0, arg1);
         }
         public Task addOnCompleteListener(OnCompleteListener arg0) {
             return Call<Task>("addOnCompleteListener", arg0);
         }
-        public Task addOnCompleteListener(Executor arg0, OnCompleteListener arg1) {
+        public Task addOnCompleteListener(Activity arg0, OnCompleteListener arg1) {
             return Call<Task>("addOnCompleteListener", arg0, arg1);
         }
         public bool isSuccessful() {
@@ -30,11 +30,11 @@ namespace HuaweiHms
         public Task addOnSuccessListener(Executor arg0, OnSuccessListener arg1) {
             return Call<Task>("addOnSuccessListener", arg0, arg1);
         }
-        public Task addOnFailureListener(OnFailureListener arg0) {
-            return Call<Task>("addOnFailureListener", arg0);
-        }
         public Task addOnFailureListener(Executor arg0, OnFailureListener arg1) {
             return Call<Task>("addOnFailureListener", arg0, arg1);
+        }
+        public Task addOnFailureListener(OnFailureListener arg0) {
+            return Call<Task>("addOnFailureListener", arg0);
         }
         public Task addOnFailureListener(Activity arg0, OnFailureListener arg1) {
             return Call<Task>("addOnFailureListener", arg0, arg1);

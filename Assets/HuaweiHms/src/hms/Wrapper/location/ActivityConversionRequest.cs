@@ -8,8 +8,8 @@ namespace HuaweiHms
     }
     public class ActivityConversionRequest :HmsClass<ActivityConversionRequest_Data>
     {
-        public ActivityConversionRequest (): base() { }
         public ActivityConversionRequest (List arg0): base(arg0) { }
+        public ActivityConversionRequest (): base() { }
         public void setDataToIntent(Intent arg0) {
             Call("setDataToIntent", arg0);
         }

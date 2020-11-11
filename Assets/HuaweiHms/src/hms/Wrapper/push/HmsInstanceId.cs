@@ -19,11 +19,11 @@ namespace HuaweiHms
         public long getCreationTime() {
             return Call<long>("getCreationTime");
         }
-        public string getToken(string arg0, string arg1) {
-            return Call<string>("getToken", arg0, arg1);
-        }
         public string getToken() {
             return Call<string>("getToken");
+        }
+        public string getToken(string arg0, string arg1) {
+            return Call<string>("getToken", arg0, arg1);
         }
         public void deleteToken(string arg0, string arg1) {
             Call("deleteToken", arg0, arg1);

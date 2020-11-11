@@ -13,7 +13,7 @@ namespace HuaweiHmsDemo{
         }
         public void onSuccess(T arg0)
         {
-            TestTip.Inst.ShowText("OnSuccessListener onSsssuccess");
+            TestTip.Inst.ShowText("OnSuccessListener onSuccess");
             if(CallBack != null)
             {
                 CallBack.Invoke(arg0);

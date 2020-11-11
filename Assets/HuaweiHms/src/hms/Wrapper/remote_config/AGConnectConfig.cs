@@ -18,11 +18,11 @@ namespace HuaweiHms
         public void applyDefault(int arg0) {
             Call("applyDefault", arg0);
         }
-        public Task fetch(long arg0) {
-            return Call<Task>("fetch", arg0);
-        }
         public Task fetch() {
             return Call<Task>("fetch");
+        }
+        public Task fetch(long arg0) {
+            return Call<Task>("fetch", arg0);
         }
         public ConfigValues loadLastFetched() {
             return Call<ConfigValues>("loadLastFetched");

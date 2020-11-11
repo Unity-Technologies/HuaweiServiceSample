@@ -20,6 +20,7 @@ namespace HuaweiHmsDemo
         public override void RegisterEvent(TestEvent registerEvent)
         {
             registerEvent("SetPermission", SetPermission);
+            registerEvent("Check Location Setting", CheckLocationSetting);
             registerEvent("update with callback-102", () => RequestLocationUpdates(102, CALLBACK));
             registerEvent("update with callback-104", () => RequestLocationUpdates(104, CALLBACK));
             registerEvent("update with callback-100", () => RequestLocationUpdates(100, CALLBACK));
@@ -37,7 +38,36 @@ namespace HuaweiHmsDemo
                 new string[] {ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION, ACCESS_BACKGROUND_LOCATION}
             );
         }
-        
+
+        public void CheckLocationSetting()
+        {
+            TestTip.Inst.ShowText("RequestLocationUpdatesWithCallback start");
+            this.requestType = CALLBACK;
+            mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(new Context());
+            mSettingsClient = LocationServices.getSettingsClient(new Context());
+            mLocationRequest = new LocationRequest();
+            mLocationRequest.setInterval(5000);
+            mLocationRequest.setPriority(102);
+            // get LocationSettingsRequest
+            LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
+            builder.addLocationRequest(mLocationRequest);
+            LocationSettingsRequest locationSettingsRequest = builder.build();
+
+            Task task = mSettingsClient.checkLocationSettings(locationSettingsRequest);
+            task.addOnSuccessListener(new HmsSuccessListener<LocationSettingsResponse>((LocationSettingsResponse setting) =>
+            {
+                var status = setting.getLocationSettingsStates();
+                TestTip.Inst.ShowText($"isBlePresent :{status.isBlePresent()}");
+                TestTip.Inst.ShowText($"isBleUsable :{status.isBleUsable()}");
+                TestTip.Inst.ShowText($"isGpsPresent :{status.isGpsPresent()}");
+                TestTip.Inst.ShowText($"isGpsUsable :{status.isGpsUsable()}");
+                TestTip.Inst.ShowText($"isLocationPresent :{status.isLocationPresent()}");
+                TestTip.Inst.ShowText($"isLocationUsable :{status.isLocationUsable()}");
+                TestTip.Inst.ShowText($"isNetworkLocationPresent :{status.isNetworkLocationPresent()}");
+                TestTip.Inst.ShowText($"isNetworkLocationUsable :{status.isNetworkLocationUsable()}");
+            })).addOnFailureListener(new HmsFailureListener((Exception e) => SetSettingsFailuer(e)));
+        }
+
         public void RequestLocationUpdates(int priority, int requestType)
         {
             TestTip.Inst.ShowText("RequestLocationUpdatesWithCallback start");
@@ -89,6 +119,7 @@ namespace HuaweiHmsDemo
                     TestTip.Inst.ShowText("SetCallbackSuccess fail");
                 }));
         }
+
         public void SetHDSuccess()
         {
             if (mLocationCallback == null)
@@ -133,7 +164,7 @@ namespace HuaweiHmsDemo
             Task task = null;
             switch (requestType)
             {
-                case CALLBACK :
+                case CALLBACK:
                     task = mFusedLocationProviderClient.removeLocationUpdates(mLocationCallback);
                     break;
                 case INTENT:
@@ -141,7 +172,7 @@ namespace HuaweiHmsDemo
                     break;
                 case LocationHD:
                     task = mFusedLocationProviderClient.removeLocationUpdates(mLocationCallback);
-                    break;;
+                    break;
             }
 
             if (task != null)

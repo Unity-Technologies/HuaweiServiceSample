@@ -8,10 +8,10 @@ namespace HuaweiHms
     }
     public class Bundle :HmsClass<Bundle_Data>
     {
-        public Bundle (ClassLoader arg0): base(arg0) { }
-        public Bundle (int arg0): base(arg0) { }
-        public Bundle (Bundle arg0): base(arg0) { }
         public Bundle (PersistableBundle arg0): base(arg0) { }
+        public Bundle (Bundle arg0): base(arg0) { }
+        public Bundle (int arg0): base(arg0) { }
+        public Bundle (ClassLoader arg0): base(arg0) { }
         public Bundle (): base() { }
         public void putByte(string arg0, byte arg1) {
             Call("putByte", arg0, arg1);

@@ -9,10 +9,10 @@ namespace HuaweiHmsDemo{
         private FusedLocationProviderClient mFusedLocationProviderClient;
 
         public override void RegisterEvent(TestEvent registerEvent){
-            registerEvent("Get Location Availability",GetLastLocation);
+            registerEvent("Get Location Availability",GetLocationAvailability);
         }
 
-        public void GetLastLocation()
+        public void GetLocationAvailability()
         {
             mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(new Context());
             try {

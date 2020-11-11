@@ -46,7 +46,7 @@ namespace HuaweiHmsDemo
                         + location.getLatitude());
                 })).addOnFailureListener(new HmsFailureListener((Exception e) =>
                 {
-                    TestTip.Inst.ShowText("getLastLocation onFailure");
+                    TestTip.Inst.ShowText("getLastLocation onFailure "+ e.toString());
                 }));
             }
             catch (System.Exception e)
