@@ -20,7 +20,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/HuaweiHmsDemo/Scenes/HmsAdsSampleScene.unity
     guid: a518e96ecc8f24c66a12be14f8900ec4
-  - enabled: 1
+  - enabled: 0
     path: Assets/HuaweiHmsDemo/Scenes/HmsAppLinkingSampleScene.unity
     guid: 2a06d635f4d86455aa7a945033ca787c
+  - enabled: 1
+    path: Assets/HuaweiHmsDemo/Scenes/HmsRemoteConfigSampleScene.unity
+    guid: 9a5ee55b1b9414774becf40683d28db8
   m_configObjects: {}

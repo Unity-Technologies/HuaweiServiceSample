@@ -12,14 +12,14 @@ namespace HuaweiHms
         public bool containKey(string arg0) {
             return Call<bool>("containKey", arg0);
         }
-        public bool getValueAsBoolean(string arg0) {
-            return Call<bool>("getValueAsBoolean", arg0);
+        public Boolean getValueAsBoolean(string arg0) {
+            return Call<Boolean>("getValueAsBoolean", arg0);
         }
-        public double getValueAsDouble(string arg0) {
-            return Call<double>("getValueAsDouble", arg0);
+        public Double getValueAsDouble(string arg0) {
+            return Call<Double>("getValueAsDouble", arg0);
         }
-        public long getValueAsLong(string arg0) {
-            return Call<long>("getValueAsLong", arg0);
+        public Long getValueAsLong(string arg0) {
+            return Call<Long>("getValueAsLong", arg0);
         }
         public string getValueAsString(string arg0) {
             return Call<string>("getValueAsString", arg0);
