@@ -11,7 +11,9 @@ namespace HuaweiHms
     public class OnFailureListener : HmsListener<OnFailureListenerData>
     {
     
-        public virtual void onFailure(Exception arg0) { }
+        public virtual void onFailure(Exception arg0) {
+            Call("onFailure", arg0);
+        }
     
         public void onFailure(AndroidJavaObject arg0){
             onFailure(HmsUtil.GetHmsBase<Exception>(arg0));

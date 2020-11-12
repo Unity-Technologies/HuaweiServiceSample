@@ -8,8 +8,8 @@ namespace HuaweiHms
     }
     public class GeofenceService :HmsClass<GeofenceService_Data>
     {
-        public GeofenceService (Context arg0): base(arg0) { }
         public GeofenceService (Activity arg0): base(arg0) { }
+        public GeofenceService (Context arg0): base(arg0) { }
         public GeofenceService (): base() { }
         public Task createGeofenceList(GeofenceRequest arg0, PendingIntent arg1) {
             return Call<Task>("createGeofenceList", arg0, arg1);

@@ -12,17 +12,17 @@ namespace HuaweiHms
         public static AGConnectConfig getInstance() {
             return CallStatic<AGConnectConfig>("getInstance");
         }
-        public void applyDefault(Map arg0) {
-            Call("applyDefault", arg0);
-        }
         public void applyDefault(int arg0) {
             Call("applyDefault", arg0);
         }
-        public Task fetch() {
-            return Call<Task>("fetch");
+        public void applyDefault(Map arg0) {
+            Call("applyDefault", arg0);
         }
         public Task fetch(long arg0) {
             return Call<Task>("fetch", arg0);
+        }
+        public Task fetch() {
+            return Call<Task>("fetch");
         }
         public ConfigValues loadLastFetched() {
             return Call<ConfigValues>("loadLastFetched");

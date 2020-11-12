@@ -20,14 +20,35 @@ namespace HuaweiHmsDemo
             registerEvent("open Link", OpenLink);
         }
 
+        public AppLinking.Builder createBuilder()
+        {
+            return AppLinking.newBuilder()
+                .setPreviewType(AppLinking.LinkingPreviewType.SocialInfo)
+                .setUriPrefix(URI_PREFIX)
+                .setDeepLink(Uri.parse(DEEP_LINK))
+                .setAndroidLinkInfo(
+                    AppLinking.AndroidLinkInfo.newBuilder()
+                        .setFallbackUrl(IMAGE_URI)
+                        .setOpenType(AppLinking.AndroidLinkInfo.AndroidOpenType.CustomUrl)
+                        .build())
+                .setSocialCardInfo(
+                    AppLinking.SocialCardInfo.newBuilder().
+                        setTitle(TITLE)
+                        .setImageUrl(IMAGE_URI)
+                        .setDescription(DESCRIPTION)
+                        .build())
+                .setCampaignInfo(
+                    AppLinking.CampaignInfo.newBuilder()
+                        .setName("name")
+                        .setSource("AGC")
+                        .setMedium("App")
+                        .build())
+                .setExpireMinute(2);
+        }
+
         public void CreateAppLinking()
         {
-            AppLinking.Builder builder = AppLinking.newBuilder().setUriPrefix(URI_PREFIX)
-                .setDeepLink(Uri.parse(DEEP_LINK))
-                .setAndroidLinkInfo(AppLinking.AndroidLinkInfo.newBuilder().build())
-                .setSocialCardInfo(AppLinking.SocialCardInfo.newBuilder().setTitle(TITLE)
-                    .setImageUrl(IMAGE_URI).setDescription(DESCRIPTION).build()).setCampaignInfo(
-                    AppLinking.CampaignInfo.newBuilder().setName("name").setSource("AGC").setMedium("App").build());
+            AppLinking.Builder builder = createBuilder();
             Uri applinkingUri = builder.buildAppLinking().getUri();
             var link = applinkingUri.toString();
             TestTip.Inst.ShowText($"App link: {link}");
@@ -36,22 +57,8 @@ namespace HuaweiHmsDemo
         
         public void CreateShortAppLinking()
         {
-            AppLinking.Builder builder = AppLinking.newBuilder().setUriPrefix(URI_PREFIX)
-                .setDeepLink(Uri.parse(DEEP_LINK))
-                .setAndroidLinkInfo(AppLinking.AndroidLinkInfo.newBuilder().build())
-                .setSocialCardInfo(
-                    AppLinking.SocialCardInfo.newBuilder()
-                        .setTitle(TITLE)
-                        .setImageUrl(IMAGE_URI)
-                        .setDescription(DESCRIPTION)
-                        .build()
-                    ).setCampaignInfo(
-                    AppLinking.CampaignInfo.newBuilder()
-                        .setName("name")
-                        .setSource("AGC")
-                        .setMedium("App")
-                        .build()
-                    );
+            AppLinking.Builder builder = createBuilder();
+            TestTip.Inst.ShowText("use ShortAppLinking.LENGTH.LONG");
             builder.buildShortAppLinking(ShortAppLinking.LENGTH.LONG).addOnSuccessListener(new HmsSuccessListener<ShortAppLinking>((shortAppLinking) =>
             {
                 string link = shortAppLinking.getShortUrl().toString();

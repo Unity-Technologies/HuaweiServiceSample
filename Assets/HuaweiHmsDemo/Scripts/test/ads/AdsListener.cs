@@ -1,6 +1,6 @@
 using HuaweiHms;
 namespace HuaweiHmsDemo{
-    public class Util
+    public partial class Util
     {
         public static void showToast(string message)
         {

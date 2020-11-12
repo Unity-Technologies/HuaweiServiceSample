@@ -11,7 +11,9 @@ namespace HuaweiHms
     public class AGConnectAppMessagingOnClickListener : HmsListener<AGConnectAppMessagingOnClickListenerData>
     {
     
-        public virtual void onMessageClick(AppMessage arg0) { }
+        public virtual void onMessageClick(AppMessage arg0) {
+            Call("onMessageClick", arg0);
+        }
     
         public void onMessageClick(AndroidJavaObject arg0){
             onMessageClick(HmsUtil.GetHmsBase<AppMessage>(arg0));

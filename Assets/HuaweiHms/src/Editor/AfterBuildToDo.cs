@@ -41,7 +41,11 @@ public class AfterBuildToDO : IPostGenerateGradleAndroidProject
 
     public void CopyResource(string path)
     {
-        string sourceDir = Application.dataPath + "/HuaweiHmsDemo/Android/res/xml/";
+        string sourceDir = Application.dataPath + "/HuaweiHms/Android/res/xml/";
+        if (!Directory.Exists(sourceDir))
+        {
+            return;
+        }
         var fileList = Directory.GetFiles(sourceDir, "*.xml");
         if (fileList.Length <= 0)
         {
@@ -49,7 +53,7 @@ public class AfterBuildToDO : IPostGenerateGradleAndroidProject
         }
 
         string targetDir = path + "/src/main/res/xml/";
-        if (!Path.HasExtension(targetDir))
+        if (!Directory.Exists(targetDir))
         {
             Directory.CreateDirectory(targetDir);
         }

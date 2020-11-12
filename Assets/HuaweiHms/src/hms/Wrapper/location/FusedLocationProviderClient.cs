@@ -9,8 +9,8 @@ namespace HuaweiHms
     public class FusedLocationProviderClient :HmsClass<FusedLocationProviderClient_Data>
     {
         public const string KEY_VERTICAL_ACCURACY = "verticalAccuracy";
-        public FusedLocationProviderClient (Context arg0): base(arg0) { }
         public FusedLocationProviderClient (Activity arg0): base(arg0) { }
+        public FusedLocationProviderClient (Context arg0): base(arg0) { }
         public FusedLocationProviderClient (): base() { }
         public Task flushLocations() {
             return Call<Task>("flushLocations");
@@ -21,10 +21,10 @@ namespace HuaweiHms
         public Task getLocationAvailability() {
             return Call<Task>("getLocationAvailability");
         }
-        public Task removeLocationUpdates(LocationCallback arg0) {
+        public Task removeLocationUpdates(PendingIntent arg0) {
             return Call<Task>("removeLocationUpdates", arg0);
         }
-        public Task removeLocationUpdates(PendingIntent arg0) {
+        public Task removeLocationUpdates(LocationCallback arg0) {
             return Call<Task>("removeLocationUpdates", arg0);
         }
         public Task requestLocationUpdates(LocationRequest arg0, PendingIntent arg1) {

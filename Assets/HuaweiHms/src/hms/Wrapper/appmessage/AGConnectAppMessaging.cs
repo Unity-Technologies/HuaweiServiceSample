@@ -30,7 +30,7 @@ namespace HuaweiHms
         public void removeCustomView() {
             Call("removeCustomView");
         }
-        public void setDisplayLocation(Location arg0) {
+        public void setDisplayLocation(MessageLocation arg0) {
             Call("setDisplayLocation", arg0);
         }
         public void trigger(string arg0) {

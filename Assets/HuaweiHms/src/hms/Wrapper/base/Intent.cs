@@ -290,11 +290,11 @@ namespace HuaweiHms
         public const int URI_ALLOW_UNSAFE = 4;
         public const int URI_ANDROID_APP_SCHEME = 2;
         public const int URI_INTENT_SCHEME = 1;
+        public Intent (Intent arg0): base(arg0) { }
         public Intent (string arg0, Uri arg1, Context arg2, AndroidJavaClass arg3): base(arg0, arg1, arg2, arg3) { }
+        public Intent (): base() { }
         public Intent (Context arg0, AndroidJavaClass arg1): base(arg0, arg1) { }
         public Intent (string arg0, Uri arg1): base(arg0, arg1) { }
-        public Intent (): base() { }
-        public Intent (Intent arg0): base(arg0) { }
         public Intent (string arg0): base(arg0) { }
         public Intent setAction(string arg0) {
             return Call<Intent>("setAction", arg0);

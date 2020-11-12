@@ -11,7 +11,9 @@ namespace HuaweiHms
     public class OnCompleteListener : HmsListener<OnCompleteListenerData>
     {
     
-        public virtual void onComplete(Task arg0) { }
+        public virtual void onComplete(Task arg0) {
+            Call("onComplete", arg0);
+        }
     
         public void onComplete(AndroidJavaObject arg0){
             onComplete(HmsUtil.GetHmsBase<Task>(arg0));

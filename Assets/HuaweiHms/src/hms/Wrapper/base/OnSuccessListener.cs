@@ -11,6 +11,8 @@ namespace HuaweiHms
     public class OnSuccessListener : HmsListener<OnSuccessListenerData>
     {
     
-        public virtual void onSuccess(AndroidJavaObject arg0) { }
+        public virtual void onSuccess(AndroidJavaObject arg0) {
+            Call("onSuccess", arg0);
+        }
     }
 }

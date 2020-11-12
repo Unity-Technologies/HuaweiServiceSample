@@ -245,7 +245,8 @@ MonoBehaviour:
   PushEnabled: 0
   LocationEnabled: 0
   RemoteConfigEnabled: 0
-  AppLinkingEnabled: 0
+  AppLinkingEnabled: 1
+  AppMessageEnabled: 0
   btnParent: {fileID: 1664072771}
   btnPrefab: {fileID: 5079351762955741576, guid: d221bb8c0c7b8476294abb3b987699b9,
     type: 3}

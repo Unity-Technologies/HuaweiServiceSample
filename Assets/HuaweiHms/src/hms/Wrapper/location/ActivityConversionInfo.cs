@@ -10,8 +10,8 @@ namespace HuaweiHms
     {
         public const int ENTER_ACTIVITY_CONVERSION = 0;
         public const int EXIT_ACTIVITY_CONVERSION = 1;
-        public ActivityConversionInfo (int arg0, int arg1): base(arg0, arg1) { }
         public ActivityConversionInfo (): base() { }
+        public ActivityConversionInfo (int arg0, int arg1): base(arg0, arg1) { }
         public int getActivityType() {
             return Call<int>("getActivityType");
         }

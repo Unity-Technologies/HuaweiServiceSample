@@ -43,6 +43,23 @@ namespace HuaweiHms{
                 return this;
             }
         }
+        
+        public void Call(string name, params object[] args)
+        {
+            obj.Call(name, HmsUtil.TransferParams(args));
+        }
+        public K Call<K>(string name, params object[] args)
+        {    
+            Type type = typeof(K);
+            bool isBase = typeof(IHmsBase).IsAssignableFrom(type);
+            if(isBase){
+                AndroidJavaObject robj = obj.Call<AndroidJavaObject>(name, HmsUtil.TransferParams(args));
+                IHmsBase ret = (IHmsBase)Activator.CreateInstance(type);
+                ret.obj = robj;
+                return (K)ret;
+            }
+            return obj.Call<K>(name, HmsUtil.TransferParams(args));
+        }
     }
     public class HmsListenerManager{
         private const string BUILD_CLASS_NAME = "com.unity.hms.listener.{0}";

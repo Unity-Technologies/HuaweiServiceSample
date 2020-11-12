@@ -11,12 +11,16 @@ namespace HuaweiHms
     public class ConsentUpdateListener : HmsListener<ConsentUpdateListenerData>
     {
     
-        public virtual void onSuccess(ConsentStatus arg0, bool arg1, List arg2) { }
+        public virtual void onSuccess(ConsentStatus arg0, bool arg1, List arg2) {
+            Call("onSuccess", arg0, arg1, arg2);
+        }
     
         public void onSuccess(AndroidJavaObject arg0, bool arg1, AndroidJavaObject arg2){
             onSuccess(HmsUtil.GetHmsBase<ConsentStatus>(arg0), arg1, HmsUtil.GetHmsBase<List>(arg2));
         }
     
-        public virtual void onFail(string arg0) { }
+        public virtual void onFail(string arg0) {
+            Call("onFail", arg0);
+        }
     }
 }

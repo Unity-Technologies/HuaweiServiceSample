@@ -99,5 +99,10 @@ namespace HuaweiHms{
         {
             return Call<bool>("equals", obj);
         }
+
+        public override string ToString()
+        {
+            return Call<string>("toString");
+        }
     }
 }

@@ -11,18 +11,32 @@ namespace HuaweiHms
     public class AdListener : HmsListener<AdListenerData>
     {
     
-        public virtual void onAdClicked() { }
+        public virtual void onAdClicked() {
+            Call("onAdClicked");
+        }
     
-        public virtual void onAdClosed() { }
+        public virtual void onAdClosed() {
+            Call("onAdClosed");
+        }
     
-        public virtual void onAdFailed(int arg0) { }
+        public virtual void onAdFailed(int arg0) {
+            Call("onAdFailed", arg0);
+        }
     
-        public virtual void onAdImpression() { }
+        public virtual void onAdImpression() {
+            Call("onAdImpression");
+        }
     
-        public virtual void onAdLeave() { }
+        public virtual void onAdLeave() {
+            Call("onAdLeave");
+        }
     
-        public virtual void onAdLoaded() { }
+        public virtual void onAdLoaded() {
+            Call("onAdLoaded");
+        }
     
-        public virtual void onAdOpened() { }
+        public virtual void onAdOpened() {
+            Call("onAdOpened");
+        }
     }
 }

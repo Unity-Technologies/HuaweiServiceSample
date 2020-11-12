@@ -11,8 +11,12 @@ namespace HuaweiHms
     public class RewardAdLoadListener : HmsListener<RewardAdLoadListenerData>
     {
     
-        public virtual void onRewardedLoaded() { }
+        public virtual void onRewardedLoaded() {
+            Call("onRewardedLoaded");
+        }
     
-        public virtual void onRewardAdFailedToLoad(int arg0) { }
+        public virtual void onRewardAdFailedToLoad(int arg0) {
+            Call("onRewardAdFailedToLoad", arg0);
+        }
     }
 }
