@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-using HuaweiHms;
-using UnityEngine;
+﻿using HuaweiHms;
 
 namespace HuaweiHmsDemo
 {
@@ -12,7 +10,7 @@ namespace HuaweiHmsDemo
             {
                 if (_appMessaging == null)
                 {
-                    _appMessaging = AGConnectAppMessaging.getInstance(); 
+                    _appMessaging = AGConnectAppMessaging.getInstance();
                 }
 
                 return _appMessaging;
@@ -21,12 +19,17 @@ namespace HuaweiHmsDemo
 
         private AGConnectAppMessaging _appMessaging;
 
-        public bool showApp = false;
+        public bool showMessage = false;
+        public bool fetchMessage = false;
+
+        public static string EVENTNAME = "JUSTTEST";
 
         public override void RegisterEvent(TestEvent registerEvent)
         {
-            // appMessaging.setDisplayEnable(false);
             registerEvent("Show/Hide App Message", ShowAppMessage);
+            registerEvent("Show/Hide App Message State", ShowAppMessageState);
+            registerEvent("Enable/Disable Fetch Message", EnableFetchMessage);
+            registerEvent("Enable/Disable Fetch Message State", EnableFetchMessageState);
             registerEvent("Force Fetch", ForceFetch);
             registerEvent("Add OnClick Listener", AddOnClickListener);
             registerEvent("Add Dismiss Listener", AddDismissListener);
@@ -39,11 +42,30 @@ namespace HuaweiHmsDemo
 
         public void ShowAppMessage()
         {
-            showApp = !showApp;
-            appMessaging.setDisplayEnable(showApp);
-            TestTip.Inst.ShowText($"set display to {showApp}");
+            showMessage = !showMessage;
+            appMessaging.setDisplayEnable(showMessage);
+            TestTip.Inst.ShowText($"set display to {showMessage}");
         }
-        
+
+        public void ShowAppMessageState()
+        {
+            var enable = appMessaging.isDisplayEnable();
+            TestTip.Inst.ShowText($"is display enable {enable}");
+        }
+
+        public void EnableFetchMessage()
+        {
+            fetchMessage = !fetchMessage;
+            appMessaging.setFetchMessageEnable(fetchMessage);
+            TestTip.Inst.ShowText($"set fetch message to {fetchMessage}");
+        }
+
+        public void EnableFetchMessageState()
+        {
+            var enable = appMessaging.isFetchMessageEnable();
+            TestTip.Inst.ShowText($"is fetch enable: {enable}");
+        }
+
         public void ForceFetch()
         {
             appMessaging.setForceFetch();
@@ -52,28 +74,28 @@ namespace HuaweiHmsDemo
 
         public void AddOnClickListener()
         {
-            ClickListener listener = new ClickListener(); 
+            ClickListener listener = new ClickListener();
             appMessaging.addOnClickListener(listener);
             TestTip.Inst.ShowText("Add on click listener success");
         }
-        
+
         public void AddDismissListener()
         {
-            DismissListener listener = new DismissListener(); 
+            DismissListener listener = new DismissListener();
             appMessaging.addOnDismissListener(listener);
             TestTip.Inst.ShowText("Add on dismiss listener success");
         }
-        
+
         public void AddDisplayListener()
         {
-            DisplayListener listener = new DisplayListener(); 
+            DisplayListener listener = new DisplayListener();
             appMessaging.addOnDisplayListener(listener);
             TestTip.Inst.ShowText("Add on display listener success");
         }
 
         public void RegisterCustomView()
         {
-            CustomDisplayView view = new CustomDisplayView(); 
+            CustomDisplayView view = new CustomDisplayView();
             appMessaging.addCustomView(view);
             TestTip.Inst.ShowText("Add custom view success");
         }
@@ -92,7 +114,7 @@ namespace HuaweiHmsDemo
 
         public void Trigger()
         {
-            appMessaging.trigger("justtest");
+            appMessaging.trigger(EVENTNAME);
             TestTip.Inst.ShowText("trigger");
         }
     }

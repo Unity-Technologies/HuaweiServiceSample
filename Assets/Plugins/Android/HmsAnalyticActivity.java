@@ -19,7 +19,7 @@ public class HmsAnalyticActivity extends UnityPlayerActivity {
         HiAnalytics.getInstance(this);
         appMessaging = AGConnectAppMessaging.getInstance();
         appMessaging.setFetchMessageEnable(true);
-        appMessaging.setDisplayEnable(false);
+        appMessaging.setDisplayEnable(true);
         appMessaging.setForceFetch();
     }
 }
