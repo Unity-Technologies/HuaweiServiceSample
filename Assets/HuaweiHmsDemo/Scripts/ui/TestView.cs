@@ -14,6 +14,7 @@ namespace HuaweiHmsDemo
         public bool RemoteConfigEnabled;
         public bool AppLinkingEnabled;
         public bool AppMessageEnabled;
+        public bool CrashEnabled;
         public Transform btnParent;
         public GameObject btnPrefab;
         public TestTip testTip;
@@ -50,6 +51,11 @@ namespace HuaweiHmsDemo
             if (AppMessageEnabled)
             {
                 AppMessageTest.GetInstance().RegisterEvent(RegistEvent);
+            }
+
+            if (CrashEnabled)
+            {
+                CrashTest.GetInstance().RegisterEvent(RegistEvent);
             }
         }
 

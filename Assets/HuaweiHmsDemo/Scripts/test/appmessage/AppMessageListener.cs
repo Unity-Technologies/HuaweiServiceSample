@@ -44,6 +44,14 @@ namespace HuaweiHmsDemo
         }
     }
 
+    public class OnErrorListener : AGConnectAppMessagingOnErrorListener
+    {
+        public override void onMessageError(AppMessage arg0)
+        {
+            TestTip.Inst.ShowText("message errors");
+        }
+    }
+
     public class CustomDisplayView : AGConnectAppMessagingDisplay
     {
         public override void displayMessage(AppMessage arg0, AGConnectAppMessagingCallback arg1)
@@ -52,6 +60,7 @@ namespace HuaweiHmsDemo
             arg1.onMessageClick(arg0);
             arg1.onMessageDismiss(arg0, AGConnectAppMessagingCallback.DismissType.BACK_BUTTON);
             arg1.onMessageDisplay(arg0);
+            arg1.onMessageError(arg0);
         }
     }
 

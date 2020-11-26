@@ -48,5 +48,8 @@ namespace HuaweiHms
         public void addOnDismissListener(AGConnectAppMessagingOnDismissListener arg0) {
             Call("addOnDismissListener", arg0);
         }
+        public void addOnErrorListener(AGConnectAppMessagingOnErrorListener arg0) {
+            Call("addOnErrorListener", arg0);
+        }
     }
 }

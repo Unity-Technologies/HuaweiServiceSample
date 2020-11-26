@@ -27,13 +27,14 @@ namespace HuaweiHmsDemo
         public override void RegisterEvent(TestEvent registerEvent)
         {
             registerEvent("Show/Hide App Message", ShowAppMessage);
-            registerEvent("Show/Hide App Message State", ShowAppMessageState);
-            registerEvent("Enable/Disable Fetch Message", EnableFetchMessage);
-            registerEvent("Enable/Disable Fetch Message State", EnableFetchMessageState);
+            registerEvent("App Message State", ShowAppMessageState);
+            registerEvent("Enable/Disable Fetch", EnableFetchMessage);
+            registerEvent("Fetch Message State", EnableFetchMessageState);
             registerEvent("Force Fetch", ForceFetch);
             registerEvent("Add OnClick Listener", AddOnClickListener);
             registerEvent("Add Dismiss Listener", AddDismissListener);
             registerEvent("Add Display Listener", AddDisplayListener);
+            registerEvent("Add Error Listener", AddErrorListener);
             registerEvent("Register Custom view", RegisterCustomView);
             registerEvent("Remove Custom view", RemoveCustomView);
             registerEvent("Set Display Location", SetDisplayLocation);
@@ -91,6 +92,13 @@ namespace HuaweiHmsDemo
             DisplayListener listener = new DisplayListener();
             appMessaging.addOnDisplayListener(listener);
             TestTip.Inst.ShowText("Add on display listener success");
+        }
+        
+        public void AddErrorListener()
+        {
+            OnErrorListener listener = new OnErrorListener();
+            appMessaging.addOnErrorListener(listener);
+            TestTip.Inst.ShowText("Add on error listener success");
         }
 
         public void RegisterCustomView()
