@@ -6,27 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/HuaweiHmsDemo/Scenes/HmsPushSampleScene.unity
+    path: Assets/HuaweiServiceDemo/Scenes/PushSampleScene.unity
     guid: 69033a60ccc234794aef612cfd6d8115
   - enabled: 0
-    path: Assets/HuaweiHmsDemo/Scenes/HmsGameServiceDemo.unity
+    path: Assets/HuaweiServiceDemo/Scenes/GameServiceDemo.unity
     guid: e2feccc4736cc49b38b22818510afbb8
   - enabled: 0
-    path: Assets/HuaweiHmsDemo/Scenes/HmsLocationSampleScene.unity
+    path: Assets/HuaweiServiceDemo/Scenes/LocationSampleScene.unity
     guid: 86302f264166c46e08b40e4b89c435e3
   - enabled: 0
-    path: Assets/HuaweiHmsDemo/Scenes/HmsAnalyticSampleScene.unity
+    path: Assets/HuaweiServiceDemo/Scenes/ServiceAnalyticSampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
-    path: Assets/HuaweiHmsDemo/Scenes/HmsAdsSampleScene.unity
+    path: Assets/HuaweiServiceDemo/Scenes/ServiceAdsSampleScene.unity
     guid: a518e96ecc8f24c66a12be14f8900ec4
-  - enabled: 0
-    path: Assets/HuaweiHmsDemo/Scenes/HmsAppLinkingSampleScene.unity
+  - enabled: 1
+    path: Assets/HuaweiServiceDemo/Scenes/AppLinkingSampleScene.unity
     guid: 2a06d635f4d86455aa7a945033ca787c
   - enabled: 0
-    path: Assets/HuaweiHmsDemo/Scenes/HmsRemoteConfigSampleScene.unity
+    path: Assets/HuaweiServiceDemo/Scenes/RemoteConfigSampleScene.unity
     guid: 9a5ee55b1b9414774becf40683d28db8
-  - enabled: 1
-    path: Assets/HuaweiHmsDemo/Scenes/HmsAppMessageSampleScene.unity
+  - enabled: 0
+    path: Assets/HuaweiServiceDemo/Scenes/AppMessageSampleScene.unity
     guid: b3476cb507ef74fc3ba3f5a751256fe8
   m_configObjects: {}

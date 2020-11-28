@@ -41,7 +41,7 @@ public class AfterBuildToDO : IPostGenerateGradleAndroidProject
 
     public void CopyResource(string path)
     {
-        string sourceDir = Application.dataPath + "/HuaweiHms/Android/res/xml/";
+        string sourceDir = Application.dataPath + "/HuaweiService/Android/res/xml/";
         if (!Directory.Exists(sourceDir))
         {
             return;
