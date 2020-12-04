@@ -70,7 +70,8 @@ public class AfterBuildToDO : IPostGenerateGradleAndroidProject
         Debug.Log(path);
         string launcherPath = getOutputPath(path);
         Debug.Log(launcherPath);
-        //读取源文件路径
+        //读取源文件路径 
+        // Please add your own agconnect-service.json!
         string sourcePath = Application.dataPath + "/Plugins/Android/agconnect-services.json";
         //拷贝文件(源路径及文件名, 拷贝路径及文件名, 若该文件名已存在,是否替换)
         File.Copy(sourcePath, launcherPath + "/agconnect-services.json", true);
