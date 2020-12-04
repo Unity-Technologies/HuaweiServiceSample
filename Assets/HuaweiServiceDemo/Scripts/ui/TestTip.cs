@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HuaweiHmsDemo
+namespace HuaweiServiceDemo
 {
     public class TestTip : MonoBehaviour
     {

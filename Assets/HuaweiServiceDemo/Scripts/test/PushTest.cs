@@ -1,9 +1,10 @@
 ﻿using System;
 using UnityEngine;
-using HuaweiHms;
-using Exception = HuaweiHms.Exception;
+using HuaweiService;
+using HuaweiService.push;
+using Exception = HuaweiService.Exception;
 
-namespace HuaweiHmsDemo
+namespace HuaweiServiceDemo
 {
     public class PushTest:Test<PushTest>
     {

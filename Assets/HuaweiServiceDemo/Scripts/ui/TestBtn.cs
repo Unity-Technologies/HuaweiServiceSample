@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace HuaweiHmsDemo
+namespace HuaweiServiceDemo
 {
     public class TestBtn : MonoBehaviour
     {

@@ -1,7 +1,8 @@
 using UnityEngine;
-using HuaweiHms;
+using HuaweiService;
+using HuaweiService.location;
 
-namespace HuaweiHmsDemo{
+namespace HuaweiServiceDemo{
     public class LocationRunTest:Test<LocationRunTest>{
         public ActivityIdentificationService activityIdentificationService;
 
@@ -18,7 +19,7 @@ namespace HuaweiHmsDemo{
         }
         public void RequestActivity(){
             LocationBroadcast.SetActivityEnabled(true);
-            activityIdentificationService = ActivityIdentification.getService(new Activity());
+            activityIdentificationService = ActivityIdentification.getService(new UnityPlayerActivity());
             activityIdentificationService.createActivityIdentificationUpdates(5000,LocationCommon.GetPendingIntent())
             .addOnSuccessListener(new LocationSuccessListener((AndroidJavaObject o)=>{
                 TestTip.Inst.ShowText("activity success");

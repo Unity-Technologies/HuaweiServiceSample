@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using HuaweiHms;
+using HuaweiService;
+using HuaweiService.appmessage;
 using UnityEngine;
 
-namespace HuaweiHmsDemo
+namespace HuaweiServiceDemo
 {
     public partial class Util
     {

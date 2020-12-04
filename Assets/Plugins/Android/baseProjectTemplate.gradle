@@ -15,6 +15,7 @@ allprojects {
             // To specify a custom Gradle version in Unity, go do "Preferences > External Tools", uncheck "Gradle Installed with Unity (recommended)" and specify a path to a custom Gradle version
             classpath 'com.android.tools.build:gradle:3.4.0'
             classpath 'com.huawei.agconnect:agcp:1.4.1.300'
+            classpath 'com.huawei.agconnect:agconnect-apms-plugin:1.4.1.303'
             **BUILD_SCRIPT_DEPS**
         }
     }

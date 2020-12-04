@@ -1,8 +1,9 @@
 ﻿using System.Collections;
-using HuaweiHms;
+using HuaweiService;
+using HuaweiService.RemoteConfig;
 using UnityEngine;
 
-namespace HuaweiHmsDemo
+namespace HuaweiServiceDemo
 {
     public class RemoteConfigTest : Test<RemoteConfigTest>
     {

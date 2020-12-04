@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.Text;
-using HuaweiHms;
+using HuaweiService;
+using HuaweiService.location;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HuaweiHmsDemo{
+namespace HuaweiServiceDemo{
     public class LocationGeoTest:Test<LocationGeoTest>{
         public const string ACTION_PROCESS_LOCATION = "com.huawei.hmssample.geofence.GeoFenceBroadcastReceiver.ACTION_PROCESS_LOCATION";
         private Geofence.Builder geoBuild = new Geofence.Builder();

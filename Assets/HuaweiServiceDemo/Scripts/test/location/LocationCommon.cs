@@ -1,5 +1,5 @@
-using HuaweiHms;
-namespace HuaweiHmsDemo{
+using HuaweiService;
+namespace HuaweiServiceDemo{
     public class LocationCommon{
         public const string ACTION_PROCESS_LOCATION = "com.huawei.hms.location.ACTION_PROCESS_LOCATION";
         public static PendingIntent mPendingIntent = null;

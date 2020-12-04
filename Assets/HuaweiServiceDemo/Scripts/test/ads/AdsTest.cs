@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
-using HuaweiHms;
+using HuaweiService;
+using HuaweiService.ads;
 
-namespace HuaweiHmsDemo
+namespace HuaweiServiceDemo
 {
     public class AdsTest:Test<AdsTest>
     {

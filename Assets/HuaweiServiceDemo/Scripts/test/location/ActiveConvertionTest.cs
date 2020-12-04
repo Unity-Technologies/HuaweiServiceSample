@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using System.Text;
-using HuaweiHms;
+using HuaweiService;
+using HuaweiService.location;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HuaweiHmsDemo{
+namespace HuaweiServiceDemo{
     public class ActiveConvertionTest:Test<ActiveConvertionTest>{
         public const string ACTION_PROCESS_LOCATION = "com.huawei.hms.location.ACTION_PROCESS_LOCATION";
 

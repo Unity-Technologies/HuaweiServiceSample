@@ -1,5 +1,7 @@
-using HuaweiHms;
-namespace HuaweiHmsDemo{
+using HuaweiService;
+using HuaweiService.ads;
+
+namespace HuaweiServiceDemo{
     public partial class Util
     {
         public static void showToast(string message)

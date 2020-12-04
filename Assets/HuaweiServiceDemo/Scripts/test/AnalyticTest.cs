@@ -1,7 +1,8 @@
-﻿using HuaweiHms;
+﻿using HuaweiService;
+using HuaweiService.analytic;
 using UnityEngine;
 
-namespace HuaweiHmsDemo
+namespace HuaweiServiceDemo
 {
     public class AnalyticTest:Test<AnalyticTest>
     {

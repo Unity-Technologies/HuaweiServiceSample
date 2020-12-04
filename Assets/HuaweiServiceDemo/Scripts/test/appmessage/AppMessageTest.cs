@@ -1,6 +1,8 @@
-﻿using HuaweiHms;
+﻿using HuaweiService;
+using HuaweiService.appmessage;
+using Location = HuaweiService.appmessage.Location;
 
-namespace HuaweiHmsDemo
+namespace HuaweiServiceDemo
 {
     public class AppMessageTest : Test<AppMessageTest>
     {
@@ -116,7 +118,7 @@ namespace HuaweiHmsDemo
 
         public void SetDisplayLocation()
         {
-            appMessaging.setDisplayLocation(MessageLocation.BOTTOM);
+            appMessaging.setDisplayLocation(Location.BOTTOM);
             TestTip.Inst.ShowText("set location");
         }
 

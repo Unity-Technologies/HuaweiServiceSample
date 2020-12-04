@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace HuaweiHmsDemo{
+namespace HuaweiServiceDemo{
     public class LocationTest : Test<LocationTest>{
         public override void RegisterEvent(TestEvent registerEvent){
             GetLastLocationTest.GetInstance().RegisterEvent(registerEvent);

@@ -1,8 +1,9 @@
 ﻿using System.Security.Cryptography;
-using HuaweiHms;
+using HuaweiService;
+using HuaweiService.AppLinking;
 using UnityEngine;
 
-namespace HuaweiHmsDemo
+namespace HuaweiServiceDemo
 {
     public class AppLinkingTest : Test<AppLinkingTest>
     {
@@ -82,7 +83,7 @@ namespace HuaweiHmsDemo
 
         public void GetResulveData()
         {
-            AGConnectAppLinking.getInstance().getAppLinking(new Activity()).addOnSuccessListener(new HmsSuccessListener<ResolvedLinkData>((resolvedLinkData) =>
+            AGConnectAppLinking.getInstance().getAppLinking(new UnityPlayerActivity()).addOnSuccessListener(new HmsSuccessListener<ResolvedLinkData>((resolvedLinkData) =>
             {
                 var link = resolvedLinkData.getDeepLink().toString();
                 TestTip.Inst.ShowText("short link:" + link);
@@ -108,7 +109,7 @@ namespace HuaweiHmsDemo
 
         public void OpenLink()
         {
-            var activity = new Activity();
+            var activity = new UnityPlayerActivity();
             var intent = new Intent();
             TestTip.Inst.ShowText($"use text: {GUIUtility.systemCopyBuffer}");
             intent.setData(Uri.parse(GUIUtility.systemCopyBuffer));

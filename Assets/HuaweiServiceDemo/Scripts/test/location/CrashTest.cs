@@ -1,11 +1,12 @@
 ﻿using System.Security.Cryptography;
-using HuaweiHms;
+using HuaweiService;
 using UnityEngine;
 using System;
+using HuaweiService.crash;
 using UnityEngine.Diagnostics;
 using Exception = System.Exception;
 
-namespace HuaweiHmsDemo
+namespace HuaweiServiceDemo
 {
     public class CrashTest : Test<CrashTest>
     {

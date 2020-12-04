@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
-using HuaweiHms;
-using Exception = HuaweiHms.Exception;
+using HuaweiService;
+using HuaweiService.location;
+using Exception = HuaweiService.Exception;
 
-namespace HuaweiHmsDemo{
+namespace HuaweiServiceDemo{
 
     public delegate void SuccessCallBack<T>(T o);
     public class HmsSuccessListener<T>:OnSuccessListener{

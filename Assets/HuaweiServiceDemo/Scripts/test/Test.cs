@@ -1,7 +1,7 @@
-using HuaweiHms;
+using HuaweiService;
 using UnityEngine.Events;
 
-namespace HuaweiHmsDemo{
+namespace HuaweiServiceDemo{
     public delegate void TestEvent(string text,UnityAction action);
     public abstract class Test<T> where T:new(){
         private static T _inst;

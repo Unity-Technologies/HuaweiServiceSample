@@ -1,7 +1,8 @@
 using UnityEngine;
-using HuaweiHms;
+using HuaweiService;
+using HuaweiService.location;
 
-namespace HuaweiHmsDemo
+namespace HuaweiServiceDemo
 {
     public class LocationUpdateTest : Test<LocationUpdateTest>
     {
