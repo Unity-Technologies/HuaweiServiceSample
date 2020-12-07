@@ -748,7 +748,7 @@ MonoBehaviour:
   RemoteConfigEnabled: 0
   AppLinkingEnabled: 0
   AppMessageEnabled: 0
-  CrashEnable: 1
+  CrashEnabled: 1
   btnParent: {fileID: 1003105949}
   btnPrefab: {fileID: 5079351762955741576, guid: d221bb8c0c7b8476294abb3b987699b9,
     type: 3}
