@@ -8,6 +8,8 @@ import com.unity3d.player.UnityPlayerActivity;
 
 import com.huawei.agconnect.appmessaging.AGConnectAppMessaging;
 import com.huawei.hms.aaid.HmsInstanceId;
+import com.hw.unity.Agc.Auth.ThirdPartyLogin.LoginManager;
+import android.content.Intent;
 
 public class HmsAnalyticActivity extends UnityPlayerActivity {
    private AGConnectAppMessaging appMessaging;
@@ -21,5 +23,14 @@ public class HmsAnalyticActivity extends UnityPlayerActivity {
         appMessaging.setFetchMessageEnable(true);
         appMessaging.setDisplayEnable(true);
         appMessaging.setForceFetch();
+        LoginManager.getInstance().initialize(this);
+
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        LoginManager.getInstance().onActivityResult(requestCode, resultCode, data);
+    }
+
 }

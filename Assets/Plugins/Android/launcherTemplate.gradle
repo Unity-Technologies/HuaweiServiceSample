@@ -28,6 +28,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    
+        packagingOptions {
+            exclude 'META-INF/INDEX.LIST'
+            exclude 'META-INF/io.netty.versions.properties'
+        }
 
     defaultConfig {
         minSdkVersion **MINSDKVERSION**
@@ -36,6 +41,7 @@ android {
         ndk {
             abiFilters **ABIFILTERS**
         }
+        multiDexEnabled true
         versionCode **VERSIONCODE**
         versionName '**VERSIONNAME**'
     }

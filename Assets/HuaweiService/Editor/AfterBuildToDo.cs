@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using System.Text;
 using UnityEditor.Callbacks;
 using UnityEditor.Android;
 
@@ -70,11 +71,80 @@ public class AfterBuildToDO : IPostGenerateGradleAndroidProject
         Debug.Log(path);
         string launcherPath = getOutputPath(path);
         Debug.Log(launcherPath);
-        //读取源文件路径 
-        // Please add your own agconnect-service.json!
+        //读取源文件路径
         string sourcePath = Application.dataPath + "/Plugins/Android/agconnect-services.json";
         //拷贝文件(源路径及文件名, 拷贝路径及文件名, 若该文件名已存在,是否替换)
         File.Copy(sourcePath, launcherPath + "/agconnect-services.json", true);
         CopyResource(path);
+        AddAuthFile(sourcePath, path);
+    }
+
+    public void AddAuthFile(string sourcePath,string path)
+    {
+        File.Copy(sourcePath,path+ "/agconnect-services.json", true);
+        AddWxEntryActivityToAndroid(path);
+        AddxmltoAndroid(path);
+    }
+    
+    private void AddxmltoAndroid(string path)
+    {
+        var basePath = path + "/src/main/res/values";
+        if (!Directory.Exists(basePath))
+        {
+            Directory.CreateDirectory(basePath);
+        }
+        
+        var codePath = basePath + "/strings.xml";
+        
+        if (!Directory.Exists(basePath))
+        {
+            Directory.CreateDirectory(basePath);
+        }
+        string sourceFilePath = Application.dataPath + "/HuaweiService/Android/res/Auth/strings.xml";
+        if (File.Exists(sourceFilePath))
+        {
+            File.Copy(sourceFilePath,codePath,true);
+        }
+    }
+    
+    private void AddWxEntryActivityToAndroid(string proejectPath)
+    {
+            
+        var basePath = GetPackagePath(proejectPath, Application.identifier) + "/wxapi";
+        if (!Directory.Exists(basePath))
+        {
+            Directory.CreateDirectory(basePath);
+        }
+
+        var codePath = basePath + "/WXEntryActivity.java";
+        if (File.Exists(codePath)) // do not overwrite what has been done by developer
+        {    
+            return;
+        }
+            
+        var code = Resources.Load<TextAsset>("WXEntryActivity");
+        if (code != null)
+        {
+            var generatedCode = code.text.Replace("com.unity.EndlessRunnerSampleGame.TkeDemo", Application.identifier);
+            var writer = new StreamWriter(codePath, false);
+            writer.Write(generatedCode);
+            writer.Close();
+        }
+    }
+    
+    private string GetPackagePath(string basePath, string package)
+    {
+        var pathBuilder = new StringBuilder(basePath);
+        pathBuilder.Append(Path.DirectorySeparatorChar).Append("src");
+        pathBuilder.Append(Path.DirectorySeparatorChar).Append("main");
+        pathBuilder.Append(Path.DirectorySeparatorChar).Append("java");
+            
+        var codePath = package.Split('.');
+        foreach (var p in codePath)
+        {
+            pathBuilder.Append(Path.DirectorySeparatorChar).Append(p);
+        }
+
+        return pathBuilder.ToString();
     }
 }

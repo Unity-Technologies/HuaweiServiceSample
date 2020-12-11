@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="google_game_app_id">Replace me</string>
+    <string name="facebook_app_id">Replace me</string>
+    <string name="fb_login_protocol_scheme">Replace me</string>
+    <string name="tecent_app_id">Replace me</string>
+
+</resources>

@@ -17,9 +17,10 @@ namespace HuaweiServiceDemo
         
         public override void RegisterEvent(TestEvent registerEvent)
         {
-            registerEvent("enableCrashCollection(boolean enable)", () => SetCrashCollection(true));
+            registerEvent("enableCrashCollection(true)", () => SetCrashCollection(true));
+            registerEvent("enableCrashCollection(false)", () => SetCrashCollection(false));
             registerEvent("testIt", SetTestIt);
-            registerEvent("setUserId(String userId)", () => SetUserId("TestUserId"));
+            registerEvent("setUserId(String userId)", () => SetUserId("TestUserId2"));
             registerEvent("setCustomKey(String key, String value)", () => SetCustomKey("stringKey", "world"));
             registerEvent("setCustomKey(String key, boolean value)", () => SetCustomKey("booleanKey", false));
             registerEvent("setCustomKey(String key, double value)", () => SetCustomKey("doubleKey", 1.1));
@@ -45,7 +46,6 @@ namespace HuaweiServiceDemo
         
         public void SetTestIt()
         {
-            AGConnectCrash.getInstance().enableCrashCollection(true);
             TestTip.Inst.ShowText("create crash");
             Application.ForceCrash(0);
         }
@@ -76,6 +76,11 @@ namespace HuaweiServiceDemo
         {
             AGConnectCrash.getInstance().setCustomKey(key, value);
             TestTip.Inst.ShowText($"set key: {key}," + $"set float value: {value}");
+        }
+        public void SetCustomKey(string key, int value)
+        {
+            AGConnectCrash.getInstance().setCustomKey(key, value);
+            TestTip.Inst.ShowText($"set key: {key}," + $"set int value: {value}");
         }
         public void SetCustomKey(string key, long value)
         {
