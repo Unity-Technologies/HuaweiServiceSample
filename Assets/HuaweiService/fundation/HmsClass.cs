@@ -69,9 +69,9 @@ namespace HuaweiService{
             return clz.CallStatic<K>(name, HmsUtil.TransferParams(args));
         }
 
-        public T toType<T>() where T:IHmsBase,new()
+        public K toType<K>() where K:IHmsBase,new()
         {
-            var map = new T();
+            var map = new K();
             map.obj = obj;
             return map;
         }

@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/HuaweiServiceDemo/Scenes/AgcAuthScene.unity
     guid: 99a57a8576159410ab2702dc4c1a4324
+  - enabled: 0
+    path: Assets/HuaweiServiceDemo/HuaweiCloudFunctionDemo/Scenes/AGCCloudFunctionScene.unity
+    guid: b572b4b6e597f465fb89e6cf1e198b99
   m_configObjects: {}

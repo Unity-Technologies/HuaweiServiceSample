@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using HuaweiService.CloudFunction;
 
 namespace HuaweiService
 {
@@ -20,6 +21,10 @@ namespace HuaweiService
         }
         public bool isSuccessful() {
             return Call<bool>("isSuccessful");
+        }
+        public string getValue() {
+            FunctionResult result = Call<FunctionResult>("getResult");
+            return result.getValue();
         }
         public Task addOnSuccessListener(Activity arg0, OnSuccessListener arg1) {
             return Call<Task>("addOnSuccessListener", arg0, arg1);

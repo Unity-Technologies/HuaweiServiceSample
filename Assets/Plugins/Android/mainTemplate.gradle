@@ -13,7 +13,7 @@ dependencies {
      //Google Play Game
     implementation 'com.google.android.gms:play-services-games:17.0.0'
     //Twitter
-     implementation 'com.twitter.sdk.android:twitter-core:3.3.0'
+    implementation 'com.twitter.sdk.android:twitter-core:3.3.0'
      //Wechat
     api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
        //facebook
@@ -27,6 +27,11 @@ dependencies {
     //auth
     implementation 'com.huawei.agconnect:agconnect-core:1.4.1.300'
     implementation 'com.huawei.agconnect:agconnect-auth:1.4.1.300'
+    //cloudfunction
+    implementation "com.huawei.agconnect:agconnect-function:1.4.2.300"
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.5'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.8.5'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.8.5'
 **DEPS**}
 
 android {

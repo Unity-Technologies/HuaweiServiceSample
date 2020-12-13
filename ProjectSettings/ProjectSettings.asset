@@ -174,7 +174,8 @@ PlayerSettings:
   resolutionScalingMode: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Android: com.huawei.codelabpush.huawei
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 19
@@ -253,8 +254,8 @@ PlayerSettings:
   AndroidTargetArchitectures: 1
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{inproject}: hhms.keystore'
-  AndroidKeyaliasName: hhms
+  AndroidKeystoreName: /Users/zhenzhu/Desktop/Player-Identity/HuaweiAuthTest6/android.keystore
+  AndroidKeyaliasName: zhenzhu16
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
