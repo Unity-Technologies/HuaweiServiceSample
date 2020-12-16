@@ -1,10 +1,11 @@
 ﻿using System.Security.Cryptography;
 using HuaweiService;
+using HuaweiService.crash;
 using UnityEngine;
 using System;
-using HuaweiService.crash;
 using UnityEngine.Diagnostics;
 using Exception = System.Exception;
+using System.Runtime.InteropServices;
 
 namespace HuaweiServiceDemo
 {
@@ -19,8 +20,8 @@ namespace HuaweiServiceDemo
         {
             registerEvent("enableCrashCollection(true)", () => SetCrashCollection(true));
             registerEvent("enableCrashCollection(false)", () => SetCrashCollection(false));
-            registerEvent("testIt", SetTestIt);
-            registerEvent("setUserId(String userId)", () => SetUserId("TestUserId2"));
+            registerEvent("JAVA crash", SetTestIt);
+            registerEvent("setUserId(String userId)", () => SetUserId("TestUserIdz"));
             registerEvent("setCustomKey(String key, String value)", () => SetCustomKey("stringKey", "world"));
             registerEvent("setCustomKey(String key, boolean value)", () => SetCustomKey("booleanKey", false));
             registerEvent("setCustomKey(String key, double value)", () => SetCustomKey("doubleKey", 1.1));
@@ -32,7 +33,7 @@ namespace HuaweiServiceDemo
         }
         public void SetCrashCollection(bool isCollection)
         {
-            if (isCollection)
+            if (isCollection == true)
             {
                 AGConnectCrash.getInstance().enableCrashCollection(true);
                 TestTip.Inst.ShowText("upload crash collection");
@@ -47,7 +48,8 @@ namespace HuaweiServiceDemo
         public void SetTestIt()
         {
             TestTip.Inst.ShowText("create crash");
-            Application.ForceCrash(0);
+            AndroidJavaClass jc = new AndroidJavaClass("com.hms.hms_analytic_activity.HmsAnalyticActivity");
+            jc.CallStatic("main");
         }
         
         public void SetUserId(string userid)

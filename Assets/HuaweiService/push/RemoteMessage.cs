@@ -120,14 +120,14 @@ namespace HuaweiService.push
             public int[] getLightSettings() {
                 return Call<int[]>("getLightSettings");
             }
-            public int getBadgeNumber() {
-                return Call<int>("getBadgeNumber");
+            public Integer getBadgeNumber() {
+                return Call<Integer>("getBadgeNumber");
             }
             public bool isAutoCancel() {
                 return Call<bool>("isAutoCancel");
             }
-            public int getImportance() {
-                return Call<int>("getImportance");
+            public Integer getImportance() {
+                return Call<Integer>("getImportance");
             }
             public string getTicker() {
                 return Call<string>("getTicker");
@@ -135,8 +135,8 @@ namespace HuaweiService.push
             public long[] getVibrateConfig() {
                 return Call<long[]>("getVibrateConfig");
             }
-            public int getVisibility() {
-                return Call<int>("getVisibility");
+            public Integer getVisibility() {
+                return Call<Integer>("getVisibility");
             }
             public string getIntentUri() {
                 return Call<string>("getIntentUri");

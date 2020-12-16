@@ -18,17 +18,17 @@ namespace HuaweiService.ads
         public string getAppCountry() {
             return Call<string>("getAppCountry");
         }
-        public int getTagForChildProtection() {
-            return Call<int>("getTagForChildProtection");
+        public Integer getTagForChildProtection() {
+            return Call<Integer>("getTagForChildProtection");
         }
-        public int getTagForUnderAgeOfPromise() {
-            return Call<int>("getTagForUnderAgeOfPromise");
+        public Integer getTagForUnderAgeOfPromise() {
+            return Call<Integer>("getTagForUnderAgeOfPromise");
         }
         public Builder toBuilder() {
             return Call<Builder>("toBuilder");
         }
-        public int getNonPersonalizedAd() {
-            return Call<int>("getNonPersonalizedAd");
+        public Integer getNonPersonalizedAd() {
+            return Call<Integer>("getNonPersonalizedAd");
         }
     
         public class Builder_Data : IHmsBaseClass{
@@ -43,13 +43,13 @@ namespace HuaweiService.ads
             public Builder setAdContentClassification(string arg0) {
                 return Call<Builder>("setAdContentClassification", arg0);
             }
-            public Builder setTagForChildProtection(int arg0) {
+            public Builder setTagForChildProtection(Integer arg0) {
                 return Call<Builder>("setTagForChildProtection", arg0);
             }
-            public Builder setTagForUnderAgeOfPromise(int arg0) {
+            public Builder setTagForUnderAgeOfPromise(Integer arg0) {
                 return Call<Builder>("setTagForUnderAgeOfPromise", arg0);
             }
-            public Builder setNonPersonalizedAd(int arg0) {
+            public Builder setNonPersonalizedAd(Integer arg0) {
                 return Call<Builder>("setNonPersonalizedAd", arg0);
             }
             public Builder setAppLang(string arg0) {

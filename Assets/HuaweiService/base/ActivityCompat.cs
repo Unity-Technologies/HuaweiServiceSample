@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace HuaweiService
 {
     public class ActivityCompat_Data : IHmsBaseClass{
-        public string name => "android.support.v4.app.ActivityCompat";
+        public string name => "androidx.core.app.ActivityCompat";
     }
     public class ActivityCompat :HmsClass<ActivityCompat_Data>
     {

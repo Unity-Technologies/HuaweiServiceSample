@@ -37,13 +37,13 @@ namespace HuaweiService.ads
             public Builder setAdContentClassification(string arg0) {
                 return Call<Builder>("setAdContentClassification", arg0);
             }
-            public Builder setTagForUnderAgeOfPromise(int arg0) {
+            public Builder setTagForUnderAgeOfPromise(Integer arg0) {
                 return Call<Builder>("setTagForUnderAgeOfPromise", arg0);
             }
-            public Builder setTagForChildProtection(int arg0) {
+            public Builder setTagForChildProtection(Integer arg0) {
                 return Call<Builder>("setTagForChildProtection", arg0);
             }
-            public Builder setNonPersonalizedAd(int arg0) {
+            public Builder setNonPersonalizedAd(Integer arg0) {
                 return Call<Builder>("setNonPersonalizedAd", arg0);
             }
             public Builder setAppCountry(string arg0) {

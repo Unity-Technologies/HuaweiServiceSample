@@ -14,7 +14,7 @@ dependencies {
     implementation 'com.huawei.hms:ads-consent:3.4.30.301'
     implementation 'com.huawei.hms:push:4.0.3.301'
     implementation 'com.huawei.hms:location:5.0.0.302'
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.huawei.hms:hianalytics:5.0.0.301'
     implementation 'com.huawei.agconnect:agconnect-crash:1.4.1.300'
     implementation 'com.huawei.agconnect:agconnect-core:1.4.1.300' 
@@ -63,9 +63,10 @@ android {
             jniDebuggable true
         }
         release {
-            minifyEnabled **MINIFY_RELEASE**
-            useProguard **PROGUARD_RELEASE**
-            proguardFiles getDefaultProguardFile('proguard-android.txt')**SIGNCONFIG**
+            minifyEnabled true
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),'proguard-unity.txt','proguard-user.txt'
+            signingConfig signingConfigs.release
         }
     }**PACKAGING_OPTIONS****SPLITS**
 **BUILT_APK_LOCATION**

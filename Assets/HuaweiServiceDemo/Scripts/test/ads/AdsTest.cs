@@ -13,6 +13,7 @@ namespace HuaweiServiceDemo
             registerEvent("set consent personal",() => SetConsentStatus(true));
             registerEvent("set consent non personal", ()=> SetConsentStatus(false));
             registerEvent("consent",checkConsentStatus);
+            registerEvent("set RequestOptions NonPersonalizedAd",setRequestOptionsNonPersonalizedAd);
         }
         public void LoadImageAds()
         {
@@ -51,6 +52,17 @@ namespace HuaweiServiceDemo
         {
             Consent consentInfo = Consent.getInstance(new Context());
             consentInfo.requestConsentUpdate(new MConsentUpdateListener());
+        }
+
+        public void setRequestOptionsNonPersonalizedAd()
+        {
+            RequestOptions reqOptions =  HwAds.getRequestOptions()
+                .toBuilder()
+                .setNonPersonalizedAd( new Integer(NonPersonalizedAd.ALLOW_ALL) )
+                .build();
+            HwAds.setRequestOptions(reqOptions);
+            
+            TestTip.Inst.ShowText("RequestOptions NonPersonalizedAd:"+ HwAds.getRequestOptions().getNonPersonalizedAd());
         }
     }
 }
