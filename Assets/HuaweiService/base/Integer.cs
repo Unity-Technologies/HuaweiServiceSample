@@ -12,8 +12,11 @@ namespace HuaweiService
         public const int MAX_VALUE = 2147483647;
         public const int SIZE = 32;
         public const int BYTES = 4;
-        public Integer (int arg0): base(arg0) { }
         public Integer (string arg0): base(arg0) { }
+        public Integer (int arg0): base(arg0) { }
         public Integer (): base() { }
+        public int intValue() {
+            return Call<int>("intValue");
+        }
     }
 }

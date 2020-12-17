@@ -15,6 +15,8 @@ namespace HuaweiServiceDemo
         public bool AppLinkingEnabled;
         public bool AppMessageEnabled;
         public bool CrashEnabled;
+        public bool DatabaseEnabled;
+
         public Transform btnParent;
         public GameObject btnPrefab;
         public TestTip testTip;
@@ -56,6 +58,11 @@ namespace HuaweiServiceDemo
             if (CrashEnabled)
             {
                 CrashTest.GetInstance().RegisterEvent(RegistEvent);
+            }
+
+            if (DatabaseEnabled)
+            {
+                CloudDBTest.GetInstance().RegisterEvent(RegistEvent);
             }
         }
 

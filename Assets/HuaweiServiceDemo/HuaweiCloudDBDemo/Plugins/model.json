@@ -1,0 +1,104 @@
+{
+    "permissions": [
+        {
+            "permissions": [
+                {
+                    "role": "World",
+                    "rights": [
+                        "Read"
+                    ]
+                },
+                {
+                    "role": "Authenticated",
+                    "rights": [
+                        "Read",
+                        "Upsert",
+                        "Delete"
+                    ]
+                },
+                {
+                    "role": "Creator",
+                    "rights": [
+                        "Read",
+                        "Upsert",
+                        "Delete"
+                    ]
+                },
+                {
+                    "role": "Administrator",
+                    "rights": [
+                        "Read",
+                        "Upsert",
+                        "Delete"
+                    ]
+                }
+            ],
+            "objectTypeName": "BookInfo"
+        }
+    ],
+    "objectTypes": [
+        {
+            "indexes": [
+                {
+                    "indexName": "bookName",
+                    "indexList": [
+                        "bookName"
+                    ]
+                }
+            ],
+            "objectTypeName": "BookInfo",
+            "fields": [
+                {
+                    "isNeedEncrypt": false,
+                    "fieldName": "id",
+                    "notNull": true,
+                    "belongPrimaryKey": true,
+                    "fieldType": "Integer"
+                },
+                {
+                    "isNeedEncrypt": false,
+                    "fieldName": "bookName",
+                    "notNull": false,
+                    "belongPrimaryKey": false,
+                    "fieldType": "String"
+                },
+                {
+                    "isNeedEncrypt": false,
+                    "fieldName": "author",
+                    "notNull": false,
+                    "belongPrimaryKey": false,
+                    "fieldType": "String"
+                },
+                {
+                    "isNeedEncrypt": false,
+                    "fieldName": "price",
+                    "notNull": false,
+                    "belongPrimaryKey": false,
+                    "fieldType": "Double"
+                },
+                {
+                    "isNeedEncrypt": false,
+                    "fieldName": "publisher",
+                    "notNull": false,
+                    "belongPrimaryKey": false,
+                    "fieldType": "String"
+                },
+                {
+                    "isNeedEncrypt": false,
+                    "fieldName": "publishTime",
+                    "notNull": false,
+                    "belongPrimaryKey": false,
+                    "fieldType": "Date"
+                },
+                {
+                    "isNeedEncrypt": false,
+                    "fieldName": "shadowFlag",
+                    "notNull": false,
+                    "defaultValue": "true",
+                    "belongPrimaryKey": false,
+                    "fieldType": "Boolean"
+                }
+            ]
+        }
+    ]
+}

@@ -13,8 +13,10 @@ import android.content.Intent;
 import java.lang.Boolean;
 import com.unity3d.player.UnityPlayer;
 
+import androidx.core.app.ActivityCompat;
+
 public class HmsAnalyticActivity extends UnityPlayerActivity {
-   private AGConnectAppMessaging appMessaging;
+    private AGConnectAppMessaging appMessaging;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +28,13 @@ public class HmsAnalyticActivity extends UnityPlayerActivity {
         appMessaging.setDisplayEnable(true);
         appMessaging.setForceFetch();
         LoginManager.getInstance().initialize(this);
-        
+
         boolean pretendCallMain = false;
         if(pretendCallMain == true){
             main();
         }
-
     }
-    
+
     private static void callCrash() {
             throwCrash();
         }
@@ -50,7 +51,7 @@ public class HmsAnalyticActivity extends UnityPlayerActivity {
                                 UnityPlayer.currentActivity.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        callCrash(); 
+                                        callCrash();
                                     }
                                 });
                             }

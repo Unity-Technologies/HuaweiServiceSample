@@ -179,7 +179,7 @@ PlayerSettings:
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 19
-  AndroidTargetSdkVersion: 0
+  AndroidTargetSdkVersion: 28
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   stripEngineCode: 1
@@ -254,7 +254,7 @@ PlayerSettings:
   AndroidTargetArchitectures: 1
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{inproject}: hhms.keystore'
+  AndroidKeystoreName: /Users/siyao/git/hms/unity-hms_sdk/hmsDemo/hhms.keystore
   AndroidKeyaliasName: hhms
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0

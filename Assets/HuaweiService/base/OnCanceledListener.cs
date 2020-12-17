@@ -10,5 +10,9 @@ namespace HuaweiService
     }
     public class OnCanceledListener : HmsListener<OnCanceledListenerData>
     {
+    
+        public virtual void onCanceled() {
+            Call("onCanceled");
+        }
     }
 }

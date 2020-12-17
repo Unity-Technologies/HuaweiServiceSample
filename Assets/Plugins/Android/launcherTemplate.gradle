@@ -7,6 +7,7 @@ apply plugin: 'com.huawei.agconnect.apms'
 dependencies {
     implementation project(':unityLibrary')
     implementation 'com.huawei.agconnect:agconnect-apms:1.4.1.303'
+    implementation "com.huawei.agconnect:agconnect-storage:1.3.1.100"
     implementation "com.huawei.agconnect:agconnect-appmessaging:1.4.1.300"
     implementation 'com.huawei.agconnect:agconnect-applinking:1.4.1.300'
     implementation 'com.huawei.agconnect:agconnect-remoteconfig:1.4.1.300'

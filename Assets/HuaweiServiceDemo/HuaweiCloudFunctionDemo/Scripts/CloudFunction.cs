@@ -56,7 +56,7 @@ namespace HuaweiServiceDemo {
         public void OnSetTimeoutClick () {
             try {
                 var timeout = Convert.ToInt64 (TimeoutInoutField.text);
-                func.setTimeout (timeout, TimeUnit.MILLISECONDS);
+                func.setTimeout (timeout, HuaweiService.CloudFunction.TimeUnit.MILLISECONDS);
                 TestTip.Inst.ShowText ("SetTimeout. ");
             } catch (System.Exception e) {
                 TestTip.Inst.ShowText ("SetTimeout Failed:  " + e.ToString ());
@@ -81,7 +81,7 @@ namespace HuaweiServiceDemo {
             }));
         }
         public void OnCloneClick () {
-            FunctionCallable fc = func.clone (1000, TimeUnit.MILLISECONDS);
+            FunctionCallable fc = func.clone (1000, HuaweiService.CloudFunction.TimeUnit.MILLISECONDS);
             if (fc.getTimeout () == 1000) {
                 TestTip.Inst.ShowText ("Call Clone Succussfully.");
             } else {

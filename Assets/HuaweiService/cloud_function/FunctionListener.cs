@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HuaweiService.CloudFunction{
+namespace HuaweiService.CloudFunction {
     public delegate void CompleteCallback<T> (T o);
     public delegate void CompleteCallback (String result);
 
@@ -13,13 +13,15 @@ namespace HuaweiService.CloudFunction{
         }
         public override void onComplete (Task task) {
             if (task.isSuccessful ()) {
-                string result = task.getValue ();
+                FunctionResult result = new FunctionResult ();
+                result.obj = task.getValue ();
+                string str = result.getValue ();
                 if (callback != null) {
                     Type type = typeof (T);
-                    T val = JsonSerializer.FromJson<T> (result);
+                    T val = JsonSerializer.FromJson<T> (str);
                     callback.Invoke (val);
                 }
-            } 
+            }
         }
     }
 
@@ -30,12 +32,14 @@ namespace HuaweiService.CloudFunction{
         }
         public override void onComplete (Task task) {
             if (task.isSuccessful ()) {
-                string result = task.getValue ();
+                FunctionResult result = new FunctionResult ();
+                result.obj = task.getValue ();
+                string str = result.getValue ();
                 if (callback != null) {
 
-                    callback.Invoke (result);
+                    callback.Invoke (str);
                 }
-            } 
+            }
         }
     }
 }
