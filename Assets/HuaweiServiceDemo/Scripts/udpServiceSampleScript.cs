@@ -90,7 +90,7 @@ public class udpServiceSampleScript : MonoBehaviour
         {
             Show("starting login");
             AccountAuthParamsHelper authParamsHelper = new AccountAuthParamsHelper();
-            authParamsHelper.SetIdToken().SetUid().SetId().SetEmail().CreateParams();
+            authParamsHelper.SetAuthorizationCode().SetAccessToken().SetIdToken().SetUid().SetId().SetEmail().CreateParams();
             HuaweiGameService.Login(_loginListener);
         },
         () =>
@@ -1073,9 +1073,9 @@ public class udpServiceSampleScript : MonoBehaviour
                 return;
             }
             string msg = "get login success with signInAccountProxy info: \n";
-            msg += String.Format("displayName:{0}, uid:{1}, openId:{2}, unionId:{3}, idToken:{4}, accessToken:{5}, serverAuthCode:{6}, countryCode:{7}",
-            signInAccountProxy.DisplayName, signInAccountProxy.Uid, signInAccountProxy.OpenId, signInAccountProxy.UnionId,
-            signInAccountProxy.IdToken, signInAccountProxy.AccessToken, signInAccountProxy.ServerAuthCode, signInAccountProxy.CountryCode);
+            msg += String.Format("displayName:{0}, email:{1}, uid:{2}, openId:{3}, unionId:{4}, accessToken:{5}, serverAuthCode:{6}, idToken:{7}",
+            signInAccountProxy.DisplayName, signInAccountProxy.Email, signInAccountProxy.Uid, signInAccountProxy.OpenId, signInAccountProxy.UnionId,
+            signInAccountProxy.AccessToken, signInAccountProxy.ServerAuthCode, signInAccountProxy.IdToken);
             Show(msg);
         }
 
