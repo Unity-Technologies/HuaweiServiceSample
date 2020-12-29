@@ -4,6 +4,7 @@ This demo project enables parts of Huawei HMS and AGC services in Unity for Andr
 
 The following Kits included.
 - HMS
+    - Game Service
     - Ads
     - Push
     - Location
@@ -16,6 +17,8 @@ The following Kits included.
     - Crash
     - Auth Service
     - Cloud Functions
+    - Cloud Storage
+    - Cloud DB
 
 ***Unity 2019 or higher***
 ***Before build, add your keystore, create huawei agc project and put `agconnect-services.json` under `Assets/Plugins/Android/`***

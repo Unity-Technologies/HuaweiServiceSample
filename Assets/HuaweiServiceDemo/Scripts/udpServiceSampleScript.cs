@@ -32,12 +32,14 @@ public class udpServiceSampleScript : MonoBehaviour
     private static IGetEventListListener _getEventListListener = new MyGetEventListListener();
     private static IGetGameListener _getGameListener = new MyGetGameListener();
     private static IGetPlayerListener _getPlayerListener = new MyGetPlayerListener();
+    private static IGetPlayerListener _getGamePlayerListener = new MyGetGamePlayerListener();
     private static IGetPlayerStatisticsListener _getPlayerStatisticsListener = new MyGetPlayerStatisticsListener();
     private static IGetCachePlayerIdListener _getCachePlayerIdListener = new MyGetCachePlayerIdListener();
     private static ISubmitPlayerEventListener _submitPlayerEventListener = new MySubmitPlayerEventListener();
     private static ISubmitPlayerEventListener _submitGameBeginEventListener = new MySubmitGameBeginEventListener();
     private static IGetPlayerExtraInfoListener _getPlayerExtraInfoListener = new MyGetPlayerExtraInfoListener();
     private static ISavePlayerInfoListener _savePlayerInfoListener = new MySavePlayerInfoListener();
+    private static IGameTrialProcessListener _gameTrialProcessListener = new MyGameTrialProcessListener();
     private static ILimitSizeListener _limitSizeListener = new MyLimitSizeListener();
     private static IGetSnapshotDataListener _getSnapshotDataListener = new MyGetSnapshotDataListener();
     private static IGetAllSnapshotDataListener _getAllSnapshotDataListener = new MyGetAllSnapshotDataListener();
@@ -57,6 +59,7 @@ public class udpServiceSampleScript : MonoBehaviour
     private static Snapshot tempSnapshot;
     private static AndroidJavaObject apkUpgradeInfo;
     private static string playerId = "";
+    private static string openId = "";
     private static string transactionId = "";
 
     private static Text info_panel;
@@ -86,6 +89,8 @@ public class udpServiceSampleScript : MonoBehaviour
         () =>
         {
             Show("starting login");
+            AccountAuthParamsHelper authParamsHelper = new AccountAuthParamsHelper();
+            authParamsHelper.SetAuthorizationCode().SetAccessToken().SetIdToken().SetUid().SetId().SetEmail().CreateParams();
             HuaweiGameService.Login(_loginListener);
         },
         () =>
@@ -538,11 +543,21 @@ public class udpServiceSampleScript : MonoBehaviour
 
     private readonly List<string> playerFunctionNames = new List<string>()
     {
-        "getGamePlayerStatistics","getCachePlayerId","savePlayerInfo"
+        "getGamePlayer","getGamePlayer(isRequirePlayerId)","getGamePlayerStatistics","getCachePlayerId","savePlayerInfo","setGameTrialProcess"
     };
 
     private readonly List<Action> playerFunctions = new List<Action>()
     {
+        () =>
+        {
+            Show("start getGamePlayer.");
+            HuaweiGameService.GetGamePlayer(_getGamePlayerListener);
+        },
+        () =>
+        {
+            Show("start getGamePlayer(isRequirePlayerId),isRequirePlayerId == true");
+            HuaweiGameService.GetGamePlayer(true, _getGamePlayerListener);
+        },
         () =>
         {
             Show("start getGamePlayerStatistics.");
@@ -556,13 +571,26 @@ public class udpServiceSampleScript : MonoBehaviour
         () =>
         {
             Show("start savePlayerInfo");
-            AndroidJavaObject jo = new AndroidJavaObject("com.huawei.hms.jos.games.AppPlayerInfo");
-            jo.Set<string>("rank", "test rank");
-            jo.Set<string>("role", "test role");
-            jo.Set<string>("area", "test are");
-            jo.Set<string>("sociaty", "test sociaty");
-            jo.Set<string>("playerId", "test playerId");
-            HuaweiGameService.SavePlayerInfo(jo, _savePlayerInfoListener);
+            if (string.IsNullOrEmpty(playerId) || string.IsNullOrEmpty(openId))
+            {
+                Show("playerId or openId is empty, please get the playerId or openId first");
+            }
+            else
+            {
+                AppPlayerInfo appPlayerInfo = new AppPlayerInfo();
+                appPlayerInfo.Rank = "test rank";
+                appPlayerInfo.Area = "test area";
+                appPlayerInfo.Role = "test role";
+                appPlayerInfo.Sociaty = "test sociaty";
+                appPlayerInfo.PlayerId = playerId;
+                appPlayerInfo.OpenId = openId;
+                HuaweiGameService.SavePlayerInfo(appPlayerInfo.ConvertToJavaObject(), _savePlayerInfoListener);
+            }
+        },
+        () =>
+        {
+            Show("start setGameTrialProcess");
+            HuaweiGameService.SetGameTrialProcess(_gameTrialProcessListener);
         },
     };
     
@@ -1039,10 +1067,15 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(SignInAccountProxy signInAccountProxy)
         {
+            if (signInAccountProxy == null)
+            {
+                Show("signInAccountProxy == null");
+                return;
+            }
             string msg = "get login success with signInAccountProxy info: \n";
-            msg += String.Format("displayName:{0}, uid:{1}, openId:{2}, unionId:{3}, idToken:{4}, accessToken:{5}, serverAuthCode:{6}, countryCode:{7}",
-            signInAccountProxy.DisplayName, signInAccountProxy.Uid, signInAccountProxy.OpenId, signInAccountProxy.UnionId,
-            signInAccountProxy.IdToken, signInAccountProxy.AccessToken, signInAccountProxy.ServerAuthCode, signInAccountProxy.CountryCode);
+            msg += String.Format("displayName:{0}, email:{1}, uid:{2}, openId:{3}, unionId:{4}, accessToken:{5}, serverAuthCode:{6}, idToken:{7}",
+            signInAccountProxy.DisplayName, signInAccountProxy.Email, signInAccountProxy.Uid, signInAccountProxy.OpenId, signInAccountProxy.UnionId,
+            signInAccountProxy.AccessToken, signInAccountProxy.ServerAuthCode, signInAccountProxy.IdToken);
             Show(msg);
         }
 
@@ -1147,6 +1180,11 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(List<Achievement> achievementList)
         {
+            if (achievementList == null)
+            {
+                Show("achievementList == null");
+                return;
+            }
             string message = "get achievement list success with count :" + achievementList.Count + "\n";
             achievementIds = new List<string>();
 
@@ -1182,6 +1220,11 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(AndroidJavaObject intent)
         {
+            if (intent == null)
+            {
+                Show("intent == null");
+                return;
+            }
             string msg = "get achievement intent success.";
             Show(msg);
             if (intent != null)
@@ -1277,6 +1320,11 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(ScoreSubmission scoreSubmission)
         {
+            if (scoreSubmission == null)
+            {
+                Show("socreSubmission == null");
+                return;
+            }
             string msg = "success submitted.";
             msg += string.Format("leaderboard id:{0}, playerId:{1}, scoreResults: \n", scoreSubmission.LeaderboardId,
                 scoreSubmission.PlayerId);
@@ -1301,6 +1349,11 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(AndroidJavaObject intent)
         {
+            if (intent == null)
+            {
+                Show("intent == null");
+                return;
+            }
             var msg = "get leader board intent succeed";
             Show(msg);
             if (intent!=null)
@@ -1320,6 +1373,11 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(List<LeaderboardProxy> leaderboards)
         {
+            if (leaderboards == null)
+            {
+                Show("leaderboards == null");
+                return;
+            }
             var msg = "get leader board data succeed with count: " + leaderboards.Count + "\n";
             foreach (var l in leaderboards)
             {
@@ -1345,6 +1403,11 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(LeaderboardProxy leaderboardProxy)
         {
+            if (leaderboardProxy == null)
+            {
+                Show("leaderboard == null");
+                return;
+            }
             var msg = "get leader board data succeed. \n";
             msg += string.Format("leaderboard Id: {0}, display name: {1}, score order:{2}",
                 leaderboardProxy.LeaderboardId, leaderboardProxy.LeaderboardDisplayName,
@@ -1394,6 +1457,11 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(LeaderboardScore score)
         {
+            if (score == null)
+            {
+                Show("leaderboardScore == null");
+                return;
+            }
             var msg = "get currentplayer leaderboard succeed. \n";
             msg += string.Format("rank:{0}, score:{1}, timespan:{2}, player rank:{3}, scoreTag:{4}, \n",
                 score.DisplayRank,
@@ -1413,6 +1481,11 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(List<EventProxy> eventList)
         {
+            if (eventList == null)
+            {
+                Show("eventList == null");
+                return;
+            }
             var msg = "get event list succeed. \n";
             eventIds.Clear();
             foreach (var e in eventList)
@@ -1439,10 +1512,15 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(Player player)
         {
+            if (player == null)
+            {
+                Show("player == null");
+                return;
+            }
             var msg = "getCurrentPlayer succeed. \n";
             msg += string.Format(
-                "displayName:{0}, playerId:{1}, signTimestamp:{2}, playerSign:{3}, level:{4}",
-                player.DisplayName, player.PlayerId, player.SignTimestamp, player.PlayerSign, player.Level
+                "displayName:{0}, playerId:{1}, signTimestamp:{2}, playerSign:{3}, level:{4}, openId:{5}, unionId:{6}",
+                player.DisplayName, player.PlayerId, player.SignTimestamp, player.PlayerSign, player.Level, player.OpenId, player.UnionId
             );
             Show(msg);
             playerId = player.PlayerId;
@@ -1454,10 +1532,42 @@ public class udpServiceSampleScript : MonoBehaviour
             Show(msg); 
         }
     }
+    
+    public class MyGetGamePlayerListener : IGetPlayerListener
+    {
+        public void OnSuccess(Player player)
+        {
+            if (player == null)
+            {
+                Show("player == null");
+                return;
+            }
+            var msg = "getGamePlayer succeed. \n";
+            msg += string.Format(
+                "displayName:{0}, playerId:{1}, playerSign:{2}, openId:{3}, unionId:{4}, openIdSign:{5}, accessToken:{6}",
+                player.DisplayName, player.PlayerId, player.PlayerSign, player.OpenId, player.UnionId, player.OpenIdSign, player.AccessToken
+            );
+            Show(msg);
+            playerId = player.PlayerId;
+            openId = player.OpenId;
+        }
+
+        public void OnFailure(int code, string message)
+        {
+            var msg = "getCurrentPlayer failed, code:" + code + " message:" + message;
+            Show(msg); 
+        }
+    }
+    
     public class MyGetPlayerStatisticsListener : IGetPlayerStatisticsListener
     {
         public void OnSuccess(PlayerStatistics playerStatistics)
         {
+            if (playerStatistics == null)
+            {
+                Show("playerStatistics == null");
+                return;
+            }
             var msg = "GetGamePlayerStatistics succeed. \n";
             msg += string.Format(
                 "average session length:{0}, day since played:{1}, num of sessions:{2}, num of purchases:{3}, total purchase:{4}",
@@ -1545,14 +1655,40 @@ public class udpServiceSampleScript : MonoBehaviour
         }
     }
 
+    public class MyGameTrialProcessListener : IGameTrialProcessListener
+    {
+        public void OnTrialTimeout()
+        {
+            var msg = "The trial ends.";
+            Show(msg);
+        }
+
+        public void OnCheckRealNameResult(bool hasRealName)
+        {
+            if (hasRealName)
+            {
+                Show("The player has performed identity verification. Proceed with sign-in processing.");
+                return;
+            }
+
+            Show(
+                "The player has not performed identity verification. You are advised to display a message to the player and make the player exit the game, or instruct the player to sign in again and perform identity verification.");
+        }
+    }
+
     public class MyGetPlayerExtraInfoListener : IGetPlayerExtraInfoListener
     {
         public void OnSuccess(PlayerExtraInfo playerExtraInfo)
         {
+            if (playerExtraInfo == null)
+            {
+                Show("playerExtraInfo == null");
+                return;
+            }
             var msg = "GetPlayerExtraInfo succeed. \n";
             msg += string.Format(
-                "isAdult:{0}, playerId:{1}, playerDuration:{2}, isRealName:{3}",
-                playerExtraInfo.IsAdult, playerExtraInfo.PlayerId, playerExtraInfo.PlayerDuration, playerExtraInfo.IsRealName
+                "isAdult:{0}, playerId:{1}, playerDuration:{2}, isRealName:{3}, openId:{4}",
+                playerExtraInfo.IsAdult, playerExtraInfo.PlayerId, playerExtraInfo.PlayerDuration, playerExtraInfo.IsRealName, playerExtraInfo.OpenId
             );
             Show(msg); 
         }
@@ -1568,6 +1704,11 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(Game game)
         {
+            if (game == null)
+            {
+                Show("game == null");
+                return;
+            }
             var msg = "GetGamePlayerStatistics succeed. \n";
             msg += string.Format(
                 "AchievementTotalCount:{0}, application id:{1}, description:{2}, display name:{3}, leaderboard count:{4}, primary category:{5}, seconday category:{6}",
@@ -1603,6 +1744,11 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(SnapshotData snapshotData)
         {
+            if (snapshotData == null)
+            {
+                Show("snapshotData == null");
+                return;
+            }
             var msg = "AddSnapshot succeed. \n";
             msg += string.Format(
                 "snapshot id{0}, unique name{1}, player name:{2}, played time:{3}, progress value:{4}, desc:{5}, gameName:{6}",
@@ -1625,6 +1771,11 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(AndroidJavaObject intent)
         {
+            if (intent == null)
+            {
+                Show("intent == null");
+                return;
+            }
             var msg = "GetShowArchiveListIntent intent succeed";
             Show(msg);
             if (intent!=null)
@@ -1644,6 +1795,11 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(List<SnapshotData> allSnapshotData)
         {
+            if (allSnapshotData == null)
+            {
+                Show("allSnapshotData == null");
+                return;
+            }
             var msg = "AddSnapshot succeed. \n";
 
             foreach (var snapshotData in allSnapshotData)
@@ -1674,6 +1830,11 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(string coverImage)
         {
+            if (coverImage == null)
+            {
+                Show("coverImage == null");
+                return;
+            }
             var msg = "LoadCoverImage succeed. coverImg: " + coverImage;
             Show(msg);
         }
@@ -1689,6 +1850,11 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(SnapshotResult snapshotResult)
         {
+            if (snapshotResult == null)
+            {
+                Show("snapshotResult == null");
+                return;
+            }
             var msg = "snapshot operation success. \n";
             msg += string.Format("id: {0}, description:{1}", snapshotResult.Snapshot.SnapshotData.SnapshotId,
                 snapshotResult.Snapshot.SnapshotData.Description);
@@ -1744,6 +1910,11 @@ public class udpServiceSampleScript : MonoBehaviour
     {
         public void OnSuccess(string snapshotId)
         {
+            if (snapshotId == null)
+            {
+                Show("snapshotId == null");
+                return;
+            }
             var msg = "snapshot delete success. id: " + snapshotId;
             Show(msg);
         }

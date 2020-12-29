@@ -42,6 +42,9 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.5'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.8.5'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.8.5'
+    implementation 'com.huawei.hms:base:5.0.5.300'
+    implementation 'com.huawei.hms:game:5.0.4.302'
+    implementation 'com.huawei.hms:hwid:5.0.5.301'
 **DEPS**}
 
 
