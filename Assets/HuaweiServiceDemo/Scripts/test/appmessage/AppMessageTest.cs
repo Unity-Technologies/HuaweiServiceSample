@@ -43,6 +43,7 @@ namespace HuaweiServiceDemo
             registerEvent("trigger", Trigger);
         }
 
+        // set message display enable state
         public void ShowAppMessage()
         {
             showMessage = !showMessage;
@@ -50,12 +51,14 @@ namespace HuaweiServiceDemo
             TestTip.Inst.ShowText($"set display to {showMessage}");
         }
 
+        // show message display enable state
         public void ShowAppMessageState()
         {
             var enable = appMessaging.isDisplayEnable();
             TestTip.Inst.ShowText($"is display enable {enable}");
         }
 
+        // set fetch message enable state
         public void EnableFetchMessage()
         {
             fetchMessage = !fetchMessage;
@@ -63,18 +66,21 @@ namespace HuaweiServiceDemo
             TestTip.Inst.ShowText($"set fetch message to {fetchMessage}");
         }
 
+        // show fetch message enable state
         public void EnableFetchMessageState()
         {
             var enable = appMessaging.isFetchMessageEnable();
             TestTip.Inst.ShowText($"is fetch enable: {enable}");
         }
 
+        // force fetch message
         public void ForceFetch()
         {
             appMessaging.setForceFetch();
             TestTip.Inst.ShowText("force fetch");
         }
 
+        // Adds a listener for message tap events.
         public void AddOnClickListener()
         {
             ClickListener listener = new ClickListener();
@@ -82,6 +88,7 @@ namespace HuaweiServiceDemo
             TestTip.Inst.ShowText("Add on click listener success");
         }
 
+        // Adds a listener for message closing events.
         public void AddDismissListener()
         {
             DismissListener listener = new DismissListener();
@@ -89,6 +96,7 @@ namespace HuaweiServiceDemo
             TestTip.Inst.ShowText("Add on dismiss listener success");
         }
 
+        // Adds a listener for message display events.
         public void AddDisplayListener()
         {
             DisplayListener listener = new DisplayListener();
@@ -96,6 +104,7 @@ namespace HuaweiServiceDemo
             TestTip.Inst.ShowText("Add on display listener success");
         }
         
+        // Adds a listener for message error.
         public void AddErrorListener()
         {
             OnErrorListener listener = new OnErrorListener();
@@ -103,6 +112,7 @@ namespace HuaweiServiceDemo
             TestTip.Inst.ShowText("Add on error listener success");
         }
 
+        // Adds a custom in-app message.
         public void RegisterCustomView()
         {
             CustomDisplayView view = new CustomDisplayView();
@@ -110,18 +120,21 @@ namespace HuaweiServiceDemo
             TestTip.Inst.ShowText("Add custom view success");
         }
 
+        // Deletes custom in-app message
         public void RemoveCustomView()
         {
             appMessaging.removeCustomView();
             TestTip.Inst.ShowText("remove custom view success");
         }
 
+        // Sets the display position of a pop-up or image message
         public void SetDisplayLocation()
         {
             appMessaging.setDisplayLocation(Location.BOTTOM);
             TestTip.Inst.ShowText("set location");
         }
 
+        // Triggers a custom event
         public void Trigger()
         {
             appMessaging.trigger(EVENTNAME);

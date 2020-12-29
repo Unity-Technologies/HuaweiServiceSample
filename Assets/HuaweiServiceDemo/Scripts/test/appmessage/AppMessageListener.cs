@@ -18,6 +18,7 @@ namespace HuaweiServiceDemo
         }
     }
     
+    // call back for message tap
     public class ClickListener : AGConnectAppMessagingOnClickListener
     {
         public override void onMessageClick(AppMessage arg0)
@@ -26,6 +27,7 @@ namespace HuaweiServiceDemo
         }
     }
 
+    // call back for message close
     public class DismissListener : AGConnectAppMessagingOnDismissListener
     {
         public override void onMessageDismiss(AppMessage arg0, AGConnectAppMessagingCallback.DismissType arg1)
@@ -36,6 +38,7 @@ namespace HuaweiServiceDemo
         }
     }
 
+    // call back for message display
     public class DisplayListener : AGConnectAppMessagingOnDisplayListener
     {
         public override void onMessageDisplay(AppMessage arg0)
@@ -45,6 +48,7 @@ namespace HuaweiServiceDemo
         }
     }
 
+    // call back for message error
     public class OnErrorListener : AGConnectAppMessagingOnErrorListener
     {
         public override void onMessageError(AppMessage arg0)
@@ -53,6 +57,7 @@ namespace HuaweiServiceDemo
         }
     }
 
+    // call back for custom message display
     public class CustomDisplayView : AGConnectAppMessagingDisplay
     {
         public override void displayMessage(AppMessage arg0, AGConnectAppMessagingCallback arg1)

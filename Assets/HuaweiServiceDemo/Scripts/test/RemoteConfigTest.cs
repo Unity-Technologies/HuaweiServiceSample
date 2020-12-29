@@ -24,8 +24,11 @@ namespace HuaweiServiceDemo
 
         public void SetXmlValue()
         {
+            // get instatance of AGConnectConfig
             config = AGConnectConfig.getInstance();
+            // get config resId of xml file
             int configId = AndroidUtil.GetId(new Context(), "xml", "remote_config");
+            // Sets a default value for a parameter.
             config.applyDefault(configId);
             showAllValues();
         }
@@ -38,20 +41,23 @@ namespace HuaweiServiceDemo
             map.put("test3", 222);
             map.put("test4", 666.456);
             map.put("test5", "fromMap");
-
+            // Sets a default value for a parameter.
             config.applyDefault(map.toType<Map>());
             showAllValues();
         }
 
-
+        // fetch cloud setting, add success listener and failure listener
         public void GetCloudSettings()
         {
             config = AGConnectConfig.getInstance();
             config.fetch().addOnSuccessListener(new HmsSuccessListener<ConfigValues>((ConfigValues configValues) =>
                 {
+                    // Applies parameter values
                     config.apply(configValues);
                     TestTip.Inst.ShowText("activity success");
+                    // Checks whether the ConfigValues object contains a requested key.
                     TestTip.Inst.ShowText($"configValues contains {configValues.containKey("CloudBool")}");
+                    // Returns the value of type for a key.
                     TestTip.Inst.ShowText($"configValues as string {configValues.getValueAsString("CloudString")}");
                     TestTip.Inst.ShowText($"configValues as byte first byte {configValues.getValueAsByteArray("CloudByte")[0]}");
                     TestTip.Inst.ShowText($"configValues as long {configValues.getValueAsLong("CloudLong").longValue()}");
@@ -66,6 +72,7 @@ namespace HuaweiServiceDemo
                 }));
         }
 
+        // apply the config value laste fetched
         public void GetCloudSettingsWorkNextTime()
         {
             config = AGConnectConfig.getInstance();
@@ -82,6 +89,8 @@ namespace HuaweiServiceDemo
             showAllValues();
         }
 
+        // Fetches latest parameter values from the cloud at a custom interval. 
+        // If the method is called within an interval, cached data is returned.
         public void GetCloudSettingsFiveMins()
         {
             config = AGConnectConfig.getInstance();
@@ -97,6 +106,9 @@ namespace HuaweiServiceDemo
             showAllValues();
         }
         
+        // Enables the developer mode, 
+        // in which the number of times that the app fetches data from Remote 
+        // Configuration is not limited, and traffic control is still performed over the cloud.
         public void SetDeveloperMode()
         {
             config = AGConnectConfig.getInstance();
@@ -105,6 +117,8 @@ namespace HuaweiServiceDemo
             TestTip.Inst.ShowText($"set developer mode to {develporMode}");
         }
 
+        // Clears all cached data, 
+        // including the data fetched from Remote Configuration and the default values passed.
         public void ClearCache()
         {
             config = AGConnectConfig.getInstance();
@@ -112,6 +126,7 @@ namespace HuaweiServiceDemo
             TestTip.Inst.ShowText("Cache is cleared.");
         }
 
+        // get all configs, print key and value pair
         private void showAllValues()
         {
             config = AGConnectConfig.getInstance();
@@ -124,6 +139,7 @@ namespace HuaweiServiceDemo
             }
         }
         
+        // get all configs, print key and the source of a key.
         private void GetAllValueWithSource()
         {
             config = AGConnectConfig.getInstance();
