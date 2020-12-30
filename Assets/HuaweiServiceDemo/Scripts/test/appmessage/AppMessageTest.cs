@@ -1,5 +1,4 @@
-﻿using HuaweiService;
-using HuaweiService.appmessage;
+﻿using HuaweiService.appmessage;
 using Location = HuaweiService.appmessage.Location;
 
 namespace HuaweiServiceDemo

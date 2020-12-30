@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using HuaweiService;
+﻿using HuaweiService;
 using HuaweiService.AppLinking;
 using UnityEngine;
 

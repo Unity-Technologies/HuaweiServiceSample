@@ -62,11 +62,7 @@ namespace HuaweiServiceDemo
     {
         public override void displayMessage(AppMessage arg0, AGConnectAppMessagingCallback arg1)
         {
-            Util.ShowAppMessage(arg0, "Custom Display");
-            arg1.onMessageClick(arg0);
-            arg1.onMessageDismiss(arg0, AGConnectAppMessagingCallback.DismissType.BACK_BUTTON);
-            arg1.onMessageDisplay(arg0);
-            arg1.onMessageError(arg0);
+            PopupMessage.Show(arg0, arg1);
         }
     }
 
