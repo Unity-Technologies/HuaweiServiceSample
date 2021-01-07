@@ -7,7 +7,7 @@ apply plugin: 'com.huawei.agconnect'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.huawei.agconnect:agconnect-appmessaging:1.4.1.300"
-    implementation 'com.huawei.hms:hianalytics:5.0.0.301'
+    implementation 'com.huawei.hms:hianalytics:5.1.0.300'
     //Google 
     implementation 'com.google.android.gms:play-services-auth:18.1.0'
      //Google Play Game
