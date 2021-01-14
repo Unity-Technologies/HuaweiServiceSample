@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+using Newtonsoft.Json;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace HuaweiService.CloudDB.Editor {
@@ -38,6 +35,14 @@ namespace HuaweiService.CloudDB.Editor {
             GUILayout.Space (10);
             exportDir = EditorGUILayout.TextField ("Export Path", exportDir);
             GUILayout.Space (20);
+            if (GUILayout.Button ("Choose ObjectType File")) {
+                chooseFile ();
+            }
+            GUILayout.Space (10);
+            if (GUILayout.Button ("Choose Export Directory")) {
+                chooseModelDir ();
+            }
+            GUILayout.Space (10);
             if (GUILayout.Button ("Generate Code")) {
                 genCode ();
             }
@@ -48,6 +53,20 @@ namespace HuaweiService.CloudDB.Editor {
         void genCode () {
             GenCode gen = new GenCode ();
             gen.Init (javaPackageName, objectTypeFilePath, namespaceName, exportDir);
+        }
+
+        void chooseFile () {
+            string path = EditorUtility.OpenFilePanel ("Choose ObjectType JSON file", "", "json");
+            if (path.Length != 0) {
+                objectTypeFilePath = path;
+            }
+        }
+
+        void chooseModelDir () {
+            string path = EditorUtility.OpenFolderPanel ("Choose Model Directory", "", "model");
+            if (path.Length != 0) {
+                exportDir = path+"/model";
+            }
         }
     }
 }

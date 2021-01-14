@@ -95,8 +95,12 @@ namespace HuaweiService.CloudDB.Editor {
             string fieldType = field.getFieldType ();
             string initialzer = field.getInitializer ();
             fs.WriteLine ($"\t\tpublic {fieldType} {fieldName}" + " {");
-            fs.WriteLine ($"\t\t\tget {{ return Call<{fieldType}> (\"get{fieldName}\");}}");
-            fs.WriteLine ($"\t\t\tset {{ Call (\"set{fieldName}\" , {initialzer}); }}");
+            if (!fieldType.Equals ("Text")) {
+                fs.WriteLine ($"\t\t\tget {{ return Call<{fieldType}> (\"get{fieldName}\");}}");
+                fs.WriteLine ($"\t\t\tset {{ Call (\"set{fieldName}\" , {initialzer}); }}");
+            } else {
+                fs.WriteLine ($"\t\t\tget; set;");
+            }
             fs.WriteLine ("\t\t}");
         }
 

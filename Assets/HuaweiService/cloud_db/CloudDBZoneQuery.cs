@@ -251,9 +251,9 @@ namespace HuaweiService.CloudDB
         }
         public class CloudDBZoneQueryPolicy :HmsClass<CloudDBZoneQueryPolicy_Data>
         {
-            public static CloudDBZoneQueryPolicy POLICY_QUERY_FROM_LOCAL_ONLY => HmsUtil.GetStaticValue<CloudDBZoneQueryPolicy>("POLICY_QUERY_FROM_LOCAL_ONLY");
+            public static CloudDBZoneQueryPolicy POLICY_QUERY_FROM_LOCAL_ONLY => HmsUtil.GetStaticValue<CloudDBZoneQueryPolicy>("POLICY_QUERY_FROM_LOCAL_ONLY", name);
         
-            public static CloudDBZoneQueryPolicy POLICY_QUERY_FROM_CLOUD_ONLY => HmsUtil.GetStaticValue<CloudDBZoneQueryPolicy>("POLICY_QUERY_FROM_CLOUD_ONLY");
+            public static CloudDBZoneQueryPolicy POLICY_QUERY_FROM_CLOUD_ONLY => HmsUtil.GetStaticValue<CloudDBZoneQueryPolicy>("POLICY_QUERY_FROM_CLOUD_ONLY", name);
         
             public CloudDBZoneQueryPolicy (): base() { }
         }

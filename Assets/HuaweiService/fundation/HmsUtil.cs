@@ -29,7 +29,7 @@ namespace HuaweiService{
 
         private static Dictionary<Type, Dictionary<string, IHmsBase>> _enums = new Dictionary<Type, Dictionary<string, IHmsBase>>();
         
-        internal static T GetStaticValue<T>(string value) where T : IHmsBase, new()
+        internal static T GetStaticValue<T>(string value, string className="") where T : IHmsBase, new()
         {
             var type = typeof(T);
             if (!_enums.ContainsKey(type))
@@ -40,10 +40,15 @@ namespace HuaweiService{
             if (!_enums[type].ContainsKey(value))
             {
                 var result = new T();
-                result.obj = result.obj.GetStatic<AndroidJavaObject>(value);
+                if(className.Length > 0) {
+                    var cls = new AndroidJavaClass(className);
+                    result.obj = cls.GetStatic<AndroidJavaObject>(value);
+                } else {
+                    result.obj = result.obj.GetStatic<AndroidJavaObject>(value);
+                }
                 _enums[type].Add(value, result);
-            }
-           
+            } 
+            
             return (T)_enums[type][value];
         }
     }

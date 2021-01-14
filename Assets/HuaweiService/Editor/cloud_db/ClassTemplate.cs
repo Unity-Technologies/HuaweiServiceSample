@@ -38,14 +38,15 @@ namespace HuaweiService.CloudDB.Editor {
                 case "Long":
                     typeStr = "long";
                     break;
+                case "Text":
+                    typeStr = "Text";
+                    break;
                 case "Date":
                     typeStr = "Date";
                     break;
                 case "String":
                     typeStr = "string";
-                    if (defaultValue.Length > 0) {
-                        defaultValue = $"{defaultValue}";
-                    }
+                    if(defaultValue.Length > 0) defaultValue = $"\"{defaultValue}\"";
                     break;
                 case "Double":
                     typeStr = "double";
@@ -69,7 +70,7 @@ namespace HuaweiService.CloudDB.Editor {
             return typeStr;
         }
 
-        public string getInitializer() { 
+        public string getInitializer () {
             string typeStr = "value";
             switch (fieldType) {
                 case "Integer":
@@ -84,6 +85,9 @@ namespace HuaweiService.CloudDB.Editor {
                     break;
                 case "Double":
                     typeStr = "new Double(value)";
+                    break;
+                case "Text":
+                    typeStr = "new Text()";
                     break;
                 case "Float":
                     typeStr = "new Float(value)";
