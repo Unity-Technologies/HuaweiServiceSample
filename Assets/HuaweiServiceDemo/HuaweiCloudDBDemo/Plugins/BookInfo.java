@@ -8,21 +8,21 @@ import com.huawei.agconnect.cloud.database.CloudDBZoneObject;
 import com.huawei.agconnect.cloud.database.annotations.DefaultValue;
 import com.huawei.agconnect.cloud.database.Text;
 import com.huawei.agconnect.cloud.database.annotations.NotNull;
-import com.huawei.agconnect.cloud.database.annotations.IsIndex;
-import com.huawei.agconnect.cloud.database.annotations.PrimaryKey;
+import com.huawei.agconnect.cloud.database.annotations.Indexes;
+import com.huawei.agconnect.cloud.database.annotations.PrimaryKeys;
 
 import java.util.Date;
 
 /**
  * Definition of ObjectType BookInfo.
  *
- * @since 2020-12-04
+ * @since 2021-01-28
  */
+@PrimaryKeys({"id"})
+@Indexes({"bookName:bookName"})
 public class BookInfo extends CloudDBZoneObject {
-    @PrimaryKey
     private Integer id;
 
-    @IsIndex(indexName = "bookName")
     private String bookName;
 
     private String author;
@@ -37,10 +37,11 @@ public class BookInfo extends CloudDBZoneObject {
     private Boolean shadowFlag;
 
     public BookInfo() {
-        super();
+        super(BookInfo.class);
         this.shadowFlag = true;
 
     }
+
     public void setId(Integer id) {
         this.id = id;
     }

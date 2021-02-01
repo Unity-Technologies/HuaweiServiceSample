@@ -26,12 +26,37 @@ namespace HuaweiService.CloudDB.Editor {
                 using (StreamReader r = new StreamReader (ObjectTypeFilePath)) {
                     string json = r.ReadToEnd ();
                     template = JsonConvert.DeserializeObject<ClassTemplate> (json);
+                    GenerateObjectTypeInfoHelper ();
                     foreach (ObjectType objectType in template.objectTypes) {
                         GenerateModels (objectType);
                     }
                 }
             } catch (System.Exception e) {
                 Debug.Log ("Parse Json File Error: " + e.Message);
+            }
+        }
+
+        public void GenerateObjectTypeInfoHelper () {
+            string objectTypeName = "ObjectTypeInfoHelper";
+            string path = ExportFileDir + $"/{objectTypeName}.cs";
+            if (System.IO.File.Exists (path) == false) { // do not overwrite
+                try {
+                    using (StreamWriter fs = new StreamWriter (path)) {
+                        GenerateHeader (fs);
+                        fs.WriteLine ($"\tpublic class {objectTypeName}_Data : IHmsBaseClass" + " {");
+                        fs.WriteLine ($"\t\tpublic string name => \"{PackageName}.{objectTypeName}\";");
+                        fs.WriteLine ("\t}");
+                        fs.WriteLine ($"\tpublic class {objectTypeName} : HmsClass<{objectTypeName}_Data>" + " {");
+                        GenerateInitializer (fs, objectTypeName);
+                        fs.WriteLine ($"\t\tpublic static ObjectTypeInfo getObjectTypeInfo() {{");
+                        fs.WriteLine ($"\t\treturn CallStatic<ObjectTypeInfo>(\"getObjectTypeInfo\");");
+                        fs.WriteLine ("\t\t}");
+                        fs.WriteLine ("\t}");
+                        fs.WriteLine ("}");
+                    }
+                } catch (System.Exception e) {
+                    Debug.Log ("Generate Error: " + e.Message);
+                }
             }
         }
 

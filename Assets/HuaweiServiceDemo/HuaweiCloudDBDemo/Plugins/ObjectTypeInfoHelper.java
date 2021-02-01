@@ -4,24 +4,31 @@
  */
 package com.huawei.agc.clouddb.quickstart.model;
 
+import com.huawei.agconnect.cloud.database.CloudDBZoneObject;
 import com.huawei.agconnect.cloud.database.ObjectTypeInfo;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Definition of ObjectType Helper.
  *
- * @since 2020-12-04
+ * @since 2021-01-28
  */
-public class ObjectTypeInfoHelper {
-    private final static int FORMAT_VERSION = 1;
-    private final static int OBJECT_TYPE_VERSION = 6;
+public final class ObjectTypeInfoHelper {
+    private final static int FORMAT_VERSION = 2;
+
+    private final static int OBJECT_TYPE_VERSION = 8;
 
     public static ObjectTypeInfo getObjectTypeInfo() {
         ObjectTypeInfo objectTypeInfo = new ObjectTypeInfo();
         objectTypeInfo.setFormatVersion(FORMAT_VERSION);
         objectTypeInfo.setObjectTypeVersion(OBJECT_TYPE_VERSION);
-        objectTypeInfo.setObjectTypes(Arrays.asList(BookInfo.class));
+        List<Class<? extends CloudDBZoneObject>> objectTypeList = new ArrayList<>();
+        Collections.addAll(objectTypeList, BookInfo.class);
+        objectTypeInfo.setObjectTypes(objectTypeList);
         return objectTypeInfo;
     }
 }

@@ -39,7 +39,7 @@ namespace HuaweiService.CloudDB
             return Call<Task>("runTransaction", arg0);
         }
         public ListenerHandler subscribeSnapshot(CloudDBZoneQuery arg0, CloudDBZoneQuery.CloudDBZoneQueryPolicy arg1, OnSnapshotListener arg2) {
-            return Call<ListenerHandler>("subscribeSnapshot", arg0, arg1, arg2);
+            return Call<ListenerHandler>("subscribeSnapshot", arg0, arg1, new DBListener(arg2));
         }
     }
 }

@@ -40,7 +40,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-core:2.8.5'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.8.5'
     // clouddb
-    implementation 'com.huawei.agconnect:agconnect-database:1.2.2.301'
+    implementation 'com.huawei.agconnect:agconnect-database:1.2.3.301'
 **DEPS**}
 
 android {

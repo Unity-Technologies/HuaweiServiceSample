@@ -3,17 +3,18 @@ using HuaweiService.CloudDB;
 using UnityEngine;
 
 namespace HuaweiServiceDemo {
-    public delegate void SnapShotCb<T> (CloudDBZoneSnapshot<T> arg0, AGConnectCloudDBException arg1) where T : IDatabaseModel, new();
+    public delegate void SnapShotCb<T> (CloudDBZoneSnapshot<T> arg0, AGConnectCloudDBException arg1) where T : IDatabaseModel, new ();
 
-    public class DBSnapshotListener<T> : OnSnapshotListener<T> where T : IDatabaseModel, new(){
+    public class DBSnapshotListener<T> : OnSnapshotListener<T> where T : IDatabaseModel, new () {
         private SnapShotCb<T> cb;
 
         public DBSnapshotListener (SnapShotCb<T> cb) {
             this.cb = cb;
         }
         public override void onSnapshot (CloudDBZoneSnapshot<T> arg0, AGConnectCloudDBException arg1) {
-            TestTip.Inst.ShowText ("OnSnapshot success.");
             if (cb != null) {
+                var exception = new AGConnectCloudDBException();
+                exception.obj = arg1.obj;
                 cb.Invoke (arg0, arg1);
             }
         }
