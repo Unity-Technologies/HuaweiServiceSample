@@ -16,8 +16,7 @@ namespace HuaweiAuthDemo
         private HuaweiService.Task modifyTask;
         private AGConnectUser agConnectUser;
         private AGConnectAuth instance;
-        [SerializeField]
-        public TMP_InputField emailorPhone = default;
+        [SerializeField]public TMP_InputField emailorPhone = default;
 
         public TMP_InputField verifyCode = default;
         
@@ -55,15 +54,21 @@ namespace HuaweiAuthDemo
                     new HuaweiOnsuccessListener<VerifyCodeResult>(
                         (codeResult) =>
                         {
-                            showMessage.text = "code send successfully!";
-                            PanelController.popupinstance.ShowInfo("code send successfully!"); 
+                            UnityMainThread.instance.AddJob(() =>
+                            {
+                                showMessage.text = "code send successfully!";
+                                PanelController.popupinstance.ShowInfo("code send successfully!");
+                            });
                         }))
                 .addOnFailureListener(TaskExecutors.uiThread(), new HuaweiOnFailureListener((e) =>
                 {
-                    Error error=new Error();
-                    error.message = e.toString();
-                    PanelController.popupinstance.ShowError(error);
-                    showMessage.text = e.toString();
+                    UnityMainThread.instance.AddJob(() =>
+                    {
+                        Error error = new Error();
+                        error.message = e.toString();
+                        PanelController.popupinstance.ShowError(error);
+                        showMessage.text = e.toString();
+                    });
                 }));
         }
 
@@ -99,16 +104,22 @@ namespace HuaweiAuthDemo
                     }
                     modifyTask.addOnSuccessListener(new HuaweiOnsuccessListener<SignInResult>((signresult) =>
                     {
-                        PanelController.popupinstance.ShowInfo("modify successfully!");
-                        showMessage.text = "modify successfully!";
-                        PanelController.getInstance().OpenPanel(PanelController.userInfo);
+                        UnityMainThread.instance.AddJob(() =>
+                        {
+                            PanelController.popupinstance.ShowInfo("modify successfully!");
+                            showMessage.text = "modify successfully!";
+                            PanelController.getInstance().OpenPanel(PanelController.userInfo);
+                        });
                     })).addOnFailureListener(new HuaweiOnFailureListener((e
                     ) =>
                     {
-                        Error error=new Error();
-                        error.message = e.toString();
-                        PanelController.popupinstance.ShowError(error);
-                        showMessage.text = e.toString();
+                        UnityMainThread.instance.AddJob(() =>
+                        {
+                            Error error = new Error();
+                            error.message = e.toString();
+                            PanelController.popupinstance.ShowError(error);
+                            showMessage.text = e.toString();
+                        });
                     }));
                 }
                 catch (System.Exception e)

@@ -131,7 +131,6 @@ namespace HuaweiAuthDemo
 
         public void failedSteps(string arg0)
         {
-            infoText.text ="start onFailure callback";
             Error error = new Error();
             error.message = arg0;
             PanelController.popupinstance.ShowError(error);
@@ -142,8 +141,7 @@ namespace HuaweiAuthDemo
             {
                 AGConnectAuth.getInstance().getCurrentUser().unlink(provider);
             }
-
-            infoText.text = "unlink success!";
+            
             PanelController.popupinstance.ShowInfo("unlink success!");
 
         }
@@ -170,7 +168,7 @@ namespace HuaweiAuthDemo
 
          }), new HuaweiOnFailureListener((exception) =>
             {
-                failedSteps(exception.toString());
+                UnityMainThread.instance.AddJob(() => { failedSteps(exception.toString()); });
             }));
          
         }
@@ -183,7 +181,7 @@ namespace HuaweiAuthDemo
                  HWGameLoginSteps(Token,way);
             }), new HuaweiOnFailureListener((exception) =>
             {
-                failedSteps(exception.toString());
+                UnityMainThread.instance.AddJob(() => { failedSteps(exception.toString()); });
             }));
         }
 
@@ -196,7 +194,7 @@ namespace HuaweiAuthDemo
 
             }), new HuaweiOnFailureListener((exception) =>
                 {
-                    failedSteps(exception.toString());
+                    UnityMainThread.instance.AddJob(() => { failedSteps(exception.toString()); });
                 }));
             
         }
@@ -210,7 +208,7 @@ namespace HuaweiAuthDemo
                     GoogleGameSteps(Token, way);
                 }), new HuaweiOnFailureListener((exception) =>
                 {
-                    failedSteps(exception.toString());
+                    UnityMainThread.instance.AddJob(() => { failedSteps(exception.toString()); });
                 }));
         }
 
@@ -222,7 +220,7 @@ namespace HuaweiAuthDemo
                     TwitterSteps(Token, way);
                 }), new HuaweiOnFailureListener((exception) =>
                 {
-                    failedSteps(exception.toString());
+                    UnityMainThread.instance.AddJob(() => { failedSteps(exception.toString()); });
                 }));
         }
 
@@ -234,7 +232,7 @@ namespace HuaweiAuthDemo
                     WechatSteps(Token, way);
                 }), new HuaweiOnFailureListener((exception) =>
                 {
-                    failedSteps(exception.toString());
+                    UnityMainThread.instance.AddJob(() => { failedSteps(exception.toString()); });
                 }));
         }
 
@@ -246,7 +244,7 @@ namespace HuaweiAuthDemo
                     QQSteps(JsonObject, way);
                 }), new HuaweiOnFailureListener((exception) =>
                 {
-                    failedSteps(exception.toString());
+                    UnityMainThread.instance.AddJob(() => { failedSteps(exception.toString()); });
                 }));
         }
 
@@ -257,7 +255,7 @@ namespace HuaweiAuthDemo
                 FaceBookSteps(JsonObejct, way);
             }), new HuaweiOnFailureListener((exception) =>
             {
-                failedSteps(exception.toString());
+                UnityMainThread.instance.AddJob(() => { failedSteps(exception.toString()); });
             }));
         }
 
@@ -270,7 +268,7 @@ namespace HuaweiAuthDemo
                     WeiboSteps(JsonObejct, way);
                 }), new HuaweiOnFailureListener((exception) =>
                 {
-                    failedSteps(exception.toString());
+                    UnityMainThread.instance.AddJob(() => { failedSteps(exception.toString()); });
                 }));
         }
 
@@ -292,15 +290,15 @@ namespace HuaweiAuthDemo
                 AGConnectAuth.getInstance().signIn(credential)
                     .addOnSuccessListener(new HuaweiOnsuccessListener<SignInResult>(C =>
                     {
-                        PanelController.popupinstance.ShowInfo("Login success!");
-                        Debug.Log("Login success!");
-                        PanelController.userInfo.ParentPanel = this;
-                        PanelController.getInstance().OpenPanel(PanelController.userInfo);
-                       
+                        UnityMainThread.instance.AddJob(() =>
+                        {
+                            PanelController.userInfo.ParentPanel = this;
+                            PanelController.getInstance().OpenPanel(PanelController.userInfo);
+                        });
                     }))
                     .addOnFailureListener(new HuaweiOnFailureListener((exception) =>
                     {
-                        failedSteps(exception.toString());
+                        UnityMainThread.instance.AddJob(() => { failedSteps(exception.toString()); });
                     }));
             }
             else
@@ -308,13 +306,13 @@ namespace HuaweiAuthDemo
                 AGConnectAuth.getInstance().getCurrentUser().link(credential)
                     .addOnSuccessListener(new HuaweiOnsuccessListener<SignInResult>(C =>
                     {
-                        PanelController.popupinstance.ShowInfo("Link success!");
+                        UnityMainThread.instance.AddJob(() => { PanelController.popupinstance.ShowInfo("Link success!"); 
                         PanelController.userInfo.ParentPanel = this;
-                        PanelController.getInstance().OpenPanel(PanelController.userInfo);
+                        PanelController.getInstance().OpenPanel(PanelController.userInfo);});
                     }))
                     .addOnFailureListener(new HuaweiOnFailureListener((exception) =>
                     {
-                        failedSteps(exception.toString());
+                        UnityMainThread.instance.AddJob(() => { failedSteps(exception.toString()); });
                     }));
 
             }
@@ -322,7 +320,6 @@ namespace HuaweiAuthDemo
         public void HWIDLoginSteps(string arg0,string way)
         {
             HWIDGetBack obj = JsonAuthorizeData<HWIDGetBack>.FromJson(arg0.ToString());
-            infoText.text = obj.Token;
             AGConnectAuthCredential credential = HwIdAuthProvider.credentialWithToken(obj.Token);
             thirdPartySignIn(way, credential);
         }
@@ -374,7 +371,7 @@ namespace HuaweiAuthDemo
             WechatGetBack obj=JsonAuthorizeData<WechatGetBack>.FromJson(Token.ToString());
             AGConnectAuthCredential credential =
                 WeixinAuthProvider.credentialWithToken(obj.Token, obj.OpenId);
-            infoText.text = obj.Token;
+            UnityMainThread.instance.AddJob(() => { infoText.text = obj.Token; });
             thirdPartySignIn(way, credential);
         }
 

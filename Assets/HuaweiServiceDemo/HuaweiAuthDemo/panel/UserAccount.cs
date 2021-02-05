@@ -35,7 +35,7 @@ namespace HuaweiAuthDemo
 
         public Text isAnonymous;
         private AGConnectUser agConnectUser;
-    
+
         public Button LogOut;
 
         public Button modifyPhone;
@@ -49,33 +49,14 @@ namespace HuaweiAuthDemo
         public Button deleteUser;
 
         public Button Link;
+
         void Start()
         {
-            UserNikeName.text = "Null";
-            UserEmail.text = "Null";
-            UserPhoneNumber.text = "Null";
-            LogOut.onClick.AddListener(()=>LogOutClick());
-            modifyEmail.onClick.AddListener(()=>
-            {
-                if (UserEmail.text == ""||UserEmail.text=="Null")
-                {
-                    PanelController.popupinstance.ShowInfo("the email is Null, you can't modify it");
-                    MessageInfo.text = "the email is Null, you can't modify it";
-                    return;
-                }
-                OnModifyClick(true, false);
-            });
-            modifyPhone.onClick.AddListener(()=>
-            {
-                if (UserPhoneNumber.text == "" || UserPhoneNumber.text == "Null")
-                {
-                    PanelController.popupinstance.ShowInfo("the phone is Null, you can't modify it");
-                    MessageInfo.text = "the phone is Null, you can't modify it";
-                    return;
-                }
-                OnModifyClick(false, false);
-            });
-            modifyEmailPassword.onClick.AddListener(()=>
+            UserNikeName.text = "";
+            UserEmail.text = "";
+            UserPhoneNumber.text = "";
+            LogOut.onClick.AddListener(() => LogOutClick());
+            modifyEmail.onClick.AddListener(() =>
             {
                 if (UserEmail.text == "" || UserEmail.text == "Null")
                 {
@@ -83,17 +64,41 @@ namespace HuaweiAuthDemo
                     MessageInfo.text = "the email is Null, you can't modify it";
                     return;
                 }
+
+                OnModifyClick(true, false);
+            });
+            modifyPhone.onClick.AddListener(() =>
+            {
+                if (UserPhoneNumber.text == "" || UserPhoneNumber.text == "Null")
+                {
+                    PanelController.popupinstance.ShowInfo("the phone is Null, you can't modify it");
+                    MessageInfo.text = "the phone is Null, you can't modify it";
+
+                    return;
+                }
+
+                OnModifyClick(false, false);
+            });
+            modifyEmailPassword.onClick.AddListener(() =>
+            {
+                if (UserEmail.text == "" || UserEmail.text == "Null")
+                {
+                    PanelController.popupinstance.ShowInfo("the email is Null, you can't modify it");
+                    MessageInfo.text = "the email is Null, you can't modify it";
+                    return;
+                }
+
                 OnModifyClick(true, true);
             });
-            modifyPhonePassword.onClick.AddListener(()=>
-            { 
+            modifyPhonePassword.onClick.AddListener(() =>
+            {
                 if (UserPhoneNumber.text == "" || UserPhoneNumber.text == "Null")
                 {
                     PanelController.popupinstance.ShowInfo("the phone is Null, you can't modify it");
                     MessageInfo.text = "the phone is Null, you can't modify it";
                     return;
                 }
-                
+
                 OnModifyClick(false, true);
             });
             deleteUser.onClick.AddListener(() =>
@@ -103,107 +108,125 @@ namespace HuaweiAuthDemo
                 PanelController.getInstance()
                     .OpenPanel(PanelController.getInstance().GetComponentInChildren<SignInPanel>());
             });
-            
+
             Link.onClick.AddListener(() =>
             {
                 PanelController.getInstance().GetComponentInChildren<LinkThirdParty>().ParentPanel = this;
                 PanelController.getInstance()
                     .OpenPanel(PanelController.getInstance().GetComponentInChildren<LinkThirdParty>());
-                
+
             });
-           
+
         }
 
-        public void OnModifyClick(bool isPhoneOrEmail,bool ismodifyPassword)
+        public void OnModifyClick(bool isPhoneOrEmail, bool ismodifyPassword)
         {
             UpdateAccount.isPhoneOrEmail = isPhoneOrEmail;
             UpdateAccount.isModifyPassword = ismodifyPassword;
             PanelController.getInstance()
                 .OpenPanel(PanelController.getInstance().GetComponentInChildren<UpdateAccount>());
         }
-        
+
 
         public override void OpenPanel()
         {
-           base.OpenPanel();
+            base.OpenPanel();
+            clearTextValue();
             try
             {
                 agConnectUser = AGConnectAuth.getInstance().getCurrentUser();
                 if (agConnectUser != null)
                 {
-                    UserNikeName.text= agConnectUser.getDisplayName();
-                    UserEmail.text=agConnectUser.getEmail();
-                    UserPhoneNumber.text=agConnectUser.getPhone();
+                    UserNikeName.text = agConnectUser.getDisplayName();
+                    UserEmail.text = agConnectUser.getEmail();
+                    UserPhoneNumber.text = agConnectUser.getPhone();
                     photoUrl.text = agConnectUser.getPhotoUrl();
                     UserId.text = agConnectUser.getUid();
                     UserProviderId.text = agConnectUser.getProviderId();
-                   UserProviderInfo.text = transferProviderInfo(agConnectUser.getProviderInfo());
-                   agConnectUser.getToken(false).addOnSuccessListener(new HuaweiOnsuccessListener<TokenResult>(
-                       (result) =>
-                       {
-                           UserToken.text = result.getToken() + "  " + result.getExpirePeriod();
-                       }
-                   ));
+                    UserProviderInfo.text = transferProviderInfo(agConnectUser.getProviderInfo());
+                    agConnectUser.getToken(false).addOnSuccessListener(new HuaweiOnsuccessListener<TokenResult>(
+                        (result) =>
+                        {
+                            UnityMainThread.instance.AddJob(() =>
+                            {
+                                UserToken.text = result.getToken() + "  " + result.getExpirePeriod();
+                            });
+                        }
+                    ));
 
-                   agConnectUser.getUserExtra().addOnSuccessListener(new HuaweiOnsuccessListener<AGConnectUserExtra>(
-                       (UserExtraInfo) =>
-                       {
-                          UserExtra.text= UserExtraInfo.getCreateTime()+"  "+UserExtraInfo.getLastSignInTime();
-                       }));
-                   isAnonymous.text = agConnectUser.isAnonymous()
-                       ? "true"
-                       : "false" + "  " + agConnectUser.getEmailVerified() + "   "+agConnectUser.getPasswordSetted();
-                   
+                    agConnectUser.getUserExtra().addOnSuccessListener(new HuaweiOnsuccessListener<AGConnectUserExtra>(
+                        (UserExtraInfo) =>
+                        {
+                            UnityMainThread.instance.AddJob(() =>
+                            {
+                                UserExtra.text = UserExtraInfo.getCreateTime() + "  " +
+                                                 UserExtraInfo.getLastSignInTime();
+                            });
+                        }));
+                    isAnonymous.text = agConnectUser.isAnonymous()
+                        ? "true"
+                        : "false" + "  " + agConnectUser.getEmailVerified() + "   " + agConnectUser.getPasswordSetted();
+
                 }
             }
             catch (System.Exception e)
             {
                 Error error = new Error();
                 error.message = e.Message;
+                Debug.Log("this error is "+error.message);
                 PanelController.popupinstance.ShowError(error);
             }
 
         }
 
-         public string transferProviderInfo(List info)
+        public string transferProviderInfo(List info)
         {
+            if (info == null)
+            {
+                return "";
+            }
             var Builder = new StringBuilder();
-            AndroidJavaObject[] mapList=info.toArray();
+            AndroidJavaObject[] mapList = info.toArray();
             for (int i = 0; i < mapList.Length; i++)
             {
-                Map temp=HmsUtil.GetHmsBase<Map>(mapList[i]);
-                string[] keyArray=temp.keySet().toArray();
-                for (int j = 0; j < keyArray.Length; j++)
+                Map map = HmsUtil.GetHmsBase<Map>(mapList[i]);
+                Set<string> kset;
+                string[] keyArray;
+                if (map != null)
                 {
-                    Builder.Append(keyArray[i] + "  ");
-                    Builder.Append(temp.getOrDefault(keyArray[i], "")+"  ");
+                    kset = map.keySet();
+                    if (kset != null)
+                    {
+                        keyArray = kset.toArray();
+                        for (int j = 0; j < keyArray.Length; j++)
+                        {
+                            Builder.Append(keyArray[j] + "  ");
+                            Builder.Append(map.getOrDefault(keyArray[j], "") + "  ");
+                        }
+                    }
+
                 }
-                
             }
 
             return Builder.ToString();
         }
-        
-        
-        public void LogOutClick()
+
+
+        public void clearTextValue()
         {
-            try
-            {
-                if (AGConnectAuth.getInstance() != null)
-                {
-                    AGConnectAuth.getInstance().signOut();
-                    PanelController.popupinstance.ShowInfo("User has been sign out!");
-                    PanelController.getInstance().OpenPanel(PanelController.getInstance().GetComponentInChildren<SignInPanel>());
-                }
-                
-            } catch (System.Exception e)
-            {
-                Error error = new Error();
-                error.message = e.Message;
-                PanelController.popupinstance.ShowError(error);
-            }
-            
-            PanelController.getInstance().OpenPanel(PanelController.getInstance().GetComponentInChildren<SignInPanel>());
+            UserNikeName.text = "";
+            UserEmail.text = "";
+            UserPhoneNumber.text = "";
+            photoUrl.text = "";
+            UserId.text = "";
+            UserProviderId.text = "";
+            UserProviderInfo.text = "";
+            UserToken.text = "";
+            UserExtra.text = "";
+            isAnonymous.text = "";
+
         }
     }
 }
+        
+         

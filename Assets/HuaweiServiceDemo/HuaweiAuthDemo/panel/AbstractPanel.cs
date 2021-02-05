@@ -74,9 +74,10 @@ namespace HuaweiAuthDemo
         {
             try
             {
-                if (AGConnectAuth.getInstance().getCurrentUser() != null)
+                var instance = AGConnectAuth.getInstance();
+                if (instance != null)
                 {
-                    AGConnectAuth.getInstance().signOut();
+                    instance.signOut();
                     PanelController.popupinstance.ShowInfo("User has been sign out!");
                 }
                 else
@@ -90,13 +91,15 @@ namespace HuaweiAuthDemo
                 error.message = e.Message;
                 PanelController.popupinstance.ShowError(error);
             }
+            PanelController.getInstance()
+                .OpenPanel(PanelController.getInstance().GetComponentInChildren<SignInPanel>());
             
         }
 
         public bool haveCurrentUser(AbstractPanel parentPanel)
         {
             AGConnectUser user = AGConnectAuth.getInstance().getCurrentUser();
-            if (user.getUid()==null||user.getUid() == "")
+            if (user==null)
             {
                 return false;
             }

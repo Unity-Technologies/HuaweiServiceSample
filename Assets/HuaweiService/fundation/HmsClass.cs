@@ -29,7 +29,14 @@ namespace HuaweiService{
             set{
                 _obj = value;
             }
-        }   
+        }
+        public bool IsNull
+        {
+            get
+            {
+                return _obj == null;
+            }
+        }
         public static AndroidJavaClass _clz;
         public static AndroidJavaClass clz{
             get{
@@ -46,6 +53,10 @@ namespace HuaweiService{
             bool isBase = typeof(IHmsBase).IsAssignableFrom(type);
             if(isBase){
                 AndroidJavaObject robj = obj.Call<AndroidJavaObject>(name, HmsUtil.TransferParams(args));
+                if (robj == null)
+                {
+                    return default(K);
+                }
                 IHmsBase ret = (IHmsBase)Activator.CreateInstance(type);
                 ret.obj = robj;
                 return (K)ret;

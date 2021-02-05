@@ -8,45 +8,42 @@ namespace HuaweiAuthDemo
 {
     public class SignInPanel : AbstractPanel
     {
-        [SerializeField] private Button phoneLogin = default;
+         public Button phoneLogin = default;
 
-        [SerializeField] private Button EmailLogin = default;
+         public Button EmailLogin = default;
 
-        [SerializeField] private Button HWIDLogin = default;
+         public Button HWIDLogin = default;
 
-        [SerializeField] private Button HWIDGmaeLogin = default;
+         public Button HWIDGmaeLogin = default;
 
-        [SerializeField] private Button GOOGLELogin = default;
+         public Button GOOGLELogin = default;
 
-        [SerializeField] private Button GOOGLEPLAYLogin = default;
+         public Button GOOGLEPLAYLogin = default;
 
-        [SerializeField] private Button TWITTERLogin = default;
+         public Button TWITTERLogin = default;
 
-        [SerializeField] private Button WechatLogin = default;
+         public Button WechatLogin = default;
 
-        [SerializeField] private Button QQLogin = default;
+         public Button QQLogin = default;
 
-        [SerializeField] private Button FaceBookLogin = default;
+         public Button FaceBookLogin = default;
 
 
-        [SerializeField] private Button WeiboLogin = default;
+         public Button WeiboLogin = default;
         
-        [SerializeField] private Button AnonymousLogin = default;
-        [SerializeField] private Button LogOut = default;
+         public Button AnonymousLogin = default;
+         public Button LogOut = default;
 
-        [SerializeField] private Button self_owner;
+         public Button self_owner;
         
 
         // Start is called before the first frame update
-
-        private void FixedUpdate()
-        {
-            BuildAGConnectAuthCredentialList();
-        }
+        
 
         public void Start()
         {
-           haveCurrentUser(this);
+            haveCurrentUser(this);
+           BuildAGConnectAuthCredentialList();
         }
 
         public void BuildAGConnectAuthCredentialList()
@@ -83,17 +80,22 @@ namespace HuaweiAuthDemo
         {
             AGConnectAuth.getInstance().signInAnonymously()
                 .addOnSuccessListener(new HuaweiOnsuccessListener<SignInResult>((signresult) =>
-                { 
-                    PanelController.popupinstance.ShowInfo("Login in successfully");
-                    PanelController.userInfo.ParentPanel = this;
-                    PanelController.getInstance().OpenPanel(PanelController.userInfo);
+                {
+                    UnityMainThread.instance.AddJob(() =>
+                    {
+                        PanelController.userInfo.ParentPanel = this;
+                        PanelController.getInstance().OpenPanel(PanelController.userInfo);
+                    });
                 })).addOnFailureListener(new HuaweiOnFailureListener((e
                 ) =>
                 {
-                    Error error=new Error();
-                    error.message = e.toString();
-                    PanelController.popupinstance.ShowError(error);
-                    
+                    Error error = new Error();
+                    UnityMainThread.instance.AddJob(() =>
+                    {
+                        error.message = e.toString();
+                        PanelController.popupinstance.ShowError(error);
+                    });
+
                 }));
         }
         
@@ -114,6 +116,7 @@ namespace HuaweiAuthDemo
         public void OnLoginClicked(int provider)
         {
             DetailLogin.Provider = provider;
+            PanelController.getInstance().GetComponentInChildren<DetailLogin>().ParentPanel = this;
             PanelController.getInstance()
                 .OpenPanel(PanelController.getInstance().GetComponentInChildren<DetailLogin>());
         }

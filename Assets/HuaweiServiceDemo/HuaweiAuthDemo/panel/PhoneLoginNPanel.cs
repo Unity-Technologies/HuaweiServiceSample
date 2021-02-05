@@ -47,17 +47,23 @@ namespace HuaweiAuthDemo
             try
             {
                 AGConnectAuth.getInstance().resetPassword("+86", phoneNumber.text.Trim(), password.text.Trim(), smsCode.text.Trim())
-                    .addOnSuccessListener(new HuaweiOnsuccessListener<AndroidJavaObject>((temp) =>
+                    .addOnSuccessListener(new HuaweiOnsuccessListener<Void>((temp) =>
                     {
-                        PanelController.popupinstance.ShowInfo("reset successfully!");
-                        infoMessage.text = "reset successfully!";
+                        UnityMainThread.instance.AddJob(() =>
+                        {
+                            PanelController.popupinstance.ShowInfo("reset successfully!");
+                            infoMessage.text = "reset successfully!";
+                        });
                     })).addOnFailureListener(new HuaweiOnFailureListener((e
                     ) =>
                     {
-                        Error error=new Error();
-                        error.message = e.toString();
-                        PanelController.popupinstance.ShowError(error);
-                        infoMessage.text = e.toString();
+                        UnityMainThread.instance.AddJob(() =>
+                        {
+                            Error error = new Error();
+                            error.message = e.toString();
+                            PanelController.popupinstance.ShowError(error);
+                            infoMessage.text = e.toString();
+                        });
 
                     }));
             }
@@ -96,17 +102,23 @@ namespace HuaweiAuthDemo
                 AGConnectAuth.getInstance().signIn(credential)
                     .addOnSuccessListener(new HuaweiOnsuccessListener<SignInResult>((signresult) =>
                     {
-                        PanelController.popupinstance.ShowInfo("Login success!");
-                        PanelController.userInfo.ParentPanel = this;
-                        infoMessage.text = "login success!";
-                        PanelController.getInstance().OpenPanel(PanelController.userInfo);
+                        UnityMainThread.instance.AddJob(() =>
+                        {
+                            PanelController.popupinstance.ShowInfo("Login success!");
+                            PanelController.userInfo.ParentPanel = this;
+                            infoMessage.text = "login success!";
+                            PanelController.getInstance().OpenPanel(PanelController.userInfo);
+                        });
                     })).addOnFailureListener(new HuaweiOnFailureListener((e
                     ) =>
                     {
-                        Error error=new Error();
-                        error.message = e.toString();
-                        PanelController.popupinstance.ShowError(error);
-                        infoMessage.text = e.toString();
+                        UnityMainThread.instance.AddJob(() =>
+                        {
+                            Error error = new Error();
+                            error.message = e.toString();
+                            PanelController.popupinstance.ShowError(error);
+                            infoMessage.text = e.toString();
+                        });
                     }));
             }
             catch (System.Exception e)
@@ -141,16 +153,22 @@ namespace HuaweiAuthDemo
                 task.addOnSuccessListener(TaskExecutors.uiThread(),
                         new HuaweiOnsuccessListener<VerifyCodeResult>((codeResult) =>
                         {
-                            PanelController.popupinstance.ShowInfo("sms code send successfully!");
-                            infoMessage.text = "sms code send successfully!";
-                            
+                            UnityMainThread.instance.AddJob(() =>
+                            {
+                                PanelController.popupinstance.ShowInfo("sms code send successfully!");
+                                infoMessage.text = "sms code send successfully!";
+                            });
+
                         }))
                     .addOnFailureListener(TaskExecutors.uiThread(), new HuaweiOnFailureListener((e) =>
                     {
-                        Error error=new Error();
-                        error.message = e.toString();
-                        PanelController.popupinstance.ShowError(error);
-                        infoMessage.text = e.toString();
+                        UnityMainThread.instance.AddJob(() =>
+                        {
+                            Error error = new Error();
+                            error.message = e.toString();
+                            PanelController.popupinstance.ShowError(error);
+                            infoMessage.text = e.toString();
+                        });
                     }));
             }catch (System.Exception e)
             {

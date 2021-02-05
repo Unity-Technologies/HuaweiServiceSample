@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 using HuaweiService;
@@ -19,7 +20,6 @@ namespace HuaweiService.Auth
         public Task signInAnonymously() {
             return Call<Task>("signInAnonymously");
         }
-
         public void deleteUser() {
             Call("deleteUser");
         }

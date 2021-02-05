@@ -11,7 +11,6 @@ namespace HuaweiAuthDemo
 
     public class LinkThirdParty : AbstractPanel
     {
-        // Start is called before the first frame update
         void Start()
         {
             var buttons = GetComponentsInChildren<Button>();

@@ -24,14 +24,20 @@ namespace HuaweiAuthDemo
             task.addOnSuccessListener(TaskExecutors.uiThread(),
                     new HuaweiOnsuccessListener<VerifyCodeResult>((codeResult) =>
                     {
-                        PanelController.popupinstance.ShowInfo("sms code send successfully!");
-                       
+                        UnityMainThread.instance.AddJob(() =>
+                        {
+                            PanelController.popupinstance.ShowInfo("sms code send successfully!");
+                        });
+
                     }))
                 .addOnFailureListener(TaskExecutors.uiThread(), new HuaweiOnFailureListener((e) =>
                 {
-                    Error error=new Error();
-                    error.message = e.toString();
-                    PanelController.popupinstance.ShowError(error);
+                    UnityMainThread.instance.AddJob(() =>
+                    {
+                        Error error = new Error();
+                        error.message = e.toString();
+                        PanelController.popupinstance.ShowError(error);
+                    });
                 }));
 
         }
@@ -66,15 +72,21 @@ namespace HuaweiAuthDemo
                 AGConnectAuth.getInstance().createUser(phoneUser)
                     .addOnSuccessListener(new HuaweiOnsuccessListener<SignInResult>((signresult) =>
                     {
-                        PanelController.popupinstance.ShowInfo("sign up successfully!");
-                        PanelController.userInfo.ParentPanel = this;
-                        PanelController.getInstance().OpenPanel(PanelController.userInfo);
+                        UnityMainThread.instance.AddJob(() =>
+                        {
+                            PanelController.popupinstance.ShowInfo("sign up successfully!");
+                            PanelController.userInfo.ParentPanel = this;
+                            PanelController.getInstance().OpenPanel(PanelController.userInfo);
+                        });
                     })).addOnFailureListener(new HuaweiOnFailureListener((e
                     ) =>
                     {
-                        Error error=new Error();
-                        error.message = e.toString();
-                        PanelController.popupinstance.ShowError(error);
+                        UnityMainThread.instance.AddJob(() =>
+                        {
+                            Error error = new Error();
+                            error.message = e.toString();
+                            PanelController.popupinstance.ShowError(error);
+                        });
                     }));
             }catch (System.Exception e) {
                 Error error=new Error();
