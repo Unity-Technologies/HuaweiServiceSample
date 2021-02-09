@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using HuaweiServiceDemo;
 using UnityEngine;
 
 namespace HuaweiService.CloudDB {

@@ -1,6 +1,5 @@
-using System.Collections.Generic;
-using HuaweiServiceDemo;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace HuaweiService.CloudDB {
     public class DBListener_Data : IHmsBaseClass {
@@ -8,9 +7,5 @@ namespace HuaweiService.CloudDB {
     }
     public class DBListener : HmsClass<DBListener_Data> {
         public DBListener (OnSnapshotListener arg0) : base (arg0) { }
-    }
-
-    public class DBListener<T> : DBListener where T : IDatabaseModel, new () {
-        public DBListener (DBSnapshotListener<T> arg0) : base (arg0) { }
     }
 }
