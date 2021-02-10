@@ -100,10 +100,21 @@ public class AfterBuildToDO : IPostGenerateGradleAndroidProject
         {
             Directory.CreateDirectory(basePath);
         }
-        string sourceFilePath = Application.dataPath + "/HuaweiService/Android/res/Auth/strings.xml";
+        string sourceFilePath = Application.dataPath + "/HuaweiService/Android/res/Auth/strings.txt";
         if (File.Exists(sourceFilePath))
         {
-            File.Copy(sourceFilePath,codePath,true);
+            if (File.Exists(codePath))
+            {
+                string stringsFile = File.ReadAllText(codePath);
+                string appendContent =  File.ReadAllText(sourceFilePath);
+                stringsFile = stringsFile.Replace("</resources>", appendContent);
+                File.WriteAllText(codePath, stringsFile);
+            }
+            else
+            {
+                string appendContent = "<?xml version=\"1.0\" encoding=\"utf-8\"?>"+"\r\n"+"<resources>"+"\r\n" +File.ReadAllText(sourceFilePath);
+                File.WriteAllText(codePath, appendContent);
+            }
         }
     }
     
