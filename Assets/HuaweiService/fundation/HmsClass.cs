@@ -29,7 +29,16 @@ namespace HuaweiService{
             set{
                 _obj = value;
             }
-        }   
+        }
+
+        public AndroidJavaClass javaClass
+        {
+            get
+            {
+                return clz;
+            }
+        }
+        
         public static AndroidJavaClass _clz;
         public static AndroidJavaClass clz{
             get{

@@ -23,6 +23,21 @@ namespace HuaweiService{
             }
         }
         public AndroidJavaObject _obj;
+        public AndroidJavaClass javaClass
+        {
+            get
+            {
+                return clz;
+            }
+        }
+        
+        public static AndroidJavaClass _clz;
+        public static AndroidJavaClass clz{
+            get{
+                return _clz == null?_clz = new AndroidJavaClass(name):_clz;
+            } 
+        }
+
         public AndroidJavaObject obj{
             get{
                 return _obj == null?_obj = HmsListenerManager.GetListener(buildName,this):_obj;

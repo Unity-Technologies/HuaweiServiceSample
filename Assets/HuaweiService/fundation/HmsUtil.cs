@@ -40,7 +40,7 @@ namespace HuaweiService{
             if (!_enums[type].ContainsKey(value))
             {
                 var result = new T();
-                result.obj = result.obj.GetStatic<AndroidJavaObject>(value);
+                result.obj = result.javaClass.GetStatic<AndroidJavaObject>(value);
                 _enums[type].Add(value, result);
             }
            
