@@ -55,6 +55,13 @@ Sets whether to enable APM to collect performance monitoring data. If this param
 ---|---|---
 Sets whether to enable APM to collect performance monitoring data. If this parameter is set to false, APM stops collecting app performance data. The default value is true.<br>``启用APM监控、停用APM监控``|enableCollection(boolean enable)|[apms](https://developer.huawei.com/consumer/en/doc/development/AppGallery-connect-References/apms)
 
-
-
-
+#### Scenario: Scene frame rendering and loading performance monitoring``APM Game Plugin服务入口``
+| Description | Api | Reference |
+---|---|---
+Start APM Game Plugin service.<br>``开始APM Game Plugin服务``|start()|
+Stop APM Game Plugin service.<br>``停止APM Game Plugin服务``|stop()|
+Start recording scene loading time.<br>``开始记录场景加载时间``|startLoadingScene(GameAttribute gameAttribute)|
+Stop recording scene loading time.<br>``停止记录场景加载时间``|stopLoadingScene(string scene)|
+Save current game properties.<br>``保存当前游戏属性``|setCurrentGameAttribute(GameAttribute gameAttribute)|
+Set the reporting frequency of game performance data, unit: minute.<br>``设置游戏性能数据上报频率，单位：分钟``|setReportRate(int intervalMin)|
+Whether to enable APM Game Plugin service.<br>``是否启用APM Game Plugin服务``|enableGamePlugin(boolean enabled)|

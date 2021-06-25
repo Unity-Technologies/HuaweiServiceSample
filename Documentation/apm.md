@@ -17,7 +17,7 @@
 
 Before integrating the APM SDK, ensure that your app has integrated the AppGallery Connect SDK and AppGallery Connect plug-in. For details, please refer to [Getting Started with Android.](https://developer.huawei.com/consumer/en/doc/development/AppGallery-connect-Guides/agc-get-started)
 
-**Note**: 
+**Note**:
 
 1. Copy the  `agconnect-services.json` file to `Assets/Plugins/Android/`
 
@@ -34,7 +34,7 @@ Before integrating the APM SDK, ensure that your app has integrated the AppGalle
 
    ```
    dependencies {      
-    implementation 'com.huawei.agconnect:agconnect-core:1.4.2.301'    
+    implementation 'com.huawei.agconnect:agconnect-core:1.5.2.300'    
    }
 
    ```
@@ -50,7 +50,7 @@ Before integrating the APM SDK, ensure that your app has integrated the AppGalle
                   maven {url 'https://developer.huawei.com/repo/'}  
               }  
           }
-   
+
    buildscript {  
               repositories {  
                   google()  
@@ -58,10 +58,10 @@ Before integrating the APM SDK, ensure that your app has integrated the AppGalle
                   maven {url 'https://developer.huawei.com/repo/'}  
               }  
    }
-   
+
    buildscript {  
               dependencies {  
-               classpath 'com.huawei.agconnect:agcp:1.4.2.301'
+               classpath 'com.huawei.agconnect:agcp:1.5.2.300'
               }  
    }
    ```
@@ -76,7 +76,8 @@ Add the APM SDK dependency to `launcherTemplate.gradle` in `/Assets/Plugins/Andr
 dependencies {
 // ...
 // Add APM SDK library dependency
-implementation 'com.huawei.agconnect:agconnect-apms:1.4.1.303'
+implementation 'com.huawei.agconnect:agconnect-apms:1.5.2.300'
+implementation 'com.huawei.agconnect:agconnect-apms-game:1.5.2.300'
 }
 ```
 
@@ -90,12 +91,12 @@ The APM plug-in uses the instrumentation technology to collect [HTTP/HTTPS netwo
    apply plugin: 'com.huawei.agconnect.apms'
    // Apply the AGC plugin
    apply plugin: 'com.huawei.agconnect'
-   
+
    dependencies {
     // ..
    }
    ```
-   
+
 2. Add the APM plug-in to the baseProjectTemplate.gradle file.
 
    ```
@@ -109,7 +110,7 @@ The APM plug-in uses the instrumentation technology to collect [HTTP/HTTPS netwo
         // To benefit from the latest APM feaures, update your Android Gradle Plugin dependency to at least v3.3.2
         classpath 'com.android.tools.build:gradle:3.3.2'
         // Add the dependency for the APM plugin
-        classpath 'com.huawei.agconnect:agconnect-apms-plugin:1.4.1.303'
+        classpath 'com.huawei.agconnect:agconnect-apms-plugin:1.5.2.300'
       }
    }
    ```
@@ -156,31 +157,31 @@ See [Viewing Performance Monitoring Data.](https://developer.huawei.com/consumer
    ```
    void Start()
    {
-     
+
    }
-   
+
    // Update is called once per frame
    void Update()
    {
-     
+
    }
     public void CustomTraceMeasureTest(CustomTrace customTrace) {
               UnityEngine.Debug.Log("CustomTraceMeasureTest start");
-    
+
               customTrace.putMeasure("ProcessingTimes", 0);
               for (int i = 0; i < 100; i++) {
                   customTrace.incrementMeasure("ProcessingTimes", 1);
               }
-    
+
               long value = customTrace.getMeasure("ProcessingTimes");
               Debug.Log("Measurename: ProcessingTimes, value: "+ value);
-    
+
               UnityEngine.Debug.Log("CustomTraceMeasureTest success");
           }
    ```
-   
+
    Create a function above
-   
+
 6. Bind buttons and interfaces in scripts
 
    ![Images/apm/apm_settingup7.png](Images/apm/apm_settingup7.png)
@@ -199,7 +200,7 @@ How to use the demo project?
 
 - Step 1: Create a repo from:  https://github.com/Unity-Technologies/unity-hms_sdk/tree/apm and checkout to “apm” branch.
 
-- Step 2: Replace  `agconnect-services.json` file from your remote project and configure your gradle files, refer to Part 2. Step 1 to Step 3. 
+- Step 2: Replace  `agconnect-services.json` file from your remote project and configure your gradle files, refer to Part 2. Step 1 to Step 3.
 
 - Step 3: Open Unity Hub, add HuaweiServiceDemo Project (Unity version 2019.3).
 
@@ -209,7 +210,7 @@ How to use the demo project?
 
    > Microsoft (R) Visual C# Compiler version 2.9.1.65535 (9d34608e)
    > Copyright (C) Microsoft Corporation. All rights reserved.
-   > 
+   >
    > error CS0009: Metadata file      '/Users/yanmeng/Desktop/unity_agc_new/unity-hms_sdk/hmsDemo/Library/ScriptAssemblies/Unity.Timeline.Editor.dll' could not be opened -- Image is too small.
    > Assets/HuaweiHms/src/hms/Wrapper/fundation/HmsClass.cs(72,25): warning CS0693: Type parameter 'T' has the same name as the type parameter from outer type 'HmsClass<T>'
 
@@ -222,4 +223,3 @@ How to use the demo project?
 - Step 6: build android apk and run on Android device. Use logcat to check whether test cases are executed successfully.
 
    ![Images/apm/apm_11.png](Images/apm/apm_11.png)
-
