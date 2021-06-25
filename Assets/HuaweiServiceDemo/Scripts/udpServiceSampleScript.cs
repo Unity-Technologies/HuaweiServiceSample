@@ -341,6 +341,7 @@ public class udpServiceSampleScript : MonoBehaviour
         "GetPlayerCenteredRankingScores(offsetPlayerRank)", "GetMoreRankingScores"
     };
 
+    private static int score = 100;
     private readonly List<Action> rankingFunctions = new List<Action>()
     {
         () =>
@@ -373,8 +374,8 @@ public class udpServiceSampleScript : MonoBehaviour
                 return;
             }
 
-            Show("start SubmitScore with ranking id: " + rankingId + " score: " + 2);
-            HuaweiGameService.SubmitScore(rankingId, 2);
+            Show("start SubmitScore with ranking id: " + rankingId + " score: " + score);
+            HuaweiGameService.SubmitScore(rankingId, score++);
         },
         () =>
         {
@@ -385,8 +386,8 @@ public class udpServiceSampleScript : MonoBehaviour
                 return;
             }
 
-            Show("start AsyncSubmitScore with ranking id: " + rankingId + " score: " + 2);
-            HuaweiGameService.AsyncSubmitScore(rankingId, 2, _submitScoreListener);
+            Show("start AsyncSubmitScore with ranking id: " + rankingId + " score: " + score);
+            HuaweiGameService.AsyncSubmitScore(rankingId, score++, _submitScoreListener);
         },
         () =>
         {
@@ -397,9 +398,9 @@ public class udpServiceSampleScript : MonoBehaviour
                 return;
             }
 
-            Show("start SubmitScoreWithTag with ranking id: " + rankingId + " score: " + 2 +
+            Show("start SubmitScoreWithTag with ranking id: " + rankingId + " score: " + score +
                  " score tag: testScoreTag");
-            HuaweiGameService.SubmitScore(rankingId, 2, "testScoreTag");
+            HuaweiGameService.SubmitScore(rankingId, score++, "testScoreTag");
         },
         () =>
         {
@@ -1940,8 +1941,12 @@ public class udpServiceSampleScript : MonoBehaviour
 
     private static void Show(string message, bool append = false)
     {
-        info_panel.text = append ? string.Format("{0}\n{1}", info_panel.text, message) : message;
-        Log(message);
+        TaskProcess.tasks.AddLast(() =>
+        {
+            info_panel.text = append ? string.Format("{0}\n{1}", info_panel.text, message) : message;
+            Log(message);
+        });
+        
     }
 
     private static void Log(string message)
