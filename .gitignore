@@ -12,6 +12,7 @@ Builds/
 *.gen.*
 obj$
 obj.meta$
+*.meta
 
 build/**
 PackageSources

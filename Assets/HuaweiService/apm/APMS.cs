@@ -24,5 +24,29 @@ namespace HuaweiService.apm
         public NetworkMeasure createNetworkMeasure(string arg0, string arg1) {
             return Call<NetworkMeasure>("createNetworkMeasure", arg0, arg1);
         }
+        
+        public void startGamePlugin() {
+           GameAPM.getInstance().start();
+        }
+        public void stopGamePlugin() {
+            GameAPM.getInstance().stop();
+        }
+        public string startLoadingScene(GameAttribute arg0)
+        {
+            return GameAPM.getInstance().startLoadingScene(arg0);
+        }
+        public void stopLoadingScene(string arg0)
+        {
+            GameAPM.getInstance().stopLoadingScene(arg0);
+        }
+        public void setCurrentGameAttribute(GameAttribute arg0) {
+            GameAPM.getInstance().setCurrentGameAttribute(arg0);
+        }
+        public void setReportRate(int arg0) {
+            GameAPM.getInstance().setReportRate(arg0);
+        }
+        public void enableGamePlugin(bool arg0) {
+            GameAPM.getInstance().enableGamePlugin(arg0);
+        }
     }
 }
