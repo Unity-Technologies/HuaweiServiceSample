@@ -1940,8 +1940,11 @@ public class udpServiceSampleScript : MonoBehaviour
 
     private static void Show(string message, bool append = false)
     {
-        info_panel.text = append ? string.Format("{0}\n{1}", info_panel.text, message) : message;
-        Log(message);
+        TaskProcess.tasks.AddFirst(() =>
+        {
+            info_panel.text = append ? string.Format("{0}\n{1}", info_panel.text, message) : message;
+            Log(message);
+        });
     }
 
     private static void Log(string message)
