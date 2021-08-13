@@ -82,7 +82,8 @@
 dependencies {
 // ...
 // Add APM SDK library dependency
-implementation 'com.huawei.agconnect:agconnect-apms:1.4.1.303'
+implementation 'com.huawei.agconnect:agconnect-apms:1.5.2.300'
+implementation 'com.huawei.agconnect:agconnect-apms-game:1.5.2.303'
 }
 
 ```
