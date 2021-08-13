@@ -28,4 +28,4 @@ key store path `Edit -> Project Settings -> Player -> Android(icon) -> Publishin
 
 In location test, before you click `CreateGeo` button, you should click `update with callback-102` to get your position.
 
-***Please check the documentation folder or visite the [documentation webpages](https://docs.unity.cn/cn/Packages-cn/com.unity.huaweiservice@2.1/manual/) 
+***Please check the documentation folder or visite the [documentation webpages](https://docs.unity.cn/cn/Packages-cn/com.unity.huaweiservice@2.1/manual/)***
