@@ -24,8 +24,8 @@ namespace CloudStorageTest
         {
             AndroidJavaClass javaUnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
             AndroidJavaObject currentActivity = javaUnityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-            Activity aaa = HmsUtil.GetHmsBase<Activity>(currentActivity);
-            ActivityCompat.requestPermissions(aaa, permissions, 1);
+            Activity activity = HmsUtil.GetHmsBase<Activity>(currentActivity);
+            ActivityCompat.requestPermissions(activity, permissions, 1);
         }
     }
 }
