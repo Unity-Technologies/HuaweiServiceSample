@@ -1,15 +1,16 @@
-# HMS 
+# Huawei HMS AGC Services Plugin(Android)
 ## Introduction
-This package enables parts of Hms App Core service and Game Services in Unity for Android Build, which is implemented by wrapping Hms SDK. Name and usage of corresponding classes and functions are the same. You can write code by referring [Huawei Hms SDK document](https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/account-introduction-v4). But still there are some differences during development. please refer to the [online documentation](https://docs.unity.cn/cn/Packages-cn/com.unity.hms@1.2/manual/) during your development.
+This package enables parts of Huawei Hms and AGC Services in Unity for Android Build, which is implemented by wrapping SDK. Name and usage of corresponding classes and functions are the same. You can write code by referring [Huawei SDK document](https://developer.huawei.com/consumer/en/doc/development/HMS-Guides/account-introduction-v4). But still there are some differences during development. please refer to the [online documentation](https://docs.unity.cn/cn/Packages-cn/com.unity.huaweiservice@2.1/manual/) during your development.
 
-We highly recommend downloading [Example Project](https://github.com/Unity-Technologies/HMSSDKSample) as a reference. 
+## Example project
+We highly recommend downloading [Example Project](https://github.com/Unity-Technologies/HuaweiServiceSample/tree/master/Assets/HuaweiServiceDemo) as a reference. For questions or support, you can leave your issues directly [here](https://github.com/Unity-Technologies/HuaweiServiceSample/issues), and we will reply as soon as possible!
 
-## App Services Documentation(Ads, Analytics, Push, Location)
-https://docs.unity.cn/cn/Packages-cn/com.unity.hms@1.2/manual/
+## Asset store page
+[https://assetstore.unity.com/packages/add-ons/services/huawei-hms-agc-services-176968](https://assetstore.unity.com/packages/add-ons/services/huawei-hms-agc-services-176968)
 
-## Game Services Documentation
-https://docs.unity.cn/cn/Packages-cn/com.unity.hms@1.2/manual/appgallery.html
+## Public repo on Github
+[https://github.com/Unity-Technologies/HuaweiServiceSample](https://github.com/Unity-Technologies/HuaweiServiceSample)
 
-## Example Projects Download Link
-https://github.com/Unity-Technologies/HMSSDKSample
+## Online documentation
+[https://docs.unity.cn/cn/Packages-cn/com.unity.huaweiservice@2.1/manual/](https://docs.unity.cn/cn/Packages-cn/com.unity.huaweiservice@2.1/manual/)
 
