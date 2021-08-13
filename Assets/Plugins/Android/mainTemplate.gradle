@@ -8,7 +8,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.huawei.agconnect:agconnect-appmessaging:1.4.1.300"
     implementation 'com.huawei.hms:hianalytics:5.1.0.300'
-    //Google 
+    //Google
     implementation 'com.google.android.gms:play-services-auth:18.1.0'
      //Google Play Game
     implementation 'com.google.android.gms:play-services-games:17.0.0'
@@ -18,12 +18,13 @@ dependencies {
     api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
        //facebook
     implementation 'com.facebook.android:facebook-android-sdk:4.20.0'
-    
+
 
     //cloud storage
     implementation "com.huawei.agconnect:agconnect-storage:1.3.1.100"
     //apm
-    implementation 'com.huawei.agconnect:agconnect-apms:1.3.1.300'
+    implementation 'com.huawei.agconnect:agconnect-apms:1.5.2.300'
+    implementation 'com.huawei.agconnect:agconnect-apms-game:1.5.2.300'
 
     //hms
     implementation 'com.huawei.hms:base:5.0.5.300'

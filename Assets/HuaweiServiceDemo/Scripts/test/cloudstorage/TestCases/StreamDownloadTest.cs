@@ -10,8 +10,7 @@ namespace CloudStorageTest
 		private AGCStorageManagement mAGCStorageManagement;
 		
 		private string storageFileName= "MetadataLoader.cpp";
-		private string downloadFileFolder = "/sdcard/"; 
-		
+
 		private void initAGCStorageManagement()
 		{
 			mAGCStorageManagement = AGCStorageManagement.getInstance();

@@ -19,25 +19,6 @@ namespace CloudStorageTest
             mAGCStorageManagement = AGCStorageManagement.getInstance();
         }
 
-        public void uploadFile(string path)
-        {
-            Debug.Log("upload file start.");
-
-            File file = new File(path);
-            if (!System.IO.File.Exists(path))
-            {
-                Debug.Log("upload file does not exists: " + path);
-                return;
-            }
-
-            StorageReference storageReference = mAGCStorageManagement.getStorageReference(path);
-            UploadTask task = storageReference.putFile(file);
-
-            task.addOnFailureListener(new MyFailureListener()).addOnSuccessListener(new MySuccessListener());
-
-            Debug.Log("upload file end.");
-        }
-
         public void addOnCanceledListenerTest()
         {
             Debug.Log("UploadTask addOnCanceledListenerTest");
@@ -432,7 +413,6 @@ namespace CloudStorageTest
                 Debug.LogFormat("MyProgressListener:onProgress, get metadata failed!");
             }
 
-            //UploadTask.UploadResult uploadResult = (UploadTask.UploadResult)arg0;
             Debug.LogFormat(m_name + " progress : {0}",
                 (uploadResult.getBytesTransferred() * 1.0) / uploadResult.getTotalByteCount());
         }
