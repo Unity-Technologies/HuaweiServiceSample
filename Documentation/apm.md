@@ -77,7 +77,6 @@ dependencies {
 // ...
 // Add APM SDK library dependency
 implementation 'com.huawei.agconnect:agconnect-apms:1.5.2.300'
-implementation 'com.huawei.agconnect:agconnect-apms-game:1.5.2.303'
 }
 ```
 
@@ -96,6 +95,21 @@ The APM plug-in uses the instrumentation technology to collect [HTTP/HTTPS netwo
     // ..
    }
    ```
+
+### Step 4: Integrating the APM Game SDK (Optional)
+Add the APM SDK dependency to `launcherTemplate.gradle` in `/Assets/Plugins/Android/`
+ file (usually in the app directory).
+
+```
+dependencies {
+// ...
+// Add APM SDK library dependency
+implementation 'com.huawei.agconnect:agconnect-apms:1.5.2.300'
+implementation 'com.huawei.agconnect:agconnect-apms-game:1.5.2.303'
+}
+```
+
+
 
 2. Add the APM plug-in to the baseProjectTemplate.gradle file.
 
@@ -128,6 +142,50 @@ See [Viewing Performance Monitoring Data.](https://developer.huawei.com/consumer
 3. [Adding Indicators to Monitor Specific Network Requests](https://developer.huawei.com/consumer/en/doc/development/AppGallery-connect-Guides/agc-apms-addnetworkmeasure)
 4. [Viewing Debug Logs](https://developer.huawei.com/consumer/en/doc/development/AppGallery-connect-Guides/agc-apms-viewlog)
 5. [Configuring the AndroidManifest.xml File](https://developer.huawei.com/consumer/en/doc/development/AppGallery-connect-Guides/agc-apms-configuremanifest)
+
+### Optional: Using APM Game SDK
+In the initialization method at the beginning of the game, call the startGamePlugin() method of APMS to enable the SDK
+void Start()
+{
+    // In order to start APMS Game Plugin, you need to call this method
+    GameAPM.getInstance().start();
+
+    // Your own business code
+    // ...
+}
+
+void OnDestroy() {
+    // In order to start APMS Game Plugin, you need to call this method
+    GameAPM.getInstance().stop();
+    // Your own business code
+    // ...
+}
+
+In order to quickly find out whether the scene loading time exceeds the normal range, you can call APMS startLoadingScene (GameAttribue gameAttribute) and stopLoadingScene (String scene) to record the scene loading time.
+public void scenceLoadToGame()
+{
+	// start record the loading scene time
+	String scene = GameAPM.getInstance().startLoadingScene(new GameAttribute("Game", LoadingState.NOT_LOADING));
+	SceneManager.LoadScene("Game");
+
+	// Other code
+	// ...
+
+	// stop record the loading scene time
+	GameAPM.getInstance().stopLoadingScene(scene);
+}
+
+You can view detailed game performance data on the "Application Performance Management" page, including scene analysis data, frame time data, and scene loading data.
+Prerequisites：
+1. Your application has enabled the APM service.
+2. Your application has integrated the APM Game SDK and runs on the device.
+
+View game scene analysis：
+1. Log in to the AppGallery Connect website and click on ‘My Projects’.
+2. Find your project in the project list, and select the application you want to view in the application list under the project.
+3. Choose ‘Quality -> Performance’ Management to enter the ‘Application Performance Management’ page.
+4. Click ‘Experience Analysis -> Game Scene Analysis’ to enter the game scene analysis page.
+
 
 ### Setting up a scene
 1. Open a scene:
