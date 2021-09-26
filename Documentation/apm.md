@@ -145,6 +145,7 @@ See [Viewing Performance Monitoring Data.](https://developer.huawei.com/consumer
 
 ### Optional: Using APM Game SDK
 In the initialization method at the beginning of the game, call the startGamePlugin() method of APMS to enable the SDK
+```
 void Start()
 {
     // In order to start APMS Game Plugin, you need to call this method
@@ -153,15 +154,18 @@ void Start()
     // Your own business code
     // ...
 }
-
+```
+```
 void OnDestroy() {
     // In order to start APMS Game Plugin, you need to call this method
     GameAPM.getInstance().stop();
     // Your own business code
     // ...
 }
+```
 
 In order to quickly find out whether the scene loading time exceeds the normal range, you can call APMS startLoadingScene (GameAttribue gameAttribute) and stopLoadingScene (String scene) to record the scene loading time.
+```
 public void scenceLoadToGame()
 {
 	// start record the loading scene time
@@ -174,8 +178,10 @@ public void scenceLoadToGame()
 	// stop record the loading scene time
 	GameAPM.getInstance().stopLoadingScene(scene);
 }
+```
 
 You can view detailed game performance data on the "Application Performance Management" page, including scene analysis data, frame time data, and scene loading data.
+
 Prerequisites：
 1. Your application has enabled the APM service.
 2. Your application has integrated the APM Game SDK and runs on the device.
