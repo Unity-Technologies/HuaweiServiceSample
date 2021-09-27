@@ -137,6 +137,9 @@ See [Viewing Performance Monitoring Data.](https://developer.huawei.com/consumer
 ### Optional: Using APM
 1. [Creating a Custom Trace. ](https://developer.huawei.com/consumer/en/doc/development/AppGallery-connect-Guides/agc-apms-addtrace)
 2. [Using Annotation @AddCustomTrace](https://developer.huawei.com/consumer/en/doc/development/AppGallery-connect-Guides/agc-apms-addcustomtrace)
+
+（note：At present, this function can only be applied to the main assembly, if the user code is in a custom assembly, it cannot be parsed)
+
 3. [Adding Indicators to Monitor Specific Network Requests](https://developer.huawei.com/consumer/en/doc/development/AppGallery-connect-Guides/agc-apms-addnetworkmeasure)
 4. [Viewing Debug Logs](https://developer.huawei.com/consumer/en/doc/development/AppGallery-connect-Guides/agc-apms-viewlog)
 5. [Configuring the AndroidManifest.xml File](https://developer.huawei.com/consumer/en/doc/development/AppGallery-connect-Guides/agc-apms-configuremanifest)
