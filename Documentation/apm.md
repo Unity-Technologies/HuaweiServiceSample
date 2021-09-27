@@ -304,26 +304,26 @@ Data Collection
 
 1. Basic data attributes
 
-- Application basic properties: application name, application version name, application version number, application package name (application ID).
+    - Application basic properties: application name, application version name, application version number, application package name (application ID).
 
-- Basic device attributes: device manufacturer, device architecture, device model, screen size, resolution, screen type (super large, large, medium, small, unknown), screen refresh frequency, CPU model, number of CPU cores, memory size, disk size, User CPU time, system CPU time, maximum heap memory, used heap memory.
+    - Basic device attributes: device manufacturer, device architecture, device model, screen size, resolution, screen type (super large, large, medium, small, unknown), screen refresh frequency, CPU model, number of CPU cores, memory size, disk size, User CPU time, system CPU time, maximum heap memory, used heap memory.
 
-- Basic platform attributes: operating system name, operating system version, ROM name, ROM version, APM SDK version, AAID, AGC cpID, AGC productID, AGC ClientID, AGC AppID.
+    - Basic platform attributes: operating system name, operating system version, ROM name, ROM version, APM SDK version, AAID, AGC cpID, AGC productID, AGC ClientID, AGC AppID.
 
-- Basic properties at runtime: charging status, battery level, network type, screen orientation, application front and back status, APM SDK session ID, available disk space, application memory usage.
+    - Basic properties at runtime: charging status, battery level, network type, screen orientation, application front and back status, APM SDK session ID, available disk space, application memory usage.
 
-- User settings attributes: default time zone settings, default language settings, DNS settings.
+    - User settings attributes: default time zone settings, default language settings, DNS settings.
 
-- Custom tracking record attributes: custom attributes set by the developer.
+    - Custom tracking record attributes: custom attributes set by the developer.
 
 2. Index data
 
-- Frame rate data: scene name, loading status, frame rate number.
+    - Frame rate data: scene name, loading status, frame rate number.
 
-- Loading data: scene name, loading status, loading duration.
+    - Loading data: scene name, loading status, loading duration.
 
 3. Data Security Protection
 
-- APM Game Plugin encrypts the collected data locally, and the encrypted data is transmitted to the APM server through the HTTPS security protocol.
+    - APM Game Plugin encrypts the collected data locally, and the encrypted data is transmitted to the APM server through the HTTPS security protocol.
 
-- Huawei strictly follows the "General Data Protection Regulations" (GDPR), and Huawei is also committed to helping developers succeed under the premise of complying with GDPR regulations. GDPR stipulates the obligations of data controllers and data processors. When using the service, developers play the role of "data controller" and Huawei is the "data processor". The data is under the control of the developer. Huawei only processes the data within the scope of the obligations and rights of the "data processor", and the developer is responsible for complying with the GDPR and assumes the obligations of the "data controller".
+    - Huawei strictly follows the "General Data Protection Regulations" (GDPR), and Huawei is also committed to helping developers succeed under the premise of complying with GDPR regulations. GDPR stipulates the obligations of data controllers and data processors. When using the service, developers play the role of "data controller" and Huawei is the "data processor". The data is under the control of the developer. Huawei only processes the data within the scope of the obligations and rights of the "data processor", and the developer is responsible for complying with the GDPR and assumes the obligations of the "data controller".
