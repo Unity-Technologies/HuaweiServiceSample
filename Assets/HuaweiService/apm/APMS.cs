@@ -42,8 +42,8 @@ namespace HuaweiService.apm
         public void setCurrentGameAttribute(GameAttribute arg0) {
             GameAPM.getInstance().setCurrentGameAttribute(arg0);
         }
-        public void setReportRate(int arg0) {
-            GameAPM.getInstance().setReportRate(arg0);
+        public void setReportMinRate(int arg0) {
+            GameAPM.getInstance().setReportMinRate(arg0);
         }
         public void enableGamePlugin(bool arg0) {
             GameAPM.getInstance().enableGamePlugin(arg0);
