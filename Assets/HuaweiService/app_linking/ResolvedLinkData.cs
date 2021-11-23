@@ -33,5 +33,23 @@ namespace HuaweiService.AppLinking
         public string getCampaignSource() {
             return Call<string>("getCampaignSource");
         }
+        public LinkType getLinkType() {
+            return Call<LinkType>("getLinkType");
+        }
+        public string getInstallSource() {
+            return Call<string>("getInstallSource");
+        }
+    
+        public class LinkType_Data : IHmsBaseClass{
+            public string name => "com.huawei.agconnect.applinking.ResolvedLinkData$LinkType";
+        }
+        public class LinkType :HmsClass<LinkType_Data>
+        {
+            public static LinkType AppLinking => HmsUtil.GetStaticValue<LinkType>("AppLinking");
+        
+            public static LinkType UnifiedLinking => HmsUtil.GetStaticValue<LinkType>("UnifiedLinking");
+        
+            public LinkType (): base() { }
+        }
     }
 }

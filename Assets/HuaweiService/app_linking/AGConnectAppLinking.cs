@@ -12,14 +12,17 @@ namespace HuaweiService.AppLinking
         public static AGConnectAppLinking getInstance() {
             return CallStatic<AGConnectAppLinking>("getInstance");
         }
-        public Task getAppLinking(Activity arg0, Intent arg1) {
+        public Task getAppLinking(Activity arg0, Uri arg1) {
             return Call<Task>("getAppLinking", arg0, arg1);
         }
-        public Task getAppLinking(Activity arg0, Uri arg1) {
+        public Task getAppLinking(Activity arg0, Intent arg1) {
             return Call<Task>("getAppLinking", arg0, arg1);
         }
         public Task getAppLinking(Activity arg0) {
             return Call<Task>("getAppLinking", arg0);
+        }
+        public void setCustomReferrer(ReferrerProvider arg0) {
+            Call("setCustomReferrer", arg0);
         }
     }
 }

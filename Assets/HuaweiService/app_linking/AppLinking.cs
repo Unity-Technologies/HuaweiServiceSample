@@ -127,6 +127,80 @@ namespace HuaweiService.AppLinking
             }
         }
     
+        public class ITunesConnectCampaignInfo_Data : IHmsBaseClass{
+            public string name => "com.huawei.agconnect.applinking.AppLinking$ITunesConnectCampaignInfo";
+        }
+        public class ITunesConnectCampaignInfo :HmsClass<ITunesConnectCampaignInfo_Data>
+        {
+            public ITunesConnectCampaignInfo (): base() { }
+            public static Builder newBuilder() {
+                return CallStatic<Builder>("newBuilder");
+            }
+        
+            public class Builder_Data : IHmsBaseClass{
+                public string name => "com.huawei.agconnect.applinking.AppLinking$ITunesConnectCampaignInfo$Builder";
+            }
+            public class Builder :HmsClass<Builder_Data>
+            {
+                public Builder (): base() { }
+                public Builder setMediaType(string arg0) {
+                    return Call<Builder>("setMediaType", arg0);
+                }
+                public Builder setAffiliateToken(string arg0) {
+                    return Call<Builder>("setAffiliateToken", arg0);
+                }
+                public Builder setProviderToken(string arg0) {
+                    return Call<Builder>("setProviderToken", arg0);
+                }
+                public Builder setCampaignToken(string arg0) {
+                    return Call<Builder>("setCampaignToken", arg0);
+                }
+                public ITunesConnectCampaignInfo build() {
+                    return Call<ITunesConnectCampaignInfo>("build");
+                }
+            }
+        }
+    
+        public class IOSLinkInfo_Data : IHmsBaseClass{
+            public string name => "com.huawei.agconnect.applinking.AppLinking$IOSLinkInfo";
+        }
+        public class IOSLinkInfo :HmsClass<IOSLinkInfo_Data>
+        {
+            public IOSLinkInfo (): base() { }
+            public static Builder newBuilder() {
+                return CallStatic<Builder>("newBuilder");
+            }
+        
+            public class Builder_Data : IHmsBaseClass{
+                public string name => "com.huawei.agconnect.applinking.AppLinking$IOSLinkInfo$Builder";
+            }
+            public class Builder :HmsClass<Builder_Data>
+            {
+                public Builder (): base() { }
+                public Builder setIOSDeepLink(string arg0) {
+                    return Call<Builder>("setIOSDeepLink", arg0);
+                }
+                public Builder setBundleId(string arg0) {
+                    return Call<Builder>("setBundleId", arg0);
+                }
+                public Builder setFallbackUrl(string arg0) {
+                    return Call<Builder>("setFallbackUrl", arg0);
+                }
+                public Builder setIPadBundleId(string arg0) {
+                    return Call<Builder>("setIPadBundleId", arg0);
+                }
+                public Builder setIPadFallbackUrl(string arg0) {
+                    return Call<Builder>("setIPadFallbackUrl", arg0);
+                }
+                public Builder setITunesConnectCampaignInfo(ITunesConnectCampaignInfo arg0) {
+                    return Call<Builder>("setITunesConnectCampaignInfo", arg0);
+                }
+                public IOSLinkInfo build() {
+                    return Call<IOSLinkInfo>("build");
+                }
+            }
+        }
+    
         public class Builder_Data : IHmsBaseClass{
             public string name => "com.huawei.agconnect.applinking.AppLinking$Builder";
         }
@@ -165,6 +239,12 @@ namespace HuaweiService.AppLinking
             }
             public Builder setPreviewType(LinkingPreviewType arg0) {
                 return Call<Builder>("setPreviewType", arg0);
+            }
+            public Builder setIOSLinkInfo(IOSLinkInfo arg0) {
+                return Call<Builder>("setIOSLinkInfo", arg0);
+            }
+            public Builder setIsShowPreview(bool arg0) {
+                return Call<Builder>("setIsShowPreview", arg0);
             }
         }
     

@@ -32,9 +32,9 @@ namespace HuaweiService.apm
         }
         public class LoadingState :HmsClass<LoadingState_Data>
         {
-            public static LoadingState NOT_LOADING => HmsUtil.GetStaticValue<LoadingState>("NOT_LOADING");
-        
             public static LoadingState LOADING => HmsUtil.GetStaticValue<LoadingState>("LOADING");
+        
+            public static LoadingState LOADED => HmsUtil.GetStaticValue<LoadingState>("LOADED");
         
             public LoadingState (string arg0, int arg1, int arg2): base(arg0, arg1, arg2) { }
             public LoadingState (): base() { }

@@ -25,6 +25,15 @@ namespace HuaweiService.CloudStorage
         public const int ERROR_NETWORK_UNAVAILABLE = 11015;
         public const int ERROR_RANGE_UNSATISFIABLE = 11016;
         public StorageException (): base() { }
+        public static StorageException fromErrorAndRequestId(int arg0, string arg1) {
+            return CallStatic<StorageException>("fromErrorAndRequestId", arg0, arg1);
+        }
+        public static StorageException fromHttpCodeAndRequestId(Throwable arg0, int arg1, int arg2, string arg3) {
+            return CallStatic<StorageException>("fromHttpCodeAndRequestId", arg0, arg1, arg2, arg3);
+        }
+        public static StorageException fromHttpCodeAndRequestId(int arg0, int arg1, string arg2) {
+            return CallStatic<StorageException>("fromHttpCodeAndRequestId", arg0, arg1, arg2);
+        }
         public static StorageException fromErrorStatus(int arg0) {
             return CallStatic<StorageException>("fromErrorStatus", arg0);
         }

@@ -27,8 +27,8 @@ namespace HuaweiService.apm
         public void setCurrentGameAttribute(GameAttribute arg0) {
             Call("setCurrentGameAttribute", arg0);
         }
-        public void setReportRate(int arg0) {
-            Call("setReportRate", arg0);
+        public void setReportMinRate(int arg0) {
+            Call("setReportMinRate", arg0);
         }
         public void enableGamePlugin(bool arg0) {
             Call("enableGamePlugin", arg0);

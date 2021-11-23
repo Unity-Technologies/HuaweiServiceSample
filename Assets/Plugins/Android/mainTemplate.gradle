@@ -21,20 +21,20 @@ dependencies {
 
 
     //cloud storage
-    implementation "com.huawei.agconnect:agconnect-storage:1.3.1.100"
+    implementation "com.huawei.agconnect:agconnect-storage:1.3.1.200"
     //apm
     implementation 'com.huawei.agconnect:agconnect-apms:1.5.2.300'
-    implementation 'com.huawei.agconnect:agconnect-apms-game:1.5.2.300'
+    implementation 'com.huawei.agconnect:agconnect-apms-game:1.5.2.303'
 
     //hms
     implementation 'com.huawei.hms:base:5.0.5.300'
     implementation 'com.huawei.hms:game:5.0.4.302'
     implementation 'com.huawei.hms:hwid:5.0.5.301'
 
-    implementation  'com.huawei.agconnect:agconnect-crash:1.4.1.300'
+    implementation  'com.huawei.agconnect:agconnect-crash:1.4.2.300'
     //auth
-    implementation 'com.huawei.agconnect:agconnect-core:1.4.1.300'
-    implementation 'com.huawei.agconnect:agconnect-auth:1.4.1.300'
+    implementation 'com.huawei.agconnect:agconnect-core:1.6.1.300'
+    implementation 'com.huawei.agconnect:agconnect-auth:1.6.1.300'
     //cloudfunction
     implementation "com.huawei.agconnect:agconnect-function:1.4.2.300"
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.5'

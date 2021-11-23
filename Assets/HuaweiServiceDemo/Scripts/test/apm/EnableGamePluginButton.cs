@@ -20,7 +20,8 @@ namespace ApmTest
 
         void switchStatus()
         {
-            m_test.switchGamePluginStatus(m_gamePluginStatus);
+            Text text = this.GetComponentInChildren<Text>();
+            m_test.switchGamePluginStatus(m_gamePluginStatus, text);
             m_gamePluginStatus = !m_gamePluginStatus;
         }
     }

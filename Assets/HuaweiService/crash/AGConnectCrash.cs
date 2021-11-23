@@ -21,9 +21,6 @@ namespace HuaweiService.crash
         public void setUserId(string arg0) {
             Call("setUserId", arg0);
         }
-        public void setCustomKey(string arg0, bool arg1) {
-            Call("setCustomKey", arg0, arg1);
-        }
         public void setCustomKey(string arg0, long arg1) {
             Call("setCustomKey", arg0, arg1);
         }
@@ -31,6 +28,9 @@ namespace HuaweiService.crash
             Call("setCustomKey", arg0, arg1);
         }
         public void setCustomKey(string arg0, string arg1) {
+            Call("setCustomKey", arg0, arg1);
+        }
+        public void setCustomKey(string arg0, bool arg1) {
             Call("setCustomKey", arg0, arg1);
         }
         public void setCustomKey(string arg0, double arg1) {
@@ -44,6 +44,9 @@ namespace HuaweiService.crash
         }
         public void log(string arg0) {
             Call("log", arg0);
+        }
+        public void recordException(Throwable arg0) {
+            Call("recordException", arg0);
         }
     }
 }

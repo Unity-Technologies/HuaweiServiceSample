@@ -17,7 +17,7 @@ namespace ApmTest
             gameApmTest_count++;
             text.text = "gameApmTest start, count: " + gameApmTest_count + "\n";
             
-            GameAttribute attribute = new GameAttribute("new scene", GameAttribute.LoadingState.NOT_LOADING);
+            GameAttribute attribute = new GameAttribute("newscene", GameAttribute.LoadingState.LOADING);
             text.text += "create new attribute success\n";
             
             APMS.getInstance().startGamePlugin();
@@ -32,7 +32,7 @@ namespace ApmTest
             APMS.getInstance().setCurrentGameAttribute(attribute);
             text.text +="setCurrentGameAttribute\n";
 
-            APMS.getInstance().setReportRate(1);
+            APMS.getInstance().setReportMinRate(1);
             text.text += "setReportRate\n";
 
             text.text += "gameApmTest success\n\n";
@@ -52,17 +52,19 @@ namespace ApmTest
             text.text += "stopLoadingSceneTest success\n";
         }
         
-        public void switchGamePluginStatus(bool status)
+        public void switchGamePluginStatus(bool status, Text text)
         {
             if (status == false)
             {
                 Debug.Log("switch enableCollection status from false -> true");
                 APMS.getInstance().enableGamePlugin(true);
+                text.text = "enableCollection status: true";
             }
             else if (status == true)
             {
                 Debug.Log("switch enableCollection status from true -> false");
                 APMS.getInstance().enableGamePlugin(false);
+                text.text = "enableCollection status: false";
             }
         }
         

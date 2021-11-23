@@ -10,7 +10,7 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.0'
-        classpath 'com.huawei.agconnect:agcp:1.4.1.300'
+        classpath 'com.huawei.agconnect:agcp:1.6.1.300'
         **BUILD_SCRIPT_DEPS**
     }
 }
@@ -36,8 +36,8 @@ dependencies {
     implementation project(':unityLibrary')
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.huawei.hms:hianalytics:5.1.0.300'
-    implementation 'com.huawei.agconnect:agconnect-crash:1.4.1.300'
-    implementation 'com.huawei.agconnect:agconnect-core:1.4.1.300'
+    implementation 'com.huawei.agconnect:agconnect-crash:1.4.2.300'
+    implementation 'com.huawei.agconnect:agconnect-core:1.6.1.300'
     implementation "com.huawei.agconnect:agconnect-function:1.4.2.300"
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.5'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.8.5'

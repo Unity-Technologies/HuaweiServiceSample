@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using System.Collections.Generic;
-using HuaweiService;
 
 namespace HuaweiService.Auth
 {
@@ -32,14 +30,14 @@ namespace HuaweiService.Auth
         public string getProviderId() {
             return Call<string>("getProviderId");
         }
-
-        public Task getToken(bool var1)
-        {
-            return Call<Task>("getToken", var1);
+        public Task getToken(bool arg0) {
+            return Call<Task>("getToken", arg0);
         }
-        
         public List getProviderInfo() {
             return Call<List>("getProviderInfo");
+        }
+        public Task link(Activity arg0, int arg1) {
+            return Call<Task>("link", arg0, arg1);
         }
         public Task link(AGConnectAuthCredential arg0) {
             return Call<Task>("link", arg0);
@@ -73,6 +71,9 @@ namespace HuaweiService.Auth
         }
         public Task getUserExtra() {
             return Call<Task>("getUserExtra");
+        }
+        public Task reauthenticate(AGConnectAuthCredential arg0) {
+            return Call<Task>("reauthenticate", arg0);
         }
     }
 }

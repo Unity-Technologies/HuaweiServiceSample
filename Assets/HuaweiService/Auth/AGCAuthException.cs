@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using HuaweiService;
 
 namespace HuaweiService.Auth
 {
@@ -16,6 +15,13 @@ namespace HuaweiService.Auth
         public const int ALREADY_SIGN_IN_USER = 5;
         public const int EMAIL_VERIFICATION_IS_EMPTY = 6;
         public const int PHONE_VERIFICATION_IS_EMPTY = 7;
+        public const int GET_ACCESS_TOKEN_ERROR = 8;
+        public const int USER_CANCEL = 100;
+        public const int AUTH_MODE_NOT_SUPPORTED = 101;
+        public const int GET_MAIN_ACTIVITY_ERROR = 102;
+        public const int INIT_GOOGLE_CLIENT_ERROR = 103;
+        public const int GOOGLE_ACCOUNT_IDTOKEN_ERROR = 104;
+        public const int FACEBOOK_ACCOUNT_TOKEN_ERROR = 105;
         public const int INVALID_EMAIL = 203817223;
         public const int INVALID_PHONE = 203817224;
         public const int GET_UID_ERROR = 203817728;
@@ -61,6 +67,7 @@ namespace HuaweiService.Auth
         public const int PASSWORD_IS_EMPTY = 203818068;
         public const int PASSWORD_TOO_LONG = 203818071;
         public const int SENSITIVE_OPERATION_TIMEOUT = 203818081;
+        public const int SENSITIVE_OPERATION_NEED_REAUTHENTICATE = 203818081;
         public const int ACCOUNT_HAVE_BEEN_REGISTERED = 203818082;
         public const int UPDATE_ACCOUNT_ERROR = 203818084;
         public const int USER_NOT_REGISTERED = 203818087;

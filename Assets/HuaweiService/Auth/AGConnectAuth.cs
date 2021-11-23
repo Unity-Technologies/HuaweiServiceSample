@@ -1,7 +1,5 @@
-using System;
 using UnityEngine;
 using System.Collections.Generic;
-using HuaweiService;
 
 namespace HuaweiService.Auth
 {
@@ -11,8 +9,14 @@ namespace HuaweiService.Auth
     public class AGConnectAuth :HmsClass<AGConnectAuth_Data>
     {
         public AGConnectAuth (): base() { }
+        public static AGConnectAuth getInstance(AGConnectInstance arg0) {
+            return CallStatic<AGConnectAuth>("getInstance", arg0);
+        }
         public static AGConnectAuth getInstance() {
             return CallStatic<AGConnectAuth>("getInstance");
+        }
+        public Task signIn(Activity arg0, int arg1) {
+            return Call<Task>("signIn", arg0, arg1);
         }
         public Task signIn(AGConnectAuthCredential arg0) {
             return Call<Task>("signIn", arg0);
@@ -20,8 +24,8 @@ namespace HuaweiService.Auth
         public Task signInAnonymously() {
             return Call<Task>("signInAnonymously");
         }
-        public void deleteUser() {
-            Call("deleteUser");
+        public Task deleteUser() {
+            return Call<Task>("deleteUser");
         }
         public void signOut() {
             Call("signOut");
@@ -41,15 +45,20 @@ namespace HuaweiService.Auth
         public Task createUser(PhoneUser arg0) {
             return Call<Task>("createUser", arg0);
         }
-
-        public Task resetPassword(string arg0, string arg1, string arg2)
-        {
+        public Task resetPassword(string arg0, string arg1, string arg2) {
             return Call<Task>("resetPassword", arg0, arg1, arg2);
         }
-
-        public Task resetPassword(string arg0, string arg1, string arg2, string arg3)
-        {
+        public Task resetPassword(string arg0, string arg1, string arg2, string arg3) {
             return Call<Task>("resetPassword", arg0, arg1, arg2, arg3);
+        }
+        public List getSupportedAuthList() {
+            return Call<List>("getSupportedAuthList");
+        }
+        public Task requestVerifyCode(string arg0, VerifyCodeSettings arg1) {
+            return Call<Task>("requestVerifyCode", arg0, arg1);
+        }
+        public Task requestVerifyCode(string arg0, string arg1, VerifyCodeSettings arg2) {
+            return Call<Task>("requestVerifyCode", arg0, arg1, arg2);
         }
     }
 }
