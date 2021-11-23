@@ -8,7 +8,6 @@ namespace HuaweiServiceDemo
     public class AdsTest:Test<AdsTest>
     {
         public override void RegisterEvent(TestEvent registerEvent){
-            registerEvent("test policy ",TestPolicy);
             registerEvent("load image ads " + Screen.width,LoadImageAds);
             registerEvent("load video ads " + Screen.height,LoadVideoAds);
             registerEvent("load reward ads",LoadRewardAds);
@@ -16,19 +15,6 @@ namespace HuaweiServiceDemo
             registerEvent("set consent non personal", ()=> SetConsentStatus(false));
             registerEvent("consent",checkConsentStatus);
             registerEvent("set RequestOptions NonPersonalizedAd",setRequestOptionsNonPersonalizedAd);
-        }
-
-        public void TestPolicy()
-        {
-            var instance = AGConnectInstance.getInstance();
-            TestTip.Inst.ShowText($"instance");
-            var option = instance.getOptions();
-            TestTip.Inst.ShowText($"option");
-            var policy = option.getRoutePolicy();
-            TestTip.Inst.ShowText($"policy {policy.getRouteName()}");
-
-            TestTip.Inst.ShowText($"{AGCRoutePolicy.CHINA.getRouteName()}");
-            TestTip.Inst.ShowText($"{AGCRoutePolicy.RUSSIA.getRouteName()}");
         }
 
         public void LoadImageAds()
