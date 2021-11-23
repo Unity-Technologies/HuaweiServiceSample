@@ -18,5 +18,18 @@ namespace HuaweiService.credential
         public void setAccessNetwork(bool arg0) {
             Call("setAccessNetwork", arg0);
         }
+    
+        public class AccessNetworkCallbackData : IHmsBaseListener
+        {
+            public string name => "com.huawei.agconnect.common.network.AccessNetworkManager$AccessNetworkCallback";
+            public string buildName => "";
+        }
+        public class AccessNetworkCallback : HmsListener<AccessNetworkCallbackData>
+        {
+        
+            public virtual void onNetWorkReady() {
+                Call("onNetWorkReady");
+            }
+        }
     }
 }
