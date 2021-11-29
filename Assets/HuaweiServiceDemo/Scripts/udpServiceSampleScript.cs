@@ -783,25 +783,6 @@ public class udpServiceSampleScript : MonoBehaviour
         },
     };
 
-    private readonly List<string> floatFunctionNames = new List<string>()
-    {
-        "ShowFloatWindow", "HideFloatWindow"
-    };
-
-    private readonly List<Action> floatFunctions = new List<Action>()
-    {
-        () =>
-        {
-            Show("start ShowFloatWindow.");
-            HuaweiGameService.ShowFloatWindow();
-        },
-        () =>
-        {
-            Show("start HideFloatWindow.");
-            HuaweiGameService.HideFloatWindow();
-        },
-    };
-
     // Use this for initialization
     void Start()
     {
@@ -865,7 +846,6 @@ public class udpServiceSampleScript : MonoBehaviour
         gameSave_button.onClick.AddListener(onGameSaveBtnClick);
         player_button.onClick.AddListener(onPlayerBtnClick);
         anti_addiction_button.onClick.AddListener(onAntiAddictionBtnClick);
-        float_button.onClick.AddListener(onFloatBtnClick);
     }
 
     private void onAccountBtnClick()
@@ -1037,21 +1017,17 @@ public class udpServiceSampleScript : MonoBehaviour
         } 
     }
 
-    private void onFloatBtnClick()
+    private void OnApplicationPause(bool pause)
     {
-        clearSubActionPanel();
-        for (int i = 0; i < floatFunctionNames.Count; i++)
+        if (pause)
         {
-            var name = floatFunctionNames[i];
-            var handler = floatFunctions[i];
-            GameObject goButton = (GameObject) Instantiate(prefabButton);
-            goButton.transform.SetParent(subaction_panel, false);
-
-            Button tempButton = goButton.GetComponent<Button>();
-            tempButton.GetComponentInChildren<Text>().text = name;
-            tempButton.name = name;
-            tempButton.onClick.AddListener(() => handler());
-            tempButton.gameObject.SetActive(true);
+            Show("start ShowFloatWindow.");
+            HuaweiGameService.ShowFloatWindow();
+        }
+        else
+        {
+            Show("start HideFloatWindow.");
+            HuaweiGameService.HideFloatWindow();
         }
     }
 
