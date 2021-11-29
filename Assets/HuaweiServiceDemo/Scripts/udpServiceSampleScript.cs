@@ -74,7 +74,6 @@ public class udpServiceSampleScript : MonoBehaviour
     private static Button gameSave_button;
     private static Button player_button;
     private static Button anti_addiction_button;
-    private static Button float_button;
     private static Transform subaction_panel;
 
     public GameObject prefabButton;
@@ -818,7 +817,6 @@ public class udpServiceSampleScript : MonoBehaviour
         gameSave_button = GameObject.Find("GameSave").GetComponent<Button>();
         player_button = GameObject.Find("Player").GetComponent<Button>();
         anti_addiction_button = GameObject.Find("AntiAddictionBtn").GetComponent<Button>();
-        float_button = GameObject.Find("Float").GetComponent<Button>();
 
         clearSubActionPanel();
     }
