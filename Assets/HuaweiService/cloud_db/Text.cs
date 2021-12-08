@@ -16,11 +16,14 @@ namespace HuaweiService.CloudDB
         public void set(string arg0) {
             Call("set", arg0);
         }
+        public bool equals(AndroidJavaObject arg0) {
+            return Call<bool>("equals", arg0);
+        }
         public int hashCode() {
             return Call<int>("hashCode");
         }
-        public bool equals(Text arg0) {
-            return Call<bool>("equals", arg0);
+        public string toString() {
+            return Call<string>("toString");
         }
     }
 }
