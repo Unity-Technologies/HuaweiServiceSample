@@ -52,20 +52,34 @@ namespace HuaweiService.CloudDB
             Call("disableNetwork", arg0);
         }
     
-        public class EventListener_Data : IHmsBaseClass{
-            public string name => "com.huawei.agconnect.cloud.database.AGConnectCloudDB$EventListener";
-        }
-        public class EventListener :HmsClass<EventListener_Data>
+        public class EventListenerData : IHmsBaseListener
         {
-            public EventListener (): base() { }
+            public string name => "com.huawei.agconnect.cloud.database.AGConnectCloudDB$EventListener";
+            public string buildName => "";
+        }
+        public class EventListener : HmsListener<EventListenerData>
+        {
+        
+            public virtual void onEvent(EventType arg0) {
+                Call("onEvent", arg0);
+            }
+        
+            public void onEvent(AndroidJavaObject arg0){
+                onEvent(HmsUtil.GetHmsBase<EventType>(arg0));
+            }
         }
     
-        public class OnDataEncryptionKeyChangeListener_Data : IHmsBaseClass{
-            public string name => "com.huawei.agconnect.cloud.database.AGConnectCloudDB$OnDataEncryptionKeyChangeListener";
-        }
-        public class OnDataEncryptionKeyChangeListener :HmsClass<OnDataEncryptionKeyChangeListener_Data>
+        public class OnDataEncryptionKeyChangeListenerData : IHmsBaseListener
         {
-            public OnDataEncryptionKeyChangeListener (): base() { }
+            public string name => "com.huawei.agconnect.cloud.database.AGConnectCloudDB$OnDataEncryptionKeyChangeListener";
+            public string buildName => "";
+        }
+        public class OnDataEncryptionKeyChangeListener : HmsListener<OnDataEncryptionKeyChangeListenerData>
+        {
+        
+            public virtual bool needFetchDataEncryptionKey() {
+                return Call<bool>("needFetchDataEncryptionKey");
+            }
         }
     
         public class EventType_Data : IHmsBaseClass{

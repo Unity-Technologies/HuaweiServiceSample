@@ -8,22 +8,20 @@ namespace HuaweiService.CloudDB
     }
     public class CloudDBZone :HmsClass<CloudDBZone_Data>
     {
-        public const int MAX_OBJECT_LIST_SIZE = 1000;
-        public const int MAX_OBJECT_LIST_CAPACITY = 2097152;
         public CloudDBZone (): base() { }
         public CloudDBZoneConfig getCloudDBZoneConfig() {
             return Call<CloudDBZoneConfig>("getCloudDBZoneConfig");
         }
-        public Task executeUpsert(List arg0) {
+        public Task executeUpsert(CloudDBZoneObject arg0) {
             return Call<Task>("executeUpsert", arg0);
         }
-        public Task executeUpsert(IDatabaseModel arg0) {
+        public Task executeUpsert(List arg0) {
             return Call<Task>("executeUpsert", arg0);
         }
         public Task executeDelete(List arg0) {
             return Call<Task>("executeDelete", arg0);
-        } 
-        public Task executeDelete(IDatabaseModel arg0) {
+        }
+        public Task executeDelete(CloudDBZoneObject arg0) {
             return Call<Task>("executeDelete", arg0);
         }
         public Task executeQuery(CloudDBZoneQuery arg0, CloudDBZoneQuery.CloudDBZoneQueryPolicy arg1) {
@@ -39,7 +37,7 @@ namespace HuaweiService.CloudDB
             return Call<Task>("runTransaction", arg0);
         }
         public ListenerHandler subscribeSnapshot(CloudDBZoneQuery arg0, CloudDBZoneQuery.CloudDBZoneQueryPolicy arg1, OnSnapshotListener arg2) {
-            return Call<ListenerHandler>("subscribeSnapshot", arg0, arg1, new DBListener(arg2));
+            return Call<ListenerHandler>("subscribeSnapshot", arg0, arg1, arg2);
         }
     }
 }

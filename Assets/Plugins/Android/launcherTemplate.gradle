@@ -26,6 +26,7 @@ dependencies {
     implementation 'com.huawei.hms:base:5.0.5.300'
     implementation 'com.huawei.hms:game:5.0.4.302'
     implementation 'com.huawei.hms:hwid:5.0.5.301'
+    implementation 'com.huawei.agconnect:agconnect-cloud-database:1.4.10.300'
     }
 
 android {

@@ -14,7 +14,7 @@ namespace HuaweiServiceDemo {
         private ListenerHandler mRegister;
 
         private CloudDBZoneConfig mConfig;
-        private CloudDBZoneQuery mQuery;
+        private static CloudDBZoneQuery mQuery;
         private static bool captureSnapshot;
         private static CloudDBZoneObjectList<BookInfo> mObjectList = new CloudDBZoneObjectList<BookInfo> ();
 
@@ -182,7 +182,7 @@ namespace HuaweiServiceDemo {
             }
             var bookInfo = new BookInfo { Id = 4 };
 
-            Task task = mCloudDBZone.executeUpsert (bookInfo);
+            Task task = mCloudDBZone.executeUpsert (bookInfo.toType<CloudDBZoneObject>());
             task.addOnSuccessListener (new HmsSuccessListener<int> ((cloudDBZoneResult) => {
                 TestTip.Inst.ShowText ("upsert " + cloudDBZoneResult + " records");
             })).addOnFailureListener (new HmsFailureListener ((exception) => {
@@ -214,7 +214,7 @@ namespace HuaweiServiceDemo {
                 mObjectList = snapshot.getSnapshotObjects ();
 
                 BookInfo bookInfo = mObjectList.get (3);
-                Task deleteTask = mCloudDBZone.executeDelete (bookInfo);
+                Task deleteTask = mCloudDBZone.executeDelete (bookInfo.toType<CloudDBZoneObject>());
                 deleteTask.addOnSuccessListener (new HmsSuccessListener<int> ((cloudDBZoneResult) => {
                     TestTip.Inst.ShowText ("delete " + cloudDBZoneResult + " records");
                 })).addOnFailureListener (new HmsFailureListener ((exception) => {
@@ -380,9 +380,11 @@ namespace HuaweiServiceDemo {
                 TestTip.Inst.ShowText ("Snapshot getUpsertedObjects: " + snapshot.getUpsertedObjects ().size ());
             }
         }
-
-        public void testTransaction () {
-            Transaction.Function f = new Transaction.Function ((t) => {
+        
+        public class CustomFunction: Transaction.Function
+        {
+            public override bool apply(Transaction t)
+            {
                 try {
                     mQuery = CloudDBZoneQuery.where (new AndroidJavaClass (bookInfoClass)).equalTo ("bookName", "testTransaction");
                     var queryList = t.executeQuery (mQuery);
@@ -396,7 +398,12 @@ namespace HuaweiServiceDemo {
                     return false;
                 }
                 return true;
-            });
+            }
+        }
+
+        public void testTransaction ()
+        {
+            Transaction.Function f = new CustomFunction();
             TestTip.Inst.ShowText ("Run Transaction.");
             mCloudDBZone.runTransaction (f);
         }
