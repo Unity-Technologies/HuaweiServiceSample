@@ -1030,6 +1030,20 @@ public class udpServiceSampleScript : MonoBehaviour
             GameObject.Destroy(child.gameObject);
         }
     }
+    
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            Show("start ShowFloatWindow.");
+            HuaweiGameService.ShowFloatWindow();
+        }
+        else
+        {
+            Show("start HideFloatWindow.");
+            HuaweiGameService.HideFloatWindow();
+        }
+    }
 
     public class MyInitListener : IInitListener
     {
