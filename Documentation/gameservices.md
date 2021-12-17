@@ -37,6 +37,7 @@ Add the following configuration files into `Assets/Plugins/Android`.
         buildscript {
             repositories {**ARTIFACTORYREPOSITORY**
                 google()
+                mavenCentral()
                 jcenter()
                 maven { url 'https://developer.huawei.com/repo/' }
             }
@@ -46,14 +47,15 @@ Add the following configuration files into `Assets/Plugins/Android`.
                 // See which Gradle version is preinstalled with Unity here https://docs.unity3d.com/Manual/android-gradle-overview.html
                 // See official Gradle and Android Gradle Plugin compatibility table here https://developer.android.com/studio/releases/gradle-plugin#updating-gradle
                 // To specify a custom Gradle version in Unity, go do "Preferences > External Tools", uncheck "Gradle Installed with Unity (recommended)" and specify a path to a custom Gradle version
-                classpath 'com.android.tools.build:gradle:3.4.0'
-                classpath 'com.huawei.agconnect:agcp:1.4.2.300'
+                classpath 'com.android.tools.build:gradle:3.6.4'
+                classpath 'com.huawei.agconnect:agcp:1.6.2.300'
                 **BUILD_SCRIPT_DEPS**
             }
         }
     
         repositories {**ARTIFACTORYREPOSITORY**
             google()
+            mavenCentral()
             jcenter()
             flatDir {
                 dirs "${project(':unityLibrary').projectDir}/libs"
@@ -70,10 +72,10 @@ Add the following configuration files into `Assets/Plugins/Android`.
    ```
     dependencies {
         ...
-        implementation 'com.huawei.agconnect:agconnect-core:1.4.2.300'
-        implementation 'com.huawei.hms:base:5.0.5.300'
-        implementation 'com.huawei.hms:hwid:5.0.5.301'
-        implementation 'com.huawei.hms:game:5.0.4.302'
+        implementation 'com.huawei.agconnect:agconnect-core:1.6.2.300'
+        implementation 'com.huawei.hms:base:6.2.0.300'
+        implementation 'com.huawei.hms:hwid:6.1.0.303'
+        implementation 'com.huawei.hms:game:6.1.0.301'
         ...
         }
    ```
@@ -85,10 +87,10 @@ Add the following configuration files into `Assets/Plugins/Android`.
    ```
     dependencies {
         ...
-        implementation 'com.huawei.agconnect:agconnect-core:1.4.2.300'
-        implementation 'com.huawei.hms:base:5.0.5.300'
-        implementation 'com.huawei.hms:hwid:5.0.5.301'
-        implementation 'com.huawei.hms:game:5.0.4.302'
+        implementation 'com.huawei.agconnect:agconnect-core:1.6.2.300'
+        implementation 'com.huawei.hms:base:6.2.0.300'
+        implementation 'com.huawei.hms:hwid:6.1.0.303'
+        implementation 'com.huawei.hms:game:6.1.0.301'
         ...
     **DEPS**}
    ```
@@ -97,15 +99,15 @@ Add the following configuration files into `Assets/Plugins/Android`.
 
 #### 3.1 Huawei API reference 
 
-> https://developer.huawei.com/consumer/en/doc/development/HMSCore-References-V5/jos-games-0000001050121646-V5
+> https://developer.huawei.com/consumer/en/doc/development/HMSCore-References/jos-games-0000001050121646
 
 #### 3.2 Huawei API integration guide
 
-> https://developer.huawei.com/consumer/en/doc/HMSCore-Guides-V5/dev-process-0000001050193900-V5
+> https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/introduction-0000001050121216
 
 ### 4. These following APIs connection should be well configurated first in Huawei before you use them
 
-> https://developer.huawei.com/consumer/en/doc/HMSCore-Guides-V5/config-agc-0000001050166285-V5#ZH-CN_TOPIC_0000001054452903__section122826183710
+> https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/config-agc-0000001050166285
 
 4.1 Achievement成就
 
@@ -145,6 +147,13 @@ Before using the sample code, read the integration part of the document carefull
 
 ## Change Log For Reference
 
+#### 2021-12-13
+
+- New: Add `Init(IAntiAddictionListener listener, IInitListener initListener)` to initialize the APP.
+**NOTICE**
+In GameService 6.1.0.301 and later versions, the [appParams](https://developer.huawei.com/consumer/en/doc/development/HMSCore-References/appparams-0000001189294793`) parameter is required, please use `AccountAuthParamsHelper` to create an instance, otherwise, the default `AccountAuthParams.DEFAULT_AUTH_REQUEST_PARAM_GAME` will be used.
+
+- New: **remove** `Init()`, please use `Init(IAntiAddictionListener listener, IInitListener initListener)`.
 ### 2020-12-24
 
 - New: Add `GetGamePlayer`,`GetGamePlayer(bool isRequirePlayerId)` to obtain the object of the current player.
