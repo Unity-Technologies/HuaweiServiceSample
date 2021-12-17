@@ -8,7 +8,7 @@ namespace HuaweiService.CloudDB
     }
     public class CloudDBZoneConfig :HmsClass<CloudDBZoneConfig_Data>
     {
-        public CloudDBZoneConfig (string arg0, CloudDBZoneSyncProperty arg1, CloudDBZoneAccessProperty arg2): base(arg0, arg1, arg2) { }
+        public CloudDBZoneConfig (string cloudDBZoneNameSource, CloudDBZoneSyncProperty syncPropertySource, CloudDBZoneAccessProperty accessPropertySource): base(cloudDBZoneNameSource, syncPropertySource, accessPropertySource) { }
         public CloudDBZoneConfig (): base() { }
         public string getCloudDBZoneName() {
             return Call<string>("getCloudDBZoneName");
@@ -22,17 +22,17 @@ namespace HuaweiService.CloudDB
         public bool isEncrypted() {
             return Call<bool>("isEncrypted");
         }
-        public void setEncryptedKey(string arg0, string arg1) {
-            Call("setEncryptedKey", arg0, arg1);
+        public void setEncryptedKey(string key, string rekey) {
+            Call("setEncryptedKey", key, rekey);
         }
-        public void setPersistenceEnabled(bool arg0) {
-            Call("setPersistenceEnabled", arg0);
+        public void setPersistenceEnabled(bool isPerEnable) {
+            Call("setPersistenceEnabled", isPerEnable);
         }
         public bool getPersistenceEnabled() {
             return Call<bool>("getPersistenceEnabled");
         }
-        public void setCapacity(long arg0) {
-            Call("setCapacity", arg0);
+        public void setCapacity(long capacity) {
+            Call("setCapacity", capacity);
         }
         public long getCapacity() {
             return Call<long>("getCapacity");

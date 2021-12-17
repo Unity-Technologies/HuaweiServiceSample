@@ -9,14 +9,14 @@ namespace HuaweiService.CloudDB
     public class Transaction :HmsClass<Transaction_Data>
     {
         public Transaction (): base() { }
-        public List executeQuery(CloudDBZoneQuery arg0) {
-            return Call<List>("executeQuery", arg0);
+        public List executeQuery(CloudDBZoneQuery cloudDBZoneQuery) {
+            return Call<List>("executeQuery", cloudDBZoneQuery);
         }
-        public Transaction executeUpsert(List arg0) {
-            return Call<Transaction>("executeUpsert", arg0);
+        public Transaction executeUpsert(List objectList) {
+            return Call<Transaction>("executeUpsert", objectList);
         }
-        public Transaction executeDelete(List arg0) {
-            return Call<Transaction>("executeDelete", arg0);
+        public Transaction executeDelete(List objectList) {
+            return Call<Transaction>("executeDelete", objectList);
         }
     
         public class FunctionData : IHmsBaseListener
@@ -27,12 +27,12 @@ namespace HuaweiService.CloudDB
         public class Function : HmsListener<FunctionData>
         {
         
-            public virtual bool apply(Transaction arg0) {
-                return Call<bool>("apply", arg0);
+            public virtual bool apply(Transaction transaction) {
+                return Call<bool>("apply", transaction);
             }
         
-            public bool apply(AndroidJavaObject arg0){
-                return apply(HmsUtil.GetHmsBase<Transaction>(arg0));
+            public bool apply(AndroidJavaObject transaction){
+                return apply(HmsUtil.GetHmsBase<Transaction>(transaction));
             }
         }
     }

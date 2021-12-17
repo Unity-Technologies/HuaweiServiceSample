@@ -12,8 +12,8 @@ namespace HuaweiService.CloudDB
         public int size() {
             return Call<int>("size");
         }
-        public CloudDBZoneObject get(int arg0) {
-            return Call<CloudDBZoneObject>("get", arg0);
+        public CloudDBZoneObject get(int index) {
+            return Call<CloudDBZoneObject>("get", index);
         }
         public CloudDBZoneObject next() {
             return Call<CloudDBZoneObject>("next");

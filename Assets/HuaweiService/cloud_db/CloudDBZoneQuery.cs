@@ -9,251 +9,251 @@ namespace HuaweiService.CloudDB
     public class CloudDBZoneQuery :HmsClass<CloudDBZoneQuery_Data>
     {
         public CloudDBZoneQuery (): base() { }
-        public static CloudDBZoneQuery where(AndroidJavaClass arg0) {
-            return CallStatic<CloudDBZoneQuery>("where", arg0);
+        public static CloudDBZoneQuery where(AndroidJavaClass entityClass) {
+            return CallStatic<CloudDBZoneQuery>("where", entityClass);
         }
-        public CloudDBZoneQuery equalTo(string arg0, Text arg1) {
-            return Call<CloudDBZoneQuery>("equalTo", arg0, arg1);
+        public CloudDBZoneQuery equalTo(string fieldName, double value) {
+            return Call<CloudDBZoneQuery>("equalTo", fieldName, value);
         }
-        public CloudDBZoneQuery equalTo(string arg0, int arg1) {
-            return Call<CloudDBZoneQuery>("equalTo", arg0, arg1);
+        public CloudDBZoneQuery equalTo(string fieldName, Text value) {
+            return Call<CloudDBZoneQuery>("equalTo", fieldName, value);
         }
-        public CloudDBZoneQuery equalTo(string arg0, long arg1) {
-            return Call<CloudDBZoneQuery>("equalTo", arg0, arg1);
+        public CloudDBZoneQuery equalTo(string fieldName, long value) {
+            return Call<CloudDBZoneQuery>("equalTo", fieldName, value);
         }
-        public CloudDBZoneQuery equalTo(string arg0, double arg1) {
-            return Call<CloudDBZoneQuery>("equalTo", arg0, arg1);
+        public CloudDBZoneQuery equalTo(string fieldName, Date value) {
+            return Call<CloudDBZoneQuery>("equalTo", fieldName, value);
         }
-        public CloudDBZoneQuery equalTo(string arg0, float arg1) {
-            return Call<CloudDBZoneQuery>("equalTo", arg0, arg1);
+        public CloudDBZoneQuery equalTo(string fieldName, float value) {
+            return Call<CloudDBZoneQuery>("equalTo", fieldName, value);
         }
-        public CloudDBZoneQuery equalTo(string arg0, string arg1) {
-            return Call<CloudDBZoneQuery>("equalTo", arg0, arg1);
+        public CloudDBZoneQuery equalTo(string fieldName, string value) {
+            return Call<CloudDBZoneQuery>("equalTo", fieldName, value);
         }
-        public CloudDBZoneQuery equalTo(string arg0, Date arg1) {
-            return Call<CloudDBZoneQuery>("equalTo", arg0, arg1);
+        public CloudDBZoneQuery equalTo(string fieldName, int value) {
+            return Call<CloudDBZoneQuery>("equalTo", fieldName, value);
         }
-        public CloudDBZoneQuery equalTo(string arg0, bool arg1) {
-            return Call<CloudDBZoneQuery>("equalTo", arg0, arg1);
+        public CloudDBZoneQuery equalTo(string fieldName, bool value) {
+            return Call<CloudDBZoneQuery>("equalTo", fieldName, value);
         }
-        public CloudDBZoneQuery equalTo(string arg0, byte arg1) {
-            return Call<CloudDBZoneQuery>("equalTo", arg0, arg1);
+        public CloudDBZoneQuery equalTo(string fieldName, byte value) {
+            return Call<CloudDBZoneQuery>("equalTo", fieldName, value);
         }
-        public CloudDBZoneQuery equalTo(string arg0, short arg1) {
-            return Call<CloudDBZoneQuery>("equalTo", arg0, arg1);
+        public CloudDBZoneQuery equalTo(string fieldName, short value) {
+            return Call<CloudDBZoneQuery>("equalTo", fieldName, value);
         }
-        public CloudDBZoneQuery notEqualTo(string arg0, int arg1) {
-            return Call<CloudDBZoneQuery>("notEqualTo", arg0, arg1);
+        public CloudDBZoneQuery notEqualTo(string fieldName, float value) {
+            return Call<CloudDBZoneQuery>("notEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery notEqualTo(string arg0, short arg1) {
-            return Call<CloudDBZoneQuery>("notEqualTo", arg0, arg1);
+        public CloudDBZoneQuery notEqualTo(string fieldName, string value) {
+            return Call<CloudDBZoneQuery>("notEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery notEqualTo(string arg0, long arg1) {
-            return Call<CloudDBZoneQuery>("notEqualTo", arg0, arg1);
+        public CloudDBZoneQuery notEqualTo(string fieldName, Date value) {
+            return Call<CloudDBZoneQuery>("notEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery notEqualTo(string arg0, byte arg1) {
-            return Call<CloudDBZoneQuery>("notEqualTo", arg0, arg1);
+        public CloudDBZoneQuery notEqualTo(string fieldName, Text value) {
+            return Call<CloudDBZoneQuery>("notEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery notEqualTo(string arg0, bool arg1) {
-            return Call<CloudDBZoneQuery>("notEqualTo", arg0, arg1);
+        public CloudDBZoneQuery notEqualTo(string fieldName, bool value) {
+            return Call<CloudDBZoneQuery>("notEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery notEqualTo(string arg0, Text arg1) {
-            return Call<CloudDBZoneQuery>("notEqualTo", arg0, arg1);
+        public CloudDBZoneQuery notEqualTo(string fieldName, byte value) {
+            return Call<CloudDBZoneQuery>("notEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery notEqualTo(string arg0, Date arg1) {
-            return Call<CloudDBZoneQuery>("notEqualTo", arg0, arg1);
+        public CloudDBZoneQuery notEqualTo(string fieldName, short value) {
+            return Call<CloudDBZoneQuery>("notEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery notEqualTo(string arg0, string arg1) {
-            return Call<CloudDBZoneQuery>("notEqualTo", arg0, arg1);
+        public CloudDBZoneQuery notEqualTo(string fieldName, int value) {
+            return Call<CloudDBZoneQuery>("notEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery notEqualTo(string arg0, float arg1) {
-            return Call<CloudDBZoneQuery>("notEqualTo", arg0, arg1);
+        public CloudDBZoneQuery notEqualTo(string fieldName, long value) {
+            return Call<CloudDBZoneQuery>("notEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery notEqualTo(string arg0, double arg1) {
-            return Call<CloudDBZoneQuery>("notEqualTo", arg0, arg1);
+        public CloudDBZoneQuery notEqualTo(string fieldName, double value) {
+            return Call<CloudDBZoneQuery>("notEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery greaterThan(string arg0, long arg1) {
-            return Call<CloudDBZoneQuery>("greaterThan", arg0, arg1);
+        public CloudDBZoneQuery greaterThan(string fieldName, Date value) {
+            return Call<CloudDBZoneQuery>("greaterThan", fieldName, value);
         }
-        public CloudDBZoneQuery greaterThan(string arg0, double arg1) {
-            return Call<CloudDBZoneQuery>("greaterThan", arg0, arg1);
+        public CloudDBZoneQuery greaterThan(string fieldName, Text value) {
+            return Call<CloudDBZoneQuery>("greaterThan", fieldName, value);
         }
-        public CloudDBZoneQuery greaterThan(string arg0, string arg1) {
-            return Call<CloudDBZoneQuery>("greaterThan", arg0, arg1);
+        public CloudDBZoneQuery greaterThan(string fieldName, short value) {
+            return Call<CloudDBZoneQuery>("greaterThan", fieldName, value);
         }
-        public CloudDBZoneQuery greaterThan(string arg0, Text arg1) {
-            return Call<CloudDBZoneQuery>("greaterThan", arg0, arg1);
+        public CloudDBZoneQuery greaterThan(string fieldName, float value) {
+            return Call<CloudDBZoneQuery>("greaterThan", fieldName, value);
         }
-        public CloudDBZoneQuery greaterThan(string arg0, Date arg1) {
-            return Call<CloudDBZoneQuery>("greaterThan", arg0, arg1);
+        public CloudDBZoneQuery greaterThan(string fieldName, byte value) {
+            return Call<CloudDBZoneQuery>("greaterThan", fieldName, value);
         }
-        public CloudDBZoneQuery greaterThan(string arg0, float arg1) {
-            return Call<CloudDBZoneQuery>("greaterThan", arg0, arg1);
+        public CloudDBZoneQuery greaterThan(string fieldName, int value) {
+            return Call<CloudDBZoneQuery>("greaterThan", fieldName, value);
         }
-        public CloudDBZoneQuery greaterThan(string arg0, byte arg1) {
-            return Call<CloudDBZoneQuery>("greaterThan", arg0, arg1);
+        public CloudDBZoneQuery greaterThan(string fieldName, long value) {
+            return Call<CloudDBZoneQuery>("greaterThan", fieldName, value);
         }
-        public CloudDBZoneQuery greaterThan(string arg0, short arg1) {
-            return Call<CloudDBZoneQuery>("greaterThan", arg0, arg1);
+        public CloudDBZoneQuery greaterThan(string fieldName, double value) {
+            return Call<CloudDBZoneQuery>("greaterThan", fieldName, value);
         }
-        public CloudDBZoneQuery greaterThan(string arg0, int arg1) {
-            return Call<CloudDBZoneQuery>("greaterThan", arg0, arg1);
+        public CloudDBZoneQuery greaterThan(string fieldName, string value) {
+            return Call<CloudDBZoneQuery>("greaterThan", fieldName, value);
         }
-        public CloudDBZoneQuery greaterThanOrEqualTo(string arg0, double arg1) {
-            return Call<CloudDBZoneQuery>("greaterThanOrEqualTo", arg0, arg1);
+        public CloudDBZoneQuery greaterThanOrEqualTo(string fieldName, long value) {
+            return Call<CloudDBZoneQuery>("greaterThanOrEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery greaterThanOrEqualTo(string arg0, long arg1) {
-            return Call<CloudDBZoneQuery>("greaterThanOrEqualTo", arg0, arg1);
+        public CloudDBZoneQuery greaterThanOrEqualTo(string fieldName, float value) {
+            return Call<CloudDBZoneQuery>("greaterThanOrEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery greaterThanOrEqualTo(string arg0, int arg1) {
-            return Call<CloudDBZoneQuery>("greaterThanOrEqualTo", arg0, arg1);
+        public CloudDBZoneQuery greaterThanOrEqualTo(string fieldName, double value) {
+            return Call<CloudDBZoneQuery>("greaterThanOrEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery greaterThanOrEqualTo(string arg0, short arg1) {
-            return Call<CloudDBZoneQuery>("greaterThanOrEqualTo", arg0, arg1);
+        public CloudDBZoneQuery greaterThanOrEqualTo(string fieldName, byte value) {
+            return Call<CloudDBZoneQuery>("greaterThanOrEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery greaterThanOrEqualTo(string arg0, byte arg1) {
-            return Call<CloudDBZoneQuery>("greaterThanOrEqualTo", arg0, arg1);
+        public CloudDBZoneQuery greaterThanOrEqualTo(string fieldName, int value) {
+            return Call<CloudDBZoneQuery>("greaterThanOrEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery greaterThanOrEqualTo(string arg0, Text arg1) {
-            return Call<CloudDBZoneQuery>("greaterThanOrEqualTo", arg0, arg1);
+        public CloudDBZoneQuery greaterThanOrEqualTo(string fieldName, short value) {
+            return Call<CloudDBZoneQuery>("greaterThanOrEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery greaterThanOrEqualTo(string arg0, Date arg1) {
-            return Call<CloudDBZoneQuery>("greaterThanOrEqualTo", arg0, arg1);
+        public CloudDBZoneQuery greaterThanOrEqualTo(string fieldName, string value) {
+            return Call<CloudDBZoneQuery>("greaterThanOrEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery greaterThanOrEqualTo(string arg0, string arg1) {
-            return Call<CloudDBZoneQuery>("greaterThanOrEqualTo", arg0, arg1);
+        public CloudDBZoneQuery greaterThanOrEqualTo(string fieldName, Text value) {
+            return Call<CloudDBZoneQuery>("greaterThanOrEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery greaterThanOrEqualTo(string arg0, float arg1) {
-            return Call<CloudDBZoneQuery>("greaterThanOrEqualTo", arg0, arg1);
+        public CloudDBZoneQuery greaterThanOrEqualTo(string fieldName, Date value) {
+            return Call<CloudDBZoneQuery>("greaterThanOrEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery lessThan(string arg0, double arg1) {
-            return Call<CloudDBZoneQuery>("lessThan", arg0, arg1);
+        public CloudDBZoneQuery lessThan(string fieldName, string value) {
+            return Call<CloudDBZoneQuery>("lessThan", fieldName, value);
         }
-        public CloudDBZoneQuery lessThan(string arg0, Date arg1) {
-            return Call<CloudDBZoneQuery>("lessThan", arg0, arg1);
+        public CloudDBZoneQuery lessThan(string fieldName, Date value) {
+            return Call<CloudDBZoneQuery>("lessThan", fieldName, value);
         }
-        public CloudDBZoneQuery lessThan(string arg0, float arg1) {
-            return Call<CloudDBZoneQuery>("lessThan", arg0, arg1);
+        public CloudDBZoneQuery lessThan(string fieldName, Text value) {
+            return Call<CloudDBZoneQuery>("lessThan", fieldName, value);
         }
-        public CloudDBZoneQuery lessThan(string arg0, string arg1) {
-            return Call<CloudDBZoneQuery>("lessThan", arg0, arg1);
+        public CloudDBZoneQuery lessThan(string fieldName, byte value) {
+            return Call<CloudDBZoneQuery>("lessThan", fieldName, value);
         }
-        public CloudDBZoneQuery lessThan(string arg0, Text arg1) {
-            return Call<CloudDBZoneQuery>("lessThan", arg0, arg1);
+        public CloudDBZoneQuery lessThan(string fieldName, double value) {
+            return Call<CloudDBZoneQuery>("lessThan", fieldName, value);
         }
-        public CloudDBZoneQuery lessThan(string arg0, int arg1) {
-            return Call<CloudDBZoneQuery>("lessThan", arg0, arg1);
+        public CloudDBZoneQuery lessThan(string fieldName, int value) {
+            return Call<CloudDBZoneQuery>("lessThan", fieldName, value);
         }
-        public CloudDBZoneQuery lessThan(string arg0, byte arg1) {
-            return Call<CloudDBZoneQuery>("lessThan", arg0, arg1);
+        public CloudDBZoneQuery lessThan(string fieldName, long value) {
+            return Call<CloudDBZoneQuery>("lessThan", fieldName, value);
         }
-        public CloudDBZoneQuery lessThan(string arg0, short arg1) {
-            return Call<CloudDBZoneQuery>("lessThan", arg0, arg1);
+        public CloudDBZoneQuery lessThan(string fieldName, short value) {
+            return Call<CloudDBZoneQuery>("lessThan", fieldName, value);
         }
-        public CloudDBZoneQuery lessThan(string arg0, long arg1) {
-            return Call<CloudDBZoneQuery>("lessThan", arg0, arg1);
+        public CloudDBZoneQuery lessThan(string fieldName, float value) {
+            return Call<CloudDBZoneQuery>("lessThan", fieldName, value);
         }
-        public CloudDBZoneQuery lessThanOrEqualTo(string arg0, float arg1) {
-            return Call<CloudDBZoneQuery>("lessThanOrEqualTo", arg0, arg1);
+        public CloudDBZoneQuery lessThanOrEqualTo(string fieldName, float value) {
+            return Call<CloudDBZoneQuery>("lessThanOrEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery lessThanOrEqualTo(string arg0, string arg1) {
-            return Call<CloudDBZoneQuery>("lessThanOrEqualTo", arg0, arg1);
+        public CloudDBZoneQuery lessThanOrEqualTo(string fieldName, string value) {
+            return Call<CloudDBZoneQuery>("lessThanOrEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery lessThanOrEqualTo(string arg0, Date arg1) {
-            return Call<CloudDBZoneQuery>("lessThanOrEqualTo", arg0, arg1);
+        public CloudDBZoneQuery lessThanOrEqualTo(string fieldName, Date value) {
+            return Call<CloudDBZoneQuery>("lessThanOrEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery lessThanOrEqualTo(string arg0, Text arg1) {
-            return Call<CloudDBZoneQuery>("lessThanOrEqualTo", arg0, arg1);
+        public CloudDBZoneQuery lessThanOrEqualTo(string fieldName, Text value) {
+            return Call<CloudDBZoneQuery>("lessThanOrEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery lessThanOrEqualTo(string arg0, byte arg1) {
-            return Call<CloudDBZoneQuery>("lessThanOrEqualTo", arg0, arg1);
+        public CloudDBZoneQuery lessThanOrEqualTo(string fieldName, byte value) {
+            return Call<CloudDBZoneQuery>("lessThanOrEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery lessThanOrEqualTo(string arg0, short arg1) {
-            return Call<CloudDBZoneQuery>("lessThanOrEqualTo", arg0, arg1);
+        public CloudDBZoneQuery lessThanOrEqualTo(string fieldName, short value) {
+            return Call<CloudDBZoneQuery>("lessThanOrEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery lessThanOrEqualTo(string arg0, int arg1) {
-            return Call<CloudDBZoneQuery>("lessThanOrEqualTo", arg0, arg1);
+        public CloudDBZoneQuery lessThanOrEqualTo(string fieldName, int value) {
+            return Call<CloudDBZoneQuery>("lessThanOrEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery lessThanOrEqualTo(string arg0, long arg1) {
-            return Call<CloudDBZoneQuery>("lessThanOrEqualTo", arg0, arg1);
+        public CloudDBZoneQuery lessThanOrEqualTo(string fieldName, long value) {
+            return Call<CloudDBZoneQuery>("lessThanOrEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery lessThanOrEqualTo(string arg0, double arg1) {
-            return Call<CloudDBZoneQuery>("lessThanOrEqualTo", arg0, arg1);
+        public CloudDBZoneQuery lessThanOrEqualTo(string fieldName, double value) {
+            return Call<CloudDBZoneQuery>("lessThanOrEqualTo", fieldName, value);
         }
-        public CloudDBZoneQuery @in(string arg0, Long[] arg1) {
-            return Call<CloudDBZoneQuery>("in", arg0, arg1);
+        public CloudDBZoneQuery @in(string fieldName, Float[] values) {
+            return Call<CloudDBZoneQuery>("in", fieldName, values);
         }
-        public CloudDBZoneQuery @in(string arg0, Float[] arg1) {
-            return Call<CloudDBZoneQuery>("in", arg0, arg1);
+        public CloudDBZoneQuery @in(string fieldName, Double[] values) {
+            return Call<CloudDBZoneQuery>("in", fieldName, values);
         }
-        public CloudDBZoneQuery @in(string arg0, Double[] arg1) {
-            return Call<CloudDBZoneQuery>("in", arg0, arg1);
+        public CloudDBZoneQuery @in(string fieldName, string[] values) {
+            return Call<CloudDBZoneQuery>("in", fieldName, values);
         }
-        public CloudDBZoneQuery @in(string arg0, Integer[] arg1) {
-            return Call<CloudDBZoneQuery>("in", arg0, arg1);
+        public CloudDBZoneQuery @in(string fieldName, Byte[] values) {
+            return Call<CloudDBZoneQuery>("in", fieldName, values);
         }
-        public CloudDBZoneQuery @in(string arg0, Short[] arg1) {
-            return Call<CloudDBZoneQuery>("in", arg0, arg1);
+        public CloudDBZoneQuery @in(string fieldName, Short[] values) {
+            return Call<CloudDBZoneQuery>("in", fieldName, values);
         }
-        public CloudDBZoneQuery @in(string arg0, Byte[] arg1) {
-            return Call<CloudDBZoneQuery>("in", arg0, arg1);
+        public CloudDBZoneQuery @in(string fieldName, Integer[] values) {
+            return Call<CloudDBZoneQuery>("in", fieldName, values);
         }
-        public CloudDBZoneQuery @in(string arg0, Date[] arg1) {
-            return Call<CloudDBZoneQuery>("in", arg0, arg1);
+        public CloudDBZoneQuery @in(string fieldName, Long[] values) {
+            return Call<CloudDBZoneQuery>("in", fieldName, values);
         }
-        public CloudDBZoneQuery @in(string arg0, Text[] arg1) {
-            return Call<CloudDBZoneQuery>("in", arg0, arg1);
+        public CloudDBZoneQuery @in(string fieldName, Text[] values) {
+            return Call<CloudDBZoneQuery>("in", fieldName, values);
         }
-        public CloudDBZoneQuery @in(string arg0, string[] arg1) {
-            return Call<CloudDBZoneQuery>("in", arg0, arg1);
+        public CloudDBZoneQuery @in(string fieldName, Date[] values) {
+            return Call<CloudDBZoneQuery>("in", fieldName, values);
         }
-        public CloudDBZoneQuery beginsWith(string arg0, string arg1) {
-            return Call<CloudDBZoneQuery>("beginsWith", arg0, arg1);
+        public CloudDBZoneQuery beginsWith(string fieldName, string value) {
+            return Call<CloudDBZoneQuery>("beginsWith", fieldName, value);
         }
-        public CloudDBZoneQuery beginsWith(string arg0, Text arg1) {
-            return Call<CloudDBZoneQuery>("beginsWith", arg0, arg1);
+        public CloudDBZoneQuery beginsWith(string fieldName, Text value) {
+            return Call<CloudDBZoneQuery>("beginsWith", fieldName, value);
         }
-        public CloudDBZoneQuery endsWith(string arg0, string arg1) {
-            return Call<CloudDBZoneQuery>("endsWith", arg0, arg1);
+        public CloudDBZoneQuery endsWith(string fieldName, Text value) {
+            return Call<CloudDBZoneQuery>("endsWith", fieldName, value);
         }
-        public CloudDBZoneQuery endsWith(string arg0, Text arg1) {
-            return Call<CloudDBZoneQuery>("endsWith", arg0, arg1);
+        public CloudDBZoneQuery endsWith(string fieldName, string value) {
+            return Call<CloudDBZoneQuery>("endsWith", fieldName, value);
         }
-        public CloudDBZoneQuery contains(string arg0, string arg1) {
-            return Call<CloudDBZoneQuery>("contains", arg0, arg1);
+        public CloudDBZoneQuery contains(string fieldName, Text value) {
+            return Call<CloudDBZoneQuery>("contains", fieldName, value);
         }
-        public CloudDBZoneQuery contains(string arg0, Text arg1) {
-            return Call<CloudDBZoneQuery>("contains", arg0, arg1);
+        public CloudDBZoneQuery contains(string fieldName, string value) {
+            return Call<CloudDBZoneQuery>("contains", fieldName, value);
         }
-        public CloudDBZoneQuery isNull(string arg0) {
-            return Call<CloudDBZoneQuery>("isNull", arg0);
+        public CloudDBZoneQuery isNull(string fieldName) {
+            return Call<CloudDBZoneQuery>("isNull", fieldName);
         }
-        public CloudDBZoneQuery isNotNull(string arg0) {
-            return Call<CloudDBZoneQuery>("isNotNull", arg0);
+        public CloudDBZoneQuery isNotNull(string fieldName) {
+            return Call<CloudDBZoneQuery>("isNotNull", fieldName);
         }
-        public CloudDBZoneQuery orderByAsc(string arg0) {
-            return Call<CloudDBZoneQuery>("orderByAsc", arg0);
+        public CloudDBZoneQuery orderByAsc(string fieldName) {
+            return Call<CloudDBZoneQuery>("orderByAsc", fieldName);
         }
-        public CloudDBZoneQuery orderByDesc(string arg0) {
-            return Call<CloudDBZoneQuery>("orderByDesc", arg0);
+        public CloudDBZoneQuery orderByDesc(string fieldName) {
+            return Call<CloudDBZoneQuery>("orderByDesc", fieldName);
         }
-        public CloudDBZoneQuery limit(int arg0, int arg1) {
-            return Call<CloudDBZoneQuery>("limit", arg0, arg1);
+        public CloudDBZoneQuery limit(int count, int offset) {
+            return Call<CloudDBZoneQuery>("limit", count, offset);
         }
-        public CloudDBZoneQuery limit(int arg0) {
-            return Call<CloudDBZoneQuery>("limit", arg0);
+        public CloudDBZoneQuery limit(int count) {
+            return Call<CloudDBZoneQuery>("limit", count);
         }
-        public CloudDBZoneQuery startAt(CloudDBZoneObject arg0) {
-            return Call<CloudDBZoneQuery>("startAt", arg0);
+        public CloudDBZoneQuery startAt(CloudDBZoneObject queryObject) {
+            return Call<CloudDBZoneQuery>("startAt", queryObject);
         }
-        public CloudDBZoneQuery startAfter(CloudDBZoneObject arg0) {
-            return Call<CloudDBZoneQuery>("startAfter", arg0);
+        public CloudDBZoneQuery startAfter(CloudDBZoneObject queryObject) {
+            return Call<CloudDBZoneQuery>("startAfter", queryObject);
         }
-        public CloudDBZoneQuery endAt(CloudDBZoneObject arg0) {
-            return Call<CloudDBZoneQuery>("endAt", arg0);
+        public CloudDBZoneQuery endAt(CloudDBZoneObject queryObject) {
+            return Call<CloudDBZoneQuery>("endAt", queryObject);
         }
-        public CloudDBZoneQuery endBefore(CloudDBZoneObject arg0) {
-            return Call<CloudDBZoneQuery>("endBefore", arg0);
+        public CloudDBZoneQuery endBefore(CloudDBZoneObject queryObject) {
+            return Call<CloudDBZoneQuery>("endBefore", queryObject);
         }
     
         public class CloudDBZoneQueryPolicy_Data : IHmsBaseClass{

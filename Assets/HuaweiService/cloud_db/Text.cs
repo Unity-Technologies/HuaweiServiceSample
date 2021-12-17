@@ -9,12 +9,12 @@ namespace HuaweiService.CloudDB
     public class Text :HmsClass<Text_Data>
     {
         public Text (): base() { }
-        public Text (string arg0): base(arg0) { }
+        public Text (string content): base(content) { }
         public string get() {
             return Call<string>("get");
         }
-        public void set(string arg0) {
-            Call("set", arg0);
+        public void set(string content) {
+            Call("set", content);
         }
         public bool equals(AndroidJavaObject arg0) {
             return Call<bool>("equals", arg0);

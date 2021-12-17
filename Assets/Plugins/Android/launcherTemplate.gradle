@@ -23,10 +23,10 @@ dependencies {
     implementation 'com.huawei.agconnect:agconnect-crash:1.4.1.300'
     implementation 'com.huawei.agconnect:agconnect-core:1.4.1.300'
     implementation 'com.huawei.agconnect:agconnect-function:1.4.2.300'
-    implementation 'com.huawei.hms:base:5.0.5.300'
-    implementation 'com.huawei.hms:game:5.0.4.302'
-    implementation 'com.huawei.hms:hwid:5.0.5.301'
-    implementation 'com.huawei.agconnect:agconnect-cloud-database:1.4.10.300'
+    implementation 'com.huawei.hms:base:6.2.0.300'
+    implementation 'com.huawei.hms:hwid:6.1.0.303'
+    implementation 'com.huawei.hms:game:6.1.0.301'
+    implementation 'com.huawei.agconnect:agconnect-cloud-database:1.5.0.300'
     }
 
 android {

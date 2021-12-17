@@ -8,6 +8,8 @@ namespace HuaweiService.CloudDB
     }
     public class FieldType :HmsClass<FieldType_Data>
     {
+        public static FieldType a => HmsUtil.GetStaticValue<FieldType>("a");
+    
         public static FieldType b => HmsUtil.GetStaticValue<FieldType>("b");
     
         public static FieldType c => HmsUtil.GetStaticValue<FieldType>("c");
@@ -29,8 +31,6 @@ namespace HuaweiService.CloudDB
         public static FieldType k => HmsUtil.GetStaticValue<FieldType>("k");
     
         public static FieldType l => HmsUtil.GetStaticValue<FieldType>("l");
-    
-        public static FieldType m => HmsUtil.GetStaticValue<FieldType>("m");
     
         public FieldType (): base() { }
     }

@@ -9,47 +9,53 @@ namespace HuaweiService.CloudDB
     public class AGConnectCloudDB :HmsClass<AGConnectCloudDB_Data>
     {
         public AGConnectCloudDB (): base() { }
-        public static void initialize(Context arg0) {
-            CallStatic("initialize", arg0);
+        public static void initialize(Context context) {
+            CallStatic("initialize", context);
         }
         public static AGConnectCloudDB getInstance() {
             return CallStatic<AGConnectCloudDB>("getInstance");
         }
-        public Task setUserKey(string arg0, string arg1) {
-            return Call<Task>("setUserKey", arg0, arg1);
+        public static AGConnectCloudDB getInstance(AGConnectInstance connectInstance, Auth.AGConnectAuth auth) {
+            return CallStatic<AGConnectCloudDB>("getInstance", connectInstance, auth);
+        }
+        public Task setUserKey(string userKey, string userReKey) {
+            return Call<Task>("setUserKey", userKey, userReKey);
+        }
+        public Task setUserKey(string userKey, string userReKey, bool needStrongCheck) {
+            return Call<Task>("setUserKey", userKey, userReKey, needStrongCheck);
         }
         public Task updateDataEncryptionKey() {
             return Call<Task>("updateDataEncryptionKey");
         }
-        public void addDataEncryptionKeyListener(OnDataEncryptionKeyChangeListener arg0) {
-            Call("addDataEncryptionKeyListener", arg0);
+        public void addDataEncryptionKeyListener(OnDataEncryptionKeyChangeListener dataEncryptionKeyListener) {
+            Call("addDataEncryptionKeyListener", dataEncryptionKeyListener);
         }
-        public void addEventListener(EventListener arg0) {
-            Call("addEventListener", arg0);
+        public void addEventListener(EventListener eventListener) {
+            Call("addEventListener", eventListener);
         }
-        public void createObjectType(ObjectTypeInfo arg0) {
-            Call("createObjectType", arg0);
+        public void createObjectType(ObjectTypeInfo objectTypeInfo) {
+            Call("createObjectType", objectTypeInfo);
         }
         public List getCloudDBZoneConfigs() {
             return Call<List>("getCloudDBZoneConfigs");
         }
-        public CloudDBZone openCloudDBZone(CloudDBZoneConfig arg0, bool arg1) {
-            return Call<CloudDBZone>("openCloudDBZone", arg0, arg1);
+        public CloudDBZone openCloudDBZone(CloudDBZoneConfig config, bool isAllowToCreate) {
+            return Call<CloudDBZone>("openCloudDBZone", config, isAllowToCreate);
         }
-        public Task openCloudDBZone2(CloudDBZoneConfig arg0, bool arg1) {
-            return Call<Task>("openCloudDBZone2", arg0, arg1);
+        public Task openCloudDBZone2(CloudDBZoneConfig config, bool isAllowToCreate) {
+            return Call<Task>("openCloudDBZone2", config, isAllowToCreate);
         }
-        public void closeCloudDBZone(CloudDBZone arg0) {
-            Call("closeCloudDBZone", arg0);
+        public void closeCloudDBZone(CloudDBZone zone) {
+            Call("closeCloudDBZone", zone);
         }
-        public void deleteCloudDBZone(string arg0) {
-            Call("deleteCloudDBZone", arg0);
+        public void deleteCloudDBZone(string zoneName) {
+            Call("deleteCloudDBZone", zoneName);
         }
-        public void enableNetwork(string arg0) {
-            Call("enableNetwork", arg0);
+        public void enableNetwork(string zoneName) {
+            Call("enableNetwork", zoneName);
         }
-        public void disableNetwork(string arg0) {
-            Call("disableNetwork", arg0);
+        public void disableNetwork(string zoneName) {
+            Call("disableNetwork", zoneName);
         }
     
         public class EventListenerData : IHmsBaseListener
@@ -60,12 +66,12 @@ namespace HuaweiService.CloudDB
         public class EventListener : HmsListener<EventListenerData>
         {
         
-            public virtual void onEvent(EventType arg0) {
-                Call("onEvent", arg0);
+            public virtual void onEvent(EventType eventType) {
+                Call("onEvent", eventType);
             }
         
-            public void onEvent(AndroidJavaObject arg0){
-                onEvent(HmsUtil.GetHmsBase<EventType>(arg0));
+            public void onEvent(AndroidJavaObject eventType){
+                onEvent(HmsUtil.GetHmsBase<EventType>(eventType));
             }
         }
     

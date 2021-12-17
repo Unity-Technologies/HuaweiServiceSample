@@ -12,32 +12,32 @@ namespace HuaweiService.CloudDB
         public CloudDBZoneConfig getCloudDBZoneConfig() {
             return Call<CloudDBZoneConfig>("getCloudDBZoneConfig");
         }
-        public Task executeUpsert(CloudDBZoneObject arg0) {
-            return Call<Task>("executeUpsert", arg0);
+        public Task executeUpsert(CloudDBZoneObject cloudDBZoneObject) {
+            return Call<Task>("executeUpsert", cloudDBZoneObject);
         }
-        public Task executeUpsert(List arg0) {
-            return Call<Task>("executeUpsert", arg0);
+        public Task executeUpsert(List objectList) {
+            return Call<Task>("executeUpsert", objectList);
         }
-        public Task executeDelete(List arg0) {
-            return Call<Task>("executeDelete", arg0);
+        public Task executeDelete(CloudDBZoneObject cloudDBZoneObject) {
+            return Call<Task>("executeDelete", cloudDBZoneObject);
         }
-        public Task executeDelete(CloudDBZoneObject arg0) {
-            return Call<Task>("executeDelete", arg0);
+        public Task executeDelete(List objectList) {
+            return Call<Task>("executeDelete", objectList);
         }
-        public Task executeQuery(CloudDBZoneQuery arg0, CloudDBZoneQuery.CloudDBZoneQueryPolicy arg1) {
-            return Call<Task>("executeQuery", arg0, arg1);
+        public Task executeQuery(CloudDBZoneQuery cloudDBZoneQuery, CloudDBZoneQuery.CloudDBZoneQueryPolicy queryPolicy) {
+            return Call<Task>("executeQuery", cloudDBZoneQuery, queryPolicy);
         }
-        public Task executeAverageQuery(CloudDBZoneQuery arg0, string arg1, CloudDBZoneQuery.CloudDBZoneQueryPolicy arg2) {
-            return Call<Task>("executeAverageQuery", arg0, arg1, arg2);
+        public Task executeAverageQuery(CloudDBZoneQuery cloudDBZoneQuery, string fieldName, CloudDBZoneQuery.CloudDBZoneQueryPolicy queryPolicy) {
+            return Call<Task>("executeAverageQuery", cloudDBZoneQuery, fieldName, queryPolicy);
         }
-        public Task executeQueryUnsynced(CloudDBZoneQuery arg0) {
-            return Call<Task>("executeQueryUnsynced", arg0);
+        public Task executeQueryUnsynced(CloudDBZoneQuery cloudDBZoneQuery) {
+            return Call<Task>("executeQueryUnsynced", cloudDBZoneQuery);
         }
-        public Task runTransaction(Transaction.Function arg0) {
-            return Call<Task>("runTransaction", arg0);
+        public Task runTransaction(Transaction.Function function) {
+            return Call<Task>("runTransaction", function);
         }
-        public ListenerHandler subscribeSnapshot(CloudDBZoneQuery arg0, CloudDBZoneQuery.CloudDBZoneQueryPolicy arg1, OnSnapshotListener arg2) {
-            return Call<ListenerHandler>("subscribeSnapshot", arg0, arg1, arg2);
+        public ListenerHandler subscribeSnapshot(CloudDBZoneQuery cloudDBZoneQuery, CloudDBZoneQuery.CloudDBZoneQueryPolicy queryPolicy, OnSnapshotListener listener) {
+            return Call<ListenerHandler>("subscribeSnapshot", cloudDBZoneQuery, queryPolicy, listener);
         }
     }
 }
