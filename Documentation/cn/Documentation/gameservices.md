@@ -36,6 +36,7 @@
         buildscript {
             repositories {**ARTIFACTORYREPOSITORY**
                 google()
+                mavenCentral()
                 jcenter()
                 maven { url 'https://developer.huawei.com/repo/' }
             }
@@ -45,14 +46,15 @@
                 //您可以在此处查看Unity预装了哪个Gradle版本 https://docs.unity.cn/cn/2019.4/Manual/android-gradle-overview.html
                 //请在此处查看官方的Gradle和Android Gradle插件兼容性列表 https://developer.android.com/studio/releases/gradle-plugin#updating-gradle
                 //要在Unity中指定自定义Gradle版本，请到"Preferences > External Tools"，取消选中"Gradle Installed with Unity (recommended)" ，然后指定自定义Gradle版本的路径
-                classpath 'com.android.tools.build:gradle:3.4.0'
-                classpath 'com.huawei.agconnect:agcp:1.4.2.300'
+                classpath 'com.android.tools.build:gradle:3.6.4'
+                classpath 'com.huawei.agconnect:agcp:1.6.2.300'
                 **BUILD_SCRIPT_DEPS**
             }
         }
     
         repositories {**ARTIFACTORYREPOSITORY**
             google()
+            mavenCentral()
             jcenter()
             flatDir {
                 dirs "${project(':unityLibrary').projectDir}/libs"
@@ -69,10 +71,10 @@
     ```
     dependencies {
         ...
-        implementation 'com.huawei.agconnect:agconnect-core:1.4.2.300'
-        implementation 'com.huawei.hms:base:5.0.5.300'
-        implementation 'com.huawei.hms:hwid:5.0.5.301'
-        implementation 'com.huawei.hms:game:5.0.4.302'
+        implementation 'com.huawei.agconnect:agconnect-core:1.6.2.300'
+        implementation 'com.huawei.hms:base:6.2.0.300'
+        implementation 'com.huawei.hms:hwid:6.1.0.303'
+        implementation 'com.huawei.hms:game:6.1.0.301'
         ...
         }
     ```
@@ -84,10 +86,10 @@
     ```
     dependencies {
         ...
-        implementation 'com.huawei.agconnect:agconnect-core:1.4.2.300'
-        implementation 'com.huawei.hms:base:5.0.5.300'
-        implementation 'com.huawei.hms:hwid:5.0.5.301'
-        implementation 'com.huawei.hms:game:5.0.4.302'
+        implementation 'com.huawei.agconnect:agconnect-core:1.6.2.300'
+        implementation 'com.huawei.hms:base:6.2.0.300'
+        implementation 'com.huawei.hms:hwid:6.1.0.303'
+        implementation 'com.huawei.hms:game:6.1.0.301'
         ...
     **DEPS**}
     ```
@@ -96,15 +98,15 @@
 
 #### 3.1 Huawei API reference 
 
-> https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References-V5/jos-games-0000001050121646-V5
+> https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/jos-games-0000001050121646
 
 #### 3.2 Huawei API integration guide 
 
-> https://developer.huawei.com/consumer/cn/doc/HMSCore-Guides-V5/dev-process-0000001050193900-V5
+> https://developer.huawei.com/consumer/cn/doc/development/HMSCore-Guides/introduction-0000001050121216
 
 ### 4. 在您使用以下API 之前，请首先在您的华为开发者账号中对其进行正确配置
 
-> https://developer.huawei.com/consumer/cn/doc/HMSCore-Guides-V5/config-agc-0000001050166285-V5#ZH-CN_TOPIC_0000001054452903__section122826183710
+> https://developer.huawei.com/consumer/cn/doc/development/HMSCore-Guides/config-agc-0000001050166285
 
 #### 4.1 Achievement成就 
 > https://developer.huawei.com/consumer/en/doc/distribution/app/agc-add_achievement
@@ -145,6 +147,13 @@
 
 ### 主要更新日志
 
+#### 2021-12-13
+
+- New: Add `Init(IAntiAddictionListener listener, IInitListener initListener)` to initialize the APP.
+**NOTICE**
+In GameService 6.1.0.301 and later versions, the [appParams](https://developer.huawei.com/consumer/en/doc/development/HMSCore-References/appparams-0000001189294793`) parameter is required, please use `AccountAuthParamsHelper` to create an instance, otherwise, the default `AccountAuthParams.DEFAULT_AUTH_REQUEST_PARAM_GAME` will be used.
+
+- New: **remove** `Init()`, please use `Init(IAntiAddictionListener listener, IInitListener initListener)`.
 #### 2020-12-24
 
 - New: Add `GetGamePlayer`,`GetGamePlayer(bool isRequirePlayerId)` to obtain the object of the current player.
