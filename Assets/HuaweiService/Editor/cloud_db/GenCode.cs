@@ -61,7 +61,7 @@ namespace HuaweiService.CloudDB.Editor {
 
         public void GenerateModels (ObjectType objectType) {
             string objectTypeName = objectType.objectTypeName;
-            Field[] fields = objectType.fields;
+            Field[] fields = objectType.fields.ToArray();
 
             string path = ExportFileDir + $"/{objectTypeName}.cs";
             Debug.LogFormat ("Generating Class: {0}.", objectTypeName);
