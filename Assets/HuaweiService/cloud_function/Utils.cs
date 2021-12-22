@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using UnityEngine;
 
 namespace HuaweiService.CloudFunction {
@@ -12,7 +11,7 @@ namespace HuaweiService.CloudFunction {
         }
 
         public static T FromJson<T> (string json) {
-            T m = JsonConvert.DeserializeObject<T> (json);
+            T m = JsonUtility.FromJson<T>(json);
             return m;
         }
     }
@@ -23,7 +22,7 @@ namespace HuaweiService.CloudFunction {
         public JsonModel () { }
         public JsonModel (object obj) {
             ClassName = obj.GetType ().Name.ToLower ();
-            ClassValue = JsonConvert.SerializeObject (obj);
+            ClassValue = JsonUtility.ToJson(obj);
         }
 
     }
