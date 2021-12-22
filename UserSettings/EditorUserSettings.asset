@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!162 &1
+EditorUserSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 4
+  m_ConfigSettings:
+    RecentlyUsedScenePath-0:
+      value: 2242470311464673180f1b2719105a02001e1b2f082d2b3f621a1e36ece52777caea25c4e2292c3d3e0be13b373f0c2ffe0f3a08f3050f450400f41a08
+      flags: 0
+    RecentlyUsedScenePath-1:
+      value: 2242470311464673180f1b2719105a02001e1b2f082d2b3f621a1e36ece52777caea25c5e8393e28300de10f05331133f7390a0ef80e441e1f07e917
+      flags: 0
+    RecentlyUsedScenePath-2:
+      value: 2242470311464673180f1b2719105a02001e1b2f082d2b3f621a1e36ece52777caea25cee6373a0f3c10f935073b253aff05471ef8021e12
+      flags: 0
+    RecentlyUsedScenePath-3:
+      value: 2242470311464673180f1b2719105a02001e1b2f082d2b3f621a1e36ece52777caea25caf53b2c340a03e22c083b323cf7040c45e305031f08
+      flags: 0
+    RecentlyUsedScenePath-4:
+      value: 2242470311464673180f1b2719105a02001e1b2f082d2b3f621a1e36ece52777caea25caeb352a380a16e02e0539040bf7191d45e305031f08
+      flags: 0
+    RecentlyUsedScenePath-5:
+      value: 2242470311464673180f1b2719105a02001e1b2f082d2b3f621a1e36ece52777caea25c8f72a12392a11ee3b010d0032e2060c38f50e040e5f1bf30705e6
+      flags: 0
+    RecentlyUsedScenePath-6:
+      value: 2242470311464673180f1b2719105a02001e1b2f082d2b3f621a1e36ece52777caea25c8f72a13353709e632030d0032e2060c38f50e040e5f1bf30705e6
+      flags: 0
+    RecentlyUsedScenePath-7:
+      value: 2242470311464673180f1b2719105a02001e1b2f082d2b3f621a1e36ece52777caea25c8e93b33252d0bec0f05331133f7390a0ef80e441e1f07e917
+      flags: 0
+    RecentlyUsedScenePath-8:
+      value: 2242470311464673180f1b2719105a02001e1b2f082d2b3f62010832f5e53d1beee823edc3181b39340da00f073b0f3ae1452a07f91e0e2f333dfc0301f3152012c016c054dd1115df00
+      flags: 0
+    RecentlyUsedScenePath-9:
+      value: 2242470311464673180f1b2719105a02001e1b2f082d2b3f62010832f5e53d1beee823edc12f313f2d0be032203b0c30bd390a0ef80e19443029de2d1df0051737d016c60ec11012f81a19c0c853c4eddcc2cd
+      flags: 0
+    vcSharedLogLevel:
+      value: 0d5e400f0650
+      flags: 0
+  m_VCAutomaticAdd: 1
+  m_VCDebugCom: 0
+  m_VCDebugCmd: 0
+  m_VCDebugOut: 0
+  m_SemanticMergeMode: 2
+  m_VCShowFailedCheckout: 1
+  m_VCOverwriteFailedCheckoutAssets: 1
+  m_VCProjectOverlayIcons: 1
+  m_VCHierarchyOverlayIcons: 1
+  m_VCOtherOverlayIcons: 1
+  m_VCAllowAsyncUpdate: 0

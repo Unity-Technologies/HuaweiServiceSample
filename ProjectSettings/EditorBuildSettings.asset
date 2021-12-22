@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/HuaweiServiceDemo/Scenes/HmsAppLinkingSampleScene.unity
     guid: 2a06d635f4d86455aa7a945033ca787c
-  - enabled: 1
+  - enabled: 0
     path: Assets/HuaweiServiceDemo/Scenes/HmsAppMessageSampleScene.unity
     guid: b3476cb507ef74fc3ba3f5a751256fe8
   - enabled: 0
@@ -38,4 +38,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/HuaweiServiceDemo/Scenes/HmsCloudStorageTest.unity
     guid: 3c3ce425b8c754f3fa91a9119e6f8cd7
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: Assets/HuaweiServiceDemo/HuaweiCloudDBDemo/Scenes/CloudDBSampleScene.unity
+    guid: 7d9d75ef041984bf7ab6194acbeb998f
+  - enabled: 1
+    path: Assets/HuaweiServiceDemo/HuaweiCloudFunctionDemo/Scenes/AGCCloudFunctionScene.unity
+    guid: b572b4b6e597f465fb89e6cf1e198b99
   m_configObjects: {}
