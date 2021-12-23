@@ -94,6 +94,34 @@ Add the following configuration files into `Assets/Plugins/Android`.
         ...
     **DEPS**}
    ```
+   
+5. Configuring Obfuscation Scripts
+ Before building the APK, configure the obfuscation configuration file to prevent the HMS Core SDK from being obfuscated.
+   - Open the proguard file in your Unity project and add configurations to exclude the HMS Core SDK from obfuscation.
+
+        ```
+        -ignorewarnings 
+        -keepattributes *Annotation* 
+        -keepattributes Exceptions 
+        -keepattributes InnerClasses 
+        -keepattributes Signature 
+        -keepattributes SourceFile,LineNumberTable 
+        -keep class com.huawei.hianalytics.**{*;} 
+        -keep class com.huawei.updatesdk.**{*;} 
+        -keep class com.huawei.hms.**{*;} 
+        -keep interface com.huawei.hms.analytics.type.HAEventType{*;}
+        -keep interface com.huawei.hms.analytics.type.HAParamType{*;}
+        -keep class com.huawei.hms.analytics.HiAnalyticsInstance{*;}
+        -keep class com.huawei.hms.analytics.HiAnalytics{*;}
+        ```
+    - (Optional) Configure the keep.xml file as follows to keep layout resources if you have enabled R8 resource shrinking (with shrinkResources being set to true in the project-level build.gradle file) and strict reference checks (with shrinkMode being set to strict in the res/raw/keep.xml file). Not keeping layout resources will lead to app rejection during release to HUAWEI AppGallery.
+
+        ```
+        <?xml version="1.0" encoding="utf-8"?>
+        <resources xmlns:tools="http://schemas.android.com/tools"
+            tools:keep="@layout/hms_download_progress,@drawable/screen_off,@layout/upsdk*,@drawable/c_buoycircle*,@drawable/hms_game*,@layout/c_buoycircle*,@layout/hms_game*,@strings/hms_game*,@strings/c_buoycircle*"
+            tools:shrinkMode="strict" />
+        ```
 
 ### 3. Huawei API reference link & integration guide
 
@@ -186,5 +214,4 @@ In GameService 6.1.0.301 and later versions, the [appParams](https://developer.h
 - New: Add `GetThumbnail` to obtain the data of an archive cover.
 
 - Fix: interfaces that are not working properly.
-
 
