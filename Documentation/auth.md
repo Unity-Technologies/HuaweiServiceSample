@@ -395,6 +395,9 @@ If you want to enable third Party Login, firstly you need to [AppGallery Connect
   ```
 
 - **Facebook**
+**Important Note:** Facebook updated the webview policy
+* Facebook Login will no longer support Android embedded browsers (WebViews) for authenticating users. Please refer to the following documents for configuration!
+* https://developers.facebook.com/docs/facebook-login/android/deprecating-webviews
 
   1) Refer to the [Facebook Doc](https://developers.facebook.com/docs/facebook-login/android), Configure build dependencies in `MainTemplate.gradle`.
 

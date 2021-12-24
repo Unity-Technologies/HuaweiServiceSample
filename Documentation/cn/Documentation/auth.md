@@ -743,6 +743,9 @@ android.enableJetifier=true
    ```
 
 #### Facebook
+**重要更新:** Facebook 更新了 webview 登录政策
+* Facebook 登录将不再支持用于验证用户身份的 Android 嵌入式浏览器 (WebViews)。 配置调整请参考以下文档！
+* https://developers.facebook.com/docs/facebook-login/android/deprecating-webviews
 
 1. 使用Facebook帐户登录，使用LoginManager.getInstance().startFacebook（string APP_ID，OnSuccessListener successCallback，OnFailureListener failCallback）获取访问令牌Json
 

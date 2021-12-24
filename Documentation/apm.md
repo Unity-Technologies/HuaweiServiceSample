@@ -80,6 +80,18 @@ dependencies {
 }
 ```
 
+* Add the following items to the proguard file in your Unity project for obfuscation configurations([Reference](https://developer.huawei.com/consumer/en/doc/development/AppGallery-connect-Guides/agc-apm-android-getstarted-0000001052887262)):
+```
+-keep class com.huawei.agconnect.**{*;}
+-dontwarn com.huawei.agconnect.**
+-keep class com.hianalytics.android.**{*;}
+-keep class com.huawei.updatesdk.**{*;}
+-keep class com.huawei.hms.**{*;}
+-keep interface com.huawei.hms.analytics.type.HAEventType{*;}
+-keep interface com.huawei.hms.analytics.type.HAParamType{*;}
+-keepattributes Exceptions, Signature, InnerClasses, LineNumberTable
+```
+
 ### Step 3: Integrating the APM Plug-in
 The APM plug-in uses the instrumentation technology to collect [HTTP/HTTPS network request performance data](https://developer.huawei.com/consumer/en/doc/development/AppGallery-connect-Guides/agc-apms-appnetwork) without intrusion. To add the APM plug-in to your app, perform the following steps:
 1. Add the APM plug-in to the `launcherTemplate.gradle` file

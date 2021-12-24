@@ -88,6 +88,17 @@ dependencies {
 
 ```
 
+* 在您的Unity项目里打开混淆配置文件，添加以下排除项([参考华为文档](https://developer.huawei.com/consumer/cn/doc/development/AppGallery-connect-Guides/agc-apm-android-getstarted-0000001052887262)):
+```
+-keep class com.huawei.agconnect.**{*;}
+-dontwarn com.huawei.agconnect.**
+-keep class com.hianalytics.android.**{*;}
+-keep class com.huawei.updatesdk.**{*;}
+-keep class com.huawei.hms.**{*;}
+-keep interface com.huawei.hms.analytics.type.HAEventType{*;}
+-keep interface com.huawei.hms.analytics.type.HAParamType{*;}
+-keepattributes Exceptions, Signature, InnerClasses, LineNumberTable
+```
 
 ### 3. 集成APM插件
 

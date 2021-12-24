@@ -252,7 +252,33 @@ You can follow [Huawei documentation guidance](https://developer.huawei.com/cons
 
    ![Images/hms/AgcConnectServicesJson.png](Images/hms/AgcConnectServicesJson.png)
 
-9. Get activity
+9. Configuring Obfuscation Scripts
+    Before building the APK, configure the obfuscation configuration file to prevent the HMS Core SDK from being obfuscated.（[Reference](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/config-obfuscation-scripts-0000001188775555)）
+    - Open the proguard file in your Unity project and add configurations to exclude the HMS Core SDK from obfuscation.
+    ```
+    -ignorewarnings
+    -keepattributes *Annotation*
+    -keepattributes Exceptions
+    -keepattributes InnerClasses
+    -keepattributes Signature
+    -keepattributes SourceFile,LineNumberTable
+    -keep class com.huawei.hianalytics.**{*;}
+    -keep class com.huawei.updatesdk.**{*;}
+    -keep class com.huawei.hms.**{*;}
+    -keep class * extends com.huawei.location.router.LocationApiRequest{ *; }
+    -keep class * extends com.huawei.hms.core.aidl.IMessageEntity{ *; }
+    -keep public class com.huawei.location.nlp.network.** {*; }
+    -keep class com.huawei.wisesecurity.ucs.**{*;}
+    ```
+    - (Optional) Configure the keep.xml file as follows to keep layout resources if you have enabled R8 resource shrinking (with shrinkResources being set to true in the project-level build.gradle file) and strict reference checks (with shrinkMode being set to strict in the res/raw/keep.xml file). Not keeping layout resources will lead to app rejection during release to HUAWEI AppGallery.
+    ```
+    <?xml version="1.0" encoding="utf-8"?>
+    <resources xmlns:tools="http://schemas.android.com/tools"
+        tools:keep="@layout/hms_download_progress,@drawable/screen_off"
+        tools:shrinkMode="strict" />
+    ```
+
+10. Get activity
 
    For getting the activity, you can use the  `Common.GetActivity()` function.
 
