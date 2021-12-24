@@ -235,6 +235,7 @@ You can follow [Huawei documentation guidance](https://developer.huawei.com/cons
    ![Images/hms/AgcConnectServicesJson.png](Images/hms/AgcConnectServicesJson.png)
 
 9. Configuring Obfuscation Scripts
+
     Before building the APK, configure the obfuscation configuration file to prevent the HMS Core SDK from being obfuscated.（[Reference](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/android-config-obfuscation-scripts-0000001050176973)）
     - Open the proguard file in your Unity project and add configurations to exclude the HMS Core SDK from obfuscation.
     ```

@@ -252,6 +252,7 @@
    ![Images/hms/AgcConnectServicesJson.png](Images/hms/AgcConnectServicesJson.png)
 
 9. 配置混淆脚本
+
     编译APK前需要配置混淆配置文件，避免混淆HMS Core SDK导致功能异常。（[参考文档](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-Guides/config-obfuscation-scripts-0000001188775555)）
     - 在您的Unity项目里打开混淆配置文件，加入排除HMS Core SDK的混淆配置。
     ```

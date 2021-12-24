@@ -232,7 +232,7 @@ You can follow [Huawei documentation guidance](https://developer.huawei.com/cons
    ![Images/hms/AgcConnectServicesJson.png](Images/hms/AgcConnectServicesJson.png)
 
 9. Configuring Obfuscation Scripts （[Reference](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/android-appendix-d-0000001050167398)）
-    (Optional) Configure the keep.xml file as follows to keep layout resources if you have enabled R8 resource shrinking (with shrinkResources being set to true in the project-level build.gradle file) and strict reference checks (with shrinkMode being set to strict in the res/raw/keep.xml file). Not keeping layout resources will lead to app rejection during release to HUAWEI AppGallery.
+    - (Optional) Configure the keep.xml file as follows to keep layout resources if you have enabled R8 resource shrinking (with shrinkResources being set to true in the project-level build.gradle file) and strict reference checks (with shrinkMode being set to strict in the res/raw/keep.xml file). Not keeping layout resources will lead to app rejection during release to HUAWEI AppGallery.
     ```
     <?xml version="1.0" encoding="utf-8"?>
     <resources xmlns:tools="http://schemas.android.com/tools"
