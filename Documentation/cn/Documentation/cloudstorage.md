@@ -110,9 +110,10 @@
    将Cloud Storage SDK的Maven存储库地址添加到app级别的`launcherTemplate.gradle`文件（通常在app目录中）。
 
    ```
-   implementation "com.huawei.agconnect:agconnect-storage:1.3.1.100"
+   implementation "com.huawei.agconnect:agconnect-storage:1.3.1.200"
    implementation 'com.huawei.agconnect:agconnect-core:1.4.2.300'
-   implementation 'com.huawei.agconnect:agconnect-auth:1.4.2.301'
+   implementation 'com.huawei.agconnect:agconnect-credential:1.6.1.300'
+   implementation 'com.huawei.agconnect:agconnect-auth:1.6.1.300'
    ```
 
 4. 要读取和写入文件并访问网络，您需要在`AndroidMainfest.xml`文件中配置以下权限：

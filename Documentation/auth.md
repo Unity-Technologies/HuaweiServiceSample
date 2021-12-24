@@ -217,7 +217,8 @@ You must create AppGallery Connect project and add App to project and set Data s
      ```
       dependencies { 
             ...     
-         implementation 'com.huawei.agconnect:agconnect-auth:1.4.2.301'
+        implementation 'com.huawei.agconnect:agconnect-credential:1.6.1.300'
+        implementation 'com.huawei.agconnect:agconnect-auth:1.6.1.300'
      ...    
      }
      ```

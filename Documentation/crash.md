@@ -141,7 +141,7 @@ In the example project, the corresponding scene is `Assets/HuaweiHmsDemo/Scenes/
    
    ```
    dependencies {
-             implementation 'com.huawei.agconnect:agconnect-crash:1.4.1.300'
+             implementation 'com.huawei.agconnect:agconnect-crash:1.6.1.300'
    }
    ```
    
@@ -154,7 +154,7 @@ In the example project, the corresponding scene is `Assets/HuaweiHmsDemo/Scenes/
    …
       //AGC SDK and Crash SDK integrated configuration
       implementation 'com.huawei.hms:hianalytics:5.0.5.300'
-      implementation 'com.huawei.agconnect:agconnect-crash:1.4.1.300'
+      implementation 'com.huawei.agconnect:agconnect-crash:1.6.1.300'
       implementation 'com.huawei.agconnect:agconnect-core:1.4.2.300' 
    ...
    }

@@ -182,7 +182,7 @@ To add CloudFunction Kit:
 ```
   dependencies {
 …
-   implementation "com.huawei.agconnect:agconnect-function:1.4.2.300"
+   implementation "com.huawei.agconnect:agconnect-function:1.6.1.300"
    implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.5'
    implementation 'com.fasterxml.jackson.core:jackson-core:2.8.5'
    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.8.5'
@@ -223,8 +223,8 @@ dependencies {
 ...
    implementation 'com.android.support:appcompat-v7:28.0.0'
    implementation 'com.android.support:appcompat-v7:28.0.0'
-   implementation 'com.huawei.agconnect:agconnect-core:1.2.0.300'
-   implementation "com.huawei.agconnect:agconnect-function:1.4.2.300"
+   implementation 'com.huawei.agconnect:agconnect-core:1.6.1.300'
+   implementation "com.huawei.agconnect:agconnect-function:1.6.1.300"
    implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.5'
    implementation 'com.fasterxml.jackson.core:jackson-core:2.8.5'
    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.8.5'

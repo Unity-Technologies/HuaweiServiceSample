@@ -185,7 +185,7 @@ To collect statistics on App Linking events, you need to use HUAWEI Analytics Ki
    
    ```
           dependencies {
-          implementation 'com.huawei.agconnect:agconnect-applinking:1.4.1.300'
+          implementation 'com.huawei.agconnect:agconnect-applinking:1.6.1.300'
       }
    ```
 

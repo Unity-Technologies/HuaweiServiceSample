@@ -82,8 +82,8 @@
 dependencies {
 // ...
 // Add APM SDK library dependency
-implementation 'com.huawei.agconnect:agconnect-apms:1.5.2.300'
-implementation 'com.huawei.agconnect:agconnect-apms-game:1.5.2.303'
+   implementation 'com.huawei.agconnect:agconnect-apms:1.5.2.305'
+   implementation 'com.huawei.agconnect:agconnect-apms-game:1.5.2.303'
 }
 
 ```
@@ -99,10 +99,13 @@ APM插件利用检测（instrumentation）技术，实现[HTTP/HTTPS网络请求
 
    ```
    apply plugin: 'com.android.application'
-   // Apply the APM plugin
-   apply plugin: 'com.huawei.agconnect.apms'
    // Apply the AGC plugin
    apply plugin: 'com.huawei.agconnect'
+
+   agcp {
+      enableAPMS true
+   }
+
 
    dependencies {
     // ..
@@ -123,7 +126,6 @@ APM插件利用检测（instrumentation）技术，实现[HTTP/HTTPS网络请求
         // To benefit from the latest APM feaures, update your Android Gradle Plugin dependency to at least v3.3.2
         classpath 'com.android.tools.build:gradle:3.3.2'
         // Add the dependency for the APM plugin
-        classpath 'com.huawei.agconnect:agconnect-apms-plugin:1.4.1.303'
       }
    }
    ```
@@ -135,8 +137,8 @@ APM插件利用检测（instrumentation）技术，实现[HTTP/HTTPS网络请求
 dependencies {
 // ...
 // Add APM SDK library dependency
-implementation 'com.huawei.agconnect:agconnect-apms:1.5.2.300'
-implementation 'com.huawei.agconnect:agconnect-apms-game:1.5.2.303'
+    implementation 'com.huawei.agconnect:agconnect-apms:1.5.2.305'
+    implementation 'com.huawei.agconnect:agconnect-apms-game:1.5.2.303'
 }
 ```
 

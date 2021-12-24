@@ -76,7 +76,7 @@ Add the APM SDK dependency to `launcherTemplate.gradle` in `/Assets/Plugins/Andr
 dependencies {
 // ...
 // Add APM SDK library dependency
-implementation 'com.huawei.agconnect:agconnect-apms:1.5.2.300'
+    implementation 'com.huawei.agconnect:agconnect-apms:1.5.2.305'
 }
 ```
 
@@ -86,10 +86,11 @@ The APM plug-in uses the instrumentation technology to collect [HTTP/HTTPS netwo
 
    ```
    apply plugin: 'com.android.application'
-   // Apply the APM plugin
-   apply plugin: 'com.huawei.agconnect.apms'
    // Apply the AGC plugin
    apply plugin: 'com.huawei.agconnect'
+   agcp {
+      enableAPMS true
+   }
 
    dependencies {
     // ..
@@ -122,8 +123,8 @@ Add the APM SDK dependency to `launcherTemplate.gradle` in `/Assets/Plugins/Andr
 dependencies {
 // ...
 // Add APM SDK library dependency
-implementation 'com.huawei.agconnect:agconnect-apms:1.5.2.300'
-implementation 'com.huawei.agconnect:agconnect-apms-game:1.5.2.303'
+   implementation 'com.huawei.agconnect:agconnect-apms:1.5.2.305'
+   implementation 'com.huawei.agconnect:agconnect-apms-game:1.5.2.303'
 }
 ```
 

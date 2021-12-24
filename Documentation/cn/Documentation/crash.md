@@ -179,7 +179,7 @@ Crash服务提供了Crash SDK。使用Crash服务之前，您需要将Crash SDK�
    ```
      dependencies {
    …
-      implementation 'com.huawei.agconnect:agconnect-crash:1.4.1.300'
+      implementation 'com.huawei.agconnect:agconnect-crash:1.6.1.300'
    ...
    }
    ```
@@ -193,7 +193,7 @@ Crash服务提供了Crash SDK。使用Crash服务之前，您需要将Crash SDK�
    …
       //AGC SDK and Crash SDK integrated configuration
       implementation 'com.huawei.hms:hianalytics:5.0.5.300'
-      implementation 'com.huawei.agconnect:agconnect-crash:1.4.1.300'
+      implementation 'com.huawei.agconnect:agconnect-crash:1.6.1.300'
       implementation 'com.huawei.agconnect:agconnect-core:1.4.2.300' 
    ...
    }

@@ -228,7 +228,7 @@ App Linking服务提供App Linking SDK。您必须先将SDK集成到您的应用
    ```
      dependencies {
    …
-      implementation 'com.huawei.agconnect:agconnect-applinking:1.4.1.300'
+      implementation 'com.huawei.agconnect:agconnect-applinking:1.6.1.300'
    ...
    }
    ```

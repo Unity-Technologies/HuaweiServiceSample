@@ -296,7 +296,8 @@
     dependencies { 
           ...     
        implementation 'com.huawei.agconnect:agconnect-core:1.4.2.301'
-       implementation 'com.huawei.agconnect:agconnect-auth:1.4.2.301'
+        implementation 'com.huawei.agconnect:agconnect-credential:1.6.1.300'
+        implementation 'com.huawei.agconnect:agconnect-auth:1.6.1.300'
    ...    
    }
    ```
@@ -323,7 +324,8 @@
    ```
     dependencies { 
           ...     
-       implementation 'com.huawei.agconnect:agconnect-auth:1.4.2.301'
+        implementation 'com.huawei.agconnect:agconnect-credential:1.6.1.300'
+        implementation 'com.huawei.agconnect:agconnect-auth:1.6.1.300'
    ...    
    }
    ```

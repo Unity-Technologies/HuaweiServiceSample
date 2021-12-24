@@ -187,8 +187,8 @@ You can follow [Huawei documentation guidance](https://developer.huawei.com/cons
            implementation 'com.huawei.hms:ads-lite:13.4.29.303'
            implementation 'com.huawei.hms:ads-consent:3.4.30.301'
            implementation 'com.android.support:appcompat-v7:28.0.0'
-           implementation 'com.huawei.hms:base:4.0.1.300'
-           implementation 'com.huawei.hms:hwid:4.0.1.300'
+           implementation 'com.huawei.hms:base:6.2.0.300'
+           implementation 'com.huawei.hms:hwid:6.1.0.303'
            }
    ```
    
@@ -204,10 +204,10 @@ You can follow [Huawei documentation guidance](https://developer.huawei.com/cons
    dependencies {
        implementation fileTree(dir: 'libs', include: ['*.jar'])
        implementation 'com.huawei.hms:hianalytics:5.0.0.301'
-       implementation 'com.huawei.agconnect:agconnect-core:1.2.0.300'
-       implementation 'com.huawei.hms:base:4.0.1.300'
-       implementation 'com.huawei.hms:hwid:4.0.1.300'
-       implementation 'com.huawei.hms:game:4.0.1.300'
+       implementation 'com.huawei.agconnect:agconnect-core:1.6.1.300'
+       implementation 'com.huawei.hms:base:6.2.0.300'
+       implementation 'com.huawei.hms:hwid:6.1.0.303'
+       implementation 'com.huawei.hms:game:6.1.0.301'
    **DEPS**}
    ```
 

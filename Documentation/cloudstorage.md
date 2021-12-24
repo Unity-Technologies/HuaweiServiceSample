@@ -100,9 +100,10 @@ You need to enable Cloud Storage before using it. If you have enabled it, skip t
   Add the Maven repository address of the Cloud Storage SDK to the app-level `launcherTemplate.gradle` file (usually in the app directory).
 
   ```
-  implementation "com.huawei.agconnect:agconnect-storage:1.3.1.100"
-  implementation 'com.huawei.agconnect:agconnect-core:1.4.2.300'
-  implementation 'com.huawei.agconnect:agconnect-auth:1.4.2.301'
+   implementation "com.huawei.agconnect:agconnect-storage:1.3.1.200"
+   implementation 'com.huawei.agconnect:agconnect-core:1.4.2.300'
+   implementation 'com.huawei.agconnect:agconnect-credential:1.6.1.300'
+   implementation 'com.huawei.agconnect:agconnect-auth:1.6.1.300'
   ```
 
 4. To read and write files and access the network, you need to configure the following permissions in the `AndroidMainfest.xml` file:

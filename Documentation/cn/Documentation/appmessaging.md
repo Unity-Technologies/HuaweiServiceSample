@@ -127,7 +127,7 @@ App Messaging提供了客户端SDK，应用集成App Messaging SDK后，SDK会�
    ```
      dependencies {
    …
-        implementation "com.huawei.agconnect:agconnect-appmessaging:1.4.1.300"
+        implementation "com.huawei.agconnect:agconnect-appmessaging:1.6.1.300"
    …
    }
    ```
@@ -141,7 +141,7 @@ App Messaging提供了客户端SDK，应用集成App Messaging SDK后，SDK会�
    ```
      dependencies {
    …
-        implementation "com.huawei.agconnect:agconnect-appmessaging:1.4.1.300"
+        implementation "com.huawei.agconnect:agconnect-appmessaging:1.6.1.300"
    …
    }
    ```

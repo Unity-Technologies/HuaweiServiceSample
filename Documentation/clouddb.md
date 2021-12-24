@@ -166,8 +166,8 @@ To add CloudDB Kit:
 ```
   dependencies {
 …
-   implementation 'com.huawei.agconnect:agconnect-core:1.2.0.300'
-   implementation "com.huawei.agconnect:agconnect-database:1.2.2.301"
+   implementation 'com.huawei.agconnect:agconnect-core:1.6.1.300'
+   implementation "com.huawei.agconnect:agconnect-cloud-database:1.5.0.300"
 ...
 }
 
@@ -203,8 +203,8 @@ dependencies {
 ...
    implementation 'com.android.support:appcompat-v7:28.0.0'
    implementation 'com.android.support:appcompat-v7:28.0.0'
-   implementation 'com.huawei.agconnect:agconnect-core:1.2.0.300'
-    implementation "com.huawei.agconnect:agconnect-database:1.2.2.301"
+   implementation 'com.huawei.agconnect:agconnect-core:1.6.1.300'
+   implementation "com.huawei.agconnect:agconnect-cloud-database:1.5.0.300"
 ...
    }
 

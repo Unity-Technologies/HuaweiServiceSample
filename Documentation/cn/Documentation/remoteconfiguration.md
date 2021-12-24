@@ -104,7 +104,7 @@
    ```
      dependencies {
    …
-      implementation 'com.huawei.agconnect:agconnect-remoteconfig:1.4.1.300'
+      implementation 'com.huawei.agconnect:agconnect-remoteconfig:1.6.1.300'
    ...
    }
    ```

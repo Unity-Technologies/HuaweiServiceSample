@@ -121,7 +121,7 @@ To collect statistics on App Messaging events, you need to use HUAWEI Analytics 
    ```
        dependencies {
    
-       implementation "com.huawei.agconnect:agconnect-appmessaging:1.4.1.300"
+       implementation "com.huawei.agconnect:agconnect-appmessaging:1.6.1.300"
    
    }
    ```
@@ -139,7 +139,7 @@ To collect statistics on App Messaging events, you need to use HUAWEI Analytics 
    ```
        dependencies {
        
-       implementation "com.huawei.agconnect:agconnect-appmessaging:1.4.1.300"
+       implementation "com.huawei.agconnect:agconnect-appmessaging:1.6.1.300"
    
    }
    ```
