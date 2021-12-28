@@ -238,6 +238,7 @@ You can follow [Huawei documentation guidance](https://developer.huawei.com/cons
 
     Before building the APK, configure the obfuscation configuration file to prevent the HMS Core SDK from being obfuscated.（[Reference](https://developer.huawei.com/consumer/en/doc/development/HMSCore-Guides/android-config-obfuscation-scripts-0000001050176973)）
     - Open the proguard file in your Unity project and add configurations to exclude the HMS Core SDK from obfuscation.
+
     ```
     -ignorewarnings
     -keepattributes *Annotation*
@@ -249,7 +250,9 @@ You can follow [Huawei documentation guidance](https://developer.huawei.com/cons
     -keep class com.huawei.updatesdk.**{*;}
     -keep class com.huawei.hms.**{*;}
     ```
+    
     - (Optional) Configure the keep.xml file as follows to keep layout resources if you have enabled R8 resource shrinking (with shrinkResources being set to true in the project-level build.gradle file) and strict reference checks (with shrinkMode being set to strict in the res/raw/keep.xml file). Not keeping layout resources will lead to app rejection during release to HUAWEI AppGallery.
+
     ```
         <?xml version="1.0" encoding="utf-8"?>
     <resources xmlns:tools="http://schemas.android.com/tools"

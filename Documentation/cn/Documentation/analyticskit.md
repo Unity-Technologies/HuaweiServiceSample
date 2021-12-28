@@ -232,6 +232,7 @@
 
 9. 配置混淆脚本 （[参考](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-Guides/android-appendix-d-0000001050167398)）
     - （可选）当您启用R8资源缩减（项目级“build.gradle”文件中“shrinkResources”属性为“true”）和严格引用检查（“res/raw/keep.xml”文件中的“shrinkMode”为“strict”）时，请您配置“keep.xml”文件手动保留layout资源，确保应用正常通过华为应用市场上架审核。
+    
     ```
     <?xml version="1.0" encoding="utf-8"?>
     <resources xmlns:tools="http://schemas.android.com/tools"

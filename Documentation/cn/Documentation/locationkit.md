@@ -255,6 +255,7 @@
 
     编译APK前需要配置混淆配置文件，避免混淆HMS Core SDK导致功能异常。（[参考文档](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-Guides/config-obfuscation-scripts-0000001188775555)）
     - 在您的Unity项目里打开混淆配置文件，加入排除HMS Core SDK的混淆配置。
+
     ```
     -ignorewarnings
     -keepattributes *Annotation*
@@ -269,7 +270,9 @@
     -keep public class com.huawei.location.nlp.network.** {*; }
     -keep class com.huawei.wisesecurity.ucs.**{*;}
     ```
+
     - （可选）当您启用R8资源缩减（项目级“build.gradle”文件中shrinkResources属性为“true”）和严格引用检查（“res/raw/keep.xml”文件中的shrinkMode为“strict”）时，请您配置“keep.xml”文件手动保留layout资源，确保应用正常通过华为应用市场上架审核。
+    
     ```
     <?xml version="1.0" encoding="utf-8"?>
     <resources xmlns:tools="http://schemas.android.com/tools"

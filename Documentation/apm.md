@@ -81,6 +81,7 @@ dependencies {
 ```
 
 * Add the following items to the proguard file in your Unity project for obfuscation configurations([Reference](https://developer.huawei.com/consumer/en/doc/development/AppGallery-connect-Guides/agc-apm-android-getstarted-0000001052887262)):
+
 ```
 -keep class com.huawei.agconnect.**{*;}
 -dontwarn com.huawei.agconnect.**
