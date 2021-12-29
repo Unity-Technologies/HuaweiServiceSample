@@ -116,7 +116,7 @@ In the example project, the corresponding scene is `Assets/HuaweiHmsDemo/Scenes/
    ...
                }
                dependencies{
-                    classpath 'com.huawei.agconnect:agcp:1.4.1.300'
+                    classpath 'com.huawei.agconnect:agcp:1.6.1.300'
    …        }
            }
    ...

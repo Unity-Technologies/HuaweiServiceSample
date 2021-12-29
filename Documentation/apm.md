@@ -61,7 +61,7 @@ Before integrating the APM SDK, ensure that your app has integrated the AppGalle
 
    buildscript {  
               dependencies {  
-               classpath 'com.huawei.agconnect:agcp:1.5.2.300'
+               classpath 'com.huawei.agconnect:agcp:1.6.1.300'
               }  
    }
    ```
@@ -121,9 +121,7 @@ The APM plug-in uses the instrumentation technology to collect [HTTP/HTTPS netwo
      dependencies {
        // ...
        // To benefit from the latest APM feaures, update your Android Gradle Plugin dependency to at least v3.3.2
-       classpath 'com.android.tools.build:gradle:3.3.2'
-       // Add the dependency for the APM plugin
-       classpath 'com.huawei.agconnect:agconnect-apms-plugin:1.5.2.300'
+       classpath 'com.android.tools.build:gradle:3.6.4'
      }
     }
     ```

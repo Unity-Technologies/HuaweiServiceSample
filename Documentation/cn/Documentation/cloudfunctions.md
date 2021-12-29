@@ -173,8 +173,8 @@
                 maven { url 'https://developer.huawei.com/repo/' }
             }
            dependencies {
-                classpath 'com.android.tools.build:gradle:3.4.0'
-                classpath 'com.huawei.agconnect:agcp:1.4.1.300'
+                classpath 'com.android.tools.build:gradle:3.6.4'
+                classpath 'com.huawei.agconnect:agcp:1.6.1.300'
            }
 ...
         }
@@ -233,8 +233,8 @@ buildscript {
 ...
             }
         dependencies {
-            classpath 'com.android.tools.build:gradle:3.4.0'
-            classpath 'com.huawei.agconnect:agcp:1.4.1.300'
+            classpath 'com.android.tools.build:gradle:3.6.4'
+            classpath 'com.huawei.agconnect:agcp:1.6.1.300'
        }
 
 ...

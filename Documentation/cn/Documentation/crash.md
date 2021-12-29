@@ -157,7 +157,7 @@ Crash服务提供了Crash SDK。使用Crash服务之前，您需要将Crash SDK�
    ...
                }
                dependencies{
-                    classpath 'com.huawei.agconnect:agcp:1.4.1.300'
+                    classpath 'com.huawei.agconnect:agcp:1.6.1.300'
    …        }
    
            }
