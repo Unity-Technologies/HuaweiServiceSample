@@ -17,7 +17,7 @@ dependencies {
      //Wechat
     api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
        //facebook
-    implementation 'com.facebook.android:facebook-android-sdk:4.20.0'
+    implementation 'com.facebook.android:facebook-login:latest.release'
 
 
     //cloud storage
