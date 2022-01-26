@@ -48,7 +48,7 @@ Add the following configuration files into `Assets/Plugins/Android`.
                 // See official Gradle and Android Gradle Plugin compatibility table here https://developer.android.com/studio/releases/gradle-plugin#updating-gradle
                 // To specify a custom Gradle version in Unity, go do "Preferences > External Tools", uncheck "Gradle Installed with Unity (recommended)" and specify a path to a custom Gradle version
                 classpath 'com.android.tools.build:gradle:3.6.4'
-                classpath 'com.huawei.agconnect:agcp:1.6.2.300'
+                classpath 'com.huawei.agconnect:agcp:1.6.1.300'
                 **BUILD_SCRIPT_DEPS**
             }
         }
@@ -73,7 +73,6 @@ Add the following configuration files into `Assets/Plugins/Android`.
     dependencies {
         ...
         implementation 'com.huawei.agconnect:agconnect-core:1.6.2.300'
-        implementation 'com.huawei.hms:base:6.2.0.300'
         implementation 'com.huawei.hms:hwid:6.1.0.303'
         implementation 'com.huawei.hms:game:6.1.0.301'
         ...
@@ -88,7 +87,6 @@ Add the following configuration files into `Assets/Plugins/Android`.
     dependencies {
         ...
         implementation 'com.huawei.agconnect:agconnect-core:1.6.2.300'
-        implementation 'com.huawei.hms:base:6.2.0.300'
         implementation 'com.huawei.hms:hwid:6.1.0.303'
         implementation 'com.huawei.hms:game:6.1.0.301'
         ...

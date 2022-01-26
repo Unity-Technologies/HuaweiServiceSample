@@ -47,7 +47,7 @@
                 //请在此处查看官方的Gradle和Android Gradle插件兼容性列表 https://developer.android.com/studio/releases/gradle-plugin#updating-gradle
                 //要在Unity中指定自定义Gradle版本，请到"Preferences > External Tools"，取消选中"Gradle Installed with Unity (recommended)" ，然后指定自定义Gradle版本的路径
                 classpath 'com.android.tools.build:gradle:3.6.4'
-                classpath 'com.huawei.agconnect:agcp:1.6.2.300'
+                classpath 'com.huawei.agconnect:agcp:1.6.1.300'
                 **BUILD_SCRIPT_DEPS**
             }
         }
@@ -72,7 +72,6 @@
     dependencies {
         ...
         implementation 'com.huawei.agconnect:agconnect-core:1.6.2.300'
-        implementation 'com.huawei.hms:base:6.2.0.300'
         implementation 'com.huawei.hms:hwid:6.1.0.303'
         implementation 'com.huawei.hms:game:6.1.0.301'
         ...
@@ -87,7 +86,6 @@
     dependencies {
         ...
         implementation 'com.huawei.agconnect:agconnect-core:1.6.2.300'
-        implementation 'com.huawei.hms:base:6.2.0.300'
         implementation 'com.huawei.hms:hwid:6.1.0.303'
         implementation 'com.huawei.hms:game:6.1.0.301'
         ...
