@@ -179,12 +179,12 @@ Ads Kit提供广告标识符和转化跟踪能力方便广告平台和广告主�
    ```
        dependencies {
            implementation project(':unityLibrary')
-           implementation 'com.huawei.hms:ads-lite:13.4.29.303'
-           implementation 'com.huawei.hms:ads-consent:3.4.30.301'
-           implementation 'com.huawei.hms:push:4.0.3.301'
-           implementation 'com.huawei.hms:hianalytics:5.1.0.300'
+           implementation 'com.huawei.hms:ads-lite:13.4.49.301'
+           implementation 'com.huawei.hms:ads-consent:3.4.49.301'
+           implementation 'com.huawei.hms:push:6.1.0.300'
+           implementation 'com.huawei.hms:hianalytics:6.3.2.300'
+           implementation 'com.huawei.hms:location:6.2.0.300'
            implementation 'com.android.support:appcompat-v7:28.0.0'
-           implementation 'com.huawei.hms:hianalytics:5.0.0.301'
            implementation 'com.huawei.agconnect:agconnect-core:1.6.1.300'
            implementation 'com.huawei.hms:hwid:6.1.0.303'
            implementation 'com.huawei.hms:game:6.1.0.301'
@@ -200,7 +200,7 @@ Ads Kit提供广告标识符和转化跟踪能力方便广告平台和广告主�
     ```
         dependencies {
             implementation fileTree(dir: 'libs', include: ['*.jar'])
-            implementation 'com.huawei.hms:hianalytics:5.0.0.301'
+            implementation 'com.huawei.hms:hianalytics:6.3.2.300'
             implementation 'com.huawei.agconnect:agconnect-core:1.6.1.300'
             implementation 'com.huawei.hms:hwid:6.1.0.303'
             implementation 'com.huawei.hms:game:6.1.0.301'
@@ -253,7 +253,35 @@ Ads Kit提供广告标识符和转化跟踪能力方便广告平台和广告主�
 
    ![Images/hms/AgcConnectServicesJson.png](Images/hms/AgcConnectServicesJson.png)
 
-9. 获取activity
+9. 配置混淆脚本
+    
+    编译APK前需要配置混淆配置文件，避免混淆HMS Core SDK导致功能异常。（[参考文档](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-Guides/config-obfuscation-scripts-0000001188775555)）
+    - 在您的Unity项目里打开混淆配置文件，加入排除HMS Core SDK的混淆配置。
+
+    ```
+    -ignorewarnings
+    -keepattributes *Annotation*
+    -keepattributes Exceptions
+    -keepattributes InnerClasses
+    -keepattributes Signature
+    -keepattributes SourceFile,LineNumberTable
+    -keep class com.huawei.hianalytics.**{*;}
+    -keep class com.huawei.updatesdk.**{*;}
+    -keep class com.huawei.hms.**{*;}
+    -keep class * extends com.huawei.hms.core.aidl.IMessageEntity{ *; }
+    -keep public class com.huawei.location.nlp.network.** {*; }
+    -keep class com.huawei.wisesecurity.ucs.**{*;}
+    ```
+
+    - （可选）当您启用R8资源缩减（项目级“build.gradle”文件中shrinkResources属性为“true”）和严格引用检查（“res/raw/keep.xml”文件中的shrinkMode为“strict”）时，请您配置“keep.xml”文件手动保留layout资源，确保应用正常通过华为应用市场上架审核。
+    
+    ```
+    <?xml version="1.0" encoding="utf-8"?>
+    <resources xmlns:tools="http://schemas.android.com/tools"
+        tools:keep="@layout/hms_download_progress,@drawable/screen_off,@layout/upsdk*"
+        tools:shrinkMode="strict" />
+    ```
+10. 获取activity
 
    可以用 `Common.GetActivity()`函数来获取activity。
 
