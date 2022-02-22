@@ -12,12 +12,32 @@ namespace HuaweiServiceDemo{
         private GeofenceService mService;
         private PendingIntent pendingIntent;
         private int requestId = 0;
+        private Context context;
+        
         public override void RegisterEvent(TestEvent registerEvent){
             registerEvent("CreateGeo",CreateGeo);
             registerEvent("removeGeo",RemoveGeo);
             registerEvent("removeGeoIntent",RemoveGeoIntent);
+            registerEvent("GetGeofence(Activity))",GetGeoByActivity);
+            registerEvent("GetGeofence(Context))",GetGeoByContext);
         }
-        
+
+        public void GetGeoByContext()
+        {
+            context = new HuaweiService.Context().getApplicationContext();
+            mService = LocationServices.getGeofenceService(context);
+            pendingIntent = getPendingIntent();
+            TestTip.Inst.ShowText("Successfully created a new GeofenceService instance.");
+        }
+        public void GetGeoByActivity()
+        {
+            AndroidJavaClass javaUnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            AndroidJavaObject currentActivity = javaUnityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+            Activity activity = HmsUtil.GetHmsBase<Activity>(currentActivity);
+            mService = LocationServices.getGeofenceService(activity);
+            pendingIntent = getPendingIntent();
+            TestTip.Inst.ShowText("Successfully created a new GeofenceService instance.");
+        }
         public void CreateGeo(){
             Geofence fence = geoBuild
                 .setUniqueId("7")

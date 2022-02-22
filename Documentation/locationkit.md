@@ -99,6 +99,9 @@ You can follow [Huawei documentation guidance](https://developer.huawei.com/cons
                    <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
                </activity>
                <service
+                    android:name="com.huawei.location.service.BackGroundService"        
+                    android:foregroundServiceType="location"/>
+               <service
                    android:name="com.unity.hms.push.MyPushService"
                    android:exported="false">
                    <intent-filter>

@@ -17,6 +17,10 @@ namespace HuaweiServiceDemo
         private FusedLocationProviderClient mFusedLocationProviderClient;
         private SettingsClient mSettingsClient;
         public int requestType;
+        public FusedLocationProviderClient fusedLocationProviderClient;
+        public Notification notification;
+        public LogConfig logConfig = new LogConfig();
+        public SettingsClient settingsClient = new SettingsClient();
 
         public override void RegisterEvent(TestEvent registerEvent)
         {
@@ -29,7 +33,11 @@ namespace HuaweiServiceDemo
             registerEvent("update with intent-104", () => RequestLocationUpdates(104, INTENT));
             registerEvent("update with intent-100", () => RequestLocationUpdates(100, INTENT));
             registerEvent("update with location HD", () => RequestLocationUpdates(100, LocationHD));
+            registerEvent("enableBackgroundLocation", () => EnableBackgroundLocation(1, notification));
+            registerEvent("disableBackgroundLocation", () => DisableBackgroundLocation());
             registerEvent("remove updates", RemoveUpdates);
+            registerEvent("setLogPath", LogPath);
+            registerEvent("setLogConfig", LogConfig);
         }
 
         public void SetPermission()
@@ -38,6 +46,46 @@ namespace HuaweiServiceDemo
                 new string[] {ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION},
                 new string[] {ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION, ACCESS_BACKGROUND_LOCATION}
             );
+        }
+
+        public void LogPath()
+        {
+            logConfig.setLogPath("c:/root");
+            TestTip.Inst.ShowText("Set log path c:/root");
+        }
+        
+        public void LogConfig()
+        {
+            AndroidJavaClass javaUnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            AndroidJavaObject currentActivity = javaUnityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+            Activity activity = HmsUtil.GetHmsBase<Activity>(currentActivity);
+            SettingsClient settingsClient = LocationServices.getSettingsClient(activity);
+            settingsClient.setLogConfig(logConfig).addOnFailureListener(new OnFailureListener() {});
+            
+            TestTip.Inst.ShowText("Successfully set log config");
+        }
+
+        public void EnableBackgroundLocation(int id,Notification notification)
+        {
+            AndroidJavaClass javaUnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            AndroidJavaObject currentActivity = javaUnityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+            Activity activity = HmsUtil.GetHmsBase<Activity>(currentActivity);
+
+            Notification.Builder builder = new Notification.Builder(new Context());
+            notification = builder.build();
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
+            fusedLocationProviderClient.enableBackgroundLocation(id,notification);  
+            TestTip.Inst.ShowText("Enable background location");
+        }
+
+        public void DisableBackgroundLocation()
+        {
+            AndroidJavaClass javaUnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            AndroidJavaObject currentActivity = javaUnityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+            Activity activity = HmsUtil.GetHmsBase<Activity>(currentActivity);
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
+            fusedLocationProviderClient.disableBackgroundLocation();
+            TestTip.Inst.ShowText("Disable background location");
         }
 
         public void CheckLocationSetting()

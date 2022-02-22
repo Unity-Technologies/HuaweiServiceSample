@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace HuaweiService
 {
     public class Set_Data : IHmsBaseClass{
-        public string name => "java.util.Map";
+        public string name => "java.util.Set";
     }
     public class Set<T> :HmsClass<Set_Data>
     {

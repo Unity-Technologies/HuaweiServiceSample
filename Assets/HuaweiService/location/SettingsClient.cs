@@ -14,5 +14,8 @@ namespace HuaweiService.location
         public Task checkLocationSettings(LocationSettingsRequest arg0) {
             return Call<Task>("checkLocationSettings", arg0);
         }
+        public Task setLogConfig(LogConfig arg0) {
+            return Call<Task>("setLogConfig", arg0);
+        }
     }
 }

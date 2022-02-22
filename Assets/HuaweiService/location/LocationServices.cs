@@ -21,5 +21,11 @@ namespace HuaweiService.location
         public static SettingsClient getSettingsClient(Activity arg0) {
             return CallStatic<SettingsClient>("getSettingsClient", arg0);
         }
+        public static GeofenceService getGeofenceService(Context arg0) {
+            return CallStatic<GeofenceService>("getGeofenceService", arg0);
+        }
+        public static GeofenceService getGeofenceService(Activity arg0) {
+            return CallStatic<GeofenceService>("getGeofenceService", arg0);
+        }
     }
 }
