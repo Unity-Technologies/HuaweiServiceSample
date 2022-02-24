@@ -13,20 +13,17 @@ namespace HuaweiServiceDemo{
         private PendingIntent pendingIntent;
         private int requestId = 0;
         private Context context;
-        
         public override void RegisterEvent(TestEvent registerEvent){
             registerEvent("CreateGeo",CreateGeo);
             registerEvent("removeGeo",RemoveGeo);
             registerEvent("removeGeoIntent",RemoveGeoIntent);
-            registerEvent("GetGeofence(Activity))",GetGeoByActivity);
-            registerEvent("GetGeofence(Context))",GetGeoByContext);
+            registerEvent("GetGeofenceByActivity",GetGeoByActivity);
+            registerEvent("GetGeofenceByContext",GetGeoByContext);
         }
-
         public void GetGeoByContext()
         {
             context = new HuaweiService.Context().getApplicationContext();
             mService = LocationServices.getGeofenceService(context);
-            pendingIntent = getPendingIntent();
             TestTip.Inst.ShowText("Successfully created a new GeofenceService instance.");
         }
         public void GetGeoByActivity()
@@ -35,7 +32,6 @@ namespace HuaweiServiceDemo{
             AndroidJavaObject currentActivity = javaUnityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
             Activity activity = HmsUtil.GetHmsBase<Activity>(currentActivity);
             mService = LocationServices.getGeofenceService(activity);
-            pendingIntent = getPendingIntent();
             TestTip.Inst.ShowText("Successfully created a new GeofenceService instance.");
         }
         public void CreateGeo(){

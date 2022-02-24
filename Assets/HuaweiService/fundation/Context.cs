@@ -32,5 +32,8 @@ namespace HuaweiService
         public string getPackageName() {
             return Call<string>("getPackageName");
         }
+        public File getFilesDir() {
+            return Call<File>("getFilesDir");
+        }
     }
 }

@@ -11,7 +11,8 @@ namespace HuaweiServiceDemo
         private HiAnalyticsInstance instance;
         private bool enabled;
         private int level = 0;
-        private bool resenabled;
+        private bool restrictionSharedEnabled;
+        
         public AnalyticTest()
         {
             HiAnalyticsTools.enableLog();
@@ -31,82 +32,72 @@ namespace HuaweiServiceDemo
             registerEvent("enable log",enableLog);
             registerEvent("page start",pageStart);
             registerEvent("page end",pageEnd);
-            registerEvent("enable restriction(false)",EnablerestrictionFalse);
-            registerEvent("enable restriction(true)",EnablerestrictionTrue);
             registerEvent("set reportPolicies",SetReportPolicies);
-            registerEvent("isRestrictionEnabled",RestrictionEnabled);
-            registerEvent("setCollectAdsIdEnabled",CollectAdsIdEnabled);
-            registerEvent("setCollectAdsIdDisEnabled",CollectAdsIdDisEnabled);
-            registerEvent("setRestrictionSharedEnabled",RestrictionharedEnabled);
-            registerEvent("setRestrictionSharedDisEnabled",RestrictionharedDisEnabled);
-            registerEvent("isRestrictionShared",RestrictionShared);
-            registerEvent("addDefaultEventParams",DefaultEventParams);
-            registerEvent("setWXOpenId",WXOpenId);
-            registerEvent("setWXUnionId",WXUnionId);
-            registerEvent("setWXAppId",WXAppId);
+            registerEvent("set restriction enabled",SetRestrictionEnabled);
+            registerEvent("set CollectAdsId enabled",SetCollectAdsIdEnabled);
+            registerEvent("set restriction shared",SetRestrictionShared);
+            registerEvent("add default event params",AddDefaultEventParams);
+            registerEvent("set WXOpenId",SetWXOpenId);
+            registerEvent("set WXUnionId",SetWXUnionId);
+            registerEvent("set WXAppId",SetWXAppId);
         }
-        public void WXOpenId()
+        
+        public void SetWXOpenId()
         {
             instance.setWXOpenId("OpenId");
-            Util.showToast("setWXOpenId:OpenId");
+            TestTip.Inst.ShowText("Set WXOpenId is OpenId");
         }
-        public void WXUnionId()
+        
+        public void SetWXUnionId()
         {
             instance.setWXUnionId("UnionId");
-            Util.showToast("setWXUnionId:UnionId");
+            TestTip.Inst.ShowText("Set WXUnionId is UnionId");
         }
-        public void WXAppId()
+        
+        public void SetWXAppId()
         {
             instance.setWXAppId("AppId");
-            Util.showToast("setWXAppId:AppId");
+            TestTip.Inst.ShowText("Set WXAppId is AppId");
         }
 
-        public void EnablerestrictionFalse()
+        public void SetRestrictionEnabled()
         {
             instance.setRestrictionEnabled(false);
-            Util.showToast("Enable restriction");
-        }
-        public void EnablerestrictionTrue()
-        {
+            TestTip.Inst.ShowText("Enable data analysis capabilities.");
+            enabled = instance.isRestrictionEnabled();
+            TestTip.Inst.ShowText("The return value obtained from the isRestrictionEnabled method is " + enabled + ".");
             instance.setRestrictionEnabled(true);
-            Util.showToast("DisEnable restriction");
+            TestTip.Inst.ShowText("Limit data analysis capabilities.");
+            enabled = instance.isRestrictionEnabled();
+            TestTip.Inst.ShowText("The return value obtained from the isRestrictionEnabled method is " + enabled + ".");
         }
-        public void CollectAdsIdEnabled()
+
+        public void SetCollectAdsIdEnabled()
         {
             instance.setCollectAdsIdEnabled(true);
-            Util.showToast("Enable CollectAds");
-        }
-        public void CollectAdsIdDisEnabled()
-        {
+            TestTip.Inst.ShowText("To allow collection of ad identifiers.");
             instance.setCollectAdsIdEnabled(false);
-            Util.showToast("DisEnable CollectAds");
+            TestTip.Inst.ShowText("Set the collection of ad identifiers is not allowed.");
         }
-        public void RestrictionEnabled()
-        {
-            enabled = instance.isRestrictionEnabled();
-            TestTip.Inst.ShowText("isRestrictionEnabled:" + enabled);
-        }
-        public void RestrictionharedEnabled()
+        
+        public void SetRestrictionShared()
         {
             instance.setRestrictionShared(false);
-            Util.showToast("Enable Restrictionhared");
-        }
-        public void RestrictionharedDisEnabled()
-        {
+            TestTip.Inst.ShowText("To enable the data sharing capability.");
+            restrictionSharedEnabled = instance.isRestrictionShared();
+            TestTip.Inst.ShowText("The return value obtained from the isRestrictionShared method is " + restrictionSharedEnabled + ".");
             instance.setRestrictionShared(true);
-            Util.showToast("DisEnable Restrictionhared");
+            TestTip.Inst.ShowText("To limit the data sharing ability.");
+            restrictionSharedEnabled = instance.isRestrictionShared();
+            TestTip.Inst.ShowText("The return value obtained from the isRestrictionShared method is " + restrictionSharedEnabled + ".");
         }
-        public void RestrictionShared()
-        {
-            resenabled = instance.isRestrictionShared();
-            TestTip.Inst.ShowText("isRestrictionShared:" + resenabled);
-        }
-        public void DefaultEventParams()
+        
+        public void AddDefaultEventParams()
         {
             Bundle bundle_pre1 = new Bundle();
             bundle_pre1.putString(HAParamType.PRODUCTID,"item_id");
             instance.addDefaultEventParams(bundle_pre1);
-            TestTip.Inst.ShowText("addDefaultEventParams:" + HAParamType.PRODUCTID);
+            TestTip.Inst.ShowText("Add Default Event Params is " + HAParamType.PRODUCTID);
         }
         
         public void SetReportPolicies()
@@ -114,13 +105,14 @@ namespace HuaweiServiceDemo
             ReportPolicy appLaunchPolicy = ReportPolicy.ON_APP_LAUNCH_POLICY;
             ReportPolicy scheduledTimePolicy = ReportPolicy.ON_SCHEDULED_TIME_POLICY;
             scheduledTimePolicy.setThreshold(600);
-            
+            TestTip.Inst.ShowText("Set the interval for the scheduled reporting policy to 600 seconds." );
+            long threshold = scheduledTimePolicy.getThreshold();
+            TestTip.Inst.ShowText("The threshold of scheduledTimePolicy is " + threshold);
             HuaweiService.HashSet<ReportPolicy> reportPolicies  = new HuaweiService.HashSet<ReportPolicy>();
             reportPolicies.add(scheduledTimePolicy);
             reportPolicies.add(appLaunchPolicy);
-            
             instance.setReportPolicies(reportPolicies);
-            Util.showToast("SetReportPolicies");
+            TestTip.Inst.ShowText("Set Reporting policies ScheduledTimePolicy and AppLaunchPolicy.");
         }
 
         public void SetUserId()
@@ -137,12 +129,14 @@ namespace HuaweiServiceDemo
             Util.showToast("product id set");
 
         }
+        
         public void SendAnalyticEnable()
         {
             enabled = !enabled;
             instance.setAnalyticsEnabled(enabled);
             TestTip.Inst.ShowText(enabled?"ENABLED":"DISABLED");
         }
+        
         public void CreateClearCache()
         {
             instance.clearCachedData();

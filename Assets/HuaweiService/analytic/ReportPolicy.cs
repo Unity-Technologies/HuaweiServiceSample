@@ -17,8 +17,13 @@ namespace HuaweiService.analytic
         public static ReportPolicy ON_CACHE_THRESHOLD_POLICY => HmsUtil.GetStaticValue<ReportPolicy>("ON_CACHE_THRESHOLD_POLICY");
     
         public ReportPolicy (): base() { }
+
         public void setThreshold(long arg0) {
             Call("setThreshold", arg0);
+        }
+        
+        public long getThreshold() {
+            return Call<long>("getThreshold");
         }
     }
 }

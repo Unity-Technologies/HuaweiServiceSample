@@ -14,7 +14,7 @@ namespace HuaweiServiceDemo
             registerEvent("set consent non personal", ()=> SetConsentStatus(false));
             registerEvent("consent",checkConsentStatus);
             registerEvent("set RequestOptions NonPersonalizedAd",setRequestOptionsNonPersonalizedAd);
-            registerEvent("setRequestOptionsConsent",setRequestOptionsConsent);
+            registerEvent("set request options consent",setRequestOptionsConsent);
         }
         public void LoadImageAds()
         {

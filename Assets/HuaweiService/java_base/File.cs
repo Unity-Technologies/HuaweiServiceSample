@@ -15,5 +15,8 @@ namespace HuaweiService
         public File (File arg0, string arg1): base(arg0, arg1) { }
         public File (URI arg0): base(arg0) { }
         public File (): base() { }
+        public string getAbsolutePath() {
+            return Call<string>("getAbsolutePath");
+        }
     }
 }

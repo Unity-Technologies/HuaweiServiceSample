@@ -20,7 +20,6 @@ namespace HuaweiServiceDemo
         public FusedLocationProviderClient fusedLocationProviderClient;
         public Notification notification;
         public LogConfig logConfig = new LogConfig();
-        public SettingsClient settingsClient = new SettingsClient();
 
         public override void RegisterEvent(TestEvent registerEvent)
         {
@@ -33,11 +32,10 @@ namespace HuaweiServiceDemo
             registerEvent("update with intent-104", () => RequestLocationUpdates(104, INTENT));
             registerEvent("update with intent-100", () => RequestLocationUpdates(100, INTENT));
             registerEvent("update with location HD", () => RequestLocationUpdates(100, LocationHD));
-            registerEvent("enableBackgroundLocation", () => EnableBackgroundLocation(1, notification));
-            registerEvent("disableBackgroundLocation", () => DisableBackgroundLocation());
+            registerEvent("enable background location", () => EnableBackgroundLocation(1, notification));
+            registerEvent("disable background location", () => DisableBackgroundLocation());
             registerEvent("remove updates", RemoveUpdates);
-            registerEvent("setLogPath", LogPath);
-            registerEvent("setLogConfig", LogConfig);
+            registerEvent("set log config", LogConfig);
         }
 
         public void SetPermission()
@@ -48,20 +46,20 @@ namespace HuaweiServiceDemo
             );
         }
 
-        public void LogPath()
-        {
-            logConfig.setLogPath("c:/root");
-            TestTip.Inst.ShowText("Set log path c:/root");
-        }
-        
         public void LogConfig()
         {
             AndroidJavaClass javaUnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
             AndroidJavaObject currentActivity = javaUnityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
             Activity activity = HmsUtil.GetHmsBase<Activity>(currentActivity);
             SettingsClient settingsClient = LocationServices.getSettingsClient(activity);
-            settingsClient.setLogConfig(logConfig).addOnFailureListener(new OnFailureListener() {});
-            
+            string filePath = new Context().getApplicationContext().getFilesDir().getAbsolutePath() + "/log";
+            logConfig.setLogPath(filePath);
+            TestTip.Inst.ShowText("Set log path is " + filePath);
+            settingsClient.setLogConfig(logConfig).addOnFailureListener(new HmsFailureListener((e) =>
+            {
+                TestTip.Inst.ShowText("Set log config failed");
+            }
+            ));
             TestTip.Inst.ShowText("Successfully set log config");
         }
 
@@ -70,7 +68,6 @@ namespace HuaweiServiceDemo
             AndroidJavaClass javaUnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
             AndroidJavaObject currentActivity = javaUnityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
             Activity activity = HmsUtil.GetHmsBase<Activity>(currentActivity);
-
             Notification.Builder builder = new Notification.Builder(new Context());
             notification = builder.build();
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
