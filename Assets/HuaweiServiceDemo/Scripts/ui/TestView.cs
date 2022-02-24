@@ -16,6 +16,7 @@ namespace HuaweiServiceDemo
         public bool AppMessageEnabled;
         public bool CrashEnabled;
         public bool DatabaseEnabled;
+        public bool AccountEnabled;
 
         public Transform btnParent;
         public GameObject btnPrefab;
@@ -63,6 +64,10 @@ namespace HuaweiServiceDemo
             if (DatabaseEnabled)
             {
                 CloudDBTest.GetInstance().RegisterEvent(RegistEvent);
+            }
+            if (AccountEnabled)
+            {
+                AccountTest.GetInstance().RegisterEvent(RegistEvent);
             }
         }
 
