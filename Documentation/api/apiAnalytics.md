@@ -2,21 +2,21 @@
 
 #### HiAnalytics此类提供了获取Analytics Kit实例的方法
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 获取Analytics Kit实例 | [getInstance](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/android-api-hianalytics-0000001050707170#section1239421717451)(Activity activity) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/android-api-hianalytics-0000001050707170 | 
 | 获取Analytics Kit实例 | [getInstance](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/android-api-hianalytics-0000001050707170#section209812717321)(Context context) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/android-api-hianalytics-0000001050707170 | 
 | 获取Analytics Kit实例。支持设置数据处理位置 | [getInstance](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/android-api-hianalytics-0000001050707170#section123561840111517)(Context context, String routePolicy) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/android-api-hianalytics-0000001050707170 | 
 #### HiAnalyticsTools
 此类提供了打开调试日志的方法，以支持开发阶段的调试需求
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 打开调试日志，默认DEBUG级别 | [enableLog](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/android-api-hianalytics-tools-0000001051067142#section28021816194219)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/android-api-hianalytics-tools-0000001051067142 | 
 | 打开调试日志，可自定义打印的最小日志级别 | [enableLog](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/android-api-hianalytics-tools-0000001051067142#section15775410448)(int level) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/android-api-hianalytics-tools-0000001051067142 | 
 
 #### HiAnalyticsInstance Analytics
 单例类，提供上报用户行为数据的公共方法
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 设置用户ID | [setUserId](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/android-api-hianalytics-instance-0000001050987219#section11961041191220)(String id) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/android-api-hianalytics-instance-0000001050987219 | 
 | 清除本地缓存的所有采集数据 | [clearCachedData](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/android-api-hianalytics-instance-0000001050987219#section7238134312)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/android-api-hianalytics-instance-0000001050987219 | 
 | 记录事件 | [onEvent](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/android-api-hianalytics-instance-0000001050987219#section15204518184114)(String eventId, Bundle params) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/android-api-hianalytics-instance-0000001050987219 | 

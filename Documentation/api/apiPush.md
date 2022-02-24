@@ -3,7 +3,7 @@
 #### HmsInstanceId 
 本类提供了获取应用的AAID的方法以及接入推送服务所需Token的获取方法
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 获取HmsInstanceId类实例 | [getInstance](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hms-instanceid-0000001050255634#section3553151111611)(Context context) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hms-instanceid-0000001050255634 | 
 | 同步获取AAID | [getId](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hms-instanceid-0000001050255634#section14850101211311)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hms-instanceid-0000001050255634 | 
 | 获取AAID的生成时间戳 | [getCreationTime](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hms-instanceid-0000001050255634#section333815358311)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hms-instanceid-0000001050255634 | 
@@ -17,12 +17,12 @@
 #### AAIDResult
 您调用[HmsInstanceId](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hms-instanceid-0000001050255634)中的[getAAID](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hms-instanceid-0000001050255634#section14116320143111)()方法请求应用的匿名设备标识（AAID）后获得的AAID通过此实体类承载返回
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 获取应用的匿名设备标识 | [getId](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/aaidresult-0000001050255642#section1788692510237)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/aaidresult-0000001050255642 | 
 #### HmsMessaging
 提供订阅主题和设置是否显示通知栏消息等方法的类
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 获取实例 | [getInstance](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hmsmessaging-0000001050255650#section13628131719466)(Context context) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hmsmessaging-0000001050255650 | 
 | 获取是否启用自动初始化功能 | [isAutoInitEnabled](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hmsmessaging-0000001050255650#section768215326488)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hmsmessaging-0000001050255650 | 
 | 设置自动初始化使能与否 | [setAutoInitEnabled](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hmsmessaging-0000001050255650#section19198183125511)(boolean enable) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hmsmessaging-0000001050255650 | 
@@ -34,7 +34,7 @@
 
 #### RemoteMessage透传消息实体类
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 获取消息的分类标识（折叠键） | [getCollapseKey](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-0000001050171874#section159361469)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-0000001050171874 | 
 | 获取消息的有效内容数据 | [getData](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-0000001050171874#section18999122470)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-0000001050171874 | 
 | 获取Map类型的消息内容数据 | [getDataOfMap](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-0000001050171874#section164939120564)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-0000001050171874 | 
@@ -53,7 +53,7 @@
 #### RemoteMessage.Builder 
 RemoteMessage消息实体构建类, 用于构建RemoteMessage消息实例
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 添加键值对数据到消息中 | [addData](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-builder-0000001050413831#section1147917462010)(String key, String value) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-builder-0000001050413831 | 
 | 设置Map类型数据到消息中 | [setData](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-builder-0000001050413831#section1872911614112)(Map<String, String> map) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-builder-0000001050413831 | 
 | 清除消息数据 | [clearData](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-builder-0000001050413831#section1368753117116)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-builder-0000001050413831 | 
@@ -67,7 +67,7 @@ RemoteMessage消息实体构建类, 用于构建RemoteMessage消息实例
 #### RemoteMessage.Notification
 RemoteMessage.Notification类是[RemoteMessage](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-0000001050171874)类的内部类，表示消息通知
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 获取消息的标题 | [getTitle](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-notification-0000001050255662#section1092415181551)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-notification-0000001050255662 | 
 | 获取消息显示标题的键 | [getTitleLocalizationKey](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-notification-0000001050255662#section193261440453)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-notification-0000001050255662 | 
 | 获取消息显示标题的可变参数 | [getTitleLocalizationArgs](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-notification-0000001050255662#section7477125819511)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-notification-0000001050255662 | 
@@ -97,14 +97,14 @@ RemoteMessage.Notification类是[RemoteMessage](https://developer.huawei.com/con
 
 #### BaseException Push SDK抛出的异常
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 获取错误码 | [getErrorCode](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/base-exception-0000001050171878#section684661172219)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/base-exception-0000001050171878 | 
 | 获取错误描述信息 | [getMessage](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/base-exception-0000001050171878#section43972227717)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/base-exception-0000001050171878 | 
 
 #### HmsMessageService
 用于接收下行消息和刷新的Token的基础类
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 接收透传消息方法 | [onMessageReceived](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hmsmessageservice-0000001050173839#section2394629102116)([RemoteMessage](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/remotemessage-0000001050171874) message) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hmsmessageservice-0000001050173839 | 
 | 发送上行消息成功回调方法 | [onMessageSent](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hmsmessageservice-0000001050173839#section172125618218)(String msgId) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hmsmessageservice-0000001050173839 | 
 | 发送上行消息失败回调方法 | [onSendError](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hmsmessageservice-0000001050173839#section63844313230)(String msgId, Exception exception) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hmsmessageservice-0000001050173839 | 
