@@ -3,7 +3,7 @@
 #### HwAds HUAWEI Ads SDK的初始化
 
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 初始化HUAWEI Ads SDK | [init](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hwads-0000001050066833#section491161943413)(Context context) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hwads-0000001050066833 | 
 | 初始化HUAWEI Ads SDK | [init](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hwads-0000001050066833#section54333526362)(Context context, String appCode) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hwads-0000001050066833 | 
 | 获取HUAWEI Ads SDK的版本号 | [getSDKVersion](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hwads-0000001050066833#section8961123813378)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/hwads-0000001050066833 | 
@@ -13,7 +13,7 @@
 
 #### [AdParam.Builder](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/adparam-builder-0000001050066829)广告请求构造器
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 构造AdParam广告请求对象 | [build](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/adparam-builder-0000001050066829#section10386432988)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/adparam-builder-0000001050066829 | 
 | 设置性别 | [setGender](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/adparam-builder-0000001050066829#section5509173820119)(int gender) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/adparam-builder-0000001050066829 | 
 | 设置广告内容的分级上限 | [setAdContentClassification](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/adparam-builder-0000001050066829#section946164013120)(String adContentClassification) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/adparam-builder-0000001050066829 | 
@@ -27,7 +27,7 @@
 #### RequestOptions
 面向儿童、未达到法定承诺年龄的用户的设置以及广告内容分级
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 获取广告内容分级上限 | [getAdContentClassification](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/requestoptions-0000001050066843#section1519446171815)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/requestoptions-0000001050066843 | 
 | 获取媒体希望返回的广告语言 | [getAppLang](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/requestoptions-0000001050066843#section38605013215)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/requestoptions-0000001050066843 | 
 | 获取媒体希望返回的广告语言所在国家/地区码 | [getAppCountry](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/requestoptions-0000001050066843#section102895566277)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/requestoptions-0000001050066843 | 
@@ -39,7 +39,7 @@
 
 #### RequestOptions.Builder全局请求配置的构造器
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 构造RequestOptions全局请求配置对象 | [build](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/requestoptions-builder-0000001050064896#section1656114591310)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/requestoptions-builder-0000001050064896 | 
 | 设置广告内容分级上限 | [setAdContentClassification](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/requestoptions-builder-0000001050064896#section1716865220145)(String adContentClassification) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/requestoptions-builder-0000001050064896 | 
 | 设置儿童保护标签 | [setTagForChildProtection](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/requestoptions-builder-0000001050064896#section9827494252)(Integer tagForChildProtection) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/requestoptions-builder-0000001050064896 | 
@@ -52,7 +52,7 @@
 
 #### InterstitialAd插屏广告
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 获取当前设置的广告位ID | [getAdId](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/interstitialad-0000001050066835#section22721759171714)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/interstitialad-0000001050066835 | 
 | 获取当前的广告监听对象 | [getAdListener](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/interstitialad-0000001050066835#section10817528141712)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/interstitialad-0000001050066835 | 
 | 广告是否加载完成 | [isLoaded](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/interstitialad-0000001050066835#section129131420171811)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/interstitialad-0000001050066835 | 
@@ -68,7 +68,7 @@
 
 #### RewardAd激励广告的类
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 获取奖品信息 | [getReward](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardad-0000001050066871#section10454293111)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardad-0000001050066871 | 
 | 获取激励广告对象 | [createRewardAdInstance](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardad-0000001050066871#section31921718201218)(Context context) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardad-0000001050066871 | 
 | 获取自定义数据 | [getData](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardad-0000001050066871#section19421958141211)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardad-0000001050066871 | 
@@ -90,7 +90,7 @@
 | 非Wi-Fi情况下，设置视频播放和应用下载是否弹框提醒流量消耗（不设置，SDK默认弹框提醒） | [setMobileDataAlertSwitch](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardad-0000001050066871#section1363494772212)(boolean alertSwitch) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardad-0000001050066871 | 
 #### RewardAdListener激励广告回调接口
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 激励广告被关闭 | [onRewardAdClosed](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardadlistener-0000001050064924#section232715819415)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardadlistener-0000001050064924 | 
 | 激励广告加载失败 | [onRewardAdFailedToLoad](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardadlistener-0000001050064924#section927574318424)(int errorCode) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardadlistener-0000001050064924 | 
 | 离开应用时候调用方法 | [onRewardAdLeftApp](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardadlistener-0000001050064924#section1202163313436)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardadlistener-0000001050064924 | 
@@ -102,13 +102,13 @@
 
 #### RewardVerifyConfig服务器验证配置参数
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 获取自定义参数 | [getData](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardverifyconfig-0000001050066877#section11334152984915)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardverifyconfig-0000001050066877 | 
 | 获取当前用户的ID | [getUserId](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardverifyconfig-0000001050066877#section690514765016)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardverifyconfig-0000001050066877 | 
 
 #### RewardVerifyConfig.Builder服务器验证配置参数的构造器
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 构造服务器验证配置参数 | [build](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardverifyconfig-builder-0000001050064930#section567605815523)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardverifyconfig-builder-0000001050064930 | 
 | 设置自定义数据 | [setData](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardverifyconfig-builder-0000001050064930#section241994511530)(String data) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardverifyconfig-builder-0000001050064930 | 
 | 设置用户ID | [setUserId](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardverifyconfig-builder-0000001050064930#section17807043175417)(String userId) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardverifyconfig-builder-0000001050064930 | 
@@ -116,7 +116,7 @@
 #### Consent
 Consent SDK的基本类
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 获取用户意见征求类实例 | [getInstance](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/consent-0000001057445071#section491161943413)(Context context) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/consent-0000001057445071 | 
 | 设置“未达到法定承诺年龄用户”的标记 | [setUnderAgeOfPromise](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/consent-0000001057445071#section1184744818297)(boolean underAgeOfPromise) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/consent-0000001057445071 | 
 | 请求用户意见更新状态 | [requestConsentUpdate](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/consent-0000001057445071#section18155153513433)(final [ConsentUpdateListener](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/consentupdatelistener-0000001057245006) listener) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/consent-0000001057445071 | 
@@ -127,7 +127,7 @@ Consent SDK的基本类
 
 #### AdProvider广告技术提供商信息类
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 获取广告技术提供商的ID | [getId](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/approvider-0000001058045021#section491161943413)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/approvider-0000001058045021 | 
 | 获取广告技术提供商的名称 | [getName](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/approvider-0000001058045021#section3566125165219)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/approvider-0000001058045021 | 
 | 获取广告技术提供商的隐私政策链接URL | [getPrivacyPolicyUrl](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/approvider-0000001058045021#section1717417232597)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/approvider-0000001058045021 | 
@@ -139,7 +139,7 @@ Consent SDK的基本类
 
 #### AdListener接受广告状态的监听器
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 广告被点击的回调 | [onAdClicked](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/adlistener-0000001050066825#section315082573610)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/adlistener-0000001050066825 | 
 | 广告关闭的回调 | [onAdClosed](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/adlistener-0000001050066825#section09853139313)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/adlistener-0000001050066825 | 
 | 广告请求失败回调 | [onAdFailed](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/adlistener-0000001050066825#section8487191393313)(int errorCode) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/adlistener-0000001050066825 | 
@@ -149,13 +149,13 @@ Consent SDK的基本类
 | 广告打开覆盖屏幕时的回调 | [onAdOpened](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/adlistener-0000001050066825#section122961182335)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/adlistener-0000001050066825 | 
 #### RewardAdLoadListener激励广告加载监听器
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 激励广告加载失败 | [onRewardAdFailedToLoad](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardadloadlistener-0000001050064926#section105291512384)(int errorCode) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardadloadlistener-0000001050064926 | 
 | 激励广告加载成功 | [onRewardedLoaded](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardadloadlistener-0000001050064926#section15345807393)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardadloadlistener-0000001050064926 | 
 
 #### RewardAdStatusListener激励广告状态监听器
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 当激励广告关闭时调用 | [onRewardAdClosed](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardadstatuslistener-0000001050168231#section13983645121414)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardadstatuslistener-0000001050168231 | 
 | 当奖励广告展示失败时调用 | [onRewardAdFailedToShow](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardadstatuslistener-0000001050168231#section1245154412151)(int errorCode) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardadstatuslistener-0000001050168231 | 
 | 当激励广告打开时调用 | [onRewardAdOpened](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardadstatuslistener-0000001050168231#section174931945101519)() | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/rewardadstatuslistener-0000001050168231 | 
@@ -163,6 +163,6 @@ Consent SDK的基本类
 
 #### ConsentUpdateListener用户意见更新监听器
 | **描述** | **api** | **华为文档链接** | 
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | 请求用户意见更新状态失败 | [onFail](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/consentupdatelistener-0000001057245006#section92217503212)(String desc) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/consentupdatelistener-0000001057245006 | 
 | 请求用户意见更新状态成功 | [onSuccess](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/consentupdatelistener-0000001057245006#section3593134617219)([ConsentStatus](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/consentstatus-0000001057594717) consentStatus, boolean isNeedConsent, List<[AdProvider](https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/approvider-0000001058045021)> adProviders) | https://developer.huawei.com/consumer/cn/doc/development/HMSCore-References/consentupdatelistener-0000001057245006 | 
