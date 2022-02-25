@@ -4,7 +4,7 @@ using HuaweiServiceDemo;
 namespace HuaweiService.Account
 {
     public class AccountActivity_Data : IHmsBaseClass{
-        public string name => "com.hms.hms_account_activity.HmsAccountActivity";
+        public string name => "com.unity.hms.account.HmsAccountActivity";
     }
 
     public class AccountActivity :HmsClass<AccountActivity_Data>
@@ -23,7 +23,6 @@ namespace HuaweiService.Account
             CallStatic("setAccessToken",token);
         }
         public static void setCallback(AccountCallback callback){
-            TestTip.Inst.ShowText($"AccountActivity setCallback");
             CallStatic("setCallback",callback);
         }
         public static void start(Activity activity){

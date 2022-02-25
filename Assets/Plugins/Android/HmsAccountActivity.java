@@ -1,4 +1,4 @@
-package com.hms.hms_account_activity;
+package com.unity.hms.account;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -7,14 +7,13 @@ import com.huawei.hms.support.account.AccountAuthManager;
 import com.huawei.hms.support.account.request.AccountAuthParams;
 import com.huawei.hms.support.account.service.AccountAuthService;
 import com.huawei.hms.support.account.request.AccountAuthParamsHelper;
-import com.hms.hms_account_activity.AccountCallback;
 import android.util.Log;
 
 public class HmsAccountActivity extends Activity {
     private static final String TAG = "HmsAccountActivity";
     private static AccountAuthService mAuthManager;
     private static AccountAuthParams mAuthParam;
-    private static AccountCallback mCallback;
+    private static IAccountCallback mCallback;
     private static String mAccessToken;
     
     private static String mIntent = "test";
@@ -28,7 +27,7 @@ public class HmsAccountActivity extends Activity {
     public static void setAuthParam(AccountAuthParams AuthParam){
         mAuthParam=AuthParam;
     }
-    public static void setCallback(AccountCallback callback){
+    public static void setCallback(IAccountCallback callback){
         mCallback=callback;
     }
     

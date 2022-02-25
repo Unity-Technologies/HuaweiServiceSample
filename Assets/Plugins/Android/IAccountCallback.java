@@ -1,6 +1,6 @@
-package com.hms.hms_account_activity;
+package com.unity.hms.account;
 import android.content.Intent;
 
-public interface AccountCallback {
+public interface IAccountCallback {
     void onActivityResult(int requestCode, int resultCode,Intent data);
 }

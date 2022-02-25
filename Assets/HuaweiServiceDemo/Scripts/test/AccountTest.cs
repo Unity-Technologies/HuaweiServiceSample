@@ -2,7 +2,6 @@
 using HuaweiService.Account;
 using UnityEngine;
 using AccountAuthParamsHelper = HuaweiService.Account.AccountAuthParamsHelper;
-using Void = HuaweiService.Void;
 
 namespace HuaweiServiceDemo
 {
