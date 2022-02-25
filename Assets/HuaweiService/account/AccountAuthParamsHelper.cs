@@ -13,6 +13,9 @@ namespace HuaweiService.Account
         public AccountAuthParamsHelper setUid() {
             return Call<AccountAuthParamsHelper>("setUid");
         }
+        public AccountAuthParamsHelper setAccessToken() {
+            return Call<AccountAuthParamsHelper>("setAccessToken");
+        }
         public AccountAuthParamsHelper setAuthorizationCode() {
             return Call<AccountAuthParamsHelper>("setAuthorizationCode");
         }

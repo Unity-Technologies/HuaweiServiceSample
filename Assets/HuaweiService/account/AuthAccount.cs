@@ -45,6 +45,9 @@ namespace HuaweiService.Account
         public string getIdToken() {
             return Call<string>("getIdToken");
         }
+        public string getUid() {
+            return Call<string>("getUid");
+        }
         public Uri getAvatarUri() {
             return Call<Uri>("getAvatarUri");
         }

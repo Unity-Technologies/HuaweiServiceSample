@@ -22,18 +22,12 @@ namespace HuaweiService.Account
         public static void setAccessToken(string token){
             CallStatic("setAccessToken",token);
         }
-        public static void setPhoneNumber(string phoneNumber){
-            CallStatic("setPhoneNumber",phoneNumber);
-        }
         public static void setCallback(AccountCallback callback){
             TestTip.Inst.ShowText($"AccountActivity setCallback");
             CallStatic("setCallback",callback);
         }
-        public static void start(){
-            CallStatic("start");
-        }
-        public static AuthAccount getAuthAccount(){
-            return CallStatic<AuthAccount>("getAuthAccount");
+        public static void start(Activity activity){
+            CallStatic("start",activity);
         }
 
     }
