@@ -48,9 +48,7 @@ namespace HuaweiServiceDemo
 
         public void LogConfig()
         {
-            AndroidJavaClass javaUnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-            AndroidJavaObject currentActivity = javaUnityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-            Activity activity = HmsUtil.GetHmsBase<Activity>(currentActivity);
+            Activity activity = new UnityPlayerActivity();
             SettingsClient settingsClient = LocationServices.getSettingsClient(activity);
             string filePath = new Context().getApplicationContext().getFilesDir().getAbsolutePath() + "/log";
             logConfig.setLogPath(filePath);
@@ -65,9 +63,7 @@ namespace HuaweiServiceDemo
 
         public void EnableBackgroundLocation(int id,Notification notification)
         {
-            AndroidJavaClass javaUnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-            AndroidJavaObject currentActivity = javaUnityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-            Activity activity = HmsUtil.GetHmsBase<Activity>(currentActivity);
+            Activity activity = new UnityPlayerActivity();
             Notification.Builder builder = new Notification.Builder(new Context());
             notification = builder.build();
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
@@ -77,9 +73,7 @@ namespace HuaweiServiceDemo
 
         public void DisableBackgroundLocation()
         {
-            AndroidJavaClass javaUnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-            AndroidJavaObject currentActivity = javaUnityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-            Activity activity = HmsUtil.GetHmsBase<Activity>(currentActivity);
+            Activity activity = new UnityPlayerActivity();
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
             fusedLocationProviderClient.disableBackgroundLocation();
             TestTip.Inst.ShowText("Disable background location");

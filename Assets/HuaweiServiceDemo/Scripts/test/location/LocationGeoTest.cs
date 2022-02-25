@@ -28,9 +28,7 @@ namespace HuaweiServiceDemo{
         }
         public void GetGeoByActivity()
         {
-            AndroidJavaClass javaUnityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-            AndroidJavaObject currentActivity = javaUnityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-            Activity activity = HmsUtil.GetHmsBase<Activity>(currentActivity);
+            Activity activity = new UnityPlayerActivity();
             mService = LocationServices.getGeofenceService(activity);
             TestTip.Inst.ShowText("Successfully created a new GeofenceService instance.");
         }
