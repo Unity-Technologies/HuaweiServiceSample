@@ -57,6 +57,7 @@ namespace HuaweiServiceDemo
             string id = consentInfo.getTestDeviceId();
             consentInfo.setDebugNeedConsent(DebugNeedConsent.DEBUG_NEED_CONSENT);
             consentInfo.requestConsentUpdate(new MConsentUpdateListener());
+            TestTip.Inst.ShowText("Get test device id is "+ id);
         }
 
         public void setRequestOptionsNonPersonalizedAd()
@@ -73,8 +74,7 @@ namespace HuaweiServiceDemo
         {
             RequestOptions requestOptions = HwAds.getRequestOptions();
             requestOptions.toBuilder().setConsent("tcfString").build();
-            
-            TestTip.Inst.ShowText("RequestOptions setConsent:set consent");
+            TestTip.Inst.ShowText("Set consent.");
         }
     }
 }

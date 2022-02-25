@@ -79,7 +79,7 @@ namespace HuaweiServiceDemo
             instance.setCollectAdsIdEnabled(false);
             TestTip.Inst.ShowText("Set the collection of ad identifiers is not allowed.");
         }
-        
+
         public void SetRestrictionShared()
         {
             instance.setRestrictionShared(false);
@@ -107,7 +107,15 @@ namespace HuaweiServiceDemo
             scheduledTimePolicy.setThreshold(600);
             TestTip.Inst.ShowText("Set the interval for the scheduled reporting policy to 600 seconds." );
             long threshold = scheduledTimePolicy.getThreshold();
-            TestTip.Inst.ShowText("The threshold of scheduledTimePolicy is " + threshold);
+            bool isEqual = threshold.Equals((long)600);
+            if (isEqual == true)
+            {
+                TestTip.Inst.ShowText("ScheduledTimePolicy set successfully.");
+            }
+            else
+            {
+                TestTip.Inst.ShowText("ScheduledTimePolicy set failed.");
+            }
             HuaweiService.HashSet<ReportPolicy> reportPolicies  = new HuaweiService.HashSet<ReportPolicy>();
             reportPolicies.add(scheduledTimePolicy);
             reportPolicies.add(appLaunchPolicy);
