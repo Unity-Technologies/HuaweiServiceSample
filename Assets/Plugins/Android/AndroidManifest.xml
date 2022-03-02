@@ -108,9 +108,7 @@
                 android:theme="@android:style/Theme.Translucent.NoTitleBar" android:usesCleartextTraffic="true"/>
         <!--QQ END-->
         <activity
-                android:name="com.hms.hms_account_activity.HmsAccountActivity"
-                
-
+                android:name="com.unity.hms.account.HmsAccountActivity"
                 android:screenOrientation="fullSensor"
                 android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale"
                 android:theme="@android:style/Theme.Translucent.NoTitleBar"

@@ -1,5 +1,6 @@
 ﻿using HuaweiService;
 using HuaweiService.Account;
+using HuaweiService.Auth;
 using UnityEngine;
 using AccountAuthParamsHelper = HuaweiService.Account.AccountAuthParamsHelper;
 
@@ -23,24 +24,32 @@ namespace HuaweiServiceDemo
         }
         public override void RegisterEvent(TestEvent registerEvent)
         {
+            init();
             registerEvent("createAuthParam", createAuthParam);
             registerEvent("Signin", Signin);
-            registerEvent("silentSignin", silentSignin);
             registerEvent("getInfo", getInfo);
-            registerEvent("getChannel", getChannel);
+            registerEvent("cancelAuthorization", cancelAuthorization);
+            registerEvent("manualCreateParam", manualCreateParam);
+            registerEvent("silentSignin", silentSignin);
             registerEvent("independentSignIn", independentSignIn);
+            registerEvent("getChannel", getChannel);
             registerEvent("ReadSmsManagerStart", readSmsManagerStart);
             registerEvent("consentReadSmsManager", consentReadSmsManager);
             registerEvent("signOut", signOut);
-            registerEvent("cancelAuthorization", cancelAuthorization);
         }
 
+        public void init()
+        {
+            var callback = new AccountCallback();
+            callback.setCallback(MyOnActivityResultCallback);
+            AccountActivity.setCallback(callback);
+        }
 
         public void MyOnActivityResultCallback(int requestCode, int resultCode,AndroidJavaObject obj)
         {
             var data = new Intent();
             data.obj = obj;
-            if (requestCode == Constant.REQUEST_SIGN_IN_LOGIN || requestCode == Constant.REQUEST_SIGN_IN_LOGIN_CODE||requestCode==Constant.REQUEST_SIGN_IN_LOGIN_INDEPENDENT)
+            if (requestCode == Constant.REQUEST_SIGN_IN_LOGIN || requestCode == Constant.REQUEST_SIGN_IN_LOGIN_CODE)
             {
                 TestTip.Inst.ShowText($"MyOnActivityResultCallback requestCode is signIn");
                 var authAccountTask = AccountAuthManager.parseAuthResultFromIntent(data);
@@ -48,6 +57,17 @@ namespace HuaweiServiceDemo
                     mAuthAccount = new AuthAccount();
                     mAuthAccount.obj=authAccountTask.getResult();
                     TestTip.Inst.ShowText("signIn onActivityResult parseAuthResultFromIntent success");
+                }else{
+                    TestTip.Inst.ShowText("signIn onActivityResult parseAuthResultFromIntent fail");
+                }
+            }else if (requestCode == Constant.REQUEST_SIGN_IN_LOGIN_INDEPENDENT)
+            {
+                TestTip.Inst.ShowText($"MyOnActivityResultCallback requestCode is independentSignIn");
+                var authAccountTask = AccountAuthManager.parseAuthResultFromIntent(data);
+                if (authAccountTask.isSuccessful()) {
+                    var authAccount = new AuthAccount();
+                    authAccount.obj=authAccountTask.getResult();
+                    TestTip.Inst.ShowText($"signIn onActivityResult parseAuthResultFromIntent success,\n authorizationCode is {authAccount.getAuthorizationCode()}");
                 }else{
                     TestTip.Inst.ShowText("signIn onActivityResult parseAuthResultFromIntent fail");
                 }
@@ -65,25 +85,40 @@ namespace HuaweiServiceDemo
                 }
             }
         }
-        
         public void createAuthParam()
         {
-            var activity = new UnityPlayerActivity();
-            var callback = new AccountCallback();
-            callback.setCallback(MyOnActivityResultCallback);
-            AccountActivity.setCallback(callback);
-            mAuthParam = new AccountAuthParamsHelper(AccountAuthParams.DEFAULT_AUTH_REQUEST_PARAM).setAccessToken().setUid().setAuthorizationCode().setEmail().setId().setIdToken().setProfile().setCarrierId().createParams();
-            // setAccessToken can be lost by getRequestScopeList
-            
-            // var scopeList = mAuthParam.getRequestScopeList();   
-            // mAuthParam = new AccountAuthParamsHelper(AccountAuthParams.DEFAULT_AUTH_REQUEST_PARAM).setScopeList(scopeList).createParams(); 
-            mAuthManager=AccountAuthManager.getService(activity, mAuthParam);
+            mAuthParam = new AccountAuthParamsHelper().setAccessToken().setUid().setAuthorizationCode().setEmail().setId().setIdToken().setProfile().setCarrierId().createParams();
+            mAuthManager=AccountAuthManager.getService(new UnityPlayerActivity(), mAuthParam);
             AccountActivity.setAuthParam(mAuthParam);
             TestTip.Inst.ShowText($"helper createAuthParam {mAuthParam}");
         }
+
+        public void manualCreateParam()
+        {
+            // create authParam which does not contain profile scope
+            var emailScope = new Scope("email");
+            var scopeList = new List();
+            scopeList.add(emailScope.obj);
+            mAuthParam = new AccountAuthParamsHelper().setAccessToken().setId().setScopeList(scopeList).createParams(); 
+            mAuthManager=AccountAuthManager.getService(new UnityPlayerActivity(), mAuthParam);
+            AccountActivity.setAuthParam(mAuthParam);
+            TestTip.Inst.ShowText($"manualCreateParam {mAuthParam}");
+        }
+        public void independentSignIn()
+        {
+            // CALL independentSignIn .If param exists, nothing will happen
+            mAuthParam = new AccountAuthParamsHelper().setProfile().createParams();
+            AccountActivity.setAuthParam(mAuthParam);
+            AccountActivity.setIntent("independentSignIn");
+            AccountActivity.setAccessToken(mAuthAccount.getAccessToken());
+            AccountActivity.setRequestCode(Constant.REQUEST_SIGN_IN_LOGIN_INDEPENDENT);
+            AccountActivity.start(new UnityPlayerActivity());
+        }
+
         public void Signin()
         {
             AccountActivity.setIntent("signIn");
+            AccountActivity.setRequestCode(Constant.REQUEST_SIGN_IN_LOGIN);
             AccountActivity.start(new UnityPlayerActivity());
         }
         
@@ -123,12 +158,7 @@ namespace HuaweiServiceDemo
                                   $" avatarUri{avatarUri}\n authorizationCode{authorizationCode}\n serviceCountryCode{serviceCountryCode}\n unionId{unionId}\n openId{openId}\n uid{uid}\n accountFlag{accountFlag}\n carrierId{carrierId}\n");
         }
         
-        public void independentSignIn()
-        {
-            AccountActivity.setIntent("independentSignIn");
-            AccountActivity.setAccessToken(mAuthAccount.getAccessToken());
-            AccountActivity.start(new UnityPlayerActivity());
-        }
+
         public void readSmsManagerStart()
         {
             ReadSmsManager.start(new UnityPlayerActivity()).addOnSuccessListener(new AccountSuccessListener((c) =>

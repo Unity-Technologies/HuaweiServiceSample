@@ -10,12 +10,12 @@ import com.huawei.hms.support.account.request.AccountAuthParamsHelper;
 import android.util.Log;
 
 public class HmsAccountActivity extends Activity {
-    private static final String TAG = "HmsAccountActivity";
     private static AccountAuthService mAuthManager;
     private static AccountAuthParams mAuthParam;
     private static IAccountCallback mCallback;
     private static String mAccessToken;
-    
+    private static int mRequestCode;
+
     private static String mIntent = "test";
 
     public static void setIntent(String intent){
@@ -30,15 +30,8 @@ public class HmsAccountActivity extends Activity {
     public static void setCallback(IAccountCallback callback){
         mCallback=callback;
     }
-    
-    public class Constant {
-        public static final int IS_LOG = 1;
-        //login
-        public static final int REQUEST_SIGN_IN_LOGIN = 1002;
-        //login by code
-        public static final int REQUEST_SIGN_IN_LOGIN_CODE = 1003;
-        //independent sign in
-        public static final int REQUEST_SIGN_IN_LOGIN_INDEPENDENT = 1004;
+    public static void setRequestCode(int requestCode){
+        mRequestCode=requestCode;
     }
 
     @Override
@@ -47,7 +40,7 @@ public class HmsAccountActivity extends Activity {
         switch (mIntent) {
             case "signIn":
                 signIn();
-                break;       
+                break;
             case "independentSignIn":
                 independentSignIn(mAccessToken);
                 break;
@@ -55,34 +48,30 @@ public class HmsAccountActivity extends Activity {
                 break;
         }
     }
-    
+
     public static void start(Activity activity){
         Intent intent = new Intent(activity, HmsAccountActivity.class);
         activity.startActivity(intent);
     }
-            
+
     public void signIn() {
-       mAuthManager = AccountAuthManager.getService(this, mAuthParam);
-       startActivityForResult(mAuthManager.getSignInIntent(), Constant.REQUEST_SIGN_IN_LOGIN);
+        mAuthManager = AccountAuthManager.getService(this, mAuthParam);
+        startActivityForResult(mAuthManager.getSignInIntent(), mRequestCode);
     }
-    
-    public void signInCode(){
-       mAuthManager = AccountAuthManager.getService(this, mAuthParam);
-       startActivityForResult(mAuthManager.getSignInIntent(), Constant.REQUEST_SIGN_IN_LOGIN_CODE);
-    }
-    
+
     public void independentSignIn(String accessToken){
         mAuthManager = AccountAuthManager.getService(this, mAuthParam);
         Intent intent=mAuthManager.getIndependentSignInIntent(accessToken);
-        startActivityForResult(intent,Constant.REQUEST_SIGN_IN_LOGIN_INDEPENDENT);
+        startActivityForResult(intent,mRequestCode);
     }
 
-   @Override
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(mCallback!=null){
             mCallback.onActivityResult(requestCode, resultCode,data);
         }
+        mRequestCode=0;
         finish();
     }
 }

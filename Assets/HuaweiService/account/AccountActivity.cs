@@ -25,6 +25,9 @@ namespace HuaweiService.Account
         public static void setCallback(AccountCallback callback){
             CallStatic("setCallback",callback);
         }
+        public static void setRequestCode(int requestCode){
+            CallStatic("setRequestCode",requestCode);
+        }
         public static void start(Activity activity){
             CallStatic("start",activity);
         }
