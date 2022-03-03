@@ -28,7 +28,7 @@ namespace HuaweiService{
             }
         }
     }
-    
+
     public abstract class HmsClass<T> : IHmsBase where T:IHmsBaseClass, new(){
         private AndroidJavaObject _obj;
         private static string _name = "";
@@ -111,16 +111,7 @@ namespace HuaweiService{
             return map;
         }
         
-        public K toType<K>(AndroidJavaObject arg0) where K:IHmsBase,new()
-        {
-            // var len = arg0.Length;
-            // K[] array = new K[len];
-            // array.obj = obj;
-            // return array;
-            var map = new K();
-            map.obj = obj;
-            return map;
-        }
+        
         
         // public virtual E[] toArray() {
         //     var x =  Call<AndroidJavaObject[]>("toArray");
@@ -158,5 +149,15 @@ namespace HuaweiService{
             return Call<string>("toString");
         }
         
+    }
+    
+    public static class HmsClassHelper
+    {
+        public static K ConvertObject<K>(AndroidJavaObject arg0) where K:IHmsBase,new()
+        {
+            var map = new K();
+            map.obj = arg0;
+            return map;
+        }
     }
 }

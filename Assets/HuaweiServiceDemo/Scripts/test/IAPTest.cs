@@ -29,7 +29,7 @@ namespace HuaweiServiceDemo
             {
                 // productInfoList = result.getProductInfoList().toType<Lists<ProductInfo>>();
                 productInfoList = result.getProductInfoList();
-                info = result.getProductInfoList().toType<ProductInfo>(productInfoList.get(0));
+                info = HmsClassHelper.ConvertObject<ProductInfo>(productInfoList.get(0));
                 TestTip.Inst.ShowText ("productList is " + productInfoList);
                 TestTip.Inst.ShowText ("productList is " + info);
                 TestTip.Inst.ShowText ("productList is " + info.getProductId());
