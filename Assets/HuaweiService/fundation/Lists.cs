@@ -1,12 +1,14 @@
+using System.Collections;
 using UnityEngine;
+
 using System.Collections.Generic;
 
 namespace HuaweiService
 {
-    public class List_Data:IHmsBaseClass{
+    public class List_Data_two:IHmsBaseClass{
         public string name => "java.util.ArrayList";
     }
-    public class List: HmsClass<List_Data>
+    public class Lists<E>: HmsClass<List_Data_two>
     {
         public virtual bool add(AndroidJavaObject arg0) {
             return Call<bool>("add", arg0);
@@ -19,9 +21,12 @@ namespace HuaweiService
             Call("add", arg0, arg1);
         }
     
-        public virtual AndroidJavaObject[] toArray() {
-            return Call<AndroidJavaObject[]>("toArray");
-        }
+        // public virtual E[] toArray() {
+        //     var x =  Call<AndroidJavaObject[]>("toArray");
+        //     E[] array = new E[x.Length];
+        //     array[0].obj = x[0];
+        //     return array;
+        // }
     
         public virtual AndroidJavaObject[] toArray(AndroidJavaObject[] arg0) {
             return Call<AndroidJavaObject[]>("toArray", arg0);
@@ -33,6 +38,11 @@ namespace HuaweiService
         
         public AndroidJavaObject get(int arg0) {
             return Call<AndroidJavaObject>("get", arg0);
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return Call<IEnumerator>("");
         }
     }
 }

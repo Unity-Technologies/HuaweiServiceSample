@@ -111,6 +111,24 @@ namespace HuaweiService{
             return map;
         }
         
+        public K toType<K>(AndroidJavaObject arg0) where K:IHmsBase,new()
+        {
+            // var len = arg0.Length;
+            // K[] array = new K[len];
+            // array.obj = obj;
+            // return array;
+            var map = new K();
+            map.obj = obj;
+            return map;
+        }
+        
+        // public virtual E[] toArray() {
+        //     var x =  Call<AndroidJavaObject[]>("toArray");
+        //     E[] array = new E[x.Length];
+        //     array[0].obj = x[0];
+        //     return array;
+        // }
+        
         public static bool operator ==(HmsClass<T> a, HmsClass<T> b) 
         {
             if(Equals(a, null))
