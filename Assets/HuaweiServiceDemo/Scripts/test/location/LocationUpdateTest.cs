@@ -25,6 +25,8 @@ namespace HuaweiServiceDemo
         {
             registerEvent("SetPermission", SetPermission);
             registerEvent("Check Location Setting", CheckLocationSetting);
+            registerEvent("enable background location", () => BackgroundLocationSetting(1, notification));
+            registerEvent("disable background location", () => DisableBackgroundLocation());
             registerEvent("update with callback-102", () => RequestLocationUpdates(102, CALLBACK));
             registerEvent("update with callback-104", () => RequestLocationUpdates(104, CALLBACK));
             registerEvent("update with callback-100", () => RequestLocationUpdates(100, CALLBACK));
@@ -32,8 +34,6 @@ namespace HuaweiServiceDemo
             registerEvent("update with intent-104", () => RequestLocationUpdates(104, INTENT));
             registerEvent("update with intent-100", () => RequestLocationUpdates(100, INTENT));
             registerEvent("update with location HD", () => RequestLocationUpdates(100, LocationHD));
-            registerEvent("enable background location", () => EnableBackgroundLocation(1, notification));
-            registerEvent("disable background location", () => DisableBackgroundLocation());
             registerEvent("remove updates", RemoveUpdates);
             registerEvent("set log config", LogConfig);
         }
@@ -44,6 +44,36 @@ namespace HuaweiServiceDemo
                 new string[] {ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION},
                 new string[] {ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION, ACCESS_BACKGROUND_LOCATION}
             );
+        }
+
+        public void BackgroundLocationSetting(int id,Notification notification)
+        {
+            TestTip.Inst.ShowText("RequestBackgroundLocationUpdatesWithCallback start");
+            this.requestType = CALLBACK;
+            mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(new Context());
+            mSettingsClient = LocationServices.getSettingsClient(new Context());
+            mLocationRequest = new LocationRequest();
+            Activity activity = new UnityPlayerActivity();
+            Notification.Builder builder = new Notification.Builder(new Context());
+            notification = builder.build();
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
+            fusedLocationProviderClient.enableBackgroundLocation(id,notification);
+            LocationSettingsRequest.Builder locationSettingsRequestBuilder = new LocationSettingsRequest.Builder();
+            locationSettingsRequestBuilder.addLocationRequest(mLocationRequest);
+            LocationSettingsRequest locationSettingsRequest = locationSettingsRequestBuilder.build();
+            Task task = mSettingsClient.checkLocationSettings(locationSettingsRequest);
+            task.addOnSuccessListener(new HmsSuccessListener<LocationSettingsResponse>((LocationSettingsResponse setting) =>
+            {
+                var status = setting.getLocationSettingsStates();
+                TestTip.Inst.ShowText($"isBlePresent :{status.isBlePresent()}");
+                TestTip.Inst.ShowText($"isBleUsable :{status.isBleUsable()}");
+                TestTip.Inst.ShowText($"isGpsPresent :{status.isGpsPresent()}");
+                TestTip.Inst.ShowText($"isGpsUsable :{status.isGpsUsable()}");
+                TestTip.Inst.ShowText($"isLocationPresent :{status.isLocationPresent()}");
+                TestTip.Inst.ShowText($"isLocationUsable :{status.isLocationUsable()}");
+                TestTip.Inst.ShowText($"isNetworkLocationPresent :{status.isNetworkLocationPresent()}");
+                TestTip.Inst.ShowText($"isNetworkLocationUsable :{status.isNetworkLocationUsable()}");
+            })).addOnFailureListener(new HmsFailureListener((Exception e) => SetSettingsFailuer(e)));
         }
 
         public void LogConfig()
@@ -61,22 +91,12 @@ namespace HuaweiServiceDemo
             TestTip.Inst.ShowText("Successfully set log config");
         }
 
-        public void EnableBackgroundLocation(int id,Notification notification)
-        {
-            Activity activity = new UnityPlayerActivity();
-            Notification.Builder builder = new Notification.Builder(new Context());
-            notification = builder.build();
-            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
-            fusedLocationProviderClient.enableBackgroundLocation(id,notification);  
-            TestTip.Inst.ShowText("Enable background location");
-        }
-
         public void DisableBackgroundLocation()
         {
             Activity activity = new UnityPlayerActivity();
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
             fusedLocationProviderClient.disableBackgroundLocation();
-            TestTip.Inst.ShowText("Disable background location");
+            RemoveUpdates();
         }
 
         public void CheckLocationSetting()

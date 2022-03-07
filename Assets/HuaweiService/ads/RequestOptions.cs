@@ -64,7 +64,7 @@ namespace HuaweiService.ads
             public Builder setConsent(string arg0) {
                 return Call<Builder>("setConsent", arg0);
             }
-            public Builder setRequestLocation(bool arg0) {
+            public Builder setRequestLocation(Boolean arg0) {
                 return Call<Builder>("setRequestLocation", arg0);
             }
         }
