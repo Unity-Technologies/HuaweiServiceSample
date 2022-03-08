@@ -45,5 +45,35 @@ namespace HuaweiService.analytic
         public Map getUserProfiles(bool arg0) {
             return Call<Map>("getUserProfiles", arg0);
         }
+        public void setReportPolicies(HashSet<ReportPolicy> arg0) {
+            Call("setReportPolicies", arg0);
+        }
+        public void setRestrictionEnabled(bool arg0) {
+            Call("setRestrictionEnabled", arg0);
+        }
+        public bool isRestrictionEnabled() {
+            return Call<bool>("isRestrictionEnabled");
+        }
+        public void setCollectAdsIdEnabled(bool arg0) {
+            Call("setCollectAdsIdEnabled", arg0);
+        }
+        public void setRestrictionShared(bool arg0) {
+            Call("setRestrictionShared", arg0);
+        }
+        public bool isRestrictionShared() {
+            return Call<bool>("isRestrictionShared");
+        }
+        public void addDefaultEventParams(Bundle arg0) {
+            Call("addDefaultEventParams", arg0);
+        }
+        public void setWXOpenId(string arg0) {
+            Call("setWXOpenId", arg0);
+        }
+        public void setWXUnionId(string arg0) {
+            Call("setWXUnionId", arg0);
+        }
+        public void setWXAppId(string arg0) {
+            Call("setWXAppId", arg0);
+        }
     }
 }

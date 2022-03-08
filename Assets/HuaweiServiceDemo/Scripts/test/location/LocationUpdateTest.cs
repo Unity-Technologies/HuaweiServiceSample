@@ -17,6 +17,9 @@ namespace HuaweiServiceDemo
         private FusedLocationProviderClient mFusedLocationProviderClient;
         private SettingsClient mSettingsClient;
         public int requestType;
+        public FusedLocationProviderClient fusedLocationProviderClient;
+        public Notification notification;
+        public LogConfig logConfig = new LogConfig();
 
         public override void RegisterEvent(TestEvent registerEvent)
         {
@@ -29,7 +32,10 @@ namespace HuaweiServiceDemo
             registerEvent("update with intent-104", () => RequestLocationUpdates(104, INTENT));
             registerEvent("update with intent-100", () => RequestLocationUpdates(100, INTENT));
             registerEvent("update with location HD", () => RequestLocationUpdates(100, LocationHD));
+            registerEvent("enable background location", () => EnableBackgroundLocation(1, notification));
+            registerEvent("disable background location", () => DisableBackgroundLocation());
             registerEvent("remove updates", RemoveUpdates);
+            registerEvent("set log config", LogConfig);
         }
 
         public void SetPermission()
@@ -38,6 +44,39 @@ namespace HuaweiServiceDemo
                 new string[] {ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION},
                 new string[] {ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION, ACCESS_BACKGROUND_LOCATION}
             );
+        }
+
+        public void LogConfig()
+        {
+            Activity activity = new UnityPlayerActivity();
+            SettingsClient settingsClient = LocationServices.getSettingsClient(activity);
+            string filePath = new Context().getApplicationContext().getFilesDir().getAbsolutePath() + "/log";
+            logConfig.setLogPath(filePath);
+            TestTip.Inst.ShowText("Set log path is " + filePath);
+            settingsClient.setLogConfig(logConfig).addOnFailureListener(new HmsFailureListener((e) =>
+            {
+                TestTip.Inst.ShowText("Set log config failed");
+            }
+            ));
+            TestTip.Inst.ShowText("Successfully set log config");
+        }
+
+        public void EnableBackgroundLocation(int id,Notification notification)
+        {
+            Activity activity = new UnityPlayerActivity();
+            Notification.Builder builder = new Notification.Builder(new Context());
+            notification = builder.build();
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
+            fusedLocationProviderClient.enableBackgroundLocation(id,notification);  
+            TestTip.Inst.ShowText("Enable background location");
+        }
+
+        public void DisableBackgroundLocation()
+        {
+            Activity activity = new UnityPlayerActivity();
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
+            fusedLocationProviderClient.disableBackgroundLocation();
+            TestTip.Inst.ShowText("Disable background location");
         }
 
         public void CheckLocationSetting()

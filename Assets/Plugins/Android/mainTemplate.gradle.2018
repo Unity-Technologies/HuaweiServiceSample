@@ -10,7 +10,7 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.0'
-        classpath 'com.huawei.agconnect:agcp:1.4.1.300'
+        classpath 'com.huawei.agconnect:agcp:1.6.1.300'
         **BUILD_SCRIPT_DEPS**
     }
 }
@@ -42,7 +42,6 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.5'
     implementation 'com.fasterxml.jackson.core:jackson-core:2.8.5'
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.8.5'
-    implementation 'com.huawei.hms:base:5.0.5.300'
     implementation 'com.huawei.hms:game:5.0.4.302'
     implementation 'com.huawei.hms:hwid:5.0.5.301'
 **DEPS**}

@@ -21,5 +21,14 @@ namespace HuaweiService.ads
         public void setConsentStatus(ConsentStatus arg0) {
             Call("setConsentStatus", arg0);
         }
+        public void addTestDeviceId(string arg0) {
+            Call("addTestDeviceId", arg0);
+        }
+        public string getTestDeviceId() {
+            return Call<string>("getTestDeviceId");
+        }
+        public void setDebugNeedConsent(DebugNeedConsent arg0) {
+            Call("setDebugNeedConsent", arg0);
+        }
     }
 }

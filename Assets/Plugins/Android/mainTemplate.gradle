@@ -27,7 +27,6 @@ dependencies {
     implementation 'com.huawei.agconnect:agconnect-apms-game:1.5.2.303'
 
     //hms
-    implementation 'com.huawei.hms:base:6.2.0.300'
     implementation 'com.huawei.hms:hwid:6.1.0.303'
     implementation 'com.huawei.hms:game:6.1.0.301'
 

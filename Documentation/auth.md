@@ -345,7 +345,6 @@ If you want to enable third Party Login, firstly you need to [AppGallery Connect
   ```
      dependencies { 
            ...     
-        implementation 'com.huawei.hms:base:{version}'
         implementation 'com.huawei.hms:hwid:{version}'     
       ...    
       }

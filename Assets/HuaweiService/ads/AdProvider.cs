@@ -21,5 +21,17 @@ namespace HuaweiService.ads
         public string getServiceArea() {
             return Call<string>("getServiceArea");
         }
+        public void setId(string arg0) {
+            Call("setId", arg0);
+        }
+        public void setName(string arg0) {
+            Call("setName", arg0);
+        }
+        public void setPrivacyPolicyUrl(string arg0) {
+            Call("setPrivacyPolicyUrl", arg0);
+        }
+        public void setServiceArea(string arg0) {
+            Call("setServiceArea", arg0);
+        }
     }
 }

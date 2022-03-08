@@ -456,7 +456,6 @@ android.enableJetifier=true
   ```
     dependencies { 
          ...     
-      implementation 'com.huawei.hms:base:{version}'
       implementation 'com.huawei.hms:hwid:{version}'     
       implementation 'com.huawei.hms:game:{version}' 
   ...    
@@ -470,7 +469,6 @@ android.enableJetifier=true
   ```
     dependencies { 
          ...     
-      implementation 'com.huawei.hms:base:{version}'
       implementation 'com.huawei.hms:hwid:{version}'     
       implementation 'com.huawei.hms:game:{version}' 
   ...    

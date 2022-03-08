@@ -34,5 +34,11 @@ namespace HuaweiService.ads
         public void show() {
             Call("show");
         }
+        public void show(Activity arg0) {
+            Call("show", arg0);
+        }
+        public void setRewardAdListener(RewardAdListener arg0) {
+            Call("setRewardAdListener", arg0);
+        }
     }
 }

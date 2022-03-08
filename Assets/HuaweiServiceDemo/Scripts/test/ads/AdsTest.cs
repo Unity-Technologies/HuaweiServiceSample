@@ -14,6 +14,7 @@ namespace HuaweiServiceDemo
             registerEvent("set consent non personal", ()=> SetConsentStatus(false));
             registerEvent("consent",checkConsentStatus);
             registerEvent("set RequestOptions NonPersonalizedAd",setRequestOptionsNonPersonalizedAd);
+            registerEvent("set request options consent",setRequestOptionsConsent);
         }
         public void LoadImageAds()
         {
@@ -35,6 +36,7 @@ namespace HuaweiServiceDemo
         public void LoadRewardAds()
         {
             RewardAd ad = new RewardAd(new Context(), "testx9dtjwj8hp");
+            ad.setMobileDataAlertSwitch(false);
             AdParam adParam = new AdParam.Builder().build();
             MRewardLoadListener rewardAdLoadListener = new MRewardLoadListener(ad);
             ad.loadAd(adParam, rewardAdLoadListener);
@@ -51,7 +53,11 @@ namespace HuaweiServiceDemo
         public void checkConsentStatus()
         {
             Consent consentInfo = Consent.getInstance(new Context());
+            consentInfo.addTestDeviceId("1");
+            string id = consentInfo.getTestDeviceId();
+            consentInfo.setDebugNeedConsent(DebugNeedConsent.DEBUG_NEED_CONSENT);
             consentInfo.requestConsentUpdate(new MConsentUpdateListener());
+            TestTip.Inst.ShowText("Get test device id is "+ id);
         }
 
         public void setRequestOptionsNonPersonalizedAd()
@@ -63,6 +69,12 @@ namespace HuaweiServiceDemo
             HwAds.setRequestOptions(reqOptions);
             
             TestTip.Inst.ShowText("RequestOptions NonPersonalizedAd:"+ HwAds.getRequestOptions().getNonPersonalizedAd());
+        }
+        public void setRequestOptionsConsent()
+        {
+            RequestOptions requestOptions = HwAds.getRequestOptions();
+            requestOptions.toBuilder().setConsent("tcfString").build();
+            TestTip.Inst.ShowText("Set consent.");
         }
     }
 }
