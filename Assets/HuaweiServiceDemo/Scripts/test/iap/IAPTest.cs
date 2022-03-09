@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using HuaweiService;
 using HuaweiService.IAP;
+using UnityEngine;
 using Task = HuaweiService.Task;
-
 
 namespace HuaweiServiceDemo
 {
@@ -19,14 +19,49 @@ namespace HuaweiServiceDemo
             registerEvent("create Purchase Intent(Subscription)", () => CreatePurchaseIntent("Subscription service"));
             //registerEvent("obtain Product Info", GetProduct);
         }
+        public void MyOnActivityResultCallback(int requestCode, int resultCode,AndroidJavaObject obj)
+        {
+            TestTip.Inst.ShowText ("ppppppppp");
+            var data = new Intent();
+            data.obj = obj;
+            if (requestCode == 6666) {
+                if (data == null) {
+                    TestTip.Inst.ShowText ("data is null");
+                    return;
+                }
+                Activity activity = new UnityPlayerActivity();
+                PurchaseResultInfo purchaseResultInfo = Iap.getIapClient(activity).parsePurchaseResultInfoFromIntent(data);
+                switch(purchaseResultInfo.getReturnCode()) {
+                    case OrderStatusCode.ORDER_STATE_CANCEL:
+                        TestTip.Inst.ShowText ("order cancel");
+                        break;
+                    case OrderStatusCode.ORDER_STATE_FAILED:
+                    case OrderStatusCode.ORDER_PRODUCT_OWNED:
+                        TestTip.Inst.ShowText ("product owned");
+                        // 检查是否存在未发货商品
+                        break;
+                    case OrderStatusCode.ORDER_STATE_SUCCESS:
+                        TestTip.Inst.ShowText ("order success");
+                        // 支付成功
+                        string inAppPurchaseData = purchaseResultInfo.getInAppPurchaseData();
+                        string inAppPurchaseDataSignature = purchaseResultInfo.getInAppDataSignature();
+                        // 使用您应用的IAP公钥验证签名
+                        // 若验签成功，则进行发货
+                        // 若用户购买商品为消耗型商品，您需要在发货成功后调用consumeOwnedPurchase接口进行消耗
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
 
         public void CreatePurchaseIntent(string type)
         {
             PurchaseIntentReq req = new PurchaseIntentReq();
             if (type == "Buy goods")
             {
-                req.setProductId("test02");
-                req.setPriceType(1);
+                req.setProductId("test06");
+                req.setPriceType(0);
             }
             else
             {
@@ -36,6 +71,11 @@ namespace HuaweiServiceDemo
             req.setDeveloperPayload("test");
             Activity activity = new UnityPlayerActivity();
             Task task = Iap.getIapClient(activity).createPurchaseIntent(req);
+
+            var callback = new IapCallback();
+            callback.setCallback(MyOnActivityResultCallback);
+            IapActivity.setCallback(callback);
+
             task.addOnSuccessListener (new HmsIapListener<PurchaseIntentResult> ((result) =>
             {
                 Status status = result.getStatus();
@@ -47,7 +87,6 @@ namespace HuaweiServiceDemo
             })).addOnFailureListener (new HmsFailureListener ((exception) => {
                 TestTip.Inst.ShowText ("exception msg is " + exception.toString ());
             }));
-            
         }
 
         public void ObtainProductInfo()

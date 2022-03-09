@@ -34,6 +34,7 @@
             </intent-filter>
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
         </activity>
+        <activity android:name="com.unity.hms.iap.HmsIapActivity" />
         <service
             android:name="com.huawei.location.service.BackGroundService"        
             android:foregroundServiceType="location"/> 
