@@ -21,5 +21,17 @@ namespace HuaweiService.IAP
         public int getReturnCode() {
             return Call<int>("getReturnCode");
         }
+        public void setAccountFlag(int arg0) {
+            Call("setAccountFlag", arg0);
+        }
+        public void setReturnCode(int arg0) {
+            Call("setReturnCode", arg0);
+        }
+        public void setCountry(string arg0) {
+            Call("setCountry", arg0);
+        }
+        public void setCarrierId(string arg0) {
+            Call("setCarrierId", arg0);
+        }
     }
 }

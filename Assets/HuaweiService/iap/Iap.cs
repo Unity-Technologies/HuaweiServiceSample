@@ -7,7 +7,7 @@ namespace HuaweiService.IAP
         public string name => "com.huawei.hms.iap.Iap";
     }
     public class Iap :HmsClass<Iap_Data>
-    {
+    {  
         public Iap (): base() { }
         public static IapClient getIapClient(Activity arg0, string arg1) {
             return CallStatic<IapClient>("getIapClient", arg0, arg1);

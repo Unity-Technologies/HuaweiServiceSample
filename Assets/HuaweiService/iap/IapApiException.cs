@@ -13,5 +13,8 @@ namespace HuaweiService.IAP
         public Status getStatus() {
             return Call<Status>("getStatus");
         }
+        public int getStatusCode() {
+            return Call<int>("getStatusCode");
+        }
     }
 }

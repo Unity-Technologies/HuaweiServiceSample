@@ -12,16 +12,150 @@ namespace HuaweiServiceDemo
         public ProductInfo info;
         public override void RegisterEvent(TestEvent registerEvent)
         {
-            registerEvent("obtain Product Info", ObtainProductInfo);
+            init();
+            registerEvent("obtain Consumables Product Info", () => ObtainProductInfo("Consumables"));
+            registerEvent("obtain Subscription Product Info", () => ObtainProductInfo("Subscription"));
             registerEvent("is env ready", IsEnvReady);
             registerEvent("is env ready true", IsEnvReadyTrue);
-            registerEvent("create Purchase Intent(Consumables)", () => CreatePurchaseIntent("Buy goods"));
-            registerEvent("create Purchase Intent(Subscription)", () => CreatePurchaseIntent("Subscription service"));
-            //registerEvent("obtain Product Info", GetProduct);
+            registerEvent("create Consumables Purchase Intent", () => CreatePurchaseIntent("Consumables"));
+            registerEvent("create Non-Consumables Purchase Intent", () => CreatePurchaseIntent("Non-Consumables"));
+            registerEvent("create Subscription Purchase Intent", () => CreatePurchaseIntent("Subscription"));
+            registerEvent("consumables with price", () => CreatePurchaseIntentWithPrice("Consumables"));
+            registerEvent("non-consumables with price", () => CreatePurchaseIntentWithPrice("Non-Consumables"));
+            registerEvent("consume OwnedPurchase", ObtainOwnedPurchases);
+            registerEvent("obtain Consumables Owned Purchase Record", () => ObtainOwnedPurchaseRecord("Consumables"));
+            registerEvent("obtain Subscription Owned Purchase Record", () => ObtainOwnedPurchaseRecord("Subscription"));
         }
-        public void MyOnActivityResultCallback(int requestCode, int resultCode,AndroidJavaObject obj)
+        public void init(){
+            var callback = new IapCallback();
+            callback.setCallback(OnActivityResultCallback);
+            IapActivity.setCallback(callback);
+        }
+        public void CreatePurchaseIntent(string type)
         {
-            TestTip.Inst.ShowText ("ppppppppp");
+            if (type == "Consumables"){
+                IapActivity.setIntent("Consumables");
+                IapActivity.setConProductId("test12");
+                IapActivity.setPriceType(0);
+                IapActivity.start(new UnityPlayerActivity());
+            }else if(type == "Non-Consumables"){
+                IapActivity.setIntent("Non-Consumables");
+                IapActivity.setConProductId("test13");
+                IapActivity.setPriceType(1);
+                IapActivity.start(new UnityPlayerActivity());
+            }else{
+                IapActivity.setIntent("Subscription");
+                IapActivity.setConProductId("test03");
+                IapActivity.setPriceType(2);
+                IapActivity.start(new UnityPlayerActivity());
+            }
+        }
+        public void CreatePurchaseIntentWithPrice(string type){
+            PurchaseIntentWithPriceReq req = new PurchaseIntentWithPriceReq(); 
+            req.setCurrency("CNY"); 
+            req.setDeveloperPayload("test");
+            if(type == "Consumables"){
+                req.setPriceType(0); 
+            }else{
+                req.setPriceType(1); 
+            }
+            req.setSdkChannel("1"); 
+            req.setProductName("test"); 
+            req.setAmount("1.00"); 
+            req.setProductId("ConsumableProduct2"); 
+            req.setServiceCatalog("createPurchaseIntentWithPrice"); 
+            req.setCountry("CN"); 
+            UnityPlayerActivity activity = new UnityPlayerActivity();
+            Task task = Iap.getIapClient(activity).createPurchaseIntentWithPrice(req); 
+            task.addOnSuccessListener (new HmsSuccessListener<PurchaseIntentResult> ((result) =>{
+                TestTip.Inst.ShowText ("get payment data: " + result.getPaymentData());
+                TestTip.Inst.ShowText ("get payment signature: " + result.getPaymentSignature());
+                Status status = result.getStatus();
+                if (status.hasResolution())
+                {
+                    status.startResolutionForResult(activity, 6666);
+                }
+                int returnCode = result.getReturnCode();
+                if (returnCode == OrderStatusCode.ORDER_STATE_SUCCESS){
+                    TestTip.Inst.ShowText ("goods purchased successfully!");
+                }
+            })).addOnFailureListener (new HmsFailureListener ((exception) => {
+                IapApiException apiException = HmsClassHelper.ConvertObject<IapApiException>(exception.obj);
+                TestTip.Inst.ShowText ("exception msg is " + exception.toString ());
+                int returnCode = apiException.getStatusCode();
+                switch (returnCode) { 
+                case OrderStatusCode.ORDER_HWID_NOT_LOGIN: 
+                case OrderStatusCode.ORDER_NOT_ACCEPT_AGREEMENT: 
+                    Status status = apiException.getStatus(); 
+                    if (status != null && status.hasResolution()) { 
+                        status.startResolutionForResult(activity, 8888); 
+                    } 
+                    break; 
+                case OrderStatusCode.ORDER_PRODUCT_OWNED: 
+                    break; 
+                default: 
+                    break; 
+            } 
+            }));
+        }
+        public void ObtainOwnedPurchaseRecord(string type){
+            OwnedPurchasesReq req = new OwnedPurchasesReq();
+            if (type == "Consumables"){
+                req.setPriceType(0);
+            }else{
+                req.setPriceType(2);
+            }
+            Task task = Iap.getIapClient(new UnityPlayerActivity()).obtainOwnedPurchaseRecord(req);
+            task.addOnSuccessListener (new HmsSuccessListener<OwnedPurchasesResult> ((result) =>{
+                if (result.getReturnCode() == 0){
+                    TestTip.Inst.ShowText ("obtain owned purchase record successfully!");
+                }
+                TestTip.Inst.ShowText ("purchase history is: "+result.getItemList());
+            })).addOnFailureListener (new HmsFailureListener ((exception) => {
+                    TestTip.Inst.ShowText ("exception msg is " + exception.toString ());
+            }));
+        }
+
+        public void ObtainOwnedPurchases()
+        {
+            OwnedPurchasesReq ownedPurchasesReq = new OwnedPurchasesReq();
+            ownedPurchasesReq.setPriceType(0);
+            Activity activity = new UnityPlayerActivity();
+            Task task = Iap.getIapClient(activity).obtainOwnedPurchases(ownedPurchasesReq);
+            task.addOnSuccessListener (new HmsIapListener<OwnedPurchasesResult> ((result) =>
+            {
+                if (result != null && result.getInAppPurchaseDataList() != null)
+                {
+                    List inAppPurchaseData = result.getInAppPurchaseDataList();
+                    TestTip.Inst.ShowText ("owned purchases result is " + inAppPurchaseData);
+                    ConsumeOwnedPurchaseReq req = new ConsumeOwnedPurchaseReq();
+                    string purchaseToken = "";
+                    string inAppPurchaseDataStr = HmsClassHelper.ConvertObject<InAppPurchaseData>(inAppPurchaseData.get(0)).ToString();
+                    InAppPurchaseData inAppPurchaseDataBean = new InAppPurchaseData(inAppPurchaseDataStr);
+                    purchaseToken = inAppPurchaseDataBean.getPurchaseToken();
+                    req.setPurchaseToken(purchaseToken);
+                    Activity activity = new UnityPlayerActivity();
+                    TestTip.Inst.ShowText ("inAppPurchaseDataBean is " + inAppPurchaseDataBean.ToString());
+                    TestTip.Inst.ShowText ("purchaseToken is "+ purchaseToken);
+                    Task task = Iap.getIapClient(activity).consumeOwnedPurchase(req);
+                    task.addOnSuccessListener (new HmsSuccessListener<ConsumeOwnedPurchaseResult> ((result) =>{
+                        if (result.getReturnCode() == 0){
+                            TestTip.Inst.ShowText ("consumed goods successfully!");
+                        }
+                        TestTip.Inst.ShowText ("get signatureAlgorithm is "+result.getSignatureAlgorithm());
+                    })).addOnFailureListener (new HmsFailureListener ((exception) => {
+                        TestTip.Inst.ShowText ("exception msg is " + exception.toString ());
+                    }));
+                }
+
+            })).addOnFailureListener (new HmsFailureListener ((exception) => {
+                TestTip.Inst.ShowText ("exception msg is " + exception.toString ());
+            }));
+        }
+        
+        public void OnActivityResultCallback(int requestCode, int resultCode,AndroidJavaObject obj)
+        {
+            TestTip.Inst.ShowText ("OnActivityResultCallback");
             var data = new Intent();
             data.obj = obj;
             if (requestCode == 6666) {
@@ -38,16 +172,14 @@ namespace HuaweiServiceDemo
                     case OrderStatusCode.ORDER_STATE_FAILED:
                     case OrderStatusCode.ORDER_PRODUCT_OWNED:
                         TestTip.Inst.ShowText ("product owned");
-                        // 检查是否存在未发货商品
                         break;
                     case OrderStatusCode.ORDER_STATE_SUCCESS:
-                        TestTip.Inst.ShowText ("order success");
-                        // 支付成功
+                        TestTip.Inst.ShowText ("order success!");
                         string inAppPurchaseData = purchaseResultInfo.getInAppPurchaseData();
                         string inAppPurchaseDataSignature = purchaseResultInfo.getInAppDataSignature();
-                        // 使用您应用的IAP公钥验证签名
-                        // 若验签成功，则进行发货
-                        // 若用户购买商品为消耗型商品，您需要在发货成功后调用consumeOwnedPurchase接口进行消耗
+                        TestTip.Inst.ShowText ("inAppPurchase data signature is " + inAppPurchaseDataSignature);
+                        TestTip.Inst.ShowText ("inAppPurchase data is " + inAppPurchaseData);
+                        TestTip.Inst.ShowText ("signatureAlgorithm is " + purchaseResultInfo.getSignatureAlgorithm());
                         break;
                     default:
                         break;
@@ -55,54 +187,27 @@ namespace HuaweiServiceDemo
             }
         }
 
-        public void CreatePurchaseIntent(string type)
-        {
-            PurchaseIntentReq req = new PurchaseIntentReq();
-            if (type == "Buy goods")
-            {
-                req.setProductId("test06");
-                req.setPriceType(0);
-            }
-            else
-            {
-                req.setProductId("test03");
-                req.setPriceType(2);
-            }
-            req.setDeveloperPayload("test");
-            Activity activity = new UnityPlayerActivity();
-            Task task = Iap.getIapClient(activity).createPurchaseIntent(req);
+        
+            
+       
 
-            var callback = new IapCallback();
-            callback.setCallback(MyOnActivityResultCallback);
-            IapActivity.setCallback(callback);
-
-            task.addOnSuccessListener (new HmsIapListener<PurchaseIntentResult> ((result) =>
-            {
-                Status status = result.getStatus();
-                if (status.hasResolution())
-                {
-                    status.startResolutionForResult(activity, 6666);
-                }
-
-            })).addOnFailureListener (new HmsFailureListener ((exception) => {
-                TestTip.Inst.ShowText ("exception msg is " + exception.toString ());
-            }));
-        }
-
-        public void ObtainProductInfo()
+        public void ObtainProductInfo(string type)
         {
             List productIdList = new List();
-            productIdList.add("test01");
             ProductInfoReq req = new ProductInfoReq();
-            req.setPriceType(0);
+            if (type == "Consumables"){
+                productIdList.add("test01");
+                req.setPriceType(0);
+            }else{
+                productIdList.add("test03");
+                req.setPriceType(2);
+            }
             req.setProductIds(productIdList);
             Activity activity = new UnityPlayerActivity();
             Task task = Iap.getIapClient(activity).obtainProductInfo(req);
             task.addOnSuccessListener (new HmsSuccessListener<ProductInfoResult> ((result) =>
             {
-                // productInfoList = result.getProductInfoList().toType<Lists<ProductInfo>>();
                 productInfoList = result.getProductInfoList();
-                // info = result.getProductInfoList().toType<ProductInfo>(productInfoList.get(0));
                 info = HmsClassHelper.ConvertObject<ProductInfo>(productInfoList.get(0));
                 TestTip.Inst.ShowText ("productList is " + productInfoList);
                 TestTip.Inst.ShowText ("productList is " + info);
@@ -118,7 +223,6 @@ namespace HuaweiServiceDemo
                 TestTip.Inst.ShowText ("product info product name is " + info.getProductName());
                 TestTip.Inst.ShowText ("product info status is " + info.getStatus());
                 TestTip.Inst.ShowText ("product info SubSpecialPriceMicros is " + info.getSubSpecialPriceMicros());
-                TestTip.Inst.ShowText("product info Subspri");
             })).addOnFailureListener (new HmsFailureListener ((exception) => {
                 TestTip.Inst.ShowText ("exception msg is " + exception.toString ());
             }));
@@ -130,12 +234,9 @@ namespace HuaweiServiceDemo
             Task task = Iap.getIapClient(activity).isEnvReady(true);
             task.addOnSuccessListener (new HmsSuccessListener<IsEnvReadyResult> ((result) =>
             {
-                TestTip.Inst.ShowText ("result.getCarrierId() " + result.getCarrierId());
-                TestTip.Inst.ShowText ("result.getCountry() " + result.getCountry());
-                int flag = result.getAccountFlag();
-                TestTip.Inst.ShowText ("Account flag is " + flag);
-                int returnCode = result.getReturnCode();
-                TestTip.Inst.ShowText ("Return code is " + returnCode);
+                result.setCountry("CN");
+                result.setCarrierId("1SDGTNJUI97806NJJHGN");
+                TestTip.Inst.ShowText ("AppTouch scenarios");
             })).addOnFailureListener (new HmsFailureListener ((exception) => {
                 TestTip.Inst.ShowText ("exception msg is " + exception.toString ());
             }));
@@ -156,10 +257,9 @@ namespace HuaweiServiceDemo
                     TestTip.Inst.ShowText ("AppTouch scenarios");
                 }
                 int flag = result.getAccountFlag();
-                TestTip.Inst.ShowText ("Account flag is " + flag);
+                TestTip.Inst.ShowText ("account flag is " + flag);
                 int returnCode = result.getReturnCode();
-                TestTip.Inst.ShowText ("Return code is " + returnCode);
-
+                TestTip.Inst.ShowText ("return code is " + returnCode);
             })).addOnFailureListener (new HmsFailureListener ((exception) => {
                 TestTip.Inst.ShowText ("exception msg is " + exception.toString ());
             }));
