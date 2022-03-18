@@ -36,7 +36,6 @@
         </activity>
         <activity android:name="com.unity.hms.iap.HmsIapActivity" 
                   android:theme="@android:style/Theme.Translucent.NoTitleBar">
-            
         </activity>
         <service
             android:name="com.huawei.location.service.BackGroundService"        

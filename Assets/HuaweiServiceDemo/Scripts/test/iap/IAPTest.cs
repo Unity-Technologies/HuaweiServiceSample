@@ -115,7 +115,6 @@ namespace HuaweiServiceDemo
                     TestTip.Inst.ShowText ("exception msg is " + exception.toString ());
             }));
         }
-
         public void ObtainOwnedPurchases()
         {
             OwnedPurchasesReq ownedPurchasesReq = new OwnedPurchasesReq();
@@ -147,12 +146,10 @@ namespace HuaweiServiceDemo
                         TestTip.Inst.ShowText ("exception msg is " + exception.toString ());
                     }));
                 }
-
             })).addOnFailureListener (new HmsFailureListener ((exception) => {
                 TestTip.Inst.ShowText ("exception msg is " + exception.toString ());
             }));
         }
-        
         public void OnActivityResultCallback(int requestCode, int resultCode,AndroidJavaObject obj)
         {
             TestTip.Inst.ShowText ("OnActivityResultCallback");
@@ -186,11 +183,6 @@ namespace HuaweiServiceDemo
                 }
             }
         }
-
-        
-            
-       
-
         public void ObtainProductInfo(string type)
         {
             List productIdList = new List();
@@ -227,7 +219,6 @@ namespace HuaweiServiceDemo
                 TestTip.Inst.ShowText ("exception msg is " + exception.toString ());
             }));
         }
-
         public void IsEnvReadyTrue()
         {
             Activity activity = new UnityPlayerActivity();
@@ -241,7 +232,6 @@ namespace HuaweiServiceDemo
                 TestTip.Inst.ShowText ("exception msg is " + exception.toString ());
             }));
         }
-        
         public void IsEnvReady()
         {
             Activity activity = new UnityPlayerActivity();
@@ -264,6 +254,5 @@ namespace HuaweiServiceDemo
                 TestTip.Inst.ShowText ("exception msg is " + exception.toString ());
             }));
         }
-        
     }
 }
