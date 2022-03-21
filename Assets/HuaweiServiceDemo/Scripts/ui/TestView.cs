@@ -16,6 +16,7 @@ namespace HuaweiServiceDemo
         public bool AppMessageEnabled;
         public bool CrashEnabled;
         public bool DatabaseEnabled;
+        public bool IAPEnabled;
 
         public Transform btnParent;
         public GameObject btnPrefab;
@@ -29,6 +30,9 @@ namespace HuaweiServiceDemo
         }
         public void Initial(){
             Screen.SetResolution (1080, 2340,true); // hack
+            if (IAPEnabled) {
+                IAPTest.GetInstance().RegisterEvent(RegistEvent);
+            }
             if(AdsEnabled){
                 AdsTest.GetInstance().RegisterEvent(RegistEvent);
             }

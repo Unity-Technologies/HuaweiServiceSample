@@ -34,8 +34,10 @@ namespace HuaweiServiceDemo
             registerEvent("page end",pageEnd);
             registerEvent("set reportPolicies",SetReportPolicies);
             registerEvent("set restriction enabled",SetRestrictionEnabled);
+            registerEvent("is restriction enabled",IsRestrictionEnabled);
             registerEvent("set CollectAdsId enabled",SetCollectAdsIdEnabled);
             registerEvent("set restriction shared",SetRestrictionShared);
+            registerEvent("is restriction shared",IsRestrictionShared);
             registerEvent("add default event params",AddDefaultEventParams);
             registerEvent("set WXOpenId",SetWXOpenId);
             registerEvent("set WXUnionId",SetWXUnionId);
@@ -59,15 +61,16 @@ namespace HuaweiServiceDemo
             instance.setWXAppId("AppId");
             TestTip.Inst.ShowText("Set WXAppId is AppId");
         }
-
+        
         public void SetRestrictionEnabled()
         {
-            instance.setRestrictionEnabled(false);
-            TestTip.Inst.ShowText("Enable data analysis capabilities.");
-            enabled = instance.isRestrictionEnabled();
-            TestTip.Inst.ShowText("The return value obtained from the isRestrictionEnabled method is " + enabled + ".");
-            instance.setRestrictionEnabled(true);
-            TestTip.Inst.ShowText("Limit data analysis capabilities.");
+            enabled = !enabled;
+            instance.setRestrictionEnabled(enabled);
+            TestTip.Inst.ShowText(enabled?"ENABLED":"DISABLED");
+        }
+
+        public void IsRestrictionEnabled()
+        {
             enabled = instance.isRestrictionEnabled();
             TestTip.Inst.ShowText("The return value obtained from the isRestrictionEnabled method is " + enabled + ".");
         }
@@ -79,15 +82,16 @@ namespace HuaweiServiceDemo
             instance.setCollectAdsIdEnabled(false);
             TestTip.Inst.ShowText("Set the collection of ad identifiers is not allowed.");
         }
-
+        
         public void SetRestrictionShared()
         {
-            instance.setRestrictionShared(false);
-            TestTip.Inst.ShowText("To enable the data sharing capability.");
-            restrictionSharedEnabled = instance.isRestrictionShared();
-            TestTip.Inst.ShowText("The return value obtained from the isRestrictionShared method is " + restrictionSharedEnabled + ".");
-            instance.setRestrictionShared(true);
-            TestTip.Inst.ShowText("To limit the data sharing ability.");
+            restrictionSharedEnabled = !restrictionSharedEnabled;
+            instance.setRestrictionShared(restrictionSharedEnabled);
+            TestTip.Inst.ShowText(restrictionSharedEnabled?"ENABLED":"DISABLED");
+        }
+
+        public void IsRestrictionShared()
+        {
             restrictionSharedEnabled = instance.isRestrictionShared();
             TestTip.Inst.ShowText("The return value obtained from the isRestrictionShared method is " + restrictionSharedEnabled + ".");
         }

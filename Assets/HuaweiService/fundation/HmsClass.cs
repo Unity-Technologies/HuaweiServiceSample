@@ -134,11 +134,22 @@ namespace HuaweiService{
         {
             return Call<bool>("equals", obj);
         }
-
+        
         public override string ToString()
         {
             return Call<string>("toString");
         }
         
     }
+    
+    public static class HmsClassHelper
+    {
+        public static K ConvertObject<K>(AndroidJavaObject arg0) where K:IHmsBase,new()
+        {
+            var map = new K();
+            map.obj = arg0;
+            return map;
+        }
+    }
+
 }
