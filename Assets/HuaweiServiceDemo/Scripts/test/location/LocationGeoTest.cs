@@ -12,13 +12,15 @@ namespace HuaweiServiceDemo{
         private GeofenceService mService;
         private PendingIntent pendingIntent;
         private int requestId = 0;
+        private Context context;
         public override void RegisterEvent(TestEvent registerEvent){
-            registerEvent("CreateGeo",CreateGeo);
+            registerEvent("CreateGeo", () => CreateGeo("null"));
+            registerEvent("CreateGeoByContext", () => CreateGeo("context"));
+            registerEvent("CreateGeoByActivity", () => CreateGeo("activity"));
             registerEvent("removeGeo",RemoveGeo);
             registerEvent("removeGeoIntent",RemoveGeoIntent);
         }
-        
-        public void CreateGeo(){
+        public void CreateGeo(string type){
             Geofence fence = geoBuild
                 .setUniqueId("7")
                 .setRoundArea(LocationCallBackWrap.latitude,LocationCallBackWrap.longitude,200)
@@ -33,8 +35,15 @@ namespace HuaweiServiceDemo{
             builder.createGeofenceList(geofenceList);  
             builder.setInitConversions(7);
             GeofenceRequest request =  builder.build();
-
-            mService = new GeofenceService(new Context());
+            if (type == "null"){
+                mService = new GeofenceService(new Context());
+            }else if (type == "context"){
+                context = new HuaweiService.Context().getApplicationContext();
+                mService = LocationServices.getGeofenceService(context);
+            }else{
+                Activity activity = new UnityPlayerActivity();
+                mService = LocationServices.getGeofenceService(activity);
+            }
             pendingIntent = getPendingIntent();
             mService.createGeofenceList(request, pendingIntent).addOnCompleteListener(new MCompleteListener());
         }

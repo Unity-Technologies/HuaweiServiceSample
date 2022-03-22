@@ -45,5 +45,11 @@ namespace HuaweiService.location
         public Task requestLocationUpdatesEx(LocationRequest arg0, LocationCallback arg1, Looper arg2) {
             return Call<Task>("requestLocationUpdatesEx", arg0, arg1, arg2);
         }
+        public Task enableBackgroundLocation(int arg0, Notification arg1) {
+            return Call<Task>("enableBackgroundLocation", arg0, arg1);
+        }
+        public Task disableBackgroundLocation() {
+            return Call<Task>("disableBackgroundLocation");
+        }
     }
 }

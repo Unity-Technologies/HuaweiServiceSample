@@ -67,5 +67,8 @@ namespace HuaweiService.ads
         public void show(Activity arg0, RewardAdStatusListener arg1, bool arg2) {
             Call("show", arg0, arg1, arg2);
         }
+        public void setMobileDataAlertSwitch(bool arg0) {
+            Call("setMobileDataAlertSwitch", arg0);
+        }
     }
 }

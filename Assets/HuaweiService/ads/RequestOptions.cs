@@ -30,6 +30,9 @@ namespace HuaweiService.ads
         public Integer getNonPersonalizedAd() {
             return Call<Integer>("getNonPersonalizedAd");
         }
+        public string getConsent() {
+            return Call<string>("getConsent");
+        }
     
         public class Builder_Data : IHmsBaseClass{
             public string name => "com.huawei.hms.ads.RequestOptions$Builder";
@@ -57,6 +60,12 @@ namespace HuaweiService.ads
             }
             public Builder setAppCountry(string arg0) {
                 return Call<Builder>("setAppCountry", arg0);
+            }
+            public Builder setConsent(string arg0) {
+                return Call<Builder>("setConsent", arg0);
+            }
+            public Builder setRequestLocation(Boolean arg0) {
+                return Call<Builder>("setRequestLocation", arg0);
             }
         }
     }

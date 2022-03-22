@@ -26,5 +26,13 @@ namespace HuaweiService
         public virtual AndroidJavaObject[] toArray(AndroidJavaObject[] arg0) {
             return Call<AndroidJavaObject[]>("toArray", arg0);
         }
+        
+        public int size() {
+            return Call<int>("size");
+        }
+        
+        public AndroidJavaObject get(int arg0) {
+            return Call<AndroidJavaObject>("get", arg0);
+        }
     }
 }

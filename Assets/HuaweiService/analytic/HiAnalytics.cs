@@ -15,5 +15,8 @@ namespace HuaweiService.analytic
         public static HiAnalyticsInstance getInstance(Context arg0) {
             return CallStatic<HiAnalyticsInstance>("getInstance", arg0);
         }
+        public static HiAnalyticsInstance getInstance(Context arg0, string arg1) {
+            return CallStatic<HiAnalyticsInstance>("getInstance", arg0, arg1);
+        }
     }
 }

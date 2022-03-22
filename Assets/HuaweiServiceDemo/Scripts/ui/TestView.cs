@@ -17,6 +17,7 @@ namespace HuaweiServiceDemo
         public bool CrashEnabled;
         public bool DatabaseEnabled;
         public bool AccountEnabled;
+        public bool IAPEnabled;
 
         public Transform btnParent;
         public GameObject btnPrefab;
@@ -28,21 +29,31 @@ namespace HuaweiServiceDemo
         {
             Initial();
         }
-        public void Initial(){
-            Screen.SetResolution (1080, 2340,true); // hack
-            if(AdsEnabled){
+        public void Initial()
+        {
+            Screen.SetResolution(1080, 2340, true); // hack
+            if (IAPEnabled)
+            {
+                IAPTest.GetInstance().RegisterEvent(RegistEvent);
+            }
+            if (AdsEnabled)
+            {
                 AdsTest.GetInstance().RegisterEvent(RegistEvent);
             }
-            if(AnalyticEnabled){
+            if (AnalyticEnabled)
+            {
                 AnalyticTest.GetInstance().RegisterEvent(RegistEvent);
             }
-            if(PushEnabled){
+            if (PushEnabled)
+            {
                 PushTest.GetInstance().RegisterEvent(RegistEvent);
             }
-            if(LocationEnabled){
+            if (LocationEnabled)
+            {
                 LocationTest.GetInstance().RegisterEvent(RegistEvent);
             }
-            if(RemoteConfigEnabled){
+            if (RemoteConfigEnabled)
+            {
                 RemoteConfigTest.GetInstance().RegisterEvent(RegistEvent);
             }
 
@@ -71,12 +82,12 @@ namespace HuaweiServiceDemo
             }
         }
 
-        public void RegistEvent(string text,UnityAction action)
+        public void RegistEvent(string text, UnityAction action)
         {
             var btnClone = Instantiate(btnPrefab, btnParent);
             var btn = btnClone.GetComponent<TestBtn>();
             btn.transform.localPosition = new Vector3(0, start - space * index, 0);
-            btn.Init(text,action);
+            btn.Init(text, action);
             index++;
         }
     }
