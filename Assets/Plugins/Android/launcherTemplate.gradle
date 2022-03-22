@@ -19,7 +19,7 @@ dependencies {
     implementation 'com.huawei.hms:push:4.0.3.301'
     implementation 'com.huawei.hms:location:5.0.0.302'
     implementation 'androidx.appcompat:appcompat:1.2.0'
-//     implementation 'com.huawei.hms:hianalytics:5.1.0.300'
+    implementation 'com.huawei.hms:hianalytics:5.1.0.300'
     implementation 'com.huawei.agconnect:agconnect-crash:1.6.1.300'
     implementation 'com.huawei.agconnect:agconnect-core:1.6.1.300'
     implementation 'com.huawei.agconnect:agconnect-credential:1.6.1.300'
