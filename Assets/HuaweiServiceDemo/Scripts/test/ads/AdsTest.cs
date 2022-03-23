@@ -39,13 +39,7 @@ namespace HuaweiServiceDemo
             AdParam.Builder builder = new AdParam.Builder();
             AdParam adParam = builder.build();
             ad.loadAd(adParam);
-            if (ad != null && ad.isLoaded())
-            {
-                ad.show(new UnityPlayerActivity());
-            }else
-            {
-                TestTip.Inst.ShowText("Ad did not load.");
-            }
+            ad.show(new UnityPlayerActivity());
         }
         public void LoadVideoAds()
         {
