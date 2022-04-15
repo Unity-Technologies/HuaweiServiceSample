@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using HuaweiService.Auth;
 
 namespace HuaweiService.location
 {
@@ -8,6 +9,7 @@ namespace HuaweiService.location
     }
     public class ActivityConversionData :HmsClass<ActivityConversionData_Data>
     {
+        public static Parcelable.Creator CREATOR => HmsUtil.GetStaticValue<Parcelable.Creator>("CREATOR");
         public ActivityConversionData (int arg0, int arg1, long arg2): base(arg0, arg1, arg2) { }
         public ActivityConversionData (): base() { }
         public int getActivityType() {

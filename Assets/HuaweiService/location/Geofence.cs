@@ -11,6 +11,7 @@ namespace HuaweiService.location
         public const int ENTER_GEOFENCE_CONVERSION = 1;
         public const int EXIT_GEOFENCE_CONVERSION = 2;
         public const int DWELL_GEOFENCE_CONVERSION = 4;
+        public static long GEOFENCE_NEVER_EXPIRE = -1L;
         public Geofence (): base() { }
         public string getUniqueId() {
             return Call<string>("getUniqueId");

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using HuaweiService.Auth;
 
 namespace HuaweiService.push
 {
@@ -11,6 +12,24 @@ namespace HuaweiService.push
         public const int PRIORITY_UNKNOWN = 0;
         public const int PRIORITY_HIGH = 1;
         public const int PRIORITY_NORMAL = 2;
+        public static string[] a = new string[0];
+    
+        public static int[] b = new int[0];
+    
+        public static long[] c = new long[0];
+    
+        public static HashMap d => HmsUtil.GetStaticValue<HashMap>("d");
+    
+        public static HashMap e => HmsUtil.GetStaticValue<HashMap>("e");
+    
+        public static HashMap f => HmsUtil.GetStaticValue<HashMap>("f");
+    
+        public static HashMap g => HmsUtil.GetStaticValue<HashMap>("g");
+    
+        public static HashMap h => HmsUtil.GetStaticValue<HashMap>("h");
+    
+        public static Parcelable.Creator CREATOR => HmsUtil.GetStaticValue<Parcelable.Creator>("CREATOR");
+    
         public RemoteMessage (Bundle arg0): base(arg0) { }
         public RemoteMessage (Parcel arg0): base(arg0) { }
         public RemoteMessage (): base() { }
@@ -59,6 +78,8 @@ namespace HuaweiService.push
         }
         public class Notification :HmsClass<Notification_Data>
         {
+            public Notification (Bundle arg0): base(arg0) { }
+            public Notification (Bundle arg0, int[] arg1): base(arg0, arg1) { }
             public Notification (): base() { }
             public string getTitle() {
                 return Call<string>("getTitle");

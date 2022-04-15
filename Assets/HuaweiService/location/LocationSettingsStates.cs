@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using HuaweiService.Auth;
 
 namespace HuaweiService.location
 {
@@ -8,8 +9,9 @@ namespace HuaweiService.location
     }
     public class LocationSettingsStates :HmsClass<LocationSettingsStates_Data>
     {
+        public static Parcelable.Creator CREATOR => HmsUtil.GetStaticValue<Parcelable.Creator>("CREATOR");
+        public LocationSettingsStates (bool arg0, bool arg1, bool arg2, bool arg3, bool arg4, bool arg5, bool arg6, bool arg7): base(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7) { }
         public LocationSettingsStates (): base() { }
-        public LocationSettingsStates (bool arg0, bool arg1, bool arg2, bool arg3, bool arg4, bool arg5): base(arg0, arg1, arg2, arg3, arg4, arg5) { }
         public bool isBlePresent() {
             return Call<bool>("isBlePresent");
         }

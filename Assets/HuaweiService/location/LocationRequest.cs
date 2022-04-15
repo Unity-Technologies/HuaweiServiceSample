@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using HuaweiService.Auth;
 
 namespace HuaweiService.location
 {
@@ -8,11 +9,13 @@ namespace HuaweiService.location
     }
     public class LocationRequest :HmsClass<LocationRequest_Data>
     {
+        public static Parcelable.Creator CREATOR => HmsUtil.GetStaticValue<Parcelable.Creator>("CREATOR");
         public const int PRIORITY_HIGH_ACCURACY = 100;
         public const int PRIORITY_BALANCED_POWER_ACCURACY = 102;
         public const int PRIORITY_LOW_POWER = 104;
         public const int PRIORITY_NO_POWER = 105;
         public const int PRIORITY_HD_ACCURACY = 200;
+        public const int PRIORITY_INDOOR = 300;
         public LocationRequest (): base() { }
         public static LocationRequest create() {
             return CallStatic<LocationRequest>("create");

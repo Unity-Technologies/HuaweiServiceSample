@@ -9,6 +9,8 @@ namespace HuaweiService.push
     public class HmsMessaging :HmsClass<HmsMessaging_Data>
     {
         public const string DEFAULT_TOKEN_SCOPE = "HCM";
+        public static Pattern a => HmsUtil.GetStaticValue<Pattern>("a");
+        public HmsMessaging (Context arg0): base(arg0) { }
         public HmsMessaging (): base() { }
         public static HmsMessaging getInstance(Context arg0) {
             return CallStatic<HmsMessaging>("getInstance", arg0);
