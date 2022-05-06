@@ -73,6 +73,7 @@ You can follow [Huawei documentation guidance](https://developer.huawei.com/cons
            <uses-permission android:name="com.huawei.hms.permission.ACTIVITY_RECOGNITION" />
            <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
            <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+           <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
            <application>
                <activity android:name="com.hms.hms_analytic_activity.HmsAnalyticActivity"
                        android:theme="@style/UnityThemeSelector">

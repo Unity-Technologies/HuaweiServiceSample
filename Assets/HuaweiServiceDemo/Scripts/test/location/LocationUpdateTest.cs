@@ -9,6 +9,7 @@ namespace HuaweiServiceDemo
         public const string ACCESS_FINE_LOCATION = "android.permission.ACCESS_FINE_LOCATION";
         public const string ACCESS_COARSE_LOCATION = "android.permission.ACCESS_COARSE_LOCATION";
         public const string ACCESS_BACKGROUND_LOCATION = "android.permission.ACCESS_BACKGROUND_LOCATION";
+        public const string NOTIFICATION_SERVICE = "notification";
         public const int CALLBACK = 1;
         public const int INTENT = 2;
         public const int LocationHD = 3;
@@ -20,12 +21,15 @@ namespace HuaweiServiceDemo
         public FusedLocationProviderClient fusedLocationProviderClient;
         public Notification notification;
         public LogConfig logConfig = new LogConfig();
+        public Context context = new Context();
+        public Notification.Builder mbuilder;
+        public Notification mNotification;
 
         public override void RegisterEvent(TestEvent registerEvent)
         {
             registerEvent("SetPermission", SetPermission);
             registerEvent("Check Location Setting", CheckLocationSetting);
-            registerEvent("enable background location", () => BackgroundLocationSetting(1, notification));
+            registerEvent("enable background location", BackgroundLocationSetting);
             registerEvent("disable background location", () => DisableBackgroundLocation());
             registerEvent("update with callback-102", () => RequestLocationUpdates(102, CALLBACK));
             registerEvent("update with callback-104", () => RequestLocationUpdates(104, CALLBACK));
@@ -46,36 +50,31 @@ namespace HuaweiServiceDemo
             );
         }
 
-        public void BackgroundLocationSetting(int id,Notification notification)
+        public void BackgroundLocationSetting()
         {
-            TestTip.Inst.ShowText("RequestBackgroundLocationUpdatesWithCallback start");
-            this.requestType = CALLBACK;
-            mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(new Context());
-            mSettingsClient = LocationServices.getSettingsClient(new Context());
-            mLocationRequest = new LocationRequest();
+            TestTip.Inst.ShowText("RequestEnableBackgroundLocation start");
+            int notificationId = 1;
+            if (AndroidUtil.GetAndroidVersion() >= AndroidUtil.GetAndroidVersionCodeO()){
+                AndroidJavaObject obj = context.getSystemService(NOTIFICATION_SERVICE);
+                NotificationManager notificationManager = HmsClassHelper.ConvertObject<NotificationManager>(obj);
+                string channelId = context.getPackageName();
+                NotificationChannel notificationChannel =
+                new NotificationChannel(channelId, "LOCATION", NotificationManager.IMPORTANCE_LOW);
+                notificationManager.createNotificationChannel(notificationChannel);
+                mbuilder = new Notification.Builder(context, channelId);
+            } else {
+                mbuilder = new Notification.Builder(context);
+            }
+            if (AndroidUtil.GetAndroidOSVersion() >= AndroidUtil.GetAndroidVersionCodeJellyBean()) {
+                mNotification = mbuilder.build();
+            } else {
+                mNotification = mbuilder.getNotification();
+            }
             Activity activity = new UnityPlayerActivity();
-            Notification.Builder builder = new Notification.Builder(new Context());
-            notification = builder.build();
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity);
-            fusedLocationProviderClient.enableBackgroundLocation(id,notification);
-            LocationSettingsRequest.Builder locationSettingsRequestBuilder = new LocationSettingsRequest.Builder();
-            locationSettingsRequestBuilder.addLocationRequest(mLocationRequest);
-            LocationSettingsRequest locationSettingsRequest = locationSettingsRequestBuilder.build();
-            Task task = mSettingsClient.checkLocationSettings(locationSettingsRequest);
-            task.addOnSuccessListener(new HmsSuccessListener<LocationSettingsResponse>((LocationSettingsResponse setting) =>
-            {
-                var status = setting.getLocationSettingsStates();
-                TestTip.Inst.ShowText($"isBlePresent :{status.isBlePresent()}");
-                TestTip.Inst.ShowText($"isBleUsable :{status.isBleUsable()}");
-                TestTip.Inst.ShowText($"isGpsPresent :{status.isGpsPresent()}");
-                TestTip.Inst.ShowText($"isGpsUsable :{status.isGpsUsable()}");
-                TestTip.Inst.ShowText($"isLocationPresent :{status.isLocationPresent()}");
-                TestTip.Inst.ShowText($"isLocationUsable :{status.isLocationUsable()}");
-                TestTip.Inst.ShowText($"isNetworkLocationPresent :{status.isNetworkLocationPresent()}");
-                TestTip.Inst.ShowText($"isNetworkLocationUsable :{status.isNetworkLocationUsable()}");
-            })).addOnFailureListener(new HmsFailureListener((Exception e) => SetSettingsFailuer(e)));
+            fusedLocationProviderClient.enableBackgroundLocation(notificationId,mNotification);   
+            TestTip.Inst.ShowText("EnableBackgroundLocation Successfully");
         }
-
         public void LogConfig()
         {
             Activity activity = new UnityPlayerActivity();
