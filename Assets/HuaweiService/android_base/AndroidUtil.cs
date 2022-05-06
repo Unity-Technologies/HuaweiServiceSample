@@ -18,6 +18,15 @@ namespace HuaweiService
         public static int GetPMPermissionGranted() {
             return CallStatic<int>("GetPMPermissionGranted");
         }
+        public static int GetAndroidVersionCodeO() {
+            return CallStatic<int>("GetAndroidVersionCodeO");
+        }
+        public static int GetAndroidOSVersion() {
+            return CallStatic<int>("GetAndroidOSVersion");
+        }
+        public static int GetAndroidVersionCodeJellyBean() {
+            return CallStatic<int>("GetAndroidVersionCodeJellyBean");
+        }
         public static int GetId(Context arg0, string arg1, string arg2) {
             return CallStatic<int>("GetId", arg0, arg1, arg2);
         }

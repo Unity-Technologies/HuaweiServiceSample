@@ -30,5 +30,8 @@ namespace HuaweiService
         public const int INTERRUPTION_FILTER_PRIORITY = 2;
         public const int INTERRUPTION_FILTER_UNKNOWN = 0;
         public NotificationManager (): base() { }
+        public void createNotificationChannel(NotificationChannel arg0) {
+            Call("createNotificationChannel", arg0);
+        }
     }
 }

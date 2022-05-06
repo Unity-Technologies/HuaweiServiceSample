@@ -67,6 +67,7 @@ You can follow [Huawei documentation guidance](https://developer.huawei.com/cons
            <uses-permission android:name="com.huawei.hms.permission.ACTIVITY_RECOGNITION" />
            <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
            <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+           <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
            <application>
                <activity android:name="com.hms.hms_analytic_activity.HmsAnalyticActivity"
                        android:theme="@style/UnityThemeSelector">
@@ -160,7 +161,7 @@ You can follow [Huawei documentation guidance](https://developer.huawei.com/cons
            implementation 'com.huawei.hms:ads-lite:13.4.49.301'
            implementation 'com.huawei.hms:ads-consent:3.4.49.301'
            implementation 'com.huawei.hms:push:6.1.0.300'
-           implementation 'com.huawei.hms:hianalytics:6.3.2.300'
+           implementation 'com.huawei.hms:hianalytics:6.4.1.301'
            implementation 'com.huawei.hms:location:6.2.0.300'
            implementation 'com.android.support:appcompat-v7:28.0.0'
            implementation 'com.huawei.agconnect:agconnect-core:1.6.1.300'
